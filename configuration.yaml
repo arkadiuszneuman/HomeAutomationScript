@@ -1,0 +1,266 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 50.308210
+  longitude: 18.916434
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 287
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Warsaw
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # 
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the develapi_password: !secret http_passwordopers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+  - platform: rest
+    name: Airly
+    resource: https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=50.29076&longitude=18.91781&maxDistance=1000
+    headers:
+      apikey: !secret airly_api_key
+    value_template: "{{ value_json['airQualityIndex'] }} {{ value_json['pm25'] }} {{ value_json['pm10'] }}"
+  - platform: template
+    sensors:
+      airly_aqi:
+        unit_of_measurement: "units"
+        value_template: "{{ states.sensor.airly.state.split(' ')[0] | round(0) }}"
+      airly_pm25:
+        unit_of_measurement: "μg/m3"
+        value_template: "{{ states.sensor.airly.state.split(' ')[1] | round(0) }}"
+      airly_pm10:
+        unit_of_measurement: "μg/m3"
+        value_template: "{{ states.sensor.airly.state.split(' ')[2] | round(0) }}"
+      airly_pm25_percent:
+        unit_of_measurement: "%"
+        value_template: "{{ states.sensor.airly.state.split(' ')[1] * 100 / 25 | round(0) }}"
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml 
+
+switch:
+  platform: command_line
+  switches:
+    stack_pin_one:
+      command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,0"
+      command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,1"
+      friendly_name: One
+    stack_pin_two:
+      command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,0"
+      command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,1"
+      friendly_name: Two
+    stack_pin_three:
+      command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,0"
+      command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,1"
+      friendly_name: Three
+    stack_pin_four:
+      command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,0"
+      command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,1"
+      friendly_name: Four
+
+cover:
+  - platform: command_line
+    covers:
+      roleta_salon:
+        friendly_name: Roleta salon
+        command_open: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=0"
+        command_close: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=100"
+        command_stop: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=0"
+        # command_state: state_command garage
+        
+light:
+  - platform: limitlessled
+    bridges:
+    - host: 192.168.1.101
+      groups:
+      - number: 1
+        type: rgbww
+        name: Salon LED
+        fade: on
+      - number: 2
+        type: bridge-led
+        name: Grzybek
+        fade: on
+
+
+media_player:
+  - platform: braviatv
+    name: "Sony Bravia"
+    host: 192.168.1.108
+  # - platform: denonavr
+  #   host: 192.168.1.114
+  #   name: "Denon"
+  - platform: spotify
+    client_id: !secret spotify_clientid
+    client_secret: !secret spotify_clientsecret
+  - platform: denon
+    host: 192.168.1.114
+    name: 'Denon'
+
+scene:
+  - name: "Oglądanie TV"
+    entities:
+      light.salon_led:
+        state: on
+        xy_color: [0.5, 0.4]
+        brightness: 200
+      light.grzybek:
+        state: on
+        rgb_color: [53, 255, 100]
+        brightness: 100
+      media_player.denon:
+        volume_level: '{{ 0.2 }}'
+        source: "TV Audio"
+      media_player.sony_bravia: on
+      switch.stack_pin_one: off
+      switch.stack_pin_two: off
+      switch.stack_pin_three: off
+      switch.stack_pin_four: off
+  - name: "Standardowe oświetlenie"
+    entities:
+      light.salon_led:
+        state: on
+        xy_color: [0.5, 0.4]
+        brightness: 100
+      light.grzybek:
+        state: on
+        rgb_color: [53, 255, 100]
+        brightness: 100
+      switch.stack_pin_one: on
+      switch.stack_pin_three: on
+  - name: "Dobranoc"
+    entities:
+      light.salon_led: off
+      light.grzybek: off
+      switch.stack_pin_one: off
+      switch.stack_pin_two: off
+      switch.stack_pin_three: off
+      switch.stack_pin_four: off
+      media_player.sony_bravia: off
+      cover.roleta_salon: closed
+
+input_select:
+  rozrywka:
+    name: Rozrywka
+    options:
+      - TV
+      - PS4
+      - Kodi
+    initial: TV
+    icon: mdi:remote
+
+input_number:
+  volume_setpoint:
+    name: Denon Volume
+    initial: 25
+    min: 1
+    max: 100
+    step: 1
+
+automation:
+  - alias: Denon Volume
+    trigger:
+      platform: state
+      entity_id: input_number.volume_setpoint
+    action:
+      - service:  media_player.volume_set
+        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+        data_template:
+          entity_id: media_player.denon
+          volume_level: "{{ trigger.to_state.state | multiply(0.01) }}"
+  - alias: Denon test
+    trigger:
+      platform: state
+      entity_id: media_player.denon
+    action:
+      - service:  media_player.select_source
+        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+        data_template:
+          entity_id: media_player.denon
+          volume_level: 0.10
+
+device_tracker:
+- platform: nmap_tracker
+  hosts:
+    - 192.168.1.103-104
+  track_new_devices: yes
+  interval_seconds: 10
+  home_interval: 1
+
+weather:
+  - platform: openweathermap
+    api_key: !secret openweathermap_api_key
+
+
+# automation:
+# - alias: Denon Volume
+#   trigger:
+#     platform: state
+#     entity_id: input_slider.volume_setpoint
+#   action:
+#   - service: media_player.volume_set
+#     data_template:
+#       entity_id: media_player.tv
+#       volume_level: {{states.input_slider.volume_setpoint.state}}
+
+# group:
+#   view: yes
+#   icon: mdi:home
+#   entities:
+#     - switch.stack_pin_one
+#     - switch.stack_pin_two
+#     - switch.stack_pin_three
+#     - switch.stack_pin_four
+        

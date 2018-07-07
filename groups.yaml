@@ -1,0 +1,5 @@
+test_view:
+  view: yes
+  name: Testujemy
+  entities:
+    - switch.stack_pin_one
