@@ -140,15 +140,11 @@ media_player:
   - platform: braviatv
     name: "Sony Bravia"
     host: 192.168.1.108
-  # - platform: denonavr
-  #   host: 192.168.1.114
-  #   name: "Denon"
   - platform: spotify
     client_id: !secret spotify_clientid
     client_secret: !secret spotify_clientsecret
   - platform: denon
     host: 192.168.1.114
-    name: 'Denon'
 
 input_select:
   rozrywka:
@@ -169,7 +165,7 @@ input_number:
     step: 1
 
 automation:
-  - alias: Denon Volume
+  - alias: "Denon Volume"
     trigger:
       platform: state
       entity_id: input_number.volume_setpoint
@@ -177,7 +173,7 @@ automation:
       - service:  media_player.volume_set
         # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
         data_template:
-          entity_id: media_player.denon
+          entity_id: media_player.denon_avrx1400h
           volume_level: "{{ trigger.to_state.state | multiply(0.01) }}"
   - alias: Denon test
     trigger:
