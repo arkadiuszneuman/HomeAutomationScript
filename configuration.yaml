@@ -89,6 +89,7 @@ cloud:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml 
+scene: !include_dir_list custom/scenes/
 
 switch:
   platform: command_line
@@ -148,48 +149,6 @@ media_player:
   - platform: denon
     host: 192.168.1.114
     name: 'Denon'
-
-scene:
-  - name: "Oglądanie TV"
-    entities:
-      light.salon_led:
-        state: on
-        xy_color: [0.5, 0.4]
-        brightness: 200
-      light.grzybek:
-        state: on
-        rgb_color: [53, 255, 100]
-        brightness: 100
-      media_player.denon:
-        volume_level: '{{ 0.2 }}'
-        source: "TV Audio"
-      media_player.sony_bravia: on
-      switch.stack_pin_one: off
-      switch.stack_pin_two: off
-      switch.stack_pin_three: off
-      switch.stack_pin_four: off
-  - name: "Standardowe oświetlenie"
-    entities:
-      light.salon_led:
-        state: on
-        xy_color: [0.5, 0.4]
-        brightness: 100
-      light.grzybek:
-        state: on
-        rgb_color: [53, 255, 100]
-        brightness: 100
-      switch.stack_pin_one: on
-      switch.stack_pin_three: on
-  - name: "Dobranoc"
-    entities:
-      light.salon_led: off
-      light.grzybek: off
-      switch.stack_pin_one: off
-      switch.stack_pin_two: off
-      switch.stack_pin_three: off
-      switch.stack_pin_four: off
-      media_player.sony_bravia: off
-      cover.roleta_salon: closed
 
 input_select:
   rozrywka:
