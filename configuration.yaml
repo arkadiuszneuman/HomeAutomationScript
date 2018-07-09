@@ -13,8 +13,8 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-# Show links to resources in log and frontend
-introduction:
+logger:
+  default: info
 
 # Enables the frontend
 frontend:
@@ -185,6 +185,11 @@ automation:
         data_template:
           entity_id: media_player.denon
           volume_level: 0.10
+
+notify:
+  - platform: pushbullet
+    name: push
+    api_key: !secret pushbullet_api_key
 
 device_tracker:
 - platform: nmap_tracker
