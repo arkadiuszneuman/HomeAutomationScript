@@ -87,7 +87,7 @@ tts:
 cloud:
 
 group: !include groups.yaml
-# automation: !include automations.yaml
+automation: !include_dir_list custom/automations/
 script: !include scripts.yaml 
 scene: !include_dir_list custom/scenes/
 
@@ -167,54 +167,6 @@ input_number:
     min: 1
     max: 100
     step: 1
-
-automation:
-  - alias: "Denon Volume"
-    trigger:
-      platform: state
-      entity_id: input_number.volume_setpoint
-    action:
-      - service:  media_player.volume_set
-        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
-        data_template:
-          entity_id: media_player.denon_avrx1400h
-          volume_level: "{{ trigger.to_state.state | multiply(0.01) }}"
-  - alias: Denon test
-    trigger:
-      platform: state
-      entity_id: media_player.denon_avrx1400h
-    action:
-      # - service: notify.push
-      #   data:
-      #     message: 'Test {{ states.media_player.denon_avrx1400h.attributes["source"] }}'
-      #     title: "Custom subject"
-      - service:  media_player.denon_avrx1400h
-        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
-        data_template:
-          entity_id: media_player.denon_avrx1400h
-          volume_level: 0.10
-  - alias: Oświecenie świateł podczas przyjścia do domu po zmierzchu
-    trigger:
-      platform: state
-      entity_id: 
-        - device_tracker.2047dafb928a
-        - device_tracker.f4f5dbc1deb7
-      from: 'not_home'
-      to: 'home'
-    action:
-      - service: notify.push
-        data:
-          message: "Ktoś przyszedł do domu"
-      - service: switch.turn_on
-        entity_id: switch.external_door_light
-      - delay: 00:10:00
-      - service: switch.turn_off
-        entity_id: switch.external_door_light
-    condition:
-      - condition: sun
-        after: sunset
-        after_offset: "-0:30:00"
-    
 
 notify:
   - platform: pushbullet

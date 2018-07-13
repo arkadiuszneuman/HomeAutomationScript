@@ -1,0 +1,21 @@
+alias: Oświecenie świateł podczas przyjścia do domu po zmierzchu
+trigger:
+  platform: state
+  entity_id: 
+    - device_tracker.2047dafb928a
+    - device_tracker.f4f5dbc1deb7
+  from: 'not_home'
+  to: 'home'
+action:
+  - service: notify.push
+    data:
+      message: "Ktoś przyszedł do domu"
+  - service: switch.turn_on
+    entity_id: switch.external_door_light
+  - delay: 00:10:00
+  - service: switch.turn_off
+    entity_id: switch.external_door_light
+condition:
+  - condition: sun
+    after: sunset
+    after_offset: "-0:30:00"
