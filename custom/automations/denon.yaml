@@ -8,17 +8,17 @@ action:
     data_template:
       entity_id: media_player.denon_avrx1400h
       volume_level: "{{ trigger.to_state.state | multiply(0.01) }}"
-alias: Denon test
-trigger:
-  platform: state
-  entity_id: media_player.denon_avrx1400h
-action:
-  # - service: notify.push
-  #   data:
-  #     message: 'Test {{ states.media_player.denon_avrx1400h.attributes["source"] }}'
-  #     title: "Custom subject"
-  - service:  media_player.denon_avrx1400h
-    # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
-    data_template:
-      entity_id: media_player.denon_avrx1400h
-      volume_level: 0.10
+# alias: Denon test
+# trigger:
+#   platform: state
+#   entity_id: media_player.denon_avrx1400h
+# action:
+#   # - service: notify.push
+#   #   data:
+#   #     message: 'Test {{ states.media_player.denon_avrx1400h.attributes["source"] }}'
+#   #     title: "Custom subject"
+#   - service:  media_player.denon_avrx1400h
+#     # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+#     data_template:
+#       entity_id: media_player.denon_avrx1400h
+#       volume_level: 0.10

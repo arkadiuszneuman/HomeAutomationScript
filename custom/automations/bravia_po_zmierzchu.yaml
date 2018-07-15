@@ -1,0 +1,23 @@
+alias: Oświecenie światła za TV po zmierzchu
+trigger:
+  platform: sun
+  event: sunset
+  offset: "-00:30:00"
+condition:
+  - condition: state
+    entity_id: media_player.sony_bravia
+    state: 'on'
+action:
+  - service: light.turn_on
+    data:
+      entity_id: light.salon_led
+      xy_color: [0.5, 0.4]
+      brightness: 200
+  - service: light.turn_on
+    data:
+      entity_id: light.grzybek
+      rgb_color: [53, 255, 100]
+      brightness: 100
+  - service: notify.push
+    data:
+      message: "Zaszlo slonce przy wlaczonym tv"
