@@ -54,7 +54,6 @@ sun:
 
 # Weather prediction
 sensor:
-  - platform: yr
   - platform: rest
     name: Airly
     resource: https://airapi.airly.eu/v1/nearestSensor/measurements?latitude=50.29076&longitude=18.91781&maxDistance=1000
