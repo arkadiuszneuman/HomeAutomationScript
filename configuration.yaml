@@ -133,11 +133,11 @@ light:
       - number: 1
         type: rgbww
         name: Salon LED
-        fade: on
+        fade: off
       - number: 2
         type: bridge-led
         name: Grzybek
-        fade: on
+        fade: off
 
 
 media_player:
