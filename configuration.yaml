@@ -144,7 +144,7 @@ media_player:
     client_id: !secret spotify_clientid
     client_secret: !secret spotify_clientsecret
   - platform: denon
-    host: 192.168.1.114
+    host: 192.168.1.100
 
 input_select:
   rozrywka:
