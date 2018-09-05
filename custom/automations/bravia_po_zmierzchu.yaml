@@ -18,6 +18,3 @@ action:
       entity_id: light.grzybek
       rgb_color: [53, 255, 100]
       brightness: 100
-  - service: notify.push
-    data:
-      message: "Zaszlo slonce przy wlaczonym tv"
