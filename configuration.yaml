@@ -14,7 +14,7 @@ homeassistant:
   customize: !include customize.yaml
 
 logger:
-  default: info
+  default: error
 
 # Enables the frontend
 frontend:
