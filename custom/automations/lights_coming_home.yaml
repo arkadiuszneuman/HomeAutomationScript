@@ -11,10 +11,19 @@ action:
     data:
       message: "Ktoś przyszedł do domu"
   - service: switch.turn_on
+    entity_id: switch.stack_pin_two
+  - service: switch.turn_on
+    entity_id: switch.stack_pin_four
+  - service: switch.turn_on
     entity_id: switch.external_door_light
-  - delay: 00:10:00
+  - delay: 
+      minutes: 10
   - service: switch.turn_off
     entity_id: switch.external_door_light
+  - service: switch.turn_off
+    entity_id: switch.stack_pin_two
+  - service: switch.turn_off
+    entity_id: switch.stack_pin_four
 condition:
   - condition: sun
     after: sunset
