@@ -1,0 +1,9 @@
+alias: "Roleta 50%"
+trigger:
+  platform: state
+  entity_id: input_boolean.set_roller_50
+  to: 'on'
+action:
+  - service: rest_command.window_cover_percent
+    data:
+      percent: 50

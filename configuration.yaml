@@ -88,28 +88,28 @@ script: !include scripts.yaml
 scene: !include_dir_list custom/scenes/
 
 switch:
-  platform: command_line
-  switches:
-    stack_pin_one:
-      command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,0"
-      command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,1"
-      friendly_name: One
-    stack_pin_two:
-      command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,0"
-      command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,1"
-      friendly_name: Two
-    stack_pin_three:
-      command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,0"
-      command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,1"
-      friendly_name: Three
-    stack_pin_four:
-      command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,0"
-      command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,1"
-      friendly_name: Four
-    external_door_light:
-      command_on: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,0"
-      command_off: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,1"
-      friendly_name: Lampka zewnętrzna
+  - platform: command_line
+    switches:
+      stack_pin_one:
+        command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,0"
+        command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,1"
+        friendly_name: One
+      stack_pin_two:
+        command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,0"
+        command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,1"
+        friendly_name: Two
+      stack_pin_three:
+        command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,0"
+        command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,1"
+        friendly_name: Three
+      stack_pin_four:
+        command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,0"
+        command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,1"
+        friendly_name: Four
+      external_door_light:
+        command_on: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,0"
+        command_off: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,1"
+        friendly_name: Lampka zewnętrzna
 
 cover:
   - platform: command_line
@@ -163,6 +163,21 @@ input_number:
     min: 1
     max: 100
     step: 1
+
+input_boolean:
+  set_roller_20:
+    name: Roleta 20%
+    initial: off
+  set_roller_30:
+    name: Roleta 30%
+    initial: off
+  set_roller_50:
+    name: Roleta 50%
+    initial: off
+
+rest_command:
+  window_cover_percent:
+    url: 'http://192.168.1.198/changelevel?level={{percent}}'
 
 notify:
   - platform: pushbullet
