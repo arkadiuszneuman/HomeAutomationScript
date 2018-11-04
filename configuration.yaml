@@ -80,7 +80,7 @@ tts:
   - platform: google
 
 # Cloud
-cloud:
+#cloud:
 
 group: !include groups.yaml
 automation: !include_dir_list custom/automations/
@@ -140,9 +140,9 @@ media_player:
   - platform: braviatv
     name: "Sony Bravia"
     host: 192.168.1.108
-  - platform: spotify
-    client_id: !secret spotify_clientid
-    client_secret: !secret spotify_clientsecret
+#  - platform: spotify
+#    client_id: !secret spotify_clientid
+#    client_secret: !secret spotify_clientsecret
   - platform: denon
     host: 192.168.1.100
 
