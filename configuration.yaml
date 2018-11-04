@@ -60,6 +60,7 @@ sensor:
     headers:
       apikey: !secret airly_api_key
     value_template: "{{ value_json['airQualityIndex'] }} {{ value_json['pm25'] }} {{ value_json['pm10'] }}"
+    scan_interval: 3600
   - platform: template
     sensors:
       airly_aqi:
