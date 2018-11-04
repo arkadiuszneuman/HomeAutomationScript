@@ -146,15 +146,15 @@ media_player:
   - platform: denon
     host: 192.168.1.100
 
-input_select:
-  rozrywka:
-    name: Rozrywka
-    options:
-      - TV
-      - PS4
-      - Kodi
-    initial: TV
-    icon: mdi:remote
+#input_select:
+#  rozrywka:
+#    name: Rozrywka
+#    options:
+#      - TV
+#      - PS4
+#      - Kodi
+#    initial: TV
+#    icon: mdi:remote
 
 input_number:
   volume_setpoint:
