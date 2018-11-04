@@ -93,19 +93,19 @@ switch:
       stack_pin_one:
         command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,0"
         command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,1"
-        friendly_name: One
+        friendly_name: Halogen 1
       stack_pin_two:
         command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,0"
         command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,1"
-        friendly_name: Two
+        friendly_name: Halogen 2
       stack_pin_three:
         command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,0"
         command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,1"
-        friendly_name: Three
+        friendly_name: Halogen 3
       stack_pin_four:
         command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,0"
         command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,1"
-        friendly_name: Four
+        friendly_name: Halogen 4
       external_door_light:
         command_on: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,0"
         command_off: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,1"

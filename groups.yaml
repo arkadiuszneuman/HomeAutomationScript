@@ -1,5 +1,37 @@
-test_view:
+main_view:
   view: yes
-  name: Testujemy
+  icon: mdi:home
+  name: Główne
   entities:
+    - group.light
+    - group.window_covers
+    - group.media
+light:
+  name: Światło
+  entities:
+    - light.salon_led
+    - light.grzybek
     - switch.stack_pin_one
+    - switch.stack_pin_two
+    - switch.stack_pin_three
+    - switch.stack_pin_four
+    - switch.external_door_light
+window_covers:
+  name: Roleta
+  entities:
+    - cover.roleta_salon
+media:
+  name: Media
+  entities:
+    - media_player.sony_bravia
+    - media_player.denon_avrx1400h
+    - input_number.volume_setpoint
+
+scene_view:
+  view: yes
+  icon: mdi:theater
+  name: Sceny
+  entities:
+    - scene.dobranoc
+    - scene.standardowe_oswietlenie
+    - scene.ogladanie_tv
