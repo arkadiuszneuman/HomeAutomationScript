@@ -2,6 +2,7 @@
 !*.yaml
 !scenes
 !automations
+!sensors
 !.gitignore
 !custom
 secrets.yaml
