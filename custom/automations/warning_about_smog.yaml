@@ -1,0 +1,18 @@
+- alias: Informacja o przekroczonym smogu
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.airly_pm25_percent
+    above: 120
+  action:
+    - service: notify.push
+      data:
+        message: "Przekroczono 120% smogu"
+- alias: Informacja o bezpiecznej wartości smogu
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.airly_pm25_percent
+    below: 100
+  action:
+    - service: notify.push
+      data:
+        message: "Smog o bezpiecznej wartości"
