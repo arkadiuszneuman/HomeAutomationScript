@@ -1,0 +1,27 @@
+- alias: "Roleta 20%"
+  trigger:
+    platform: state
+    entity_id: input_boolean.set_roller_20
+    to: 'on'
+  action:
+    - service: rest_command.window_cover_percent
+      data:
+        percent: 20
+- alias: "Roleta 30%"
+  trigger:
+    platform: state
+    entity_id: input_boolean.set_roller_30
+    to: 'on'
+  action:
+    - service: rest_command.window_cover_percent
+      data:
+        percent: 30
+- alias: "Roleta 50%"
+  trigger:
+    platform: state
+    entity_id: input_boolean.set_roller_50
+    to: 'on'
+  action:
+    - service: rest_command.window_cover_percent
+      data:
+        percent: 50

@@ -60,7 +60,7 @@ tts:
 #cloud:
 
 group: !include groups.yaml
-automation: !include_dir_list custom/automations/
+automation: !include_dir_merge_list custom/automations/
 script: !include scripts.yaml 
 scene: !include_dir_list custom/scenes/
 sensor: !include_dir_merge_list custom/sensors/

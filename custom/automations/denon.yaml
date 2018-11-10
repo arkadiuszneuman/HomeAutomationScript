@@ -1,13 +1,13 @@
-alias: "Denon Volume"
-trigger:
-  platform: state
-  entity_id: input_number.volume_setpoint
-action:
-  - service:  media_player.volume_set
-    # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
-    data_template:
-      entity_id: media_player.denon_avrx1400h
-      volume_level: "{{ trigger.to_state.state | multiply(0.01) }}"
+- alias: "Denon Volume"
+  trigger:
+    platform: state
+    entity_id: input_number.volume_setpoint
+  action:
+    - service:  media_player.volume_set
+      # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+      data_template:
+        entity_id: media_player.denon_avrx1400h
+        volume_level: "{{ trigger.to_state.state | multiply(0.01) }}"
 # alias: Denon test
 # trigger:
 #   platform: state

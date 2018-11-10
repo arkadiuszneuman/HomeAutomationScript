@@ -1,9 +1,0 @@
-alias: "Roleta 30%"
-trigger:
-  platform: state
-  entity_id: input_boolean.set_roller_30
-  to: 'on'
-action:
-  - service: rest_command.window_cover_percent
-    data:
-      percent: 30
