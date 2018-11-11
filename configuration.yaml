@@ -65,6 +65,16 @@ script: !include scripts.yaml
 scene: !include_dir_list custom/scenes/
 sensor: !include_dir_merge_list custom/sensors/
 
+influxdb:
+  host: 192.168.1.115
+  include:
+    entities:
+       - sensor.airly_pm25_percent
+       - sensor.airly_pm25
+       - sensor.airly_pm10
+       - media_player.sony_bravia
+       - media_player.denon_avrx1400h
+
 switch:
   - platform: command_line
     switches:
