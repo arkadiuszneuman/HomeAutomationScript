@@ -1,1 +1,5 @@
 grafana/grafana.db
+influxdb/data/
+influxdb/meta/
+influxdb/wal/
+grafana/sessions/
