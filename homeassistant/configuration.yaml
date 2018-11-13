@@ -161,6 +161,9 @@ input_number:
     step: 1
 
 input_boolean:
+  set_roller_10:
+    name: Roleta 10%
+    initial: off
   set_roller_20:
     name: Roleta 20%
     initial: off
@@ -169,6 +172,9 @@ input_boolean:
     initial: off
   set_roller_50:
     name: Roleta 50%
+    initial: off
+  set_roller_70:
+    name: Roleta 70%
     initial: off
 
 rest_command:
