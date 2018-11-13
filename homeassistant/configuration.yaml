@@ -69,11 +69,19 @@ influxdb:
   host: influxdb
   include:
     entities:
-       - sensor.airly_pm25_percent
-       - sensor.airly_pm25
-       - sensor.airly_pm10
-       - media_player.sony_bravia
-       - media_player.denon_avrx1400h
+      - sensor.airly_pm25_percent
+      - sensor.airly_pm25
+      - sensor.airly_pm10
+      - media_player.sony_bravia
+      - media_player.denon_avrx1400h
+      - light.salon_led
+      - light.grzybek
+      - switch.stack_pin_one
+      - switch.stack_pin_two
+      - switch.stack_pin_three
+      - switch.stack_pin_four
+      - switch.external_door_light
+      - cover.roleta_salon
 
 switch:
   - platform: command_line
