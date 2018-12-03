@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using RawRabbit;
+using RawRabbit.Configuration;
+using RawRabbit.vNext;
+using Services.Common.Models;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace datacollector.Controllers
 {
@@ -11,6 +11,21 @@ namespace datacollector.Controllers
     [ApiController]
     public class SensorsController : ControllerBase
     {
+        private readonly IBusClient busClient;
+
+        public SensorsController()
+        {
+            var busConfig = new RawRabbitConfiguration
+            {
+                Username = "guest",
+                Password = "guest",
+                Port = 5672,
+                VirtualHost = "/",
+                Hostnames = { "localhost" }
+            };
+            busClient = BusClientFactory.CreateDefault(busConfig);
+        }
+
         [HttpGet("StairsSensorDown")]
         public ActionResult<string> StairsSensorDown()
         {
@@ -21,6 +36,14 @@ namespace datacollector.Controllers
         public ActionResult<string> StairsSensorUp()
         {
             return Ok("Got sensor up info");
+        }
+
+
+        [HttpGet("Test")]
+        public async Task<ActionResult<string>> Test()
+        {
+            await busClient.PublishAsync<TestModel>(new TestModel { Message = "asd" });
+            return Ok("Test");
         }
     }
 }
