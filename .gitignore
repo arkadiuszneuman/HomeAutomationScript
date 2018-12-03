@@ -3,3 +3,4 @@ influxdb/data/
 influxdb/meta/
 influxdb/wal/
 grafana/sessions/
+.vscode/
