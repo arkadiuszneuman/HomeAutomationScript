@@ -1,7 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy.exe &quot;$(TargetPath)&quot; &quot;$(SolutionDir)Services.Wrapper.HomeAssistant\External&quot;" />
+  </Target>
 
 </Project>

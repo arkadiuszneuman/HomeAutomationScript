@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataCollector", "datacollector\DataCollector.csproj", "{31A65FF3-BE64-4516-9FCB-3B602342D4D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Common", "Services.Common\Services.Common.csproj", "{A6D5DDCD-B50E-44A0-AB96-D6B5DCEFB741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Common", "Services.Common\Services.Common.csproj", "{A6D5DDCD-B50E-44A0-AB96-D6B5DCEFB741}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Wrapper.HomeAutomation", "Services.Wrapper.HomeAutomation\Services.Wrapper.HomeAutomation.csproj", "{4D3326B4-BFEE-4EB0-9EEB-08A7924888CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Wrapper.HomeAssistant", "Services.Wrapper.HomeAssistant\Services.Wrapper.HomeAssistant.csproj", "{4D3326B4-BFEE-4EB0-9EEB-08A7924888CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

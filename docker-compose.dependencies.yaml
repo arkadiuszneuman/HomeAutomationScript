@@ -1,0 +1,30 @@
+version: '2'
+services:
+  influxdb:
+    image: "influxdb:1.7.0"
+    ports:
+     - 8086:8086
+     - 8083:8083
+    volumes: 
+      - ./influxdb:/var/lib/influxdb
+    environment: 
+      - INFLUXDB_DB=home_assistant
+
+  rabbitmq:
+    image: "rabbitmq:3.7.8"
+    ports:
+      - 5672:5672
+
+  mosquitto:
+    image: "eclipse-mosquitto:1.5.4"
+    ports:
+      - 1883:1883
+      - 9001:9001
+
+  start_dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - rabbitmq
+      - influxdb
+      - mosquitto
+    command: mosquitto:1883 influxdb:8086 rabbitmq:5672
