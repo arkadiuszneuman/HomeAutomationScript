@@ -6,8 +6,10 @@ using MQTTnet.Client;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
 using Services.Common.Models;
+using Services.Wrapper.HomeAssistant.Config;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,10 +20,16 @@ namespace Services.Wrapper.HomeAssistant
     {
         private readonly ILogger _logger;
         private readonly IOptions<DaemonConfig> _config;
-        public DaemonService(ILogger<DaemonService> logger, IOptions<DaemonConfig> config)
+        private readonly RawRabbitConfiguration _rabbitConfiguration;
+        private readonly MqttConfiguration _mqttConfiguration;
+
+        public DaemonService(ILogger<DaemonService> logger, IOptions<DaemonConfig> config,
+            IOptions<RawRabbitConfiguration> rabbitConfiguration, IOptions<MqttConfiguration> mqttConfiguration)
         {
             _logger = logger;
             _config = config;
+            _rabbitConfiguration = rabbitConfiguration.Value;
+            _mqttConfiguration = mqttConfiguration.Value;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -30,15 +38,10 @@ namespace Services.Wrapper.HomeAssistant
 
 
             Console.WriteLine("Hello World!");
-            var busConfig = new RawRabbitConfiguration
-            {
-                Username = "guest",
-                Password = "guest",
-                Port = 5672,
-                VirtualHost = "/",
-                Hostnames = { "rabbitmq" },
-            };
-            var busClient = BusClientFactory.CreateDefault(busConfig);
+
+            Console.WriteLine($"RABBITMQ HOSTNAMES: {string.Join(',', _rabbitConfiguration.Hostnames)}");
+
+            var busClient = BusClientFactory.CreateDefault(_rabbitConfiguration);
             busClient.SubscribeAsync<TestModel>((async (msg, context) =>
             {
                 Console.WriteLine(msg.Message);
@@ -49,7 +52,7 @@ namespace Services.Wrapper.HomeAssistant
 
             var options = new MqttClientOptionsBuilder()
                 .WithClientId("Services.Wrapper.HomeAutomation")
-                .WithTcpServer("mosquitto")
+                .WithTcpServer(_mqttConfiguration.Hostname, _mqttConfiguration.Port)
                 .Build();
 
             client.Connected += async (s, e) =>

@@ -25,6 +25,8 @@ services:
     build: 
       context: ./services/Services.Wrapper.HomeAssistant
       dockerfile: Dockerfile
+    environment: 
+      - WRAPPER_ENVIRONMENT=Docker
 
 
 
