@@ -19,11 +19,11 @@ namespace Services.Wrapper.HomeAssistant
     public class DaemonService : IHostedService, IDisposable
     {
         private readonly ILogger _logger;
-        private readonly IOptions<DaemonConfig> _config;
+        private readonly DaemonConfiguration _config;
         private readonly RabbitMqConfiguration _rabbitConfiguration;
         private readonly MqttConfiguration _mqttConfiguration;
 
-        public DaemonService(ILogger<DaemonService> logger, IOptions<DaemonConfig> config,
+        public DaemonService(ILogger<DaemonService> logger, DaemonConfiguration config,
             RabbitMqConfiguration rabbitConfiguration,
             MqttConfiguration mqttConfiguration)
         {
@@ -35,12 +35,9 @@ namespace Services.Wrapper.HomeAssistant
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Starting daemon: " + _config.Value.DaemonName);
-
+            _logger.LogInformation("Starting daemon: " + _config.DaemonName);
 
             Console.WriteLine("Hello World!");
-
-            //Console.WriteLine($"RABBITMQ HOSTNAMES: {string.Join(',', _rabbitConfiguration.Hostnames)}");
 
             var busClient = BusClientFactory.CreateDefault(new RawRabbitConfiguration
             {
