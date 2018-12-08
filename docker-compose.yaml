@@ -14,12 +14,14 @@ services:
     volumes:
       - ./grafana:/var/lib/grafana
 
-  # data-collector:
-  #   build: ./services/DataCollector/Dockerfile
-  #   ports:
-  #     - 5000:5000
-  #   depends_on: 
-  #     - rabbitmq
+  data-collector:
+    build:
+      context: ./services/DataCollector
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    environment: 
+      - WRAPPER_ENVIRONMENT=Docker
 
   home-assistant-wrapper:
     build: 

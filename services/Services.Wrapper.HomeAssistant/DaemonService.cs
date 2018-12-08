@@ -78,10 +78,10 @@ namespace Services.Wrapper.HomeAssistant
                 await client.PublishAsync(message);
             }));
 
-            client.ApplicationMessageReceived += (sender, e) =>
-            {
-                Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
-            };
+            //client.ApplicationMessageReceived += (sender, e) =>
+            //{
+            //    Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
+            //};
 
             client.Disconnected += async (s, e) =>
             {
