@@ -44,10 +44,7 @@ namespace Services.Wrapper.HomeAssistant
                 Hostnames = { _rabbitConfiguration.Hostname },
                 Port = _rabbitConfiguration.Port
             });
-            busClient.SubscribeAsync<TestModel>((async (msg, context) =>
-            {
-                Console.WriteLine(msg.Message);
-            }));
+           
 
             var factory = new MqttFactory();
             var client = factory.CreateMqttClient();
@@ -60,13 +57,46 @@ namespace Services.Wrapper.HomeAssistant
             client.Connected += async (s, e) =>
             {
                 Console.WriteLine("MQTT connected");
+
+                await client.SubscribeAsync(new TopicFilterBuilder().WithTopic("test").Build());
             };
+
 
             var x = client.ConnectAsync(options).Result;
 
             Console.WriteLine("Arek");
 
+            busClient.SubscribeAsync<TestModel>((async (msg, context) =>
+            {
+                Console.WriteLine(msg.Message);
 
+                var message = new MqttApplicationMessageBuilder()
+                    .WithTopic("test")
+                    .WithPayload(msg.Message)
+                    .Build();
+
+                await client.PublishAsync(message);
+            }));
+
+            client.ApplicationMessageReceived += (sender, e) =>
+            {
+                Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
+            };
+
+            client.Disconnected += async (s, e) =>
+            {
+                Console.WriteLine("### DISCONNECTED FROM SERVER ###");
+                await Task.Delay(TimeSpan.FromSeconds(5));
+
+                try
+                {
+                    await client.ConnectAsync(options);
+                }
+                catch
+                {
+                    Console.WriteLine("### RECONNECTING FAILED ###");
+                }
+            };
 
             return Task.CompletedTask;
         }
