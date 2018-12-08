@@ -41,7 +41,7 @@ namespace Services.Wrapper.HomeAssistant
 
             var busClient = BusClientFactory.CreateDefault(new RawRabbitConfiguration
             {
-                Hostnames = new List<string>() { _rabbitConfiguration.Hostname },
+                Hostnames = { _rabbitConfiguration.Hostname },
                 Port = _rabbitConfiguration.Port
             });
             busClient.SubscribeAsync<TestModel>((async (msg, context) =>
