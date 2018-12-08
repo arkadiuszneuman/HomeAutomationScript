@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataCollector.Config;
+using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
@@ -13,15 +14,12 @@ namespace datacollector.Controllers
     {
         private readonly IBusClient busClient;
 
-        public SensorsController()
+        public SensorsController(RabbitMqConfig rabbitMqConfig)
         {
             var busConfig = new RawRabbitConfiguration
             {
-                Username = "guest",
-                Password = "guest",
-                Port = 5672,
-                VirtualHost = "/",
-                Hostnames = { "localhost" }
+                Port = rabbitMqConfig.Port,
+                Hostnames = { rabbitMqConfig.Hostname }
             };
             busClient = BusClientFactory.CreateDefault(busConfig);
         }
