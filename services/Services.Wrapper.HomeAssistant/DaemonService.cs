@@ -24,12 +24,13 @@ namespace Services.Wrapper.HomeAssistant
         private readonly MqttConfiguration _mqttConfiguration;
 
         public DaemonService(ILogger<DaemonService> logger, IOptions<DaemonConfig> config,
-            IOptions<RawRabbitConfiguration> rabbitConfiguration, IOptions<MqttConfiguration> mqttConfiguration)
+            IOptions<RawRabbitConfiguration> rabbitConfiguration,
+            MqttConfiguration mqttConfiguration)
         {
             _logger = logger;
             _config = config;
             _rabbitConfiguration = rabbitConfiguration.Value;
-            _mqttConfiguration = mqttConfiguration.Value;
+            _mqttConfiguration = mqttConfiguration;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
