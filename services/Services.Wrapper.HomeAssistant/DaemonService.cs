@@ -20,16 +20,16 @@ namespace Services.Wrapper.HomeAssistant
     {
         private readonly ILogger _logger;
         private readonly IOptions<DaemonConfig> _config;
-        private readonly RawRabbitConfiguration _rabbitConfiguration;
+        private readonly RabbitMqConfiguration _rabbitConfiguration;
         private readonly MqttConfiguration _mqttConfiguration;
 
         public DaemonService(ILogger<DaemonService> logger, IOptions<DaemonConfig> config,
-            IOptions<RawRabbitConfiguration> rabbitConfiguration,
+            RabbitMqConfiguration rabbitConfiguration,
             MqttConfiguration mqttConfiguration)
         {
             _logger = logger;
             _config = config;
-            _rabbitConfiguration = rabbitConfiguration.Value;
+            _rabbitConfiguration = rabbitConfiguration;
             _mqttConfiguration = mqttConfiguration;
         }
 
@@ -40,9 +40,13 @@ namespace Services.Wrapper.HomeAssistant
 
             Console.WriteLine("Hello World!");
 
-            Console.WriteLine($"RABBITMQ HOSTNAMES: {string.Join(',', _rabbitConfiguration.Hostnames)}");
+            //Console.WriteLine($"RABBITMQ HOSTNAMES: {string.Join(',', _rabbitConfiguration.Hostnames)}");
 
-            var busClient = BusClientFactory.CreateDefault(_rabbitConfiguration);
+            var busClient = BusClientFactory.CreateDefault(new RawRabbitConfiguration
+            {
+                Hostnames = new List<string>() { _rabbitConfiguration.Hostname },
+                Port = _rabbitConfiguration.Port
+            });
             busClient.SubscribeAsync<TestModel>((async (msg, context) =>
             {
                 Console.WriteLine(msg.Message);

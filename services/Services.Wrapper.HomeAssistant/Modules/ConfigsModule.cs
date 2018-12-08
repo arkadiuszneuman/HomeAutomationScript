@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Services.Wrapper.HomeAssistant.Config;
 using System;
 using System.Linq;
