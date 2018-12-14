@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Client;
 using RawRabbit.Configuration;
@@ -8,9 +7,6 @@ using RawRabbit.vNext;
 using Services.Common.Models;
 using Services.Wrapper.HomeAssistant.Config;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,6 +18,9 @@ namespace Services.Wrapper.HomeAssistant
         private readonly DaemonConfiguration _config;
         private readonly RabbitMqConfiguration _rabbitConfiguration;
         private readonly MqttConfiguration _mqttConfiguration;
+
+        private DateTime LastTimeBottomSensorDetected = DateTime.MinValue;
+        private DateTime LastTimeUpperSensorDetected = DateTime.MinValue;
 
         public DaemonService(ILogger<DaemonService> logger, DaemonConfiguration config,
             RabbitMqConfiguration rabbitConfiguration,
@@ -58,30 +57,105 @@ namespace Services.Wrapper.HomeAssistant
             {
                 Console.WriteLine("MQTT connected");
 
-                await client.SubscribeAsync(new TopicFilterBuilder().WithTopic("test").Build());
+                //await client.SubscribeAsync(new TopicFilterBuilder().WithTopic("test").Build());
             };
 
 
             var x = client.ConnectAsync(options).Result;
 
-            Console.WriteLine("Arek");
-
-            busClient.SubscribeAsync<TestModel>((async (msg, context) =>
+            busClient.SubscribeAsync<TriggeredUpperStairSensorModel>(async (msg, context) =>
             {
-                Console.WriteLine(msg.Message);
+                Console.WriteLine($"Triggered upper stairs sensor at {msg.DateTime}");
 
                 var message = new MqttApplicationMessageBuilder()
-                    .WithTopic("test")
-                    .WithPayload(msg.Message)
+                    .WithTopic("home/stairs/upper_motion_detector/set")
+                    .WithPayload("ON")
                     .Build();
 
                 await client.PublishAsync(message);
-            }));
 
-            //client.ApplicationMessageReceived += (sender, e) =>
-            //{
-            //    Console.WriteLine(Encoding.UTF8.GetString(e.ApplicationMessage.Payload));
-            //};
+                var differenceBetweenSensorsTime = DateTime.Now - LastTimeBottomSensorDetected;
+
+                if (differenceBetweenSensorsTime >= TimeSpan.FromSeconds(3) &&
+                    differenceBetweenSensorsTime <= TimeSpan.FromSeconds(30))
+                {
+                    LastTimeBottomSensorDetected = DateTime.MinValue;
+
+                    Console.WriteLine($"Sending set_going_up on MQTT");
+
+                    message = new MqttApplicationMessageBuilder()
+                        .WithTopic("home/stairs/set_going_up")
+                        .WithPayload("ON")
+                        .Build();
+
+                    await client.PublishAsync(message);
+                }
+
+                LastTimeUpperSensorDetected = msg.DateTime;
+
+                await Task.Delay(5000);
+
+                message = new MqttApplicationMessageBuilder()
+                    .WithTopic("home/stairs/upper_motion_detector/set")
+                    .WithPayload("OFF")
+                    .Build();
+
+                await client.PublishAsync(message);
+
+                message = new MqttApplicationMessageBuilder()
+                   .WithTopic("home/stairs/set_going_up")
+                   .WithPayload("OFF")
+                   .Build();
+
+                await client.PublishAsync(message);
+            });
+
+            busClient.SubscribeAsync<TriggeredBottomStairSensorModel>(async (msg, context) =>
+            {
+                Console.WriteLine($"Triggered bottom stairs sensor at {msg.DateTime}");
+
+                var message = new MqttApplicationMessageBuilder()
+                    .WithTopic("home/stairs/bottom_motion_detector/set")
+                    .WithPayload("ON")
+                    .Build();
+
+                await client.PublishAsync(message);
+
+                var differenceBetweenSensorsTime = DateTime.Now - LastTimeUpperSensorDetected;
+                if (differenceBetweenSensorsTime >= TimeSpan.FromSeconds(3) &&
+                    differenceBetweenSensorsTime <= TimeSpan.FromSeconds(30))
+                {
+                    LastTimeUpperSensorDetected = DateTime.MinValue;
+
+                    Console.WriteLine($"Sending set_going_down on MQTT");
+
+                    message = new MqttApplicationMessageBuilder()
+                        .WithTopic("home/stairs/set_going_down")
+                        .WithPayload("ON")
+                        .Build();
+
+                    await client.PublishAsync(message);
+                }
+
+
+                LastTimeBottomSensorDetected = msg.DateTime;
+
+                await Task.Delay(5000);
+
+                message = new MqttApplicationMessageBuilder()
+                    .WithTopic("home/stairs/bottom_motion_detector/set")
+                    .WithPayload("OFF")
+                    .Build();
+
+                await client.PublishAsync(message);
+
+                message = new MqttApplicationMessageBuilder()
+                   .WithTopic("home/stairs/set_going_down")
+                   .WithPayload("OFF")
+                   .Build();
+
+                await client.PublishAsync(message);
+            });
 
             client.Disconnected += async (s, e) =>
             {

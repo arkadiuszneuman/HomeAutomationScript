@@ -4,6 +4,7 @@ using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
 using Services.Common.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace datacollector.Controllers
@@ -25,22 +26,23 @@ namespace datacollector.Controllers
         }
 
         [HttpGet("StairsSensorDown")]
-        public ActionResult<string> StairsSensorDown()
+        public async Task<ActionResult<string>> StairsSensorDown()
         {
+            await busClient.PublishAsync(new TriggeredBottomStairSensorModel { DateTime = DateTime.Now });
             return Ok("Got sensor down info");
         }
 
         [HttpGet("StairsSensorUp")]
-        public ActionResult<string> StairsSensorUp()
+        public async Task<ActionResult<string>> StairsSensorUp()
         {
+            await busClient.PublishAsync(new TriggeredUpperStairSensorModel { DateTime = DateTime.Now });
             return Ok("Got sensor up info");
         }
-
 
         [HttpGet("Test")]
         public async Task<ActionResult<string>> Test()
         {
-            await busClient.PublishAsync<TestModel>(new TestModel { Message = "asd" });
+            await busClient.PublishAsync(new TestModel { Message = "asd" });
             return Ok("Test");
         }
     }
