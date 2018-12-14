@@ -36,7 +36,7 @@ main_view:
 
 media_view:
   view: yes
-  icon: mdi:tv
+  icon: mdi:television
   name: Media
   entities:
     - group.media

@@ -179,11 +179,25 @@ media_player:
 
 input_number:
   volume_setpoint:
-    name: Denon Volume
+    name: Denon głośność
     initial: 25
     min: 1
     max: 100
     step: 1
+  stairs_min_brightness:
+    name: Minimalna jasność schodów
+    initial: 0
+    min: 0
+    max: 100
+    step: 1
+    unit_of_measurement: '%'
+  stairs_max_brightness:
+    name: Maksymalna jasność schodów
+    initial: 100
+    min: 0
+    max: 100
+    step: 1
+    unit_of_measurement: '%'
 
 input_boolean:
   set_roller_10:
@@ -205,6 +219,10 @@ input_boolean:
 rest_command:
   window_cover_percent:
     url: 'http://192.168.1.198/changelevel?level={{percent}}'
+  stairs_min_brightness:
+    url: 'http://192.168.1.196/changesettings?minlevel={{minlevel}}'
+  stairs_max_brightness:
+    url: 'http://192.168.1.196/changesettings?maxlevel={{maxlevel}}'
 
 notify:
   - platform: pushbullet

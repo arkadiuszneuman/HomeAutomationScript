@@ -1,0 +1,17 @@
+- alias: "Minimalna jasność schodów"
+  trigger:
+    platform: state
+    entity_id: input_number.stairs_min_brightness
+  action:
+    - service: rest_command.stairs_min_brightness
+      data_template:
+        minlevel: "{{ trigger.to_state.state | int }}"
+
+- alias: "Maksymalna jasność schodów"
+  trigger:
+    platform: state
+    entity_id: input_number.stairs_max_brightness
+  action:
+    - service: rest_command.stairs_max_brightness
+      data_template:
+        maxlevel: "{{ trigger.to_state.state | int }}"
