@@ -1,11 +1,3 @@
-main_view:
-  view: yes
-  icon: mdi:home
-  name: Główne
-  entities:
-    - group.light
-    - group.window_covers
-    - group.media
 light:
   name: Światło
   entities:
@@ -16,6 +8,7 @@ light:
     - switch.stack_pin_three
     - switch.stack_pin_four
     - switch.external_door_light
+
 window_covers:
   name: Roleta
   entities:
@@ -25,12 +18,28 @@ window_covers:
     - input_boolean.set_roller_30
     - input_boolean.set_roller_50
     - input_boolean.set_roller_70
+    
 media:
   name: Media
   entities:
     - media_player.sony_bravia
     - media_player.denon_avrx1400h
     - input_number.volume_setpoint
+
+main_view:
+  view: yes
+  icon: mdi:home
+  name: Główne
+  entities:
+    - group.light
+    - group.window_covers
+
+media_view:
+  view: yes
+  icon: mdi:tv
+  name: Media
+  entities:
+    - group.media
 
 scene_view:
   view: yes
