@@ -1,6 +1,6 @@
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: Home
+  name: Dom
   # Location required to calculate the time the sun rises and sets
   latitude: 50.308210
   longitude: 18.916434
@@ -61,6 +61,9 @@ tts:
 # Cloud
 #cloud:
 
+mqtt:
+  broker: mosquitto
+
 group: !include groups.yaml
 automation: !include_dir_merge_list custom/automations/
 script: !include scripts.yaml 
@@ -84,6 +87,26 @@ influxdb:
       - switch.stack_pin_four
       - switch.external_door_light
       - cover.roleta_salon
+
+binary_sensor:
+  - platform: workday
+    country: PL
+  - platform: mqtt
+    command_topic: "inrelevant"
+    state_topic: "home/stairs/bottom_motion_detector/set"
+    name: Schody czujnik dolny
+  - platform: mqtt
+    command_topic: "inrelevant"
+    state_topic: "home/stairs/upper_motion_detector/set"
+    name: Schody czujnik górny
+  - platform: mqtt
+    command_topic: "inrelevant"
+    state_topic: "home/stairs/set_going_down"
+    name: Schody zejście na dół
+  - platform: mqtt
+    command_topic: "inrelevant"
+    state_topic: "home/stairs/set_going_up"
+    name: Schody wejście na górę
 
 switch:
   - platform: command_line

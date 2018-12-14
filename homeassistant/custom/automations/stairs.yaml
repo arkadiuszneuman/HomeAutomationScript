@@ -1,0 +1,92 @@
+- alias: "Zejście po schodach rano Pati"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.schody_zejscie_na_do
+    to: 'on'
+  condition:
+    - condition: time
+      after: '04:30:00'
+      before: '06:00:00'
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.stack_pin_two
+    - service: switch.turn_on
+      entity_id: switch.stack_pin_three
+    - delay: 
+        minutes: 5
+    - service: switch.turn_on
+      entity_id: switch.external_door_light
+    - delay: 
+        minutes: 10
+    - service: switch.turn_off
+      entity_id: switch.external_door_light
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_two
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_four
+
+- alias: "Zejście po schodach rano Arek"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.schody_zejscie_na_do
+    to: 'on'
+  condition:
+    - condition: time
+      after: '07:00:00'
+      before: '10:00:00'
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.stack_pin_two
+    - service: switch.turn_on
+      entity_id: switch.stack_pin_three
+    - service: rest_command.window_cover_percent
+      data:
+        percent: 0
+    - delay: #na wszelki wypadek, gdyby górny sensor nie zadziałał
+        minutes: 20
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_two
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_four
+
+- alias: "Wejście po schodach rano Arek"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.schody_wejscie_na_gore
+    to: 'on'
+  condition:
+    - condition: time
+      after: '07:00:00'
+      before: '10:00:00'
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_two
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_three
+
+- alias: "Zejście po schodach weekend"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.schody_zejscie_na_do
+    to: 'on'
+  condition:
+    - condition: time
+      after: '04:30:00'
+      before: '12:00:00'
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'off'
+  action:
+    - service: rest_command.window_cover_percent
+      data:
+        percent: 0
+    
