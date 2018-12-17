@@ -15,14 +15,9 @@ namespace datacollector.Controllers
     {
         private readonly IBusClient busClient;
 
-        public SensorsController(RabbitMqConfig rabbitMqConfig)
+        public SensorsController(IBusClient busClient)
         {
-            var busConfig = new RawRabbitConfiguration
-            {
-                Port = rabbitMqConfig.Port,
-                Hostnames = { rabbitMqConfig.Hostname }
-            };
-            busClient = BusClientFactory.CreateDefault(busConfig);
+            this.busClient = busClient;
         }
 
         [HttpGet("StairsSensorDown")]
