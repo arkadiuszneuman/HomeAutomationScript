@@ -9,17 +9,20 @@ services:
       - ./influxdb:/var/lib/influxdb
     environment: 
       - INFLUXDB_DB=home_assistant
+    container_name: influxdb
 
   rabbitmq:
     image: "rabbitmq:3.7.8"
     ports:
       - 5672:5672
+    container_name: rabbit
 
   mosquitto:
     image: "eclipse-mosquitto:1.5.4"
     ports:
       - 1883:1883
       - 9001:9001
+    container_name: mosquitto
 
   start_dependencies:
     image: dadarek/wait-for-dependencies
