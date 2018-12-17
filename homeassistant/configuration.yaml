@@ -87,6 +87,10 @@ influxdb:
       - switch.stack_pin_four
       - switch.external_door_light
       - cover.roleta_salon
+      - binary_sensor.schody_wejscie_na_gore
+      - binary_sensor.schody_zejscie_na_do
+      - input_number.stairs_min_brightness
+      - input_number.stairs_max_brightness
 
 binary_sensor:
   - platform: workday
