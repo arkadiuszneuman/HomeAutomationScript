@@ -1,7 +1,7 @@
  echo "=====================Starting========================"``
  docker-compose -f ./docker-compose.dependencies.yaml run --rm start_dependencies
  docker-compose -f ./docker-compose.yaml -f ./docker-compose.windows.yaml up --build
- echo ""=====================Stopping========================""
+ echo "=====================Stopping========================"
  docker stop mosquitto
  docker stop influxdb
  docker stop rabbit
