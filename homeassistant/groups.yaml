@@ -25,6 +25,8 @@ media:
     - media_player.sony_bravia
     - media_player.denon_avrx1400h
     - input_number.volume_setpoint
+    - input_number.stairs_min_brightness
+    - input_number.stairs_max_brightness
 
 main_view:
   view: yes
