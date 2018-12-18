@@ -112,6 +112,10 @@ binary_sensor:
     state_topic: "home/stairs/set_going_up"
     name: Schody wejście na górę
 
+sonoff:
+  username: !secret sonoff_login
+  password: !secret sonoff_pass
+
 switch:
   - platform: command_line
     switches:

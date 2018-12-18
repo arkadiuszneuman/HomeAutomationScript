@@ -1,10 +1,4 @@
 - name: "Dobranoc"
   entities:
-    light.salon_led: off
-    light.grzybek: off
-    switch.stack_pin_one: off
-    switch.stack_pin_two: off
-    switch.stack_pin_three: off
-    switch.stack_pin_four: off
-    media_player.sony_bravia: off
     cover.roleta_salon: closed
+    

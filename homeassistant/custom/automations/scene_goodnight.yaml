@@ -1,0 +1,37 @@
+- alias: Scena dobranoc
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service_data:
+        entity_id: scene.dobranoc
+      domain: scene
+      service: turn_on
+  action:
+    # - service: tts.google_say
+    #   data:
+    #     message: 'Dobranoc'
+    #     language: 'pl'
+    - service: media_player.turn_off
+      entity_id: media_player.denon_avrx1400h
+    - service: media_player.turn_off
+      entity_id: media_player.sony_bravia
+    - service: light.turn_off
+      entity_id: light.grzybek
+    - delay: 
+        seconds: 30
+    - service: light.turn_off
+      entity_id: light.salon_led
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_one
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_two
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_three
+    - service: switch.turn_off
+      entity_id: switch.stack_pin_four
+    - service: switch.turn_off
+      entity_id: switch.sonoff_100051420f
+    - service: switch.turn_off
+      entity_id: switch.sonoff_1000513cd0
+    
