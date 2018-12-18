@@ -91,6 +91,8 @@ influxdb:
       - binary_sensor.schody_zejscie_na_do
       - input_number.stairs_min_brightness
       - input_number.stairs_max_brightness
+      - switch.sonoff_100051420f
+      - switch.sonoff_1000513cd0
 
 binary_sensor:
   - platform: workday
