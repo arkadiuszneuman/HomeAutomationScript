@@ -36,4 +36,7 @@
       entity_id: switch.sonoff_1000513cd0
     - service: switch.turn_off
       entity_id: switch.sonoff_1000511f63
+    - service: rest_command.stairs_min_brightness
+      data_template:
+        minlevel: 0
     
