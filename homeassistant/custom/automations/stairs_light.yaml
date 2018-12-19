@@ -1,0 +1,42 @@
+- alias: "Minimalna jasność schodów"
+  trigger:
+    platform: state
+    entity_id: input_number.stairs_min_brightness
+  action:
+    - service: rest_command.stairs_min_brightness
+      data_template:
+        minlevel: "{{ trigger.to_state.state | int }}"
+
+- alias: "Maksymalna jasność schodów"
+  trigger:
+    platform: state
+    entity_id: input_number.stairs_max_brightness
+  action:
+    - service: rest_command.stairs_max_brightness
+      data_template:
+        maxlevel: "{{ trigger.to_state.state | int }}"
+
+- alias: Ustawienie jasności schodów po zmierzchu
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  action:
+    - service: rest_command.stairs_min_brightness
+      data_template:
+        minlevel: 0
+    - service: rest_command.stairs_max_brightness
+      data_template:
+        maxlevel: 100
+
+- alias: Ustawienie jasności schodów po świcie
+  trigger:
+    platform: time
+    at: "08:30:00"
+  action:
+    - service: rest_command.stairs_min_brightness
+      data_template:
+        minlevel: 0
+    - service: rest_command.stairs_max_brightness
+      data_template:
+        maxlevel: 0
