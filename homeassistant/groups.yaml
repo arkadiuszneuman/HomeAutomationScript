@@ -7,7 +7,7 @@ light:
     - light.halogen_2
     - light.halogen_3
     - light.halogen_4
-    - switch.external_door_light
+    - light.lampka_zewnetrzna
 
 window_covers:
   name: Roleta

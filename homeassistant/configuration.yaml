@@ -85,7 +85,7 @@ influxdb:
       - light.halogen_2
       - light.halogen_3
       - light.halogen_4
-      - switch.external_door_light
+      - light.lampka_zewnetrzna
       - cover.roleta_salon
       - binary_sensor.schody_wejscie_na_gore
       - binary_sensor.schody_zejscie_na_do
@@ -119,14 +119,6 @@ binary_sensor:
 sonoff:
   username: !secret sonoff_login
   password: !secret sonoff_pass
-
-switch:
-  - platform: command_line
-    switches:
-      external_door_light:
-        command_on: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,0"
-        command_off: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,1"
-        friendly_name: Lampka zewnętrzna
 
 cover:
   - platform: command_line
@@ -173,6 +165,12 @@ light:
     name: "Halogen 4"
     state_topic: "/ESP_Lampy_Salon_Boczne/Relay4/Switch"
     command_topic: "/ESP_Lampy_Salon_Boczne/gpio/12"
+    payload_on: "0"
+    payload_off: "1"
+  - platform: mqtt
+    name: "Lampka zewnętrzna"
+    state_topic: "/ESP_Przedpokoj/Relay1/Switch"
+    command_topic: "/ESP_Przedpokoj/gpio/12"
     payload_on: "0"
     payload_off: "1"
 

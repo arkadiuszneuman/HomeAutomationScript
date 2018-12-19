@@ -21,12 +21,12 @@
       entity_id: switch.sonoff_1000513cd0
     - delay: 
         minutes: 20
-    - service: switch.turn_on
-      entity_id: switch.external_door_light
+    - service: light.turn_on
+      entity_id: light.lampka_zewnetrzna
     - delay: 
         minutes: 20
-    - service: switch.turn_off
-      entity_id: switch.external_door_light
+    - service: light.turn_off
+      entity_id: light.lampka_zewnetrzna
     - service: light.turn_off
       entity_id: light.halogen_2
     - service: light.turn_off
