@@ -34,4 +34,6 @@
       entity_id: switch.sonoff_100051420f
     - service: switch.turn_off
       entity_id: switch.sonoff_1000513cd0
+    - service: switch.turn_off
+      entity_id: switch.sonoff_1000511f63
     
