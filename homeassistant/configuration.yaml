@@ -93,6 +93,8 @@ influxdb:
       - input_number.stairs_max_brightness
       - switch.sonoff_100051420f
       - switch.sonoff_1000513cd0
+      - sensor.temperatura_przedpokoj
+      - sensor.wilgotnosc_przedpokoj
 
 binary_sensor:
   - platform: workday
