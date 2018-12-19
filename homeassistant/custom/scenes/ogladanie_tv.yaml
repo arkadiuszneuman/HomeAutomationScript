@@ -12,7 +12,7 @@
       volume_level: '{{ 0.2 }}'
       source: "TV Audio"
     media_player.sony_bravia: on
-    switch.stack_pin_one: off
-    switch.stack_pin_two: off
-    switch.stack_pin_three: off
-    switch.stack_pin_four: off
+    light.halogen_1: off
+    light.halogen_2: off
+    light.halogen_3: off
+    light.halogen_4: off

@@ -11,20 +11,30 @@
       entity_id: binary_sensor.workday_sensor
       state: 'on'
   action:
+    - service: light.turn_on
+      entity_id: light.halogen_2
+    - service: light.turn_on
+      entity_id: light.halogen_3
     - service: switch.turn_on
-      entity_id: switch.stack_pin_two
+      entity_id: switch.sonoff_100051420f
     - service: switch.turn_on
-      entity_id: switch.stack_pin_three
+      entity_id: switch.sonoff_1000513cd0
+    - delay: 
+        minutes: 20
     - service: switch.turn_on
       entity_id: switch.external_door_light
     - delay: 
-        minutes: 10
+        minutes: 20
     - service: switch.turn_off
       entity_id: switch.external_door_light
+    - service: light.turn_off
+      entity_id: light.halogen_2
+    - service: light.turn_off
+      entity_id: light.halogen_3
     - service: switch.turn_off
-      entity_id: switch.stack_pin_two
+      entity_id: switch.sonoff_100051420f
     - service: switch.turn_off
-      entity_id: switch.stack_pin_three
+      entity_id: switch.sonoff_1000513cd0
 
 - alias: "Zejście po schodach rano Arek"
   trigger:
@@ -39,19 +49,19 @@
       entity_id: binary_sensor.workday_sensor
       state: 'on'
   action:
-    - service: switch.turn_on
-      entity_id: switch.stack_pin_two
-    - service: switch.turn_on
-      entity_id: switch.stack_pin_three
+    - service: light.turn_on
+      entity_id: light.halogen_2
+    - service: light.turn_on
+      entity_id: light.halogen_3
     - service: rest_command.window_cover_percent
       data:
         percent: 0
     - delay: #na wszelki wypadek, gdyby górny sensor nie zadziałał
         minutes: 20
-    - service: switch.turn_off
-      entity_id: switch.stack_pin_two
-    - service: switch.turn_off
-      entity_id: switch.stack_pin_three
+    - service: light.turn_off
+      entity_id: light.halogen_2
+    - service: light.turn_off
+      entity_id: light.halogen_3
 
 - alias: "Wejście po schodach rano Arek"
   trigger:
@@ -66,10 +76,10 @@
       entity_id: binary_sensor.workday_sensor
       state: 'on'
   action:
-    - service: switch.turn_off
-      entity_id: switch.stack_pin_two
-    - service: switch.turn_off
-      entity_id: switch.stack_pin_three
+    - service: light.turn_off
+      entity_id: light.halogen_2
+    - service: light.turn_off
+      entity_id: light.halogen_3
 
 - alias: "Zejście po schodach weekend"
   trigger:

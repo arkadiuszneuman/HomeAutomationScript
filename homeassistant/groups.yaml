@@ -3,10 +3,10 @@ light:
   entities:
     - light.salon_led
     - light.grzybek
-    - switch.stack_pin_one
-    - switch.stack_pin_two
-    - switch.stack_pin_three
-    - switch.stack_pin_four
+    - light.halogen_1
+    - light.halogen_2
+    - light.halogen_3
+    - light.halogen_4
     - switch.external_door_light
 
 window_covers:

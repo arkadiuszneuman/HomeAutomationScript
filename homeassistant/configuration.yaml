@@ -81,10 +81,10 @@ influxdb:
       - media_player.denon_avrx1400h
       - light.salon_led
       - light.grzybek
-      - switch.stack_pin_one
-      - switch.stack_pin_two
-      - switch.stack_pin_three
-      - switch.stack_pin_four
+      - light.halogen_1
+      - light.halogen_2
+      - light.halogen_3
+      - light.halogen_4
       - switch.external_door_light
       - cover.roleta_salon
       - binary_sensor.schody_wejscie_na_gore
@@ -123,22 +123,6 @@ sonoff:
 switch:
   - platform: command_line
     switches:
-      stack_pin_one:
-        command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,0"
-        command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,16,1"
-        friendly_name: Halogen 1
-      stack_pin_two:
-        command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,0"
-        command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,2,1"
-        friendly_name: Halogen 2
-      stack_pin_three:
-        command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,0"
-        command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,13,1"
-        friendly_name: Halogen 3
-      stack_pin_four:
-        command_on: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,0"
-        command_off: "/usr/bin/curl -X GET http://192.168.1.199/control?cmd=GPIO,12,1"
-        friendly_name: Halogen 4
       external_door_light:
         command_on: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,0"
         command_off: "/usr/bin/curl -X GET http://192.168.1.197/control?cmd=GPIO,12,1"
@@ -167,6 +151,30 @@ light:
         type: bridge-led
         name: Grzybek
         fade: off
+  - platform: mqtt
+    name: "Halogen 1"
+    state_topic: "/ESP_Lampy_Salon_Boczne/Relay1/Switch"
+    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/16"
+    payload_on: "0"
+    payload_off: "1"
+  - platform: mqtt
+    name: "Halogen 2"
+    state_topic: "/ESP_Lampy_Salon_Boczne/Relay2/Switch"
+    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/2"
+    payload_on: "0"
+    payload_off: "1"
+  - platform: mqtt
+    name: "Halogen 3"
+    state_topic: "/ESP_Lampy_Salon_Boczne/Relay3/Switch"
+    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/13"
+    payload_on: "0"
+    payload_off: "1"
+  - platform: mqtt
+    name: "Halogen 4"
+    state_topic: "/ESP_Lampy_Salon_Boczne/Relay4/Switch"
+    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/12"
+    payload_on: "0"
+    payload_off: "1"
 
 
 media_player:
@@ -252,25 +260,3 @@ device_tracker:
 weather:
   - platform: openweathermap
     api_key: !secret openweathermap_api_key
-
-
-# automation:
-# - alias: Denon Volume
-#   trigger:
-#     platform: state
-#     entity_id: input_slider.volume_setpoint
-#   action:
-#   - service: media_player.volume_set
-#     data_template:
-#       entity_id: media_player.tv
-#       volume_level: {{states.input_slider.volume_setpoint.state}}
-
-# group:
-#   view: yes
-#   icon: mdi:home
-#   entities:
-#     - switch.stack_pin_one
-#     - switch.stack_pin_two
-#     - switch.stack_pin_three
-#     - switch.stack_pin_four
-        
