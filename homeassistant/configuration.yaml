@@ -96,6 +96,8 @@ influxdb:
       - switch.sonoff_1000513cd0
       - sensor.temperatura_przedpokoj
       - sensor.wilgotnosc_przedpokoj
+      - media_player.spotify
+      - weather.openweathermap
 
 binary_sensor:
   - platform: workday
