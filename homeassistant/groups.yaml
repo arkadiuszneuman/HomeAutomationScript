@@ -8,6 +8,9 @@ light:
     - light.halogen_3
     - light.halogen_4
     - light.lampka_zewnetrzna
+    - switch.sonoff_100051420f
+    - switch.sonoff_1000513cd0
+    - switch.sonoff_1000511f63
 
 window_covers:
   name: Roleta
