@@ -23,6 +23,7 @@ frontend:
 config:
 
 http:
+  base_url: 192.168.1.115:8123
   trusted_networks:
     - 192.168.1.0/24
   # Secrets are defined in the file secrets.yaml
@@ -179,9 +180,9 @@ media_player:
   - platform: braviatv
     name: "Sony Bravia"
     host: 192.168.1.108
-#  - platform: spotify
-#    client_id: !secret spotify_clientid
-#    client_secret: !secret spotify_clientsecret
+  - platform: spotify
+    client_id: !secret spotify_clientid
+    client_secret: !secret spotify_clientsecret
   - platform: denon
     host: 192.168.1.100
 
