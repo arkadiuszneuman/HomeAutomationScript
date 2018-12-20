@@ -11,10 +11,10 @@
       entity_id: binary_sensor.workday_sensor
       state: 'on'
   action:
-    - service: light.turn_on
-      entity_id: light.halogen_2
-    - service: light.turn_on
-      entity_id: light.halogen_3
+    # - service: light.turn_on
+    #   entity_id: light.halogen_2
+    # - service: light.turn_on
+    #   entity_id: light.halogen_3
     - service: switch.turn_on
       entity_id: switch.sonoff_100051420f
     - service: switch.turn_on
@@ -24,13 +24,13 @@
     - service: light.turn_on
       entity_id: light.lampka_zewnetrzna
     - delay: 
-        minutes: 20
+        minutes: 15
     - service: light.turn_off
       entity_id: light.lampka_zewnetrzna
-    - service: light.turn_off
-      entity_id: light.halogen_2
-    - service: light.turn_off
-      entity_id: light.halogen_3
+    # - service: light.turn_off
+    #   entity_id: light.halogen_2
+    # - service: light.turn_off
+    #   entity_id: light.halogen_3
     - service: switch.turn_off
       entity_id: switch.sonoff_100051420f
     - service: switch.turn_off
