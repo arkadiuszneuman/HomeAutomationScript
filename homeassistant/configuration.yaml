@@ -23,7 +23,7 @@ frontend:
 config:
 
 http:
-  base_url: 192.168.1.115:8123
+  base_url: !secret base_url
   trusted_networks:
     - 192.168.1.0/24
   # Secrets are defined in the file secrets.yaml
@@ -251,12 +251,15 @@ notify:
     api_key: !secret pushbullet_api_key
 
 device_tracker:
-- platform: nmap_tracker
-  hosts:
-    - 192.168.1.103-104
-  track_new_devices: yes
-  interval_seconds: 10
-  home_interval: 1
+# - platform: nmap_tracker
+#   hosts:
+#     - 192.168.1.103-104
+#   track_new_devices: yes
+#   interval_seconds: 10
+#   home_interval: 1
+  - platform: ping
+    hosts:
+      laptop: 192.168.1.106
 
 weather:
   - platform: openweathermap

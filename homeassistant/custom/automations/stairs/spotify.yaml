@@ -1,0 +1,49 @@
+- alias: "Spotify - przełączanie źródła na Denon po zejściu"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.schody_zejscie_na_do
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: media_player.spotify
+      state: 'playing'
+    - condition: state
+      entity_id: device_tracker.laptop
+      state: 'home'
+    - condition: state
+      entity_id: media_player.sony_bravia
+      state: 'off'
+  action:
+    - service: media_player.select_source
+      entity_id: media_player.spotify
+      data:
+        source: "Denon AVR-X1400H"
+    - delay: 
+        seconds: 3
+    - service:  media_player.volume_set
+      entity_id: media_player.denon_avrx1400h
+      data:
+        volume_level: 0.37
+
+- alias: "Spotify - przełączanie źródła na Denon przy wejściu"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.schody_wejscie_na_gore
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: media_player.spotify
+      state: 'playing'
+    - condition: state
+      entity_id: device_tracker.laptop
+      state: 'home'
+    - condition: state
+      entity_id: media_player.sony_bravia
+      state: 'off'
+  action:
+    - service: media_player.select_source
+      entity_id: media_player.spotify
+      data:
+        source: "DESKTOP-ODN75OC"
+    - service:  media_player.turn_off
+      entity_id: media_player.denon_avrx1400h
