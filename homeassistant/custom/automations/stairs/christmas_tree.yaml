@@ -1,0 +1,35 @@
+- alias: "Choinka - zejście po schodach rano Arek"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.schody_zejscie_na_do
+    to: 'on'
+  condition:
+    - condition: time
+      after: '07:00:00'
+      before: '14:30:00'
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.sonoff_100051420f
+    - service: switch.turn_on
+      entity_id: switch.sonoff_1000513cd0
+
+- alias: "Choinka - wejście po schodach rano Arek"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.schody_wejscie_na_gore
+    to: 'on'
+  condition:
+    - condition: time
+      after: '07:00:00'
+      before: '15:00:00'
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.sonoff_100051420f
+    - service: switch.turn_off
+      entity_id: switch.sonoff_1000513cd0
