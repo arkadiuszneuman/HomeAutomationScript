@@ -1,5 +1,3 @@
-.HA_VERSION
-.uuid
 bravia.conf
 home-assistant.log
 home-assistant_v2.db
@@ -8,3 +6,4 @@ secrets.yaml
 .storage/
 __pycache__
 deps/
+.*
