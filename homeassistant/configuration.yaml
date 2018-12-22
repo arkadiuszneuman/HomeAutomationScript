@@ -98,6 +98,7 @@ influxdb:
       - sensor.wilgotnosc_przedpokoj
       - media_player.spotify
       - weather.openweathermap
+      - device_tracker.laptop
 
 binary_sensor:
   - platform: workday
