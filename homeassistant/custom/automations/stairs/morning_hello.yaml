@@ -1,0 +1,41 @@
+- alias: "Poranne przywitanie z prognozą"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.schody_zejscie_na_do
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.notify_weather
+    state: 'on'
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.notify_weather
+    - service: media_player.turn_on
+      entity_id: media_player.denon_avrx1400h
+    - delay: 
+        seconds: 10
+    - service:  media_player.volume_set
+      entity_id: media_player.denon_avrx1400h
+      data:
+        volume_level: 0.37
+    - service: tts.google_say
+      entity_id: media_player.kd55xe9005
+      data_template:
+        message: "Cześć Arek. Na dworze jest {{states('sensor.owm_temperature') | round(0)}} stopni celsjusza, {{states('sensor.owm_condition')}}. Cisnienie to {{states('sensor.owm_pressure')}}hPa, wilgotność to {{states('sensor.owm_humidity')}}%, wiatr {{states('sensor.owm_wind_speed') | round(0)}} metrów na sekundę. Zanieczyszczenie powietrza to {{states('sensor.airly_pm25_percent')}}%. Prognoza - {{states('sensor.owm_forecast')}}. Miłego dnia."
+        cache: false
+    - delay: 
+        seconds: 50
+    - service: media_player.turn_off
+      entity_id: media_player.denon_avrx1400h
+    - service: media_player.turn_off
+      entity_id: media_player.sony_bravia
+
+- alias: "Przywrócenie informacji o pogodzie"
+  trigger:
+    platform: time
+    at: '04:40:00'
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.notify_weather

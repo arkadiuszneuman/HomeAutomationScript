@@ -58,6 +58,7 @@ sun:
 # Text to speech
 tts:
   - platform: google
+    language: 'pl'
 
 # Cloud
 #cloud:
@@ -189,6 +190,10 @@ media_player:
   - platform: denon
     host: 192.168.1.100
 
+cast:
+  media_player:
+    - host: 192.168.1.108
+
 #input_select:
 #  rozrywka:
 #    name: Rozrywka
@@ -236,6 +241,9 @@ input_boolean:
     initial: off
   set_roller_70:
     name: Roleta 70%
+    initial: off
+  notify_weather:
+    name: Informuj o pogodzie po zejściu
     initial: off
 
 rest_command:
