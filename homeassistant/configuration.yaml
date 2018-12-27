@@ -267,3 +267,4 @@ device_tracker:
 weather:
   - platform: openweathermap
     api_key: !secret openweathermap_api_key
+    mode: daily
