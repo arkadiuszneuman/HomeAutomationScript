@@ -44,6 +44,6 @@
     - service: media_player.select_source
       entity_id: media_player.spotify
       data:
-        source: "DESKTOP-ODN75OC"
+        source: "DESKTOP-UN4F2HG"
     - service:  media_player.turn_off
       entity_id: media_player.denon_avrx1400h
