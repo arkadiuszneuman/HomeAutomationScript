@@ -1,5 +1,13 @@
 version: '2'
 services:
+  ha:  
+    image: "homeassistant/home-assistant:0.84.6"
+    ports:
+     - 8123:8123
+    volumes: 
+      - ./homeassistant:/config
+    container_name: ha
+    
   grafana:
     image: "grafana/grafana:5.0.4"
     ports:
