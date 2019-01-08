@@ -267,8 +267,8 @@ device_tracker:
 #   interval_seconds: 10
 #   home_interval: 1
   - platform: ping
-    interval_seconds: 10
-    consider_home: 1
+    interval_seconds: 120
+    consider_home: 60
     hosts:
       laptop: 192.168.1.106
 
