@@ -24,7 +24,7 @@
     - service: tts.google_say
       entity_id: media_player.kd55xe9005
       data_template:
-        message: "Cześć Arek. Na dworze jest {{states('sensor.owm_temperature') | round(0)}} stopni celsjusza, {{states('sensor.owm_condition')}}. Cisnienie to {{states('sensor.owm_pressure')}}hPa, wilgotność to {{states('sensor.owm_humidity')}}%, wiatr {{states('sensor.owm_wind_speed') | round(0)}} metrów na sekundę. Zanieczyszczenie powietrza to {{states('sensor.airly_pm25_percent')}}%. Prognoza - {{states('sensor.owm_forecast')}}. Miłego dnia."
+        message: "Cześć. Na dworze jest {{states('sensor.owm_temperature') | round(0)}} stopni celsjusza, {{states('sensor.owm_condition')}}. Zanieczyszczenie powietrza to {{states('sensor.airly_pm25_percent')}}%. Prognoza - {{states('sensor.owm_forecast')}}. Miłego dnia."
         cache: false
     - delay: 
         seconds: 50
