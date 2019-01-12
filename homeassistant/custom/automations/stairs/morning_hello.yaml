@@ -4,9 +4,11 @@
     entity_id: binary_sensor.schody_zejscie_na_do
     to: 'on'
   condition:
-    condition: state
-    entity_id: input_boolean.notify_weather
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.notify_weather
+      state: 'on'
+    - condition: time
+      after: '07:00:00'
   action:
     - service: input_boolean.turn_off
       data:
