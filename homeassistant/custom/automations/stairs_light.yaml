@@ -22,9 +22,6 @@
     event: sunset
     offset: "-00:30:00"
   action:
-    - service: rest_command.stairs_min_brightness
-      data_template:
-        minlevel: 0
     - service: rest_command.stairs_max_brightness
       data_template:
         maxlevel: 100
@@ -34,9 +31,6 @@
     platform: time
     at: "08:30:00"
   action:
-    - service: rest_command.stairs_min_brightness
-      data_template:
-        minlevel: 0
     - service: rest_command.stairs_max_brightness
       data_template:
         maxlevel: 0

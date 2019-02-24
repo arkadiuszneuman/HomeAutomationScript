@@ -1,0 +1,13 @@
+- alias: Scena oglądanie tv
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service_data:
+        entity_id: scene.ogladanie_tv
+      domain: scene
+      service: turn_on
+  action:
+    - service: rest_command.stairs_min_brightness
+      data_template:
+        minlevel: 5

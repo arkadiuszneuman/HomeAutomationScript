@@ -17,7 +17,7 @@
     - service: media_player.select_source
       entity_id: media_player.spotify
       data:
-        source: "Denon AVR-X1400H"
+        source: "Denon"
     - delay: 
         seconds: 3
     - service:  media_player.volume_set

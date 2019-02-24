@@ -8,20 +8,23 @@
       domain: scene
       service: turn_on
   action:
-    # - service: tts.google_say
-    #   data:
-    #     message: 'Dobranoc'
-    #     language: 'pl'
+    - service: light.turn_on
+      entity_id: light.halogen_2
+    - service: light.turn_on
+      entity_id: light.halogen_3
     - service: media_player.turn_off
       entity_id: media_player.denon
     - service: media_player.turn_off
       entity_id: media_player.sony_bravia
     - service: light.turn_off
       entity_id: light.grzybek
-    - delay: 
-        seconds: 30
     - service: light.turn_off
       entity_id: light.salon_led
+    - service: rest_command.stairs_min_brightness
+      data_template:
+        minlevel: 0
+    - delay: 
+        seconds: 15
     - service: light.turn_off
       entity_id: light.halogen_1
     - service: light.turn_off
@@ -29,14 +32,11 @@
     - service: light.turn_off
       entity_id: light.halogen_3
     - service: light.turn_off
-      entity_id: light.halogen_4
+      entity_id: light.halogen_4 
     - service: switch.turn_off
       entity_id: switch.sonoff_100051420f
     - service: switch.turn_off
       entity_id: switch.sonoff_1000513cd0
     - service: switch.turn_off
       entity_id: switch.sonoff_1000511f63
-    - service: rest_command.stairs_min_brightness
-      data_template:
-        minlevel: 0
     
