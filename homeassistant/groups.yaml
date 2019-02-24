@@ -12,6 +12,12 @@ light:
     - switch.sonoff_1000513cd0
     - switch.sonoff_1000511f63
 
+stairs:
+  name: Schody
+  entities:
+    - input_number.stairs_min_brightness
+    - input_number.stairs_max_brightness
+
 window_covers:
   name: Roleta
   entities:
@@ -26,10 +32,8 @@ media:
   name: Media
   entities:
     - media_player.sony_bravia
-    - media_player.denon_avrx1400h
+    - media_player.denon
     - input_number.volume_setpoint
-    - input_number.stairs_min_brightness
-    - input_number.stairs_max_brightness
 
 main_view:
   view: yes
@@ -37,6 +41,7 @@ main_view:
   name: Główne
   entities:
     - group.light
+    - group.stairs
     - group.window_covers
 
 media_view:

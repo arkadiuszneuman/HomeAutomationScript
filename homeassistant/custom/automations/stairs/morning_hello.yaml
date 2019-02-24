@@ -14,11 +14,11 @@
       data:
         entity_id: input_boolean.notify_weather
     - service: media_player.turn_on
-      entity_id: media_player.denon_avrx1400h
+      entity_id: media_player.denon
     - delay: 
         seconds: 10
     - service:  media_player.volume_set
-      entity_id: media_player.denon_avrx1400h
+      entity_id: media_player.denon
       data:
         volume_level: 0.37
     - service: tts.google_say
@@ -29,7 +29,7 @@
     - delay: 
         seconds: 50
     - service: media_player.turn_off
-      entity_id: media_player.denon_avrx1400h
+      entity_id: media_player.denon
     - service: media_player.turn_off
       entity_id: media_player.sony_bravia
 

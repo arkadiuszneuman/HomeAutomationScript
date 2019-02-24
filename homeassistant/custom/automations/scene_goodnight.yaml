@@ -13,7 +13,7 @@
     #     message: 'Dobranoc'
     #     language: 'pl'
     - service: media_player.turn_off
-      entity_id: media_player.denon_avrx1400h
+      entity_id: media_player.denon
     - service: media_player.turn_off
       entity_id: media_player.sony_bravia
     - service: light.turn_off

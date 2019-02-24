@@ -80,7 +80,7 @@ influxdb:
       - sensor.airly_pm25
       - sensor.airly_pm10
       - media_player.sony_bravia
-      - media_player.denon_avrx1400h
+      - media_player.denon
       - light.salon_led
       - light.grzybek
       - light.halogen_1
