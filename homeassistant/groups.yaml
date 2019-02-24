@@ -34,6 +34,7 @@ media:
     - media_player.sony_bravia
     - media_player.denon
     - input_number.volume_setpoint
+    - media_player.spotify
 
 main_view:
   view: yes
