@@ -6,6 +6,7 @@ services:
      - 8123:8123
     volumes: 
       - ./homeassistant:/config
+      - /etc/letsencrypt:/etc/letsencrypt
     container_name: ha
 
   grafana:

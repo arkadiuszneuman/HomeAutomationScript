@@ -24,12 +24,10 @@ config:
 
 http:
   base_url: !secret base_url
+  ssl_certificate: /etc/letsencrypt/live/arekha.duckdns.org/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/arekha.duckdns.org/privkey.pem
   trusted_networks:
     - 192.168.1.0/24
-  # Secrets are defined in the file secrets.yaml
-  # 
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -62,6 +60,18 @@ tts:
 
 # Cloud
 #cloud:
+
+google_assistant:
+  project_id: tidy-elf-231815
+  api_key: !secret google_assistant_api_key
+  exposed_domains:
+    - switch
+    - light
+    - group
+  entity_config:
+    light.halogen_1:
+      expose: false
+      room: LIVING_ROOM
 
 mqtt:
   broker: mosquitto
@@ -266,11 +276,11 @@ device_tracker:
 #   track_new_devices: yes
 #   interval_seconds: 10
 #   home_interval: 1
-  - platform: ping
-    interval_seconds: 120
-    consider_home: 60
-    hosts:
-      laptop: 192.168.1.106
+  # - platform: ping
+  #   interval_seconds: 120
+  #   consider_home: 60
+  #   hosts:
+  #     laptop: 192.168.1.106
 
 weather:
   - platform: openweathermap
