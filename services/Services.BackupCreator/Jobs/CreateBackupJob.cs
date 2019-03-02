@@ -17,63 +17,22 @@ namespace Services.BackupCreator.Jobs
     public class CreateBackupJob : IJob
     {
         private readonly ILogger _logger;
-        private readonly PathsConfig _pathsConfig;
+        private readonly ZipBackupCreator _backupCreator;
+        private readonly DropboxSender _dropboxSender;
 
-        public CreateBackupJob(ILogger<BackupCreatorService> logger, PathsConfig pathsConfig)
+        public CreateBackupJob(ILogger<BackupCreatorService> logger, ZipBackupCreator backupCreator,
+            DropboxSender dropboxSender)
         {
             _logger = logger;
-            _pathsConfig = pathsConfig;
+            _backupCreator = backupCreator;
+            _dropboxSender = dropboxSender;
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
-            _logger.LogTrace("Job started");
-            await Pack();
-        }
-
-        public async Task Pack()
-        {
-           
-
-            //var accessToken = "xxx";
-
-            //var httpClient = new HttpClient()
-            //{
-            //    // Specify request level timeout which decides maximum time that can be spent on
-            //    // download/upload files.
-            //    Timeout = TimeSpan.FromMinutes(20)
-            //};
-
-            //var config = new DropboxClientConfig("Home_Assistant_Back")
-            //{
-            //    HttpClient = httpClient
-            //};
-            //var client = new DropboxClient(accessToken, config);
-            //using (var stream = new FileStream(zipFilePath, FileMode.Open))
-            //{
-            //    var response = client.Files
-            //        .UploadAsync("/" + backupFileName, WriteMode.Overwrite.Instance, body: stream)
-            //        .Result;
-
-            //    Console.WriteLine("Uploaded Id {0}", response.Id);
-            //}
-
-            //backupDir.Delete(true);
-
-            //var filesList = client.Files.ListFolderAsync(string.Empty).Result;
-            //var maxFiles = 5;
-            //var filesCountToGet = filesList.Entries.Count - maxFiles;
-            //if (filesCountToGet > 0)
-            //{
-            //    var filesToRemove = filesList.Entries.OrderBy(f => f.Name)
-            //        .Take(filesCountToGet);
-
-            //    foreach (var fileToRemove in filesToRemove)
-            //    {
-            //        var res = await client.Files.DeleteAsync("/" + fileToRemove.Name);
-            //        Console.WriteLine("Removed {0}", res.Name);
-            //    }
-            //}
+            _logger.LogInformation("Backup job started");
+            var backupFile = _backupCreator.CreateBackup();
+            await _dropboxSender.BackupToDropbox(backupFile);
         }
     }
 }
