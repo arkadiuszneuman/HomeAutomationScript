@@ -10,3 +10,4 @@
       brightness: 100
     light.halogen_1: on
     light.halogen_3: on
+    switch.sonoff_1000511f63: on

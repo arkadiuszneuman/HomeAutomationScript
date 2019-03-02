@@ -105,6 +105,7 @@ influxdb:
       - input_number.stairs_max_brightness
       - switch.sonoff_100051420f
       - switch.sonoff_1000513cd0
+      - switch.sonoff_1000511f63
       - sensor.temperatura_przedpokoj
       - sensor.wilgotnosc_przedpokoj
       - media_player.spotify

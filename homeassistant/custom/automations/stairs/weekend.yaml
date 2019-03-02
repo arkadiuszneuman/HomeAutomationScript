@@ -4,8 +4,10 @@
     entity_id: binary_sensor.schody_zejscie_na_do
     to: 'on'
   condition:
+    - condition: sun
+      after: sunrise
+      after_offset: "00:00:00"
     - condition: time
-      after: '04:30:00'
       before: '12:00:00'
     - condition: state
       entity_id: binary_sensor.workday_sensor
