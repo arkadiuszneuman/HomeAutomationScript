@@ -31,8 +31,15 @@ namespace Services.BackupCreator.Jobs
         public async Task Execute(IJobExecutionContext context)
         {
             _logger.LogInformation("Backup job started");
-            var backupFile = _backupCreator.CreateBackup();
-            await _dropboxSender.BackupToDropbox(backupFile);
+            try
+            {
+                var backupFile = _backupCreator.CreateBackup();
+                await _dropboxSender.BackupToDropbox(backupFile);
+            }
+            catch (Exception e)
+            {
+                _logger.LogWarning(e, "Error in backup creation");
+            }
         }
     }
 }

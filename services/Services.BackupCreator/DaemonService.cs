@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Quartz;
 using Quartz.Impl;
 using Services.BackupCreator.Jobs;
+using Services.BackupCreator.SchedulerJobs;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -14,51 +15,27 @@ namespace Services.BackupCreator
 {
     public class BackupCreatorService : IHostedService
     {
-        private readonly IScheduler _scheduler;
-        private readonly CreateBackupJob _createBackupJob;
-        private readonly ZipBackupCreator _zipBackupCreator;
+        private readonly IEnumerable<ISchedulerJob> _schedulerJobs;
 
-        public BackupCreatorService(IScheduler scheduler, CreateBackupJob createBackupJob, ZipBackupCreator zipBackupCreator)
+        public BackupCreatorService(IEnumerable<ISchedulerJob> schedulerJobs)
         {
-            _scheduler = scheduler;
-            _createBackupJob = createBackupJob;
-            _zipBackupCreator = zipBackupCreator;
+            _schedulerJobs = schedulerJobs;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            _zipBackupCreator.CreateBackup();
-
-            try
+            foreach (var job in _schedulerJobs)
             {
-                await _scheduler.Start();
-
-                IJobDetail job = JobBuilder.Create<CreateBackupJob>()
-                    .WithIdentity("job1", "group1")
-                    .Build();
-
-                ITrigger trigger = TriggerBuilder.Create()
-                    .WithIdentity("trigger1", "group1")
-                    .StartNow()
-                    .WithDailyTimeIntervalSchedule(x =>
-                        x.WithIntervalInHours(24)
-                         .OnEveryDay()
-                         .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(21, 00)))
-                    .Build();
-
-                await _scheduler.ScheduleJob(job, trigger);
-
-                //await scheduler.Shutdown();
-            }
-            catch (SchedulerException se)
-            {
-                Console.WriteLine(se);
+                await job.ScheduleJobAsync();
             }
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        public async Task StopAsync(CancellationToken cancellationToken)
         {
-            return Task.CompletedTask;
+            foreach (var job in _schedulerJobs)
+            {
+                await job.ShutdownAsync();
+            }
         }
     }
 }
