@@ -18,7 +18,7 @@ services:
     container_name: rabbit
 
   mosquitto:
-    image: "eclipse-mosquitto:1.5.4"
+    image: "eclipse-mosquitto:1.5.8"
     ports:
       - 1883:1883
       - 9001:9001
