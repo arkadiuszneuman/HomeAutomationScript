@@ -10,7 +10,7 @@ services:
     container_name: ha
 
   grafana:
-    image: "proxx/grafana-armv7:v6.0.0"
+    image: "proxx/grafana-armv7:6.0.0"
     ports:
       - 3000:3000
     volumes:
