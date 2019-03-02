@@ -16,7 +16,7 @@ services:
     volumes:
       - ./grafana:/var/lib/grafana
     container_name: grafana
-    user: "104"
+    user: "root"
 
   data-collector:
     build:
