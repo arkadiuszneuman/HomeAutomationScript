@@ -9,9 +9,10 @@ services:
     container_name: ha
     
   grafana:
-    image: "grafana/grafana:5.0.4"
+    image: "grafana/grafana:6.0.0"
     ports:
       - 3000:3000
     volumes:
       - ./grafana:/var/lib/grafana
     container_name: grafana
+    user: "104"
