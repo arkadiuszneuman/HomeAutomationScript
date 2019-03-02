@@ -4,3 +4,5 @@ influxdb/meta/
 influxdb/wal/
 grafana/sessions/
 .vscode/
+services/Services.BackupCreator/secrets.json
+backup/
