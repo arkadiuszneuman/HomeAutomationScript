@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.1" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
     <PackageReference Include="Autofac.Extras.Quartz" Version="4.4.0" />
     <PackageReference Include="Dropbox.Api" Version="4.9.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
