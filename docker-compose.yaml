@@ -52,6 +52,7 @@ services:
       dockerfile: Dockerfile
     environment: 
       - WRAPPER_ENVIRONMENT=Docker
+      - HOST=Rpi
     volumes:
       - ./:/maindir
     container_name: bc

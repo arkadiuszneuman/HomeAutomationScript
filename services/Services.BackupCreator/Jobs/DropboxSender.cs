@@ -51,7 +51,9 @@ namespace Services.BackupCreator.Jobs
 
         private async Task BackupFile(string file, DropboxClient client)
         {
-            var backupFileName = Path.GetFileName(file);
+            var environment = Environment.GetEnvironmentVariable("HOST") ?? Environment.MachineName;
+
+            var backupFileName = $"{environment}_{Path.GetFileName(file)}";
 
             using (var stream = new FileStream(file, FileMode.Open))
             {

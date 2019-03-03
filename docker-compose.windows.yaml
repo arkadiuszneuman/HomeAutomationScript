@@ -27,5 +27,16 @@ services:
       - ACCEPT_EULA=Y
     container_name: seq
 
+  backup-creator:
+    build: 
+      context: ./services/Services.BackupCreator
+      dockerfile: Dockerfile
+    environment: 
+      - WRAPPER_ENVIRONMENT=Docker
+      - HOST=Win
+    volumes:
+      - ./:/maindir
+    container_name: bc
+
 volumes:
   seq:
