@@ -110,7 +110,7 @@ influxdb:
       - sensor.wilgotnosc_przedpokoj
       - media_player.spotify
       - weather.openweathermap
-      - device_tracker.laptop
+      - vacuum.roborock
 
 binary_sensor:
   - platform: workday
@@ -131,6 +131,12 @@ binary_sensor:
 sonoff:
   username: !secret sonoff_login
   password: !secret sonoff_pass
+
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.1.113
+    token: !secret roborock
+    name: Roborock
 
 cover:
   - platform: command_line
