@@ -45,7 +45,6 @@ namespace Services.BackupCreator
         {
             logging.AddConfiguration(hostContext.Configuration.GetSection("Logging"));
             logging.AddConsole();
-            logging.AddSeq(hostContext.Configuration.GetSection("Seq"));
         }
     }
 }

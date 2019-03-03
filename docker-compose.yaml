@@ -18,16 +18,6 @@ services:
     user: "root"
     container_name: grafana
     
-  seq:
-    image: "datalust/seq:5.0.2787"
-    ports:
-      - 5341:80
-    volumes:
-      - ./seq:/data
-    environment: 
-      - ACCEPT_EULA=Y
-    container_name: seq
-
   data-collector:
     build:
       context: ./services/DataCollector

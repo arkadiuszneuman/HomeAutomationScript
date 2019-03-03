@@ -29,7 +29,6 @@ namespace datacollector
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddLogging(loggingBuilder =>
             {
-                loggingBuilder.AddSeq(Configuration.GetSection("Seq"));
             });
         }
 
