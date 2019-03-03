@@ -44,7 +44,7 @@ namespace Services.BackupCreator.Jobs
                 foreach (var fileToRemove in filesToRemove)
                 {
                     var res = await client.Files.DeleteAsync("/" + fileToRemove.Name);
-                    _logger.LogInformation($"Removed old backup file: {res.Name}");
+                    _logger.LogInformation("Removed old backup file: {removedBackupFileName}", res.Name);
                 }
             }
         }
@@ -55,12 +55,12 @@ namespace Services.BackupCreator.Jobs
 
             using (var stream = new FileStream(file, FileMode.Open))
             {
-                _logger.LogInformation($"Uploading file {file} to Dropbox");
+                _logger.LogInformation("Uploading file {file} to Dropbox", file);
 
                 var response = await client.Files
                     .UploadAsync("/" + backupFileName, WriteMode.Overwrite.Instance, body: stream);
 
-                _logger.LogInformation($"Uploaded file {file} to Dropbox");
+                _logger.LogInformation("Uploaded file {file} to Dropbox", file);
             }
         }
 

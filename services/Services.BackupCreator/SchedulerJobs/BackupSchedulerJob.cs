@@ -26,7 +26,7 @@ namespace Services.BackupCreator.SchedulerJobs
 
         public async Task ScheduleJobAsync()
         {
-            _logger.LogInformation($"Scheduling {nameof(BackupSchedulerJob)}");
+            _logger.LogInformation("Scheduling {scheduleJob}", nameof(BackupSchedulerJob));
 
             try
             {

@@ -1,7 +1,10 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Services.BackupCreator
@@ -17,17 +20,10 @@ namespace Services.BackupCreator
             var builder = new HostBuilder()
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureContainer<ContainerBuilder>(ConfigureContainer)
+                .ConfigureHostConfiguration(ConfigureHostConfiguration)
                 .ConfigureLogging(ConfigureLogging);
 
             await builder.RunConsoleAsync();
-
-            //Console.WriteLine("Hello World!");
-
-            //RunProgramRunExample().GetAwaiter().GetResult();
-
-            //new CreatePackedBackupTask().Pack();
-
-            //Console.ReadKey();
         }
 
         private static void ConfigureContainer(ContainerBuilder builder)
@@ -35,10 +31,21 @@ namespace Services.BackupCreator
             builder.RegisterAssemblyModules(typeof(Program).Assembly);
         }
 
+        private static void ConfigureHostConfiguration(IConfigurationBuilder configHost)
+        {
+            var environment = Environment.GetEnvironmentVariable("WRAPPER_ENVIRONMENT");
+
+            configHost.SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{environment}.json", optional: true)
+                .AddEnvironmentVariables();
+        }
+
         private static void ConfigureLogging(HostBuilderContext hostContext, ILoggingBuilder logging)
         {
             logging.AddConfiguration(hostContext.Configuration.GetSection("Logging"));
             logging.AddConsole();
+            logging.AddSeq(hostContext.Configuration.GetSection("Seq"));
         }
     }
 }

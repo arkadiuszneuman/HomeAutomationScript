@@ -1,5 +1,6 @@
 ﻿using DataCollector.Config;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
@@ -13,31 +14,36 @@ namespace datacollector.Controllers
     [ApiController]
     public class SensorsController : ControllerBase
     {
-        private readonly IBusClient busClient;
+        private readonly IBusClient _busClient;
+        private readonly ILogger<SensorsController> _logger;
 
-        public SensorsController(IBusClient busClient)
+        public SensorsController(IBusClient busClient,
+            ILogger<SensorsController> logger)
         {
-            this.busClient = busClient;
+            this._busClient = busClient;
+            _logger = logger;
         }
 
         [HttpGet("StairsSensorDown")]
         public async Task<ActionResult<string>> StairsSensorDown()
         {
-            await busClient.PublishAsync(new TriggeredBottomStairSensorModel { DateTime = DateTime.Now });
+            _logger.LogInformation("Executed stairs down sensor");
+            await _busClient.PublishAsync(new TriggeredBottomStairSensorModel { DateTime = DateTime.Now });
             return Ok("Got sensor down info");
         }
 
         [HttpGet("StairsSensorUp")]
         public async Task<ActionResult<string>> StairsSensorUp()
         {
-            await busClient.PublishAsync(new TriggeredUpperStairSensorModel { DateTime = DateTime.Now });
+            _logger.LogInformation("Executed stairs up sensor");
+            await _busClient.PublishAsync(new TriggeredUpperStairSensorModel { DateTime = DateTime.Now });
             return Ok("Got sensor up info");
         }
 
         [HttpGet("Test")]
         public async Task<ActionResult<string>> Test()
         {
-            await busClient.PublishAsync(new TestModel { Message = "asd" });
+            await _busClient.PublishAsync(new TestModel { Message = "asd" });
             return Ok("Test");
         }
     }

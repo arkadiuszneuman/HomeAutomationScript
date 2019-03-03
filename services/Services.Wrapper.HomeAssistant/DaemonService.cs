@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace Services.Wrapper.HomeAssistant
 {
-    public class DaemonService : IHostedService, IDisposable
+    public class DaemonService : IHostedService
     {
         private readonly ILogger _logger;
         private readonly DaemonConfiguration _config;
         private readonly RabbitMqConfiguration _rabbitConfiguration;
         private readonly MqttConfiguration _mqttConfiguration;
 
-        private DateTime LastTimeBottomSensorDetected = DateTime.MinValue;
-        private DateTime LastTimeUpperSensorDetected = DateTime.MinValue;
+        private DateTime _lastTimeBottomSensorDetected = DateTime.MinValue;
+        private DateTime _lastTimeUpperSensorDetected = DateTime.MinValue;
 
         public DaemonService(ILogger<DaemonService> logger, DaemonConfiguration config,
             RabbitMqConfiguration rabbitConfiguration,
@@ -34,16 +34,11 @@ namespace Services.Wrapper.HomeAssistant
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Starting daemon: " + _config.DaemonName);
-
-            Console.WriteLine("Hello World!");
-
             var busClient = BusClientFactory.CreateDefault(new RawRabbitConfiguration
             {
                 Hostnames = { _rabbitConfiguration.Hostname },
                 Port = _rabbitConfiguration.Port
             });
-           
 
             var factory = new MqttFactory();
             var client = factory.CreateMqttClient();
@@ -55,9 +50,7 @@ namespace Services.Wrapper.HomeAssistant
 
             client.Connected += async (s, e) =>
             {
-                Console.WriteLine("MQTT connected");
-
-                //await client.SubscribeAsync(new TopicFilterBuilder().WithTopic("test").Build());
+                _logger.LogInformation("MQTT connected");
             };
 
 
@@ -65,7 +58,7 @@ namespace Services.Wrapper.HomeAssistant
 
             busClient.SubscribeAsync<TriggeredUpperStairSensorModel>(async (msg, context) =>
             {
-                Console.WriteLine($"Triggered upper stairs sensor at {msg.DateTime}");
+                _logger.LogDebug("Triggered upper stairs sensor at {time}", msg.DateTime);
 
                 var message = new MqttApplicationMessageBuilder()
                     .WithTopic("home/stairs/upper_motion_detector/set")
@@ -74,14 +67,14 @@ namespace Services.Wrapper.HomeAssistant
 
                 await client.PublishAsync(message);
 
-                var differenceBetweenSensorsTime = DateTime.Now - LastTimeBottomSensorDetected;
+                var differenceBetweenSensorsTime = DateTime.Now - _lastTimeBottomSensorDetected;
 
                 if (differenceBetweenSensorsTime >= TimeSpan.FromSeconds(3) &&
                     differenceBetweenSensorsTime <= TimeSpan.FromSeconds(30))
                 {
-                    LastTimeBottomSensorDetected = DateTime.MinValue;
+                    _lastTimeBottomSensorDetected = DateTime.MinValue;
 
-                    Console.WriteLine($"Sending set_going_up on MQTT");
+                    _logger.LogDebug("Sending set_going_up on MQTT");
 
                     message = new MqttApplicationMessageBuilder()
                         .WithTopic("home/stairs/set_going_up")
@@ -91,7 +84,7 @@ namespace Services.Wrapper.HomeAssistant
                     await client.PublishAsync(message);
                 }
 
-                LastTimeUpperSensorDetected = msg.DateTime;
+                _lastTimeUpperSensorDetected = msg.DateTime;
 
                 await Task.Delay(5000);
 
@@ -112,7 +105,7 @@ namespace Services.Wrapper.HomeAssistant
 
             busClient.SubscribeAsync<TriggeredBottomStairSensorModel>(async (msg, context) =>
             {
-                Console.WriteLine($"Triggered bottom stairs sensor at {msg.DateTime}");
+                _logger.LogDebug("Triggered bottom stairs sensor at {time}", msg.DateTime);
 
                 var message = new MqttApplicationMessageBuilder()
                     .WithTopic("home/stairs/bottom_motion_detector/set")
@@ -121,13 +114,13 @@ namespace Services.Wrapper.HomeAssistant
 
                 await client.PublishAsync(message);
 
-                var differenceBetweenSensorsTime = DateTime.Now - LastTimeUpperSensorDetected;
+                var differenceBetweenSensorsTime = DateTime.Now - _lastTimeUpperSensorDetected;
                 if (differenceBetweenSensorsTime >= TimeSpan.FromSeconds(3) &&
                     differenceBetweenSensorsTime <= TimeSpan.FromSeconds(30))
                 {
-                    LastTimeUpperSensorDetected = DateTime.MinValue;
+                    _lastTimeUpperSensorDetected = DateTime.MinValue;
 
-                    Console.WriteLine($"Sending set_going_down on MQTT");
+                    _logger.LogDebug($"Sending set_going_down on MQTT");
 
                     message = new MqttApplicationMessageBuilder()
                         .WithTopic("home/stairs/set_going_down")
@@ -138,7 +131,7 @@ namespace Services.Wrapper.HomeAssistant
                 }
 
 
-                LastTimeBottomSensorDetected = msg.DateTime;
+                _lastTimeBottomSensorDetected = msg.DateTime;
 
                 await Task.Delay(5000);
 
@@ -159,7 +152,7 @@ namespace Services.Wrapper.HomeAssistant
 
             client.Disconnected += async (s, e) =>
             {
-                Console.WriteLine("### DISCONNECTED FROM SERVER ###");
+                _logger.LogWarning("### DISCONNECTED FROM SERVER ###");
                 await Task.Delay(TimeSpan.FromSeconds(5));
 
                 try
@@ -168,7 +161,7 @@ namespace Services.Wrapper.HomeAssistant
                 }
                 catch
                 {
-                    Console.WriteLine("### RECONNECTING FAILED ###");
+                    _logger.LogError("### RECONNECTING FAILED ###");
                 }
             };
 
@@ -177,14 +170,7 @@ namespace Services.Wrapper.HomeAssistant
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Stopping daemon.");
             return Task.CompletedTask;
-        }
-
-        public void Dispose()
-        {
-            _logger.LogInformation("Disposing....");
-
         }
     }
 }

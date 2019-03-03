@@ -36,7 +36,7 @@ namespace Services.BackupCreator.Jobs
             ZipFile.CreateFromDirectory(Path.Combine(backupDir.FullName, "create"), zipFilePath,
                             CompressionLevel.Optimal, false);
 
-            _logger.LogInformation($"Created zip: {zipFilePath}");
+            _logger.LogInformation("Created zip: {zipFilePath}", zipFilePath);
         }
 
         private string CreateZipFilePath(DirectoryInfo backupDir)
@@ -59,7 +59,7 @@ namespace Services.BackupCreator.Jobs
 
                 if (!Directory.Exists(sourceDir))
                 {
-                    _logger.LogWarning($"Dir {sourceDir} does not exist");
+                    _logger.LogWarning("Dir {sourceDir} does not exist", sourceDir);
                     continue;
                 }
 
@@ -70,7 +70,7 @@ namespace Services.BackupCreator.Jobs
 
                 PerformDeepCopy(sourceDir, destinationDir);
 
-                _logger.LogInformation($"Copied {sourceDir} to {destinationDir}");
+                _logger.LogInformation("Copied {sourceDir} to {destinationDir}", sourceDir, destinationDir);
             }
         }
 
