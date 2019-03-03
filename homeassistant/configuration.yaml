@@ -116,19 +116,15 @@ binary_sensor:
   - platform: workday
     country: PL
   - platform: mqtt
-    command_topic: "inrelevant"
     state_topic: "home/stairs/bottom_motion_detector/set"
     name: Schody czujnik dolny
   - platform: mqtt
-    command_topic: "inrelevant"
     state_topic: "home/stairs/upper_motion_detector/set"
     name: Schody czujnik górny
   - platform: mqtt
-    command_topic: "inrelevant"
     state_topic: "home/stairs/set_going_down"
     name: Schody zejście na dół
   - platform: mqtt
-    command_topic: "inrelevant"
     state_topic: "home/stairs/set_going_up"
     name: Schody wejście na górę
 
