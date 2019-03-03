@@ -12,9 +12,10 @@ services:
     container_name: influxdb
 
   rabbitmq:
-    image: "rabbitmq:3.7.8"
+    image: "rabbitmq:3-management"
     ports:
       - 5672:5672
+      - 15672:15672
     container_name: rabbit
 
   mosquitto:
