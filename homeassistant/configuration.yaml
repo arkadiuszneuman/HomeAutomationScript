@@ -53,6 +53,8 @@ map:
 # Track the sun
 sun:
 
+system_health:
+
 # Text to speech
 tts:
   - platform: google
