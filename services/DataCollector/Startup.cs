@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Serilog;
+using Serilog.Exceptions;
+using Serilog.Sinks.Elasticsearch;
 
 namespace datacollector
 {
@@ -29,6 +32,18 @@ namespace datacollector
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddLogging(loggingBuilder =>
             {
+                var elasticUri = Configuration["ElasticConfiguration:Uri"];
+
+                Log.Logger = new LoggerConfiguration()
+                    .Enrich.FromLogContext()
+                    .Enrich.WithExceptionDetails()
+                    .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
+                    {
+                        AutoRegisterTemplate = true,
+                    })
+                    .CreateLogger();
+
+                loggingBuilder.AddSerilog();
             });
         }
 

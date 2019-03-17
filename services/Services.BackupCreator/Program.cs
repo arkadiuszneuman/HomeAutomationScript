@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
+using Serilog.Exceptions;
 
 namespace Services.BackupCreator
 {
@@ -52,6 +53,7 @@ namespace Services.BackupCreator
 
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
+                .Enrich.WithExceptionDetails()
                 .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
                 {
                     AutoRegisterTemplate = true,

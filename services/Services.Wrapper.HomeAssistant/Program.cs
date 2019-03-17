@@ -3,6 +3,9 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Exceptions;
+using Serilog.Sinks.Elasticsearch;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -46,6 +49,19 @@ namespace Services.Wrapper.HomeAutomation
         {
             logging.AddConfiguration(hostContext.Configuration.GetSection("Logging"));
             logging.AddConsole();
+
+            var elasticUri = hostContext.Configuration["ElasticConfiguration:Uri"];
+
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .Enrich.WithExceptionDetails()
+                .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
+                {
+                    AutoRegisterTemplate = true,
+                })
+                .CreateLogger();
+
+            logging.AddSerilog();
         }
     }
 }
