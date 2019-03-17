@@ -1,7 +1,9 @@
 version: '2'
 services:
   # logstash:  
-  #   image: "docker.elastic.co/logstash/logstash:6.6.1"
+  #   image: "docker.elastic.co/logstash/logstash:6.6.2"
+  #   environment:
+  #     ES_JAVA_OPTS: "-Xms750m -Xmx750m"
   #   volumes: 
   #     - ./logstash/config:/usr/share/logstash/config
   #     - ./logstash/pipeline:/usr/share/logstash/pipeline
@@ -14,6 +16,8 @@ services:
     ports:
      - 9200:9200
      - 9300:9300
+    environment:
+      ES_JAVA_OPTS: "-Xms750m -Xmx750m"
     volumes:
       - ./elasticsearch/data:/usr/share/elasticsearch/data
     container_name: elasticsearch
@@ -22,7 +26,7 @@ services:
     image: "docker.elastic.co/kibana/kibana:6.6.2"
     ports:
      - 5601:5601
-    volumes:
+    #volumes:
     #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     #  - ./kibana/data:/usr/share/kibana/data
     container_name: kibana
