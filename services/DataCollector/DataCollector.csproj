@@ -18,7 +18,6 @@
     <PackageReference Include="RawRabbit" Version="1.10.4" />
     <PackageReference Include="RawRabbit.Extensions" Version="1.10.4" />
     <PackageReference Include="RawRabbit.vNext" Version="1.10.4" />
-    <PackageReference Include="Seq.Extensions.Logging" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
