@@ -58,7 +58,7 @@ namespace Services.Wrapper.HomeAssistant
 
             busClient.SubscribeAsync<TriggeredUpperStairSensorModel>(async (msg, context) =>
             {
-                _logger.LogDebug("Triggered upper stairs sensor at {time}", msg.DateTime);
+                _logger.LogInformation("Triggered upper stairs sensor at {time}", msg.DateTime);
 
                 var message = new MqttApplicationMessageBuilder()
                     .WithTopic("home/stairs/upper_motion_detector/set")
@@ -74,7 +74,7 @@ namespace Services.Wrapper.HomeAssistant
                 {
                     _lastTimeBottomSensorDetected = DateTime.MinValue;
 
-                    _logger.LogDebug("Sending set_going_up on MQTT");
+                    _logger.LogInformation("Sending set_going_up on MQTT");
 
                     message = new MqttApplicationMessageBuilder()
                         .WithTopic("home/stairs/set_going_up")
@@ -105,7 +105,7 @@ namespace Services.Wrapper.HomeAssistant
 
             busClient.SubscribeAsync<TriggeredBottomStairSensorModel>(async (msg, context) =>
             {
-                _logger.LogDebug("Triggered bottom stairs sensor at {time}", msg.DateTime);
+                _logger.LogInformation("Triggered bottom stairs sensor at {time}", msg.DateTime);
 
                 var message = new MqttApplicationMessageBuilder()
                     .WithTopic("home/stairs/bottom_motion_detector/set")
@@ -120,7 +120,7 @@ namespace Services.Wrapper.HomeAssistant
                 {
                     _lastTimeUpperSensorDetected = DateTime.MinValue;
 
-                    _logger.LogDebug($"Sending set_going_down on MQTT");
+                    _logger.LogInformation($"Sending set_going_down on MQTT");
 
                     message = new MqttApplicationMessageBuilder()
                         .WithTopic("home/stairs/set_going_down")
