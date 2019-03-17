@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Serilog;
+using Serilog.Sinks.Elasticsearch;
 
 namespace Services.BackupCreator
 {
@@ -45,6 +47,18 @@ namespace Services.BackupCreator
         {
             logging.AddConfiguration(hostContext.Configuration.GetSection("Logging"));
             logging.AddConsole();
+
+            var elasticUri = hostContext.Configuration["ElasticConfiguration:Uri"];
+
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
+                {
+                    AutoRegisterTemplate = true,
+                })
+                .CreateLogger();
+
+            logging.AddSerilog();
         }
     }
 }
