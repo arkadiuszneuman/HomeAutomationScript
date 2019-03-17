@@ -1,10 +1,13 @@
 - alias: Notyfikacja o zakończeniu sprzątania
   trigger:
-    platform: state
-    entity_id: 
-      - vacuum.roborock
-    from: 'returning'
-    to: 'docked'
+    - platform: state
+      entity_id: 
+        - vacuum.roborock
+      to: 'docked'
+    - platform: state
+      entity_id: 
+        - vacuum.roborock
+      to: 'idle'
   action:
     - service: notify.push
       data:
