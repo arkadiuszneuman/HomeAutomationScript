@@ -36,7 +36,11 @@ namespace Services.BackupCreator.Jobs
             ZipFile.CreateFromDirectory(Path.Combine(backupDir.FullName, "create"), zipFilePath,
                             CompressionLevel.Optimal, false);
 
-            _logger.LogInformation("Created zip: {zipFilePath}", zipFilePath);
+            var fileSize = new System.IO.FileInfo(zipFilePath).Length;
+            var fileSizeKB = fileSize / 1024 * 1.0;
+            var fileSizeMB = Math.Truncate(fileSizeKB / 1024 * 1000) / 1000;
+
+            _logger.LogInformation("Created zip: {zipFilePath}. File size: {fileSizeMB}", zipFilePath, fileSizeMB);
         }
 
         private string CreateZipFilePath(DirectoryInfo backupDir)
