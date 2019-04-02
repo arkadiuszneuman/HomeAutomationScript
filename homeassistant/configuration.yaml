@@ -88,7 +88,9 @@ influxdb:
   host: influxdb
   include:
     entities:
+      - sensor.airly_pm1
       - sensor.airly_pm25_percent
+      - sensor.airly_pm10_percent
       - sensor.airly_pm25
       - sensor.airly_pm10
       - media_player.sony_bravia
