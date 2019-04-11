@@ -1,15 +1,16 @@
 version: '2'
 services:
-  # logstash:  
-  #   image: "ind3x/rpi-logstash"
-  #   environment:
-  #     ES_JAVA_OPTS: "-Xms750m -Xmx750m"
-  #   volumes: 
-  #     - ./logstash/config:/usr/share/logstash/config
-  #     - ./logstash/pipeline:/usr/share/logstash/pipeline
-  #   container_name: logstash
-  #   depends_on: 
-  #     - elasticsearch
+  logstash:  
+    image: "ind3x/rpi-logstash"
+    environment:
+      ES_JAVA_OPTS: "-Xms256m -Xmx256m"
+    volumes: 
+      - ./logstash/config:/usr/share/logstash/config
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./homeassistant:/usr/share/homeassistant
+    container_name: logstash
+    depends_on: 
+      - elasticsearch
 
   elasticsearch:
     image: "ind3x/rpi-elasticsearch"
