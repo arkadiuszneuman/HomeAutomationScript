@@ -14,7 +14,7 @@ homeassistant:
   customize: !include customize.yaml
 
 logger:
-  default: error
+  default: info
 
 # Enables the frontend
 frontend:
@@ -70,10 +70,13 @@ google_assistant:
     - switch
     - light
     - group
-  entity_config:
-    light.halogen_1:
-      expose: false
-      room: LIVING_ROOM
+    - cover
+    - media_player
+    - scene
+  # entity_config:
+  #   light.halogen_1:
+  #     expose: false
+  #     room: LIVING_ROOM
 
 mqtt:
   broker: mosquitto
