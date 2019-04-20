@@ -1,7 +1,7 @@
 version: '2'
 services:
   ha:
-    image: "homeassistant/raspberrypi3-homeassistant:0.88.2"
+    image: "homeassistant/raspberrypi3-homeassistant:0.91.4"
     ports:
      - 8123:8123
     volumes: 
@@ -10,7 +10,7 @@ services:
     container_name: ha
 
   grafana:
-    image: "proxx/grafana-armv7:6.0.0"
+    image: "proxx/grafana-armv7:6.1.1"
     ports:
       - 3000:3000
     volumes:
