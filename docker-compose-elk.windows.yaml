@@ -9,6 +9,7 @@ services:
       - ./logstash/pipeline:/usr/share/logstash/pipeline
       - ./homeassistant:/usr/share/homeassistant
     container_name: logstash
+    network_mode: host
     depends_on: 
       - elasticsearch
 
@@ -21,6 +22,7 @@ services:
       ES_JAVA_OPTS: "-Xms750m -Xmx750m"
     volumes:
       - ./elasticsearch/data:/usr/share/elasticsearch/data
+    network_mode: host
     container_name: elasticsearch
 
   kibana:
@@ -31,5 +33,6 @@ services:
     #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     #  - ./kibana/data:/usr/share/kibana/data
     container_name: kibana
+    network_mode: host
     depends_on: 
       - elasticsearch

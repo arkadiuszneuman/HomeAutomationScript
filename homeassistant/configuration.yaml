@@ -79,7 +79,7 @@ google_assistant:
   #     room: LIVING_ROOM
 
 mqtt:
-  broker: mosquitto
+  broker: localhost
 
 group: !include groups.yaml
 automation: !include_dir_merge_list custom/automations/
@@ -88,7 +88,7 @@ scene: !include_dir_list custom/scenes/
 sensor: !include_dir_merge_list custom/sensors/
 
 influxdb:
-  host: influxdb
+  host: localhost
   include:
     entities:
       - sensor.airly_pm1

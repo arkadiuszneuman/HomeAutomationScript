@@ -16,6 +16,7 @@ services:
     volumes:
       - ./grafana:/var/lib/grafana
     container_name: grafana
+    network_mode: host
     user: "104"
 
   backup-creator:
@@ -27,4 +28,5 @@ services:
       - HOST=Win
     volumes:
       - ./:/maindir
+    network_mode: host
     container_name: bc

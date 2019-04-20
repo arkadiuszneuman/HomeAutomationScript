@@ -17,6 +17,7 @@ services:
     volumes:
       - ./grafana:/var/lib/grafana
     user: "root"
+    network_mode: host
     container_name: grafana
     
   data-collector:
@@ -27,6 +28,7 @@ services:
       - 5000:5000
     environment: 
       - WRAPPER_ENVIRONMENT=Docker
+    network_mode: host
     container_name: dc
 
   home-assistant-wrapper:
@@ -35,6 +37,7 @@ services:
       dockerfile: Dockerfile
     environment: 
       - WRAPPER_ENVIRONMENT=Docker
+    network_mode: host
     container_name: haw
 
   backup-creator:
@@ -46,6 +49,7 @@ services:
       - HOST=Rpi
     volumes:
       - ./:/maindir
+    network_mode: host
     container_name: bc
 
   

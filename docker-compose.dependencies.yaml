@@ -9,6 +9,7 @@ services:
       - ./influxdb:/var/lib/influxdb
     environment: 
       - INFLUXDB_DB=home_assistant
+    network_mode: host
     container_name: influxdb
 
   rabbitmq:
@@ -16,6 +17,7 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
+    network_mode: host
     container_name: rabbit
 
   mosquitto:
@@ -25,6 +27,7 @@ services:
       - 9001:9001
     volumes: 
       - ./mosquitto:/mosquitto
+    network_mode: host
     container_name: mosquitto
 
   start_dependencies:
@@ -33,4 +36,5 @@ services:
       - rabbitmq
       - influxdb
       - mosquitto
-    command: mosquitto:1883 influxdb:8086 rabbitmq:5672
+    network_mode: host
+    command: localhost:1883 localhost:8086 localhost:5672
