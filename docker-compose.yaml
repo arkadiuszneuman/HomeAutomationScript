@@ -7,6 +7,7 @@ services:
     volumes: 
       - ./homeassistant:/config
       - /etc/letsencrypt:/etc/letsencrypt
+    network_mode: host
     container_name: ha
 
   grafana:
