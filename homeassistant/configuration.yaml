@@ -118,6 +118,7 @@ influxdb:
       - media_player.spotify
       - weather.openweathermap
       - vacuum.roborock
+      - media_player.playstation_4
 
 binary_sensor:
   - platform: workday
