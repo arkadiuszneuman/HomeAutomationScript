@@ -31,8 +31,8 @@ services:
      - 5601:5601
     environment:
       NODE_OPTIONS: '--max-old-space-size=128'
-    #volumes:
-    #  - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    volumes:
+     - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     #  - ./kibana/data:/usr/share/kibana/data
     container_name: kibana
     network_mode: host
