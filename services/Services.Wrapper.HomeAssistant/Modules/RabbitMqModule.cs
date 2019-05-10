@@ -2,8 +2,10 @@
 using RawRabbit;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
+using Services.Common.Models;
 using Services.Wrapper.HomeAssistant.Config;
-using Services.Wrapper.HomeAssistant.RabbitTopics;
+using Services.Wrapper.HomeAssistant.Handlers;
+using Services.Wrapper.HomeAssistant.RabbitMq;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -16,25 +18,33 @@ namespace Services.Wrapper.HomeAssistant.Modules
         {
             base.Load(builder);
 
-            RegisterBusClient(builder);
+            builder.RegisterType<RabbitManager>()
+                .SingleInstance();
 
-            var topicTypes = from x in ThisAssembly.GetTypes()
-                             from z in x.GetInterfaces()
-                             let y = x.BaseType
-                             where
-                             (y != null && y.IsGenericType &&
-                             typeof(ITopicExecutable<>).IsAssignableFrom(y.GetGenericTypeDefinition())) ||
-                             (z.IsGenericType &&
-                             typeof(ITopicExecutable<>).IsAssignableFrom(z.GetGenericTypeDefinition()))
-                             select x;
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(type => type.GetInterfaces()
+                    .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IHandler<>)) && type.IsClass)
+                .AsImplementedInterfaces();
 
-            foreach (var topicType in topicTypes)
-            {
-                var genericTypes = topicTypes.SelectMany(t => t.GetInterfaces())
-                   .Where(i => i.GetGenericTypeDefinition() == typeof(ITopicExecutable<>))
-                   .SelectMany(i => i.GetGenericArguments());
+            //RegisterBusClient(builder);
 
-                var topicTypeMethod = topicType.GetMethod("Execute");
+            //var topicTypes = from x in ThisAssembly.GetTypes()
+            //                 from z in x.GetInterfaces()
+            //                 let y = x.BaseType
+            //                 where
+            //                 (y != null && y.IsGenericType &&
+            //                 typeof(ITopicExecutable<>).IsAssignableFrom(y.GetGenericTypeDefinition())) ||
+            //                 (z.IsGenericType &&
+            //                 typeof(ITopicExecutable<>).IsAssignableFrom(z.GetGenericTypeDefinition()))
+            //                 select x;
+
+            //foreach (var topicType in topicTypes)
+            //{
+            //    var genericTypes = topicTypes.SelectMany(t => t.GetInterfaces())
+            //       .Where(i => i.GetGenericTypeDefinition() == typeof(ITopicExecutable<>))
+            //       .SelectMany(i => i.GetGenericArguments());
+
+            //    var topicTypeMethod = topicType.GetMethod("Execute");
 
                 //foreach (var genericType in genericTypes)
                 //{
@@ -53,7 +63,7 @@ namespace Services.Wrapper.HomeAssistant.Modules
                 //        genericMethod.Invoke(method, new[] { (msg, context) => topicTypeMethod.Invoke(topicType, new[] { msg }) });
                 //});
                 //}
-            }
+            //}
         }
 
         private void RegisterBusClient(ContainerBuilder builder)

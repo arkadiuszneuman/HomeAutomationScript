@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2019
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataCollector", "datacollector\DataCollector.csproj", "{31A65FF3-BE64-4516-9FCB-3B602342D4D7}"
 EndProject
@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Common", "Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.Wrapper.HomeAssistant", "Services.Wrapper.HomeAssistant\Services.Wrapper.HomeAssistant.csproj", "{4D3326B4-BFEE-4EB0-9EEB-08A7924888CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.BackupCreator", "Services.BackupCreator\Services.BackupCreator.csproj", "{F9ABDAAD-E369-4DC9-8609-1CF04A5C1BC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.BackupCreator", "Services.BackupCreator\Services.BackupCreator.csproj", "{F9ABDAAD-E369-4DC9-8609-1CF04A5C1BC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
