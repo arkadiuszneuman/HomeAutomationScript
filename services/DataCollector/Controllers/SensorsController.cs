@@ -1,4 +1,5 @@
 ﻿using DataCollector.Config;
+using DataCollector.RabbitMq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RawRabbit;
@@ -14,29 +15,38 @@ namespace datacollector.Controllers
     [ApiController]
     public class SensorsController : ControllerBase
     {
-        private readonly IBusClient _busClient;
         private readonly ILogger<SensorsController> _logger;
+        private readonly RabbitManager _rabbitManager;
 
-        public SensorsController(IBusClient busClient,
-            ILogger<SensorsController> logger)
+        public SensorsController(
+            ILogger<SensorsController> logger,
+            RabbitManager rabbitManager)
         {
-            this._busClient = busClient;
             _logger = logger;
+            _rabbitManager = rabbitManager;
         }
 
         [HttpGet("StairsSensorDown")]
-        public async Task<ActionResult<string>> StairsSensorDown()
+        public ActionResult<string> StairsSensorDown()
         {
-            _logger.LogInformation("Executed stairs down sensor");
-            await _busClient.PublishAsync(new TriggeredBottomStairSensorModel { DateTime = DateTime.Now });
+            Task.Factory.StartNew(async () =>
+            {
+                _logger.LogInformation("Executed stairs down sensor");
+                await _rabbitManager.PublishAsync(new TriggeredBottomStairSensorModel { DateTime = DateTime.Now });
+            });
+
             return Ok("Got sensor down info");
         }
 
         [HttpGet("StairsSensorUp")]
-        public async Task<ActionResult<string>> StairsSensorUp()
+        public ActionResult<string> StairsSensorUp()
         {
-            _logger.LogInformation("Executed stairs up sensor");
-            await _busClient.PublishAsync(new TriggeredUpperStairSensorModel { DateTime = DateTime.Now });
+            Task.Factory.StartNew(async () =>
+            {
+                _logger.LogInformation("Executed stairs up sensor");
+                await _rabbitManager.PublishAsync(new TriggeredUpperStairSensorModel { DateTime = DateTime.Now });
+            });
+            
             return Ok("Got sensor up info");
         }
     }
