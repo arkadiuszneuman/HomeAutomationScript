@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using MQTTnet;
 using MQTTnet.Client;
+using MQTTnet.Client.Options;
 using MQTTnet.Exceptions;
 using Services.Wrapper.HomeAssistant.Config;
 using Services.Wrapper.HomeAssistant.MQTT.Topics;
@@ -39,7 +40,7 @@ namespace Services.Wrapper.HomeAssistant.MQTT
                 .WithTcpServer(_mqttConfiguration.Hostname, _mqttConfiguration.Port)
                 .Build();
 
-            _mqttClient.Connected += (s, e) => _logger.LogInformation("MQTT connected");
+            _mqttClient.UseConnectedHandler(args => _logger.LogInformation("MQTT connected"));
             bool isConnected = false;
 
             do
