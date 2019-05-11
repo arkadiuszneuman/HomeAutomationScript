@@ -39,12 +39,5 @@ namespace datacollector.Controllers
             await _busClient.PublishAsync(new TriggeredUpperStairSensorModel { DateTime = DateTime.Now });
             return Ok("Got sensor up info");
         }
-
-        [HttpGet("Test")]
-        public async Task<ActionResult<string>> Test()
-        {
-            await _busClient.PublishAsync(new TestModel { Message = "asd" });
-            return Ok("Test");
-        }
     }
 }

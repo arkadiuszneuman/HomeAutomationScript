@@ -56,6 +56,7 @@ namespace Services.Wrapper.HomeAssistant.RabbitMq
                 catch (ConnectFailureException)
                 {
                     _logger.LogWarning("Failed to connect to RabbitMQ, reconnecting...");
+                    Task.Delay(2000).Wait();
                 }
             }
             while (!isConnected);
@@ -70,16 +71,6 @@ namespace Services.Wrapper.HomeAssistant.RabbitMq
                 var handler = _lifetimeScope.Resolve<IHandler<T>>();
                 _busClient.SubscribeAsync<T>(async (msg, context) => await handler.Execute(msg));
             }
-
-            Task.Factory.StartNew(async () =>
-            {
-                for (int i = 0; i < 10000; i++)
-                {
-                    await _busClient.PublishAsync(new TestModel { Message = $"From bus {i}" });
-                    await Task.Delay(2000);
-                }
-                
-            });
 
             return this;
         }
