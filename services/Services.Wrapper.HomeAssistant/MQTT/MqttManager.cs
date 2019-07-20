@@ -78,6 +78,21 @@ namespace Services.Wrapper.HomeAssistant.MQTT
                 }
             }
             while (!isConnected);
+
+            _mqttClient.UseDisconnectedHandler(async e =>
+            {
+                _logger.LogWarning("Disconnected from MQTT server, reconnecting...");
+                await Task.Delay(TimeSpan.FromSeconds(5));
+
+                try
+                {
+                    await _mqttClient.ConnectAsync(options);
+                }
+                catch
+                {
+                    _logger.LogWarning("Reconnecting to MQTT failed");
+                }
+            });
         }
 
         public async Task Publish<T>(Func<T, string> predicate)
