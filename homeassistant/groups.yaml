@@ -11,6 +11,7 @@ light:
     - switch.sonoff_100051420f
     - switch.sonoff_1000513cd0
     - switch.sonoff_1000511f63
+    - switch.sonoff_1000541365
 
 stairs:
   name: Schody
