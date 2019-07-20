@@ -8,6 +8,7 @@ using Services.Common.Models;
 using Services.Wrapper.HomeAssistant.Config;
 using Services.Wrapper.HomeAssistant.MQTT;
 using Services.Wrapper.HomeAssistant.MQTT.Topics;
+using Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics;
 using Services.Wrapper.HomeAssistant.RabbitMq;
 using System;
 using System.Threading;
@@ -33,6 +34,8 @@ namespace Services.Wrapper.HomeAssistant
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             await _mqttManager.ConnectAsync();
+            await _mqttManager.AddHandler<StairsParametersHandler>();
+
             _rabbitManager
                 .Connect()
                 .AddHandler<TriggeredUpperStairSensorModel>()

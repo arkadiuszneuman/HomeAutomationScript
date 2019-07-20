@@ -5,7 +5,10 @@ using MQTTnet.Client.Options;
 using MQTTnet.Exceptions;
 using Services.Wrapper.HomeAssistant.Config;
 using Services.Wrapper.HomeAssistant.MQTT.Topics;
+using Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Services.Wrapper.HomeAssistant.MQTT
@@ -17,7 +20,7 @@ namespace Services.Wrapper.HomeAssistant.MQTT
         private readonly IMqttClientFactory _mqttFactory;
 
         private const string _clientId = "Services.Wrapper.HomeAutomation";
-
+        private readonly IList<ISubscribedTopic> _subscribedTopics = new List<ISubscribedTopic>();
         private IMqttClient _mqttClient;
 
         public MqttManager(ILogger<MqttManager> logger,
@@ -77,6 +80,37 @@ namespace Services.Wrapper.HomeAssistant.MQTT
                     _logger.LogWarning("Cannot send MQTT message");
                     await ConnectAsync();
                 }
+            }
+        }
+
+        public async Task AddHandler<T>()
+            where T : ISubscribedTopic, new()
+        {
+            if (_mqttClient != null)
+            {
+                try
+                {
+                    var topic = Activator.CreateInstance<T>();
+                    _subscribedTopics.Add(topic);
+                    await _mqttClient.SubscribeAsync(topic.TopicName);
+                    _mqttClient.UseApplicationMessageReceivedHandler(HandleReceivedMessages);
+                    _logger.LogInformation($"Subscribed {topic.TopicName} topic");
+                }
+                catch (MqttCommunicationException)
+                {
+                    _logger.LogWarning("Cannot subscribe to MQTT topic");
+                    await ConnectAsync();
+                }
+            }
+        }
+
+        private async Task HandleReceivedMessages(MqttApplicationMessageReceivedEventArgs arg)
+        {
+            _logger.LogInformation($"Received message to topic {arg.ApplicationMessage.Topic}");
+            foreach (var topic in _subscribedTopics.Where(t => t.TopicName == arg.ApplicationMessage.Topic))
+            {
+                var payload = System.Text.Encoding.Default.GetString(arg.ApplicationMessage.Payload);
+                await topic.Handle(payload);
             }
         }
     }
