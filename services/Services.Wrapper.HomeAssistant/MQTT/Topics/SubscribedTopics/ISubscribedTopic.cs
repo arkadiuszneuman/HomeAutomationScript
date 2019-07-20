@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
 {
-    public interface ISubscribedTopic<T> : ITopic
+    public interface ISubscribedTopic<T>
     {
+        string TopicName { get; }
         Task Handle(T message);
     }
 }

@@ -34,7 +34,8 @@ namespace Services.Wrapper.HomeAssistant
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             await _mqttManager.ConnectAsync();
-            await _mqttManager.AddHandler<StairsParametersHandler>();
+            await _mqttManager.AddHandler<MinLevelModel>();
+            await _mqttManager.AddHandler<MaxLevelModel>();
 
             _rabbitManager
                 .Connect()

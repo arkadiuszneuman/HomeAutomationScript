@@ -113,14 +113,19 @@ namespace Services.Wrapper.HomeAssistant.MQTT
 
                     Func<string, Task> func = async payload =>
                     {
-                        var param = (T)JsonConvert.DeserializeObject(payload);
+                        var param = payload != null ? 
+                            (T)JsonConvert.DeserializeObject<T>(payload) :
+                            default;
+
+
+                        _logger.LogInformation("Executing handler {handler}", subscribedTopic.GetType());
                         await subscribedTopic.Handle(param);
                     };
 
                     _topicsContainers.Add(new TopicsContainer(subscribedTopic.TopicName, func));
 
                     _mqttClient.UseApplicationMessageReceivedHandler(HandleReceivedMessages);
-                    _logger.LogInformation($"Subscribed {subscribedTopic.TopicName} topic");
+                    _logger.LogInformation("Subscribed {topicName} topic", subscribedTopic.TopicName);
                 }
                 catch (MqttCommunicationException)
                 {
@@ -133,11 +138,18 @@ namespace Services.Wrapper.HomeAssistant.MQTT
         private async Task HandleReceivedMessages(MqttApplicationMessageReceivedEventArgs arg)
         {
             _logger.LogInformation($"Received message to topic {arg.ApplicationMessage.Topic}");
-            foreach (var topic in _subscribedTopics.Where(t => t.Key.TopicName == arg.ApplicationMessage.Topic))
+            foreach (var topic in _topicsContainers.Where(t => t.TopicName == arg.ApplicationMessage.Topic))
             {
-                var payload = System.Text.Encoding.Default.GetString(arg.ApplicationMessage.Payload);
-                
-                await topic.Handle(payload);
+                var payload = arg.ApplicationMessage.Payload.Any() ?
+                    System.Text.Encoding.Default.GetString(arg.ApplicationMessage.Payload) :
+                    null;
+
+                if (payload != null)
+                    _logger.LogInformation("Execute function with topic {topic} and payload {payload}", topic, payload);
+                else
+                    _logger.LogWarning("Execute function with topic {topic} AND NO PAYLOAD", topic);
+
+                await topic.FuncToExecute(payload);
             }
         }
     }
