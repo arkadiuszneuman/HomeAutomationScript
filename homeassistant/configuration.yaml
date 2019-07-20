@@ -270,10 +270,6 @@ input_boolean:
 rest_command:
   window_cover_percent:
     url: 'http://192.168.1.198/changelevel?level={{percent}}'
-  stairs_min_brightness:
-    url: 'http://192.168.1.196/changesettings?minlevel={{minlevel}}'
-  stairs_max_brightness:
-    url: 'http://192.168.1.196/changesettings?maxlevel={{maxlevel}}'
 
 notify:
   - platform: pushbullet
