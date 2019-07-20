@@ -5,11 +5,16 @@ using System.Threading.Tasks;
 
 namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
 {
-    public class StairsParametersHandler : ISubscribedTopic
+    public class MinLevelModel
+    {
+        public string Level { get; set; }
+    }
+
+    public class StairsParametersHandler : ISubscribedTopic<MinLevelModel>
     {
         public string TopicName => "home/stairs/parameters/set";
 
-        public Task Handle(string payload)
+        public Task Handle(MinLevelModel payload)
         {
             Console.WriteLine(payload);
             return Task.CompletedTask;

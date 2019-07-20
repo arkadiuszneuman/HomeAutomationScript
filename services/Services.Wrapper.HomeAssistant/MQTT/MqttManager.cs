@@ -1,12 +1,15 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Autofac;
+using Microsoft.Extensions.Logging;
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Client.Options;
 using MQTTnet.Exceptions;
+using Newtonsoft.Json;
 using Services.Wrapper.HomeAssistant.Config;
 using Services.Wrapper.HomeAssistant.MQTT.Topics;
 using Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,21 +18,36 @@ namespace Services.Wrapper.HomeAssistant.MQTT
 {
     public class MqttManager
     {
+        private class TopicsContainer
+        {
+            public string TopicName { get; set; }
+            public Func<string, Task> FuncToExecute { get; set; }
+
+            public TopicsContainer(string topicName, Func<string, Task> funcToExecute)
+            {
+                TopicName = topicName;
+                FuncToExecute = funcToExecute;
+            }
+        }
+
         private readonly ILogger _logger;
         private readonly MqttConfiguration _mqttConfiguration;
         private readonly IMqttClientFactory _mqttFactory;
+        private readonly ILifetimeScope _lifetimeScope;
 
         private const string _clientId = "Services.Wrapper.HomeAutomation";
-        private readonly IList<ISubscribedTopic> _subscribedTopics = new List<ISubscribedTopic>();
+        private readonly IList<TopicsContainer> _topicsContainers = new List<MqttManager.TopicsContainer>();
         private IMqttClient _mqttClient;
 
         public MqttManager(ILogger<MqttManager> logger,
             MqttConfiguration mqttConfiguration,
-            IMqttClientFactory mqttFactory)
+            IMqttClientFactory mqttFactory,
+            ILifetimeScope lifetimeScope)
         {
             _logger = logger;
             _mqttConfiguration = mqttConfiguration;
             _mqttFactory = mqttFactory;
+            _lifetimeScope = lifetimeScope;
         }
 
         public async Task ConnectAsync()
@@ -84,17 +102,25 @@ namespace Services.Wrapper.HomeAssistant.MQTT
         }
 
         public async Task AddHandler<T>()
-            where T : ISubscribedTopic, new()
         {
             if (_mqttClient != null)
             {
                 try
                 {
-                    var topic = Activator.CreateInstance<T>();
-                    _subscribedTopics.Add(topic);
-                    await _mqttClient.SubscribeAsync(topic.TopicName);
+                    var subscribedTopic = _lifetimeScope.Resolve<ISubscribedTopic<T>>();
+
+                    await _mqttClient.SubscribeAsync(subscribedTopic.TopicName);
+
+                    Func<string, Task> func = async payload =>
+                    {
+                        var param = (T)JsonConvert.DeserializeObject(payload);
+                        await subscribedTopic.Handle(param);
+                    };
+
+                    _topicsContainers.Add(new TopicsContainer(subscribedTopic.TopicName, func));
+
                     _mqttClient.UseApplicationMessageReceivedHandler(HandleReceivedMessages);
-                    _logger.LogInformation($"Subscribed {topic.TopicName} topic");
+                    _logger.LogInformation($"Subscribed {subscribedTopic.TopicName} topic");
                 }
                 catch (MqttCommunicationException)
                 {
@@ -107,9 +133,10 @@ namespace Services.Wrapper.HomeAssistant.MQTT
         private async Task HandleReceivedMessages(MqttApplicationMessageReceivedEventArgs arg)
         {
             _logger.LogInformation($"Received message to topic {arg.ApplicationMessage.Topic}");
-            foreach (var topic in _subscribedTopics.Where(t => t.TopicName == arg.ApplicationMessage.Topic))
+            foreach (var topic in _subscribedTopics.Where(t => t.Key.TopicName == arg.ApplicationMessage.Topic))
             {
                 var payload = System.Text.Encoding.Default.GetString(arg.ApplicationMessage.Payload);
+                
                 await topic.Handle(payload);
             }
         }
