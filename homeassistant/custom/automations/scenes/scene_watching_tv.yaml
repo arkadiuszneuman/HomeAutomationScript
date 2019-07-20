@@ -8,6 +8,7 @@
       domain: scene
       service: turn_on
   action:
-    - service: rest_command.stairs_min_brightness
+    - service: mqtt.publish
       data_template:
-        minlevel: 5
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"5\" }"
