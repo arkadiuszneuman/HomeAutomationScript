@@ -26,8 +26,6 @@ http:
   base_url: !secret base_url
   ssl_certificate: /etc/letsencrypt/live/arekha.duckdns.org/fullchain.pem
   ssl_key: /etc/letsencrypt/live/arekha.duckdns.org/privkey.pem
-  trusted_networks:
-    - 192.168.1.0/24
 
 # Checks for available updates
 # Note: This component will send some information about your system to
