@@ -31,9 +31,11 @@
 
 - alias: Ustawienie jasności schodów po świcie
   trigger:
-    platform: time
-    at: "08:30:00"
+    platform: sun
+    event: sunrise
+    offset: "00:30:00"
   action:
-    data_template:
+    - service: mqtt.publish
+      data_template:
         topic: "home/stairs/maxlevel/set"
-        payload_template: "{ level: \"0\" }"
+        payload: "{ level: \"0\" }"
