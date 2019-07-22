@@ -17,7 +17,7 @@ services:
       - ./grafana:/var/lib/grafana
     container_name: grafana
     network_mode: host
-    user: "104"
+    user: "1000"
 
   backup-creator:
     build: 
