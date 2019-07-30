@@ -160,9 +160,9 @@ namespace Services.Wrapper.HomeAssistant.MQTT
                     null;
 
                 if (payload != null)
-                    _logger.LogInformation("Execute function with topic {topic} and payload {payload}", topic, payload);
+                    _logger.LogInformation("Execute function with topic {topic} and payload {payload}", topic.TopicName, payload);
                 else
-                    _logger.LogWarning("Execute function with topic {topic} AND NO PAYLOAD", topic);
+                    _logger.LogWarning("Execute function with topic {topic} AND NO PAYLOAD", topic.TopicName);
 
                 await topic.FuncToExecute(payload);
             }
