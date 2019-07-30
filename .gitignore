@@ -6,4 +6,4 @@ grafana/sessions/
 .vscode/
 services/Services.BackupCreator/secrets.json
 backup/
-elasticsearch/data/
+elasticsearchdata/
