@@ -8,5 +8,6 @@
  docker stop mosquitto
  docker stop influxdb
  docker stop rabbit
+ docker stop logstash
  docker stop kibana
  docker stop elasticsearch
