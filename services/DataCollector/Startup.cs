@@ -33,6 +33,7 @@ namespace datacollector
             services.AddLogging(loggingBuilder =>
             {
                 var elasticUri = Configuration["ElasticConfiguration:Uri"];
+                var elasticIndexFormat = Configuration["ElasticConfiguration:IndexFormat"];
 
                 Log.Logger = new LoggerConfiguration()
                     .Enrich.FromLogContext()
@@ -40,6 +41,7 @@ namespace datacollector
                     .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
                     {
                         AutoRegisterTemplate = true,
+                        IndexFormat = elasticIndexFormat
                     })
                     .CreateLogger();
 

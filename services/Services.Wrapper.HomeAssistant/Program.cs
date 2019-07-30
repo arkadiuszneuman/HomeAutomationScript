@@ -51,6 +51,7 @@ namespace Services.Wrapper.HomeAutomation
             logging.AddConsole();
 
             var elasticUri = hostContext.Configuration["ElasticConfiguration:Uri"];
+            var elasticIndexFormat = hostContext.Configuration["ElasticConfiguration:IndexFormat"];
 
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
@@ -58,6 +59,7 @@ namespace Services.Wrapper.HomeAutomation
                 .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
                 {
                     AutoRegisterTemplate = true,
+                    IndexFormat = elasticIndexFormat
                 })
                 .CreateLogger();
 
