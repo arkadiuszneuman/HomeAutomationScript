@@ -82,6 +82,9 @@ google_assistant:
 mqtt:
   broker: localhost
 
+hacs:
+  token: !secret hacs_github_token
+
 group: !include groups.yaml
 automation: !include_dir_merge_list custom/automations/
 script: !include scripts.yaml 
