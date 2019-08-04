@@ -91,6 +91,41 @@ script: !include scripts.yaml
 scene: !include_dir_list custom/scenes/
 sensor: !include_dir_merge_list custom/sensors/
 
+recorder:
+  db_url: mysql://root:wsadqe@192.168.1.115:3306/home_assistant?charset=utf8
+  purge_interval: 0
+  include:
+    entities:
+      - sensor.airly_pm1
+      - sensor.airly_pm25_percent
+      - sensor.airly_pm10_percent
+      - sensor.airly_pm25
+      - sensor.airly_pm10
+      - media_player.sony_bravia
+      - media_player.denon
+      - light.salon_led
+      - light.grzybek
+      - light.halogen_1
+      - light.halogen_2
+      - light.halogen_3
+      - light.halogen_4
+      - light.lampka_zewnetrzna
+      - cover.roleta_salon
+      - binary_sensor.schody_wejscie_na_gore
+      - binary_sensor.schody_zejscie_na_do
+      - input_number.stairs_min_brightness
+      - input_number.stairs_max_brightness
+      - switch.sonoff_100051420f
+      - switch.sonoff_1000513cd0
+      - switch.sonoff_1000511f63
+      - sensor.temperatura_przedpokoj
+      - sensor.wilgotnosc_przedpokoj
+      - media_player.spotify
+      - weather.openweathermap
+      - vacuum.roborock
+      - media_player.playstation_4
+    
+
 influxdb:
   host: localhost
   include:

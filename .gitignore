@@ -7,3 +7,4 @@ grafana/sessions/
 services/Services.BackupCreator/secrets.json
 backup/
 elasticsearchdata/
+mysql/

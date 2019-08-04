@@ -30,3 +30,14 @@ services:
       - ./:/maindir
     network_mode: host
     container_name: bc
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wsadqe
+    container_name: mysql
+    network_mode: host
