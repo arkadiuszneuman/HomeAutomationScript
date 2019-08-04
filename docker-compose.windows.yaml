@@ -6,6 +6,10 @@ services:
      - 8123:8123
     volumes: 
       - ./homeassistant:/config
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on: 
+      - mysql
     network_mode: host
     container_name: ha
     
@@ -15,9 +19,25 @@ services:
       - 3000:3000
     volumes:
       - ./grafana:/var/lib/grafana
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     container_name: grafana
     network_mode: host
     user: "1000"
+
+  mysql:
+    image: mysql:8.0.17
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: wsadqe
+    container_name: mysql
+    network_mode: host
 
   backup-creator:
     build: 
@@ -28,16 +48,7 @@ services:
       - HOST=Win
     volumes:
       - ./:/maindir
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     network_mode: host
     container_name: bc
-  mysql:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    ports:
-      - 3306:3306
-    volumes:
-      - ./mysql:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: wsadqe
-    container_name: mysql
-    network_mode: host

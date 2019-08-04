@@ -6,6 +6,8 @@ services:
       - ./logstash/config:/usr/share/logstash/config
       - ./logstash/pipeline:/usr/share/logstash/pipeline
       - ./homeassistant:/usr/share/homeassistant
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     container_name: logstash
     network_mode: host
     depends_on: 
@@ -17,13 +19,14 @@ services:
       - 9200:9200
       - 9300:9300
     environment:
-    environment:
       - cluster.name=es-prod-docker-cluster
       - bootstrap.memory_lock=true
       # - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
       - discovery.type=single-node
     volumes:
       - ./elasticsearchdata:/usr/share/elasticsearch/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     ulimits:
       memlock:
         soft: -1
@@ -40,6 +43,8 @@ services:
       - 5601:5601
     volumes:
       - ./kibana/kibana.yml:/opt/kibana/config/kibana.yml
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     container_name: kibana
     network_mode: host
     depends_on: 

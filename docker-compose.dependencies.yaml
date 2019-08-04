@@ -7,6 +7,8 @@ services:
      - 8083:8083
     volumes: 
       - ./influxdb:/var/lib/influxdb
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     environment: 
       - INFLUXDB_DB=home_assistant
     network_mode: host
@@ -14,6 +16,9 @@ services:
 
   rabbitmq:
     image: "rabbitmq:3.7.17-management"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 5672:5672
       - 15672:15672
@@ -27,6 +32,8 @@ services:
       - 9001:9001
     volumes: 
       - ./mosquitto:/mosquitto
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     network_mode: host
     container_name: mosquitto
 
