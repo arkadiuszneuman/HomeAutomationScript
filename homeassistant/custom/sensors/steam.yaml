@@ -1,0 +1,10 @@
+- platform: steam_online
+  api_key: !secret steam_apikey
+  accounts:
+    - !secret steam_account_id
+   
+- platform: template
+  sensors:
+    steam_game:
+      friendly_name: "Gra steam"
+      value_template: !secret steam_game_template

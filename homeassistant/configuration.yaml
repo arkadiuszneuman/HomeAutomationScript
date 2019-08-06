@@ -124,6 +124,7 @@ recorder:
       - weather.openweathermap
       - vacuum.roborock
       - media_player.playstation_4
+      - !secret steam_sensor_name
     
 
 influxdb:
@@ -158,6 +159,7 @@ influxdb:
       - weather.openweathermap
       - vacuum.roborock
       - media_player.playstation_4
+      - !secret steam_sensor_name
 
 binary_sensor:
   - platform: workday
@@ -254,16 +256,6 @@ cast:
   media_player:
     - host: 192.168.1.108
 
-#input_select:
-#  rozrywka:
-#    name: Rozrywka
-#    options:
-#      - TV
-#      - PS4
-#      - Kodi
-#    initial: TV
-#    icon: mdi:remote
-
 input_number:
   volume_setpoint:
     name: Denon głośność
@@ -315,7 +307,7 @@ notify:
     name: push
     api_key: !secret pushbullet_api_key
 
-device_tracker:
+# device_tracker:
 # - platform: nmap_tracker
 #   hosts:
 #     - 192.168.1.103-104
