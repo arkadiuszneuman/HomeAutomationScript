@@ -38,6 +38,12 @@ media:
     - media_player.spotify
     - media_player.playstation_4
 
+vacuum:
+  name: Odkurzacz
+  entities:
+    - vacuum.roborock
+    - script.vacuum_start
+
 main_view:
   view: yes
   icon: mdi:home
@@ -46,6 +52,7 @@ main_view:
     - group.light
     - group.stairs
     - group.window_covers
+    - group.vacuum
 
 media_view:
   view: yes
