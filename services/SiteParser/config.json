@@ -1,0 +1,20 @@
+{
+    "elastic_configuration": {
+        "uri": "http://localhost:9200/",
+        "index_format": "logstash_bc-{0:yyyy.MM.dd}"
+    },
+    "paths": {
+        "temp_backup_path": "../../backup",
+        "dirs_to_backup": [
+            "../../logstash"
+        ]
+    },
+    "dropbox": {
+        "max_files": 7,
+        "timeout_seconds": 300
+    },
+    "schedulers": {
+        "backup_hour_of_a_day": 3,
+        "backup_minutes_of_a_day": 0
+    }
+}
