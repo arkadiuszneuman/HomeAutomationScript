@@ -1,16 +1,18 @@
 from .zip_backup_creator import ZipBackupCreator
 from .dropbox_sender import DropboxSender
+from logging import Logger
 
 
 class CreateBackupJob:
-    def __init__(self, backup_creator: ZipBackupCreator, dropbox_sender: DropboxSender):
+    def __init__(self, backup_creator: ZipBackupCreator, dropbox_sender: DropboxSender, logger: Logger):
         self.__backup_creator = backup_creator
         self.__dropbox_sender = dropbox_sender
+        self.__logger = logger
 
     def execute(self):
-        print("Backup job started")
+        self.__logger.info("Backup job started")
         try:
             backup_path = self.__backup_creator.create_backup()
             self.__dropbox_sender.backup_to_dropbox(backup_path)
         except Exception as error:
-            print("Error in backup creation: " + str(error))
+            self.__logger.error("Error in backup creation: " + str(error))
