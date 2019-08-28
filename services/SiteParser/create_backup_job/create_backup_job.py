@@ -3,9 +3,9 @@ from .dropbox_sender import DropboxSender
 
 
 class CreateBackupJob:
-    def __init__(self):
-        self.__backup_creator = ZipBackupCreator()
-        self.__dropbox_sender = DropboxSender()
+    def __init__(self, backup_creator: ZipBackupCreator, dropbox_sender: DropboxSender):
+        self.__backup_creator = backup_creator
+        self.__dropbox_sender = dropbox_sender
 
     def execute(self):
         print("Backup job started")
