@@ -2,6 +2,9 @@ from dependency_injector import containers, providers
 from create_backup_job.create_backup_job import CreateBackupJob
 from create_backup_job.create_backup_job import DropboxSender
 from create_backup_job.create_backup_job import ZipBackupCreator
+from configs.dropbox_config import DropboxConfig
+from configs.secrets import Secrets
+from configs.paths_config import PathsConfig
 import logging
 import sys
 
@@ -40,10 +43,17 @@ class IocContainer(containers.DeclarativeContainer):
     __root.addHandler(__handler)
     logger = providers.Object(__root)
 
+    secrets_config = providers.Factory(Secrets)
+    dropbox_config = providers.Factory(DropboxConfig)
+    paths_config = providers.Factory(PathsConfig)
+
     dropbox_sender = providers.Factory(DropboxSender,
-                                       logger=logger)
+                                       logger=logger,
+                                       secrets_config=secrets_config,
+                                       dropbox_config=dropbox_config)
     zip_backup_creator = providers.Factory(ZipBackupCreator,
-                                           logger=logger)
+                                           logger=logger,
+                                           paths_config=paths_config)
     create_backup_job = providers.Factory(CreateBackupJob,
                                           backup_creator=zip_backup_creator,
                                           dropbox_sender=dropbox_sender,

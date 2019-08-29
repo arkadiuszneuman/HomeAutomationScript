@@ -9,10 +9,10 @@ import shutil
 
 
 class ZipBackupCreator:
-    paths_config = PathsConfig()
 
-    def __init__(self, logger: Logger):
+    def __init__(self, logger: Logger, paths_config: PathsConfig):
         self.__logger = logger
+        self.__paths_config = paths_config
 
     def create_backup(self):
         self.__logger.info("Starting to create zip")
@@ -29,14 +29,14 @@ class ZipBackupCreator:
         return path.normpath(path.join(os.getcwd(), pth))
 
     def __get_backup_dir(self):
-        backup_dir = self.__get_full_path(self.paths_config.temp_backup_path)
+        backup_dir = self.__get_full_path(self.__paths_config.temp_backup_path)
         if path.exists(backup_dir):
             shutil.rmtree(backup_dir)
 
         return backup_dir
 
     def __copy_dirs_to_backup(self, backup_dir):
-        for directory in self.paths_config.dirs_to_backup:
+        for directory in self.__paths_config.dirs_to_backup:
             source_dir = self.__get_full_path(directory)
             if not path.exists(source_dir):
                 self.__logger.warning("Dir {0} does not exist".format(source_dir))
