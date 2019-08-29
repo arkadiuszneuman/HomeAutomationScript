@@ -13,6 +13,7 @@ class CreateBackupJob:
         self.__logger.info("Backup job started")
         try:
             backup_path = self.__backup_creator.create_backup()
-            self.__dropbox_sender.backup_to_dropbox(backup_path)
+            return self.__dropbox_sender.backup_to_dropbox(backup_path)
         except Exception as error:
             self.__logger.error("Error in backup creation: " + str(error))
+            raise error

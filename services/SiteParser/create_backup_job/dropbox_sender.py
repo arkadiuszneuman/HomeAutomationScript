@@ -13,9 +13,9 @@ class DropboxSender:
         self.__dbx = dropbox.Dropbox(secrets_config.dropbox_token)
 
     def backup_to_dropbox(self, file_path):
-        pass
-        # self.__backup_file(file_path)
-        # self.__remove_old_backups()
+        file_name = self.__backup_file(file_path)
+        self.__remove_old_backups()
+        return file_name
 
     def __backup_file(self, file_path):
         file_name = "/" + os.path.basename(file_path)
@@ -24,9 +24,10 @@ class DropboxSender:
             self.__dbx.files_upload(file.read(), file_name)
 
         self.__logger.info("Uploaded file {file} to Dropbox".format(file=file_name))
+        return file_name
 
     def __remove_old_backups(self):
-        entries = self.dbx.files_list_folder('').entries
+        entries = self.__dbx.files_list_folder('').entries
         files_count_to_get = len(entries) - self.__dropbox_config.max_files
         if files_count_to_get > 0:
             files_to_delete = sorted(entries, key=lambda x: x.name)[:files_count_to_get]
