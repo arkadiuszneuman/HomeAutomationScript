@@ -39,31 +39,31 @@ services:
     container_name: mysql
     network_mode: host
 
-  # backup-creator:
-  #   build: 
-  #     context: ./services/Services.BackupCreator
-  #     dockerfile: Dockerfile
-  #   environment: 
-  #     - WRAPPER_ENVIRONMENT=Docker
-  #     - HOST=Win
-  #   volumes:
-  #     - ./:/maindir
-  #     - /etc/timezone:/etc/timezone:ro
-  #     - /etc/localtime:/etc/localtime:ro
-  #   network_mode: host
-  #   container_name: bc
-
-  backup-creator2:
+  backup-creator:
     build: 
-      context: ./services/PythonServices/BackupCreator
+      context: ./services/Services.BackupCreator
       dockerfile: Dockerfile
-    ports:
-     - 5001:5001
     environment: 
       - WRAPPER_ENVIRONMENT=Docker
+      - HOST=Win
     volumes:
       - ./:/maindir
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     network_mode: host
-    container_name: bc2
+    container_name: bc
+
+  # backup-creator2:
+  #   build: 
+  #     context: ./services/PythonServices/BackupCreator
+  #     dockerfile: Dockerfile
+  #   ports:
+  #    - 5001:5001
+  #   environment: 
+  #     - WRAPPER_ENVIRONMENT=Docker
+  #   volumes:
+  #     - ./:/maindir
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
+  #   network_mode: host
+  #   container_name: bc2
