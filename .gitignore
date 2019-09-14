@@ -8,3 +8,4 @@ services/Services.BackupCreator/secrets.json
 backup/
 elasticsearchdata/
 mysql/
+services/PythonServices/MailSender/secrets.json
