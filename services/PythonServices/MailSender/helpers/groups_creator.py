@@ -1,12 +1,9 @@
 import os
-from configs.groups import GroupsConfig
+from configs.settings import SettingsConfig
 
 class Group:
     name: str
     config_group: str
-
-    # def __init__(self, name, ):
-
 
 
 class GroupsCreator:
@@ -14,7 +11,7 @@ class GroupsCreator:
         return os.path.basename(os.path.normpath(path))
 
     def get_groups(self, files: []):
-        config = GroupsConfig()
+        config = SettingsConfig().get()
 
         dictionary = {}
         # for

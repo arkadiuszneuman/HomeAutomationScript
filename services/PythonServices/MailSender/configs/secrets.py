@@ -2,6 +2,7 @@ import json
 
 
 class SecretsConfig:
+    dropbox_token: str
     gmail_user: str
     gmail_password: str
     title: str
