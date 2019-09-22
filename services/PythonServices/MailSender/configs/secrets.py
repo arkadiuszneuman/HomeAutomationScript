@@ -8,6 +8,7 @@ class SecretsConfig:
     title: str
     content: str
     from_name: str
+    mail_to: []
 
     def __init__(self):
         with open("secrets.json", encoding='utf-8') as json_file:
