@@ -12,7 +12,7 @@ class Cache:
 
         def save_to_json(self):
             with open('cache.json', 'w') as outfile:
-                json.dump(self.__dict__, outfile)
+                json.dump(self.__dict__, outfile, indent=4)
 
     __instance: __Cache = None
 
@@ -23,7 +23,7 @@ class Cache:
     def save(self):
         self.__instance.save_to_json()
 
-    def add_saved_file(self, file_path: str):
+    def add_sent_file(self, file_path: str):
         if file_path not in self.__instance.files_send:
             self.__instance.files_send.append(file_path)
 
