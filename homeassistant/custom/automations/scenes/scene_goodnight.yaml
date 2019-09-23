@@ -12,6 +12,10 @@
       entity_id: light.halogen_2
     - service: light.turn_on
       entity_id: light.halogen_3
+    - service: light.turn_on
+      entity_id: light.halogen_1
+    - service: light.turn_on
+      entity_id: light.halogen_4
     - service: light.turn_off
       entity_id: light.lampka_zewnetrzna
     - service: media_player.turn_off
@@ -22,20 +26,140 @@
       entity_id: light.grzybek
     - service: light.turn_off
       entity_id: light.salon_led
+    - service: switch.turn_off
+      entity_id: switch.sonoff_1000541365
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"100\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"95\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"90\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"85\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"80\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"75\" }"
+    - service: light.turn_off
+      entity_id: light.halogen_4
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"70\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"65\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"60\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"55\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"50\" }"
+    - service: light.turn_off
+      entity_id: light.halogen_1
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"45\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"40\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"35\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"30\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"25\" }"
+    - service: light.turn_off
+      entity_id: light.halogen_2
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"20\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"15\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"10\" }"
+    - delay: 
+        seconds: 5
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/minlevel/set"
+        payload_template: "{ level: \"5\" }"
+    - delay: 
+        seconds: 5
     - service: mqtt.publish
       data_template:
         topic: "home/stairs/minlevel/set"
         payload_template: "{ level: \"0\" }"
-    - delay: 
-        seconds: 30
-    - service: light.turn_off
-      entity_id: light.halogen_1
-    - service: light.turn_off
-      entity_id: light.halogen_2
     - service: light.turn_off
       entity_id: light.halogen_3
-    - service: light.turn_off
-      entity_id: light.halogen_4 
     - service: switch.turn_off
       entity_id: switch.sonoff_100051420f
     - service: switch.turn_off

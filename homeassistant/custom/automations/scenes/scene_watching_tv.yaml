@@ -12,3 +12,8 @@
       data_template:
         topic: "home/stairs/minlevel/set"
         payload_template: "{ level: \"5\" }"
+    - service: light.turn_on
+      entity_id: light.grzybek
+      data_template:
+        rgb_color: ['{{ (range(0, 255)|random) }}','{{ (range(0, 255)|random) }}','{{ (range(0, 255)|random) }}']
+        brightness: 80
