@@ -16,7 +16,7 @@ class GroupsCreator:
         dictionary = {}
         # for
         for f in files:
-            last_dir = self.__get_last_dir(os.path.dirname(f)).strip("C:\\Users\\arkad\\Arek\\Dropbox\\Faktury\\09")
+            last_dir = self.__get_last_dir(os.path.dirname(f.full_path))
 
             if last_dir not in dictionary:
                 dictionary[last_dir] = []
@@ -24,12 +24,17 @@ class GroupsCreator:
             dictionary[last_dir].append(f)
 
         groups_dictionary = {}
-        for group in config.groups:
-            if group.dir_name in dictionary:
-                groups_dictionary[group] = dictionary[group.dir_name]
-
-        if '' in dictionary:
-            groups_dictionary[""] = dictionary['']
+        for key in dictionary:
+            added = False
+            for group in config.groups:
+                if group.dir_name == key:
+                    groups_dictionary[group] = dictionary[key]
+                    added = True
+            if not added:
+                if '' not in dictionary:
+                    groups_dictionary[''] = dictionary[key]
+                else:
+                    groups_dictionary[''].append(dictionary[key])
 
         return groups_dictionary
 

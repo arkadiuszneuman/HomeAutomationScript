@@ -4,6 +4,8 @@ from cmreslogging.handlers import CMRESHandler
 
 
 class Logger:
+    __is_initialized = False
+
     class __CustomFormatter(logging.Formatter):
         """Logging Formatter to add colors and count warning / errors"""
 
@@ -29,18 +31,20 @@ class Logger:
 
     def __init__(self):
         self.__root = logging.getLogger("BackupCreator")
-        self.__root.setLevel(logging.DEBUG)
+        if Logger.__is_initialized is False:
+            Logger.__is_initialized = True
+            self.__root.setLevel(logging.DEBUG)
 
-        self.__handler = logging.StreamHandler(sys.stdout)
-        self.__handler.setLevel(logging.DEBUG)
-        self.__handler.setFormatter(self.__CustomFormatter())
-        self.__root.addHandler(self.__handler)
+            self.__handler = logging.StreamHandler(sys.stdout)
+            self.__handler.setLevel(logging.DEBUG)
+            self.__handler.setFormatter(self.__CustomFormatter())
+            self.__root.addHandler(self.__handler)
 
-        self.__handler2 = CMRESHandler(hosts=[{'host': 'localhost', 'port': 9200}],
-                                       auth_type=CMRESHandler.AuthType.NO_AUTH,
-                                       es_index_name="logstash_mailsender-{0:yyyy.MM.dd}")
-        self.__handler2.setLevel(logging.DEBUG)
-        self.__root.addHandler(self.__handler2)
+            self.__handler2 = CMRESHandler(hosts=[{'host': 'localhost', 'port': 9200}],
+                                           auth_type=CMRESHandler.AuthType.NO_AUTH,
+                                           es_index_name="logstash_mailsender-{0:yyyy.MM.dd}")
+            self.__handler2.setLevel(logging.DEBUG)
+            self.__root.addHandler(self.__handler2)
 
     def get_logger(self):
         return self.__root

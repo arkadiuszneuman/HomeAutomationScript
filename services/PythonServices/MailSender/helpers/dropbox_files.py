@@ -5,13 +5,21 @@ import shutil
 from configs.settings import SettingsConfig
 from configs.secrets import SecretsConfig
 from .logger import Logger
+from configs.cache import Cache
+
+
+class DownloadedFile:
+    def __init__(self, full_path: str, path_display: str):
+        self.path_display = path_display
+        self.full_path = full_path
 
 
 class DropboxFiles:
     def __init__(self):
         self.__dbx = dropbox.Dropbox(SecretsConfig().dropbox_token)
-        self.__temp_dir = os.path.join(tempfile.gettempdir(), "mail_sender")
+        self.temp_dir = os.path.join(tempfile.gettempdir(), "mail_sender")
         self.__logger = Logger().get_logger()
+        self.__cache = Cache()
 
     def download_files(self):
         self.remove_temp_dir()
@@ -20,18 +28,21 @@ class DropboxFiles:
         files = self.__get_files(SettingsConfig().get().dropbox_invoices_dir)
 
         for file in files:
-            output = os.path.join(self.__temp_dir, file.path_display[1:])
-            if not os.path.exists(os.path.dirname(output)):
-                os.makedirs(os.path.dirname(output))
+            if file.path_display not in self.__cache.get_send_files():
+                output = os.path.join(self.temp_dir, file.path_display[1:])
+                if not os.path.exists(os.path.dirname(output)):
+                    os.makedirs(os.path.dirname(output))
 
-            self.__logger.info("Downloading file " + file.path_display + " to " + output)
-            self.__dbx.files_download_to_file(output, file.path_display)
+                self.__logger.info("Downloading file " + file.path_display + " to " + output)
+                self.__dbx.files_download_to_file(output, file.path_display)
+
+                yield DownloadedFile(output, file.path_display)
 
     def remove_temp_dir(self):
-        if os.path.isdir(self.__temp_dir):
-            self.__logger.info("Removing temp dir " + self.__temp_dir)
+        if os.path.isdir(self.temp_dir):
+            self.__logger.info("Removing temp dir " + self.temp_dir)
             try:
-                shutil.rmtree(self.__temp_dir)
+                shutil.rmtree(self.temp_dir)
             except:
                 self.__logger.warning("Error while deleting directory")
 

@@ -19,8 +19,8 @@ class Gmail:
         self.__cache = Cache()
 
     def __create_payload(self, file):
-        attach_file_name = file
-        self.__cache.add_sent_file(attach_file_name)
+        attach_file_name = file.full_path
+        self.__cache.add_sent_file(file.path_display)
         with open(attach_file_name, 'rb') as attach_file:
             payload = MIMEBase('application', 'octate-stream')
             payload.set_payload(attach_file.read())

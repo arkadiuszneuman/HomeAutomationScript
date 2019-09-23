@@ -12,7 +12,6 @@ class SettingsConfig:
         dropbox_invoices_dir: str
 
         def __init__(self):
-            print("init settings")
             with open("settings.json", encoding='utf-8') as json_file:
                 data = json.load(json_file)
                 self.dropbox_invoices_dir = data["dropbox_invoices_dir"]
