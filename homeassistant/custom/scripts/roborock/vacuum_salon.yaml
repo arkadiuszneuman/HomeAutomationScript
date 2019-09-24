@@ -1,0 +1,8 @@
+vacuum_salon:
+  alias: 'Cały salon'
+  sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.roborock
+        command: app_zoned_clean
+        params:  [[25586,23852,30386,31052,1],[22147,28472,25997,30222,1],[22326,26176,23476,28526,1],[22527,23775,25927,26375,1]]

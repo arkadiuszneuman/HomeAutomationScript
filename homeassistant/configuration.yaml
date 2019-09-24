@@ -87,51 +87,7 @@ hacs:
 
 group: !include groups.yaml
 automation: !include_dir_merge_list custom/automations/
-script: 
-  vacuum_start:
-    alias: 'Potrójne sprzątanie'
-    sequence:
-      - service: vacuum.start
-        data:
-          entity_id: vacuum.roborock
-      - delay: '00:00:01'
-      - service: vacuum.set_fan_speed
-        data:
-          entity_id: vacuum.roborock
-          fan_speed: 100
-      - wait_template: "{{ is_state('vacuum.roborock', 'docked') or is_state('vacuum.roborock', 'idle') }}"
-        timeout: '01:30:00'
-        continue_on_timeout: 'false'
-
-      - service: vacuum.start
-        data:
-          entity_id: vacuum.roborock
-      - delay: '00:00:01'
-      - service: vacuum.set_fan_speed
-        data:
-          entity_id: vacuum.roborock
-          fan_speed: 105
-      - wait_template: "{{ is_state('vacuum.roborock', 'docked') or is_state('vacuum.roborock', 'idle') }}"
-        timeout: '01:30:00'
-        continue_on_timeout: 'false'
-
-      - service: vacuum.start
-        data:
-          entity_id: vacuum.roborock
-      - delay: '00:00:01'
-      - service: vacuum.set_fan_speed
-        data:
-          entity_id: vacuum.roborock
-          fan_speed: 105
-      - wait_template: "{{ is_state('vacuum.roborock', 'docked') or is_state('vacuum.roborock', 'idle') }}"
-        timeout: '01:30:00'
-        continue_on_timeout: 'false'
-
-  vacuum_stop:
-    sequence:
-      - service: light.turn_off
-        data:
-          entity_id: light.halogen_2
+script: !include_dir_merge_named custom/scripts/
 
 scene: !include_dir_list custom/scenes/
 sensor: !include_dir_merge_list custom/sensors/

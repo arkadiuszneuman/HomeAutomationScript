@@ -43,6 +43,16 @@ vacuum:
   entities:
     - vacuum.roborock
     - script.vacuum_start
+    - script.vacuum_behind_the_sofa
+    - script.vacuum_hall
+    - script.vacuum_in_front_of_the_sofa
+    - script.vacuum_in_front_of_the_stairs
+    - script.vacuum_in_front_of_tv
+    - script.vacuum_kitchen
+    - script.vacuum_next_to_the_window
+    - script.vacuum_vestibule
+    - script.vacuum_start
+    - script.vacuum_salon
 
 main_view:
   view: yes

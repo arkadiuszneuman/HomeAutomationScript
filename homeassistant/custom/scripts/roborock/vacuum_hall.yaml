@@ -1,0 +1,8 @@
+vacuum_hall:
+  alias: 'Hol'
+  sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.roborock
+        command: app_zoned_clean
+        params: [[25766,25933,29066,28233,1]]
