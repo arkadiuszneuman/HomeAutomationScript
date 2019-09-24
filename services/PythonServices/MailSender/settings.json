@@ -1,0 +1,15 @@
+{
+  "dropbox_invoices_dir": "Faktury",
+  "groups": [
+    {
+      "dir_name": "Nissan",
+      "translation": "samochód",
+      "for_translation": "za samochód"
+    },
+    {
+      "dir_name": "Orlen",
+      "translation": "paliwo",
+      "for_translation": "za paliwo"
+    }
+  ]
+}
