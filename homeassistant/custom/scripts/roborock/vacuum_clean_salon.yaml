@@ -1,0 +1,32 @@
+vacuum_clean_salon:
+  alias: 'Potrójne sprzątanie salonu'
+  sequence:
+    - service: script.vacuum_salon
+    - delay: '00:00:01'
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.roborock
+        fan_speed: 100
+    - wait_template: "{{ is_state('vacuum.roborock', 'docked') or is_state('vacuum.roborock', 'idle') }}"
+      timeout: '01:30:00'
+      continue_on_timeout: 'false'
+
+    - service: script.vacuum_salon
+    - delay: '00:00:01'
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.roborock
+        fan_speed: 105
+    - wait_template: "{{ is_state('vacuum.roborock', 'docked') or is_state('vacuum.roborock', 'idle') }}"
+      timeout: '01:30:00'
+      continue_on_timeout: 'false'
+
+    - service: script.vacuum_salon
+    - delay: '00:00:01'
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.roborock
+        fan_speed: 105
+    - wait_template: "{{ is_state('vacuum.roborock', 'docked') or is_state('vacuum.roborock', 'idle') }}"
+      timeout: '01:30:00'
+      continue_on_timeout: 'false'

@@ -42,7 +42,7 @@ vacuum:
   name: Odkurzacz
   entities:
     - vacuum.roborock
-    - script.vacuum_start
+    - script.vacuum_clean_salon
     - script.vacuum_behind_the_sofa
     - script.vacuum_hall
     - script.vacuum_in_front_of_the_sofa
@@ -51,8 +51,8 @@ vacuum:
     - script.vacuum_kitchen
     - script.vacuum_next_to_the_window
     - script.vacuum_vestibule
-    - script.vacuum_start
     - script.vacuum_salon
+    - script.vacuum_clean_floor
 
 main_view:
   view: yes

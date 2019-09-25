@@ -74,6 +74,7 @@ google_assistant:
     - cover
     - media_player
     - scene
+    - script
   # entity_config:
   #   light.halogen_1:
   #     expose: false

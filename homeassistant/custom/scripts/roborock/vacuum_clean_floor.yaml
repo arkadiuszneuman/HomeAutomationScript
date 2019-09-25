@@ -1,7 +1,9 @@
-vacuum_start:
-  alias: 'Potrójne sprzątanie'
+vacuum_clean_floor:
+  alias: 'Potrójne sprzątanie piętra'
   sequence:
-    - service: script.vacuum_salon
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.roborock
     - delay: '00:00:01'
     - service: vacuum.set_fan_speed
       data:
@@ -11,7 +13,9 @@ vacuum_start:
       timeout: '01:30:00'
       continue_on_timeout: 'false'
 
-    - service: script.vacuum_salon
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.roborock
     - delay: '00:00:01'
     - service: vacuum.set_fan_speed
       data:
@@ -21,7 +25,9 @@ vacuum_start:
       timeout: '01:30:00'
       continue_on_timeout: 'false'
 
-    - service: script.vacuum_salon
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.roborock
     - delay: '00:00:01'
     - service: vacuum.set_fan_speed
       data:
