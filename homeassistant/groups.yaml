@@ -63,6 +63,7 @@ main_view:
     - group.stairs
     - group.window_covers
     - group.vacuum
+    - fan.xiaomi_miio_device
 
 media_view:
   view: yes
