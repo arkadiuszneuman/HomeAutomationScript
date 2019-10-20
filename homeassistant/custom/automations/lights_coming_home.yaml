@@ -2,8 +2,7 @@
   trigger:
     platform: state
     entity_id: 
-      - device_tracker.2047dafb928a
-      - device_tracker.f4f5dbc1deb7
+      - device_tracker.life360_arek
     from: 'not_home'
     to: 'home'
   action:
@@ -11,19 +10,23 @@
       data:
         message: "Ktoś przyszedł do domu"
     - service: light.turn_on
-      entity_id: light.halogen_2
-    - service: light.turn_on
-      entity_id: light.halogen_3
-    - service: light.turn_on
       entity_id: light.lampka_zewnetrzna
+    - service: switch.turn_on
+      entity_id: switch.sonoff_1000541365
+    - service: light.turn_on
+      entity_id: light.halogen_1
+    - service: light.turn_on
+      entity_id: light.halogen_4
     - delay: 
         minutes: 10
     - service: light.turn_off
       entity_id: light.lampka_zewnetrzna
     - service: light.turn_off
-      entity_id: light.halogen_2
+      entity_id: light.halogen_1
     - service: light.turn_off
-      entity_id: light.halogen_3
+      entity_id: light.halogen_4
+    - service: switch.turn_off
+      entity_id: switch.sonoff_1000541365
   condition:
     - condition: sun
       after: sunset
