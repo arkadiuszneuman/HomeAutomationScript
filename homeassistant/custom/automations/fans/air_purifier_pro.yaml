@@ -23,10 +23,6 @@
   action:
     - service: fan.turn_on
       entity_id: fan.air_purifier_pro
-    - service: fan.set_speed
-      entity_id: fan.air_purifier_pro
-      data_template:
-        speed: auto
 
 - alias: Oczyszczacz powietrza - auto
   trigger:
@@ -34,24 +30,36 @@
     entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 20
-    below: 30
+    below: 25
   action:
     - service: fan.set_speed
       entity_id: fan.air_purifier_pro
       data_template:
         speed: auto
 
+- alias: Oczyszczacz powietrza - favorite
+  trigger:
+    platform: numeric_state
+    entity_id: fan.air_purifier_pro
+    value_template: "{{ state.attributes.aqi }}"
+    above: 25
+  action:
+    - service: fan.set_speed
+      entity_id: fan.air_purifier_pro
+      data_template:
+        speed: favorite
+
 - alias: Oczyszczacz powietrza - poziom 2
   trigger:
     platform: numeric_state
     entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
-    above: 30
+    above: 25
     below: 40
   action:
     - service: fan.xiaomi_miio_set_favorite_level
+      entity_id: fan.air_purifier_pro
       data_template:
-        entity_id: fan.xiaomi_air_purifier_office
         level: 2
 
 - alias: Oczyszczacz powietrza - poziom 3
@@ -63,8 +71,8 @@
     below: 50
   action:
     - service: fan.xiaomi_miio_set_favorite_level
+      entity_id: fan.air_purifier_pro
       data_template:
-        entity_id: fan.xiaomi_air_purifier_office
         level: 3
 
 - alias: Oczyszczacz powietrza - poziom 4
@@ -76,8 +84,8 @@
     below: 60
   action:
     - service: fan.xiaomi_miio_set_favorite_level
+      entity_id: fan.air_purifier_pro
       data_template:
-        entity_id: fan.xiaomi_air_purifier_office
         level: 4
 
 - alias: Oczyszczacz powietrza - poziom 5
@@ -89,8 +97,8 @@
     below: 70
   action:
     - service: fan.xiaomi_miio_set_favorite_level
+      entity_id: fan.air_purifier_pro
       data_template:
-        entity_id: fan.xiaomi_air_purifier_office
         level: 5
 
 - alias: Oczyszczacz powietrza - poziom 5
@@ -102,8 +110,8 @@
     below: 80
   action:
     - service: fan.xiaomi_miio_set_favorite_level
+      entity_id: fan.air_purifier_pro
       data_template:
-        entity_id: fan.xiaomi_air_purifier_office
         level: 6
 
 - alias: Oczyszczacz powietrza - poziom 6
@@ -115,8 +123,8 @@
     below: 90
   action:
     - service: fan.xiaomi_miio_set_favorite_level
+      entity_id: fan.air_purifier_pro
       data_template:
-        entity_id: fan.xiaomi_air_purifier_office
         level: 7
 
 - alias: Oczyszczacz powietrza - poziom 7
@@ -128,8 +136,8 @@
     below: 100
   action:
     - service: fan.xiaomi_miio_set_favorite_level
+      entity_id: fan.air_purifier_pro
       data_template:
-        entity_id: fan.xiaomi_air_purifier_office
         level: 8
 
 - alias: Oczyszczacz powietrza - poziom 8
@@ -140,6 +148,6 @@
     above: 100
   action:
     - service: fan.xiaomi_miio_set_favorite_level
+      entity_id: fan.air_purifier_pro
       data_template:
-        entity_id: fan.xiaomi_air_purifier_office
         level: 16
