@@ -152,7 +152,8 @@ influxdb:
       - vacuum.roborock
       - media_player.playstation_4
       - !secret steam_sensor_name
-      - fan.xiaomi_miio_device
+      - fan.air_purifier_pro
+      - fan.air_humidifier
 
 binary_sensor:
   - platform: workday
@@ -184,7 +185,11 @@ fan:
   - platform: xiaomi_miio
     host: 192.168.1.121
     token: !secret air_purifier
-    name: Xiaomi Air Purifier Pro
+    name: "Air Purifier Pro"
+  - platform: xiaomi_miio
+    host: 192.168.1.112
+    token: !secret air_humidifier
+    name: "Air Humidifier"
 
 cover:
   - platform: command_line

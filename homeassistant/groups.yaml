@@ -63,7 +63,8 @@ main_view:
     - group.stairs
     - group.window_covers
     - group.vacuum
-    - fan.xiaomi_miio_device
+    - fan.air_purifier_pro
+    - fan.air_humidifier
 
 media_view:
   view: yes
@@ -80,3 +81,9 @@ scene_view:
     - scene.dobranoc
     - scene.standardowe_oswietlenie
     - scene.ogladanie_tv
+
+domownicy:
+  name: Domownicy
+  entities:
+    - device_tracker.life360_arek
+    - device_tracker.life360_patrycja

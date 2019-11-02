@@ -3,48 +3,48 @@
   trigger:
     platform: numeric_state
     entity_id: 
-      - fan.xiaomi_miio_device
+      - fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     below: 20
     for:
       minutes: 3
   action:
     - service: fan.turn_off
-      entity_id: fan.xiaomi_miio_device
+      entity_id: fan.air_purifier_pro
 
 - alias: Oczyszczacz powietrza - włącz
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 20
     for:
       minutes: 3
   action:
     - service: fan.turn_on
-      entity_id: fan.xiaomi_miio_device
+      entity_id: fan.air_purifier_pro
     - service: fan.set_speed
-      entity_id: fan.xiaomi_miio_device
+      entity_id: fan.air_purifier_pro
       data_template:
         speed: auto
 
 - alias: Oczyszczacz powietrza - auto
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 20
     below: 30
   action:
     - service: fan.set_speed
-      entity_id: fan.xiaomi_miio_device
+      entity_id: fan.air_purifier_pro
       data_template:
         speed: auto
 
 - alias: Oczyszczacz powietrza - poziom 2
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 30
     below: 40
@@ -57,7 +57,7 @@
 - alias: Oczyszczacz powietrza - poziom 3
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 40
     below: 50
@@ -70,7 +70,7 @@
 - alias: Oczyszczacz powietrza - poziom 4
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 50
     below: 60
@@ -83,7 +83,7 @@
 - alias: Oczyszczacz powietrza - poziom 5
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 60
     below: 70
@@ -96,7 +96,7 @@
 - alias: Oczyszczacz powietrza - poziom 5
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 70
     below: 80
@@ -109,7 +109,7 @@
 - alias: Oczyszczacz powietrza - poziom 6
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 80
     below: 90
@@ -122,7 +122,7 @@
 - alias: Oczyszczacz powietrza - poziom 7
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 90
     below: 100
@@ -135,7 +135,7 @@
 - alias: Oczyszczacz powietrza - poziom 8
   trigger:
     platform: numeric_state
-    entity_id: fan.xiaomi_miio_device
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.aqi }}"
     above: 100
   action:
