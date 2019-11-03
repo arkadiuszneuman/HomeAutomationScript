@@ -3,7 +3,7 @@
   trigger:
     platform: numeric_state
     entity_id: 
-      - fan.air_humidifier
+      - fan.air_purifier_pro
     value_template: "{{ state.attributes.humidity }}"
     above: 60
     for:
@@ -15,7 +15,7 @@
 - alias: Nawilżacz powietrza - włącz
   trigger:
     platform: numeric_state
-    entity_id: fan.air_humidifier
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.humidity }}"
     below: 60
     for:
@@ -27,7 +27,7 @@
 - alias: Nawilżacz powietrza - poziom 1
   trigger:
     platform: numeric_state
-    entity_id: fan.air_humidifier
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.humidity }}"
     above: 50
     below: 60
@@ -40,7 +40,7 @@
 - alias: Nawilżacz powietrza - poziom 2
   trigger:
     platform: numeric_state
-    entity_id: fan.air_humidifier
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.humidity }}"
     above: 40
     below: 50
@@ -53,7 +53,7 @@
 - alias: Nawilżacz powietrza - poziom 3
   trigger:
     platform: numeric_state
-    entity_id: fan.air_humidifier
+    entity_id: fan.air_purifier_pro
     value_template: "{{ state.attributes.humidity }}"
     below: 40
   action:
