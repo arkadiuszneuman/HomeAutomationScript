@@ -12,6 +12,15 @@
     - service: fan.turn_off
       entity_id: fan.air_humidifier
 
+- alias: Nawilżacz powietrza - wyłącz na noc
+  initial_state: true
+  trigger:
+    platform: time
+    at: "00:00:00"
+  action:
+    - service: fan.turn_off
+      entity_id: fan.air_humidifier
+
 - alias: Nawilżacz powietrza - włącz
   trigger:
     platform: numeric_state
@@ -20,44 +29,23 @@
     below: 60
     for:
       minutes: 3
+  condition:
+    condition: time
+    after: '07:00:00'
+    before: '23:59:00'
   action:
     - service: fan.turn_on
       entity_id: fan.air_humidifier
-
-- alias: Nawilżacz powietrza - poziom 1
-  trigger:
-    platform: numeric_state
-    entity_id: fan.air_purifier_pro
-    value_template: "{{ state.attributes.humidity }}"
-    above: 50
-    below: 60
-  action:
+    - delay: 
+        seconds: 3
     - service: fan.set_speed
       entity_id: fan.air_humidifier
       data_template:
-        speed: silent
-
-- alias: Nawilżacz powietrza - poziom 2
-  trigger:
-    platform: numeric_state
-    entity_id: fan.air_purifier_pro
-    value_template: "{{ state.attributes.humidity }}"
-    above: 40
-    below: 50
-  action:
-    - service: fan.set_speed
-      entity_id: fan.air_humidifier
-      data_template:
-        speed: medium
-
-- alias: Nawilżacz powietrza - poziom 3
-  trigger:
-    platform: numeric_state
-    entity_id: fan.air_purifier_pro
-    value_template: "{{ state.attributes.humidity }}"
-    below: 40
-  action:
-    - service: fan.set_speed
-      entity_id: fan.air_humidifier
-      data_template:
-        speed: high
+        speed: >
+              {% if states.fan.air_purifier_pro.attributes.humidity | int < 40 %}
+                high
+              {% elif states.fan.air_purifier_pro.attributes.humidity | int < 50 %}
+                medium
+              {% else %}
+                silent
+              {% endif %}

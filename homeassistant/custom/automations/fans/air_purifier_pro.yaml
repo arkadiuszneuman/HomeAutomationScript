@@ -12,6 +12,15 @@
     - service: fan.turn_off
       entity_id: fan.air_purifier_pro
 
+- alias: Oczyszczacz powietrza - wyłącz na noc
+  initial_state: true
+  trigger:
+    platform: time
+    at: "00:00:00"
+  action:
+    - service: fan.turn_off
+      entity_id: fan.air_purifier_pro
+
 - alias: Oczyszczacz powietrza - włącz
   trigger:
     platform: numeric_state
@@ -20,6 +29,10 @@
     above: 20
     for:
       minutes: 3
+  condition:
+    condition: time
+    after: '07:00:00'
+    before: '23:59:00'
   action:
     - service: fan.turn_on
       entity_id: fan.air_purifier_pro
