@@ -29,10 +29,10 @@
     below: 60
     for:
       minutes: 3
-  condition:
-    condition: time
-    after: '07:00:00'
-    before: '23:59:00'
+  # condition:
+  #   condition: time
+  #   after: '07:00:00'
+  #   before: '23:59:00'
   action:
     - service: fan.turn_on
       entity_id: fan.air_humidifier
