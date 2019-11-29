@@ -65,6 +65,7 @@ main_view:
     - group.vacuum
     - fan.air_purifier_pro
     - fan.air_humidifier
+    - fan.air_purifier_2s
 
 media_view:
   view: yes

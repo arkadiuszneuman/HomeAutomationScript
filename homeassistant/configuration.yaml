@@ -24,6 +24,8 @@ frontend:
 # Enables configuration UI
 config:
 
+api:
+
 http:
   base_url: !secret base_url
   ssl_certificate: /etc/letsencrypt/live/arekha.duckdns.org/fullchain.pem
@@ -154,6 +156,7 @@ influxdb:
       - !secret steam_sensor_name
       - fan.air_purifier_pro
       - fan.air_humidifier
+      - fan.air_purifier_2s
 
 binary_sensor:
   - platform: workday
@@ -184,8 +187,12 @@ vacuum:
 fan:
   - platform: xiaomi_miio
     host: 192.168.1.121
-    token: !secret air_purifier
+    token: !secret air_purifier_pro
     name: "Air Purifier Pro"
+  - platform: xiaomi_miio
+    host: 192.168.1.119
+    token: !secret air_purifier_2s
+    name: "Air Purifier 2s"
   - platform: xiaomi_miio
     host: 192.168.1.112
     token: !secret air_humidifier
