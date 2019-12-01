@@ -10,3 +10,4 @@ elasticsearchdata/
 mysql/
 services/PythonServices/MailSender/secrets.json
 services/PythonServices/MailSender/cache.json
+services/AutomationRunner/AutomationRunner/secrets.json
