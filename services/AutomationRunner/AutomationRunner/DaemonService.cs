@@ -1,11 +1,7 @@
-﻿using AutomationRunner.Common;
-using AutomationRunner.Config;
-using AutomationRunner.Secrets;
+﻿using AutomationRunner.Common.EntityLoader;
+using AutomationRunner.Entities;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,19 +9,21 @@ namespace AutomationRunner
 {
     public class DaemonService : IHostedService
     {
-        private readonly HomeAssistantHttpClientFactory httpClientFactory;
+        private readonly EntityLoader entityLoader;
 
-        public DaemonService(HomeAssistantHttpClientFactory httpClientFactory)
+        public DaemonService(EntityLoader entityLoader)
         {
-            this.httpClientFactory = httpClientFactory;
+            this.entityLoader = entityLoader;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            using var client = httpClientFactory.GetHomeAssistantHttpClient();
-            var xxx = await (await client.GetAsync("api/events")).Content.ReadAsStringAsync();
+            for (int i = 0; i < 50; i++)
+            {
+                var entity = await XiaomiAirPurifier.LoadFromEntityId(entityLoader, "fan.air_purifier_pro");
+            }
 
-            Console.WriteLine(xxx);
+            Console.WriteLine("Asd");
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
