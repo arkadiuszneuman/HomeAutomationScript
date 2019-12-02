@@ -1,14 +1,11 @@
 ﻿using AutomationRunner.Common.EntityLoader;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Entities
 {
     public class XiaomiAirPurifier : BaseEntity
     {
-        private EntityLoader EntityLoader { get; set; }
+        private HomeAssistantConnector EntityLoader { get; set; }
 
         public XiaomiAirPurifierAttributes Attributes { get; set; }
 
@@ -19,11 +16,21 @@ namespace AutomationRunner.Entities
             public decimal Temperature { get; set; }
         }
 
-        public static async Task<XiaomiAirPurifier> LoadFromEntityId(EntityLoader entityLoader, string entityId)
+        public static async Task<XiaomiAirPurifier> LoadFromEntityId(HomeAssistantConnector entityLoader, string entityId)
         {
             var deserializedObject = await entityLoader.LoadEntityFromStates<XiaomiAirPurifier>(entityId);
             deserializedObject.EntityLoader = entityLoader;
             return deserializedObject;
+        }
+
+        public async Task TurnOn()
+        {
+            await EntityLoader.SendService("fan.turn_on", new EntityIdService(EntityId));
+        }
+
+        public async Task TurnOff()
+        {
+            await EntityLoader.SendService("fan.turn_off", new EntityIdService(EntityId));
         }
     }
 }

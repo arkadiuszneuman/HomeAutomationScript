@@ -9,18 +9,28 @@ namespace AutomationRunner
 {
     public class DaemonService : IHostedService
     {
-        private readonly EntityLoader entityLoader;
+        private readonly HomeAssistantConnector entityLoader;
 
-        public DaemonService(EntityLoader entityLoader)
+        public DaemonService(HomeAssistantConnector entityLoader)
         {
             this.entityLoader = entityLoader;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            for (int i = 0; i < 50; i++)
+            var entity = await XiaomiAirPurifier.LoadFromEntityId(entityLoader, "fan.air_purifier_2s");
+
+            var currentState = false;
+            while(true)
             {
-                var entity = await XiaomiAirPurifier.LoadFromEntityId(entityLoader, "fan.air_purifier_pro");
+                if (!currentState)
+                    await entity.TurnOn();
+                else
+                    await entity.TurnOff();
+
+                currentState = !currentState;
+
+                await Task.Delay(15000);
             }
 
             Console.WriteLine("Asd");

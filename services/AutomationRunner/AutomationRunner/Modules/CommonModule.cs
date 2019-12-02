@@ -14,7 +14,7 @@ namespace AutomationRunner.Modules
                 .AsImplementedInterfaces()
                 .AsSelf();
 
-            builder.RegisterType<EntityLoader>()
+            builder.RegisterType<HomeAssistantConnector>()
                 .SingleInstance();
         }
     }

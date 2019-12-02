@@ -1,18 +1,19 @@
-﻿using AutomationRunner.Common;
-using AutomationRunner.Entities;
+﻿using AutomationRunner.Entities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Common.EntityLoader
 {
-    public class EntityLoader
+    public class HomeAssistantConnector
     {
         private readonly HomeAssistantHttpClientFactory clientFactory;
         private string loadedStates;
 
-        public EntityLoader(HomeAssistantHttpClientFactory clientFactory)
+        public HomeAssistantConnector(HomeAssistantHttpClientFactory clientFactory)
         {
             this.clientFactory = clientFactory;
         }
@@ -45,6 +46,13 @@ namespace AutomationRunner.Common.EntityLoader
                 await RefreshStates();
 
             return JsonConvert.DeserializeObject<IEnumerable<T>>(loadedStates);
+        }
+
+        public async Task SendService(string serviceId, EntityIdService entityIdService)
+        {
+            using var client = clientFactory.GetHomeAssistantHttpClient();
+            await client.PostAsync($"api/services/{serviceId.Replace('.', '/')}",
+                new StringContent(JsonConvert.SerializeObject(entityIdService), Encoding.UTF8, "application/json"));
         }
 
         public async Task RefreshStates()
