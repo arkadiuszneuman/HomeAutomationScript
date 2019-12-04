@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationRunner.Common.EntityLoader
+namespace AutomationRunner.Common.HomeAssistantConnector
 {
     public class HomeAssistantConnector
     {

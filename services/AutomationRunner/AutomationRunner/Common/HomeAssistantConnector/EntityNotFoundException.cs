@@ -1,4 +1,4 @@
-﻿namespace AutomationRunner.Common.EntityLoader
+﻿namespace AutomationRunner.Common.HomeAssistantConnector
 {
     public class EntityNotFoundException : AutomationRunnerException
     {

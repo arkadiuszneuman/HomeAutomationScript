@@ -1,4 +1,4 @@
-﻿using AutomationRunner.Common.EntityLoader;
+﻿using AutomationRunner.Common.HomeAssistantConnector;
 using AutomationRunner.Entities;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -21,17 +21,6 @@ namespace AutomationRunner
             var entity = await XiaomiAirPurifier.LoadFromEntityId(entityLoader, "fan.air_purifier_2s");
 
             var currentState = false;
-            while(true)
-            {
-                if (!currentState)
-                    await entity.TurnOn();
-                else
-                    await entity.TurnOff();
-
-                currentState = !currentState;
-
-                await Task.Delay(15000);
-            }
 
             Console.WriteLine("Asd");
         }
