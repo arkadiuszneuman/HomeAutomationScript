@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using AutomationRunner.Common.EntityLoader;
+using AutomationRunner.Common.Connector;
 
 namespace AutomationRunner.Modules
 {

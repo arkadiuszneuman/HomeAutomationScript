@@ -1,4 +1,4 @@
-﻿using AutomationRunner.Common.HomeAssistantConnector;
+﻿using AutomationRunner.Common.Connector;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Entities

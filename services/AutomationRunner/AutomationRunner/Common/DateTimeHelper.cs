@@ -4,6 +4,6 @@ namespace AutomationRunner.Common
 {
     public class DateTimeHelper
     {
-        public DateTime Now { get; } = DateTime.Now;
+        public virtual DateTime Now { get; } = DateTime.Now;
     }
 }

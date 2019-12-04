@@ -1,4 +1,4 @@
-﻿using AutomationRunner.Common.HomeAssistantConnector;
+﻿using AutomationRunner.Common.Connector;
 using AutomationRunner.Entities;
 using Microsoft.Extensions.Hosting;
 using System;

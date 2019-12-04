@@ -1,5 +1,5 @@
 ﻿using AutomationRunner.Automations.Helpers;
-using AutomationRunner.Common.HomeAssistantConnector;
+using AutomationRunner.Common.Connector;
 using AutomationRunner.Entities;
 using System;
 using System.Threading.Tasks;
