@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationRunner.Automations
+namespace AutomationRunner.Automations.Helpers.Base
 {
     public abstract class NumericState<T>
         where T: BaseEntity

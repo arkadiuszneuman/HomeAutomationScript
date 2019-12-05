@@ -2,8 +2,13 @@
 
 namespace AutomationRunner.Common
 {
-    public class DateTimeHelper
+    public interface IDateTimeHelper
     {
-        public virtual DateTime Now { get; } = DateTime.Now;
+        DateTime Now { get; }
+    }
+
+    public class DateTimeHelper : IDateTimeHelper
+    {
+        public virtual DateTime Now => DateTime.Now;
     }
 }

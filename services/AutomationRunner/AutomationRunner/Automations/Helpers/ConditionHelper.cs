@@ -5,12 +5,12 @@ namespace AutomationRunner.Automations.Helpers
 {
     public class ConditionHelper
     {
-        private readonly DateTimeHelper dateTimeHelper;
+        private readonly IDateTimeHelper dateTimeHelper;
         private TimeSpan forTime;
         private DateTime? firstDate;
         private bool shouldActionBeExecuted = true;
 
-        public ConditionHelper(DateTimeHelper dateTimeHelper)
+        public ConditionHelper(IDateTimeHelper dateTimeHelper)
         {
             this.dateTimeHelper = dateTimeHelper;
         }
