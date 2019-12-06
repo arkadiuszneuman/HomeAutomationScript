@@ -10,12 +10,12 @@ namespace AutomationRunner.Automations.Supervisor
     public class AutomationsSupervisor
     {
         private readonly ILogger<AutomationsSupervisor> logger;
-        private readonly TurnOffIfAqiIsBelow20 automation;
+        private readonly AirPurifierProAutomations automation;
         private readonly HomeAssistantConnector connector;
 
         public AutomationsSupervisor(
             ILogger<AutomationsSupervisor> logger,
-            TurnOffIfAqiIsBelow20 automation,
+            AirPurifierProAutomations automation,
             HomeAssistantConnector connector)
         {
             this.logger = logger;
@@ -31,7 +31,7 @@ namespace AutomationRunner.Automations.Supervisor
             {
                 await connector.RefreshStates();
 
-                var entity = await automation.Entity;
+                var entity = await automation.LoadEntity();
                 var value = automation.Watch(entity);
                 //if (value != previousValue)
                 {

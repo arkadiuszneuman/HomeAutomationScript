@@ -1,34 +1,37 @@
 ﻿using AutomationRunner.Automations.Helpers;
+using AutomationRunner.Common;
 using AutomationRunner.Common.Connector;
+using AutomationRunner.Common.Extensions;
 using AutomationRunner.Entities;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Automations.Fan.BedroomAirPurifier
 {
-    public class TurnOffIfAqiIsBelow20
+    public class AirPurifierProAutomations
     {
-        private const double forTime = 0.5;
+        private const double forTime = 3;
         private const int turningOffValue = 20;
 
-        private readonly ILogger<TurnOffIfAqiIsBelow20> logger;
+        private readonly ILogger<AirPurifierProAutomations> logger;
         private readonly HomeAssistantConnector connector;
+        private readonly IDateTimeHelper dateTimeHelper;
         private readonly ConditionHelper turnOffCondition;
         private readonly ConditionHelper turnOnCondition;
 
-        public Task<XiaomiAirPurifier> Entity => XiaomiAirPurifier.LoadFromEntityId(connector, "fan.air_purifier_pro");
+        public Task<XiaomiAirPurifier> LoadEntity() => XiaomiAirPurifier.LoadFromEntityId(connector, "fan.air_purifier_pro");
         public Func<XiaomiAirPurifier, decimal> Watch => entity => entity.Attributes.Aqi;
 
-        public TurnOffIfAqiIsBelow20(
-            ILogger<TurnOffIfAqiIsBelow20> logger,
+        public AirPurifierProAutomations(
+            ILogger<AirPurifierProAutomations> logger,
             HomeAssistantConnector connector,
-            AutomationHelpersFactory automationHelpersFactory)
+            AutomationHelpersFactory automationHelpersFactory,
+            IDateTimeHelper dateTimeHelper)
         {
             this.logger = logger;
             this.connector = connector;
+            this.dateTimeHelper = dateTimeHelper;
             this.turnOffCondition = automationHelpersFactory
                 .GetConditionHelper()
                 .For(TimeSpan.FromMinutes(forTime));
@@ -40,7 +43,18 @@ namespace AutomationRunner.Automations.Fan.BedroomAirPurifier
 
         public async Task Update()
         {
-            var airPurifier = await Entity;
+            var airPurifier = await LoadEntity();
+
+            if (dateTimeHelper.Now.Between(new TimeSpan(23, 0, 0), new TimeSpan(6, 0, 0)))
+            {
+                if (airPurifier.State == "on")
+                {
+                    logger.LogInformation("Turning off {0}, because of night", airPurifier.EntityId);
+                    await airPurifier.TurnOff();
+                }
+
+                return;
+            }
 
             if (turnOffCondition.CheckFulfilled(airPurifier.Attributes.Aqi <= turningOffValue))
             {
@@ -54,6 +68,18 @@ namespace AutomationRunner.Automations.Fan.BedroomAirPurifier
                 logger.LogInformation("Turning on {0}, because aqi is bigger than {1} for {2} minutes",
                     airPurifier.EntityId, turningOffValue, forTime);
                 await airPurifier.TurnOn();
+            }
+
+            if (airPurifier.State == "on")
+            {
+                if (airPurifier.Attributes.Aqi <= 25)
+                    await airPurifier.SetSpeed(SpeedEnum.Auto);
+                else
+                {
+                    var level = Math.Min(airPurifier.Attributes.Aqi / 10, 16);
+                    await airPurifier.SetLevel(level);
+                    await airPurifier.SetSpeed(SpeedEnum.Favorite);
+                }
             }
         }
     }
