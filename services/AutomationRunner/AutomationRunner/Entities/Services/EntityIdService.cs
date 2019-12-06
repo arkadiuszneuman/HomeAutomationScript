@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace AutomationRunner.Entities
+namespace AutomationRunner.Entities.Services
 {
     public class EntityIdService
     {

@@ -1,7 +1,9 @@
 ﻿using AutomationRunner.Entities;
-using Newtonsoft.Json;
+using AutomationRunner.Entities.Services;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +12,16 @@ namespace AutomationRunner.Common.Connector
 {
     public class HomeAssistantConnector
     {
+        private readonly ILogger<HomeAssistantConnector> logger;
         private readonly HomeAssistantHttpClientFactory clientFactory;
+
         private string loadedStates;
 
-        public HomeAssistantConnector(HomeAssistantHttpClientFactory clientFactory)
+        public HomeAssistantConnector(
+            ILogger<HomeAssistantConnector> logger,
+            HomeAssistantHttpClientFactory clientFactory)
         {
+            this.logger = logger;
             this.clientFactory = clientFactory;
         }
 
@@ -45,14 +52,20 @@ namespace AutomationRunner.Common.Connector
             if (string.IsNullOrEmpty(loadedStates))
                 await RefreshStates();
 
-            return JsonConvert.DeserializeObject<IEnumerable<T>>(loadedStates);
+            return JsonSerializer.DeserializeObject<IEnumerable<T>>(loadedStates);
         }
 
-        public async Task SendService(string serviceId, EntityIdService entityIdService)
+        public async Task SendService<T>(string serviceId, T service)
+            where T: EntityIdService
         {
             using var client = clientFactory.GetHomeAssistantHttpClient();
-            await client.PostAsync($"api/services/{serviceId.Replace('.', '/')}",
-                new StringContent(JsonConvert.SerializeObject(entityIdService), Encoding.UTF8, "application/json"));
+            var uri = $"api/services/{serviceId.Replace('.', '/')}";
+            var json = JsonSerializer.SerializeObject(service);
+            var response = await client.PostAsync(uri,
+                new StringContent(json, Encoding.UTF8, "application/json"));
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                logger.LogError("Error while sending status to {0} with body {1}", uri, json);
         }
 
         public async Task RefreshStates()

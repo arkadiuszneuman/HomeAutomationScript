@@ -1,8 +1,16 @@
 ﻿using AutomationRunner.Common.Connector;
+using AutomationRunner.Entities.Services;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Entities
 {
+    public enum SpeedEnum
+    {
+        Auto,
+        Favorite,
+        Silent
+    }
+
     public class XiaomiAirPurifier : BaseEntity
     {
         private HomeAssistantConnector EntityLoader { get; set; }
@@ -31,6 +39,17 @@ namespace AutomationRunner.Entities
         public async Task TurnOff()
         {
             await EntityLoader.SendService("fan.turn_off", new EntityIdService(EntityId));
+        }
+
+        public async Task SetSpeed(SpeedEnum speed)
+        {
+            await EntityLoader.SendService("fan.set_speed", new SetSpeedService(EntityId, speed.ToString()));
+        }
+
+        public async Task SetLevel(int level)
+        {
+            await EntityLoader.SendService("fan.xiaomi_miio_set_favorite_level", 
+                new XiaomiMiioSetFavoriteLevelService(EntityId, level));
         }
     }
 }
