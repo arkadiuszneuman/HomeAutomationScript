@@ -1,7 +1,7 @@
 ﻿using AutomationRunner.Automations.Fan.BedroomAirPurifier;
-using AutomationRunner.Automations.Helpers;
 using AutomationRunner.Common.Connector;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,14 +29,22 @@ namespace AutomationRunner.Automations.Supervisor
 
             while (!cancellationToken.IsCancellationRequested)
             {
-                await connector.RefreshStates();
-
-                var entity = await automation.LoadEntity();
-                var value = automation.Watch(entity);
-                //if (value != previousValue)
+                try
                 {
-                    await automation.Update();
-                    previousValue = value;
+                    await connector.RefreshStates();
+
+                    var entity = await automation.LoadEntity();
+                    var value = automation.Watch(entity);
+                    //if (value != previousValue)
+                    {
+                        await automation.Update();
+                        previousValue = value;
+                    }
+
+                }
+                catch (HttpRequestException)
+                {
+                    logger.LogWarning($"Cannot connect HomeAssistant. Retrying...");
                 }
 
                 await Task.Delay(5000, cancellationToken);
