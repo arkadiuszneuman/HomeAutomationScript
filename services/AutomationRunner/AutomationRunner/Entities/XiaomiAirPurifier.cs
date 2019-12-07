@@ -1,5 +1,7 @@
 ﻿using AutomationRunner.Common.Connector;
 using AutomationRunner.Entities.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Entities
@@ -22,6 +24,13 @@ namespace AutomationRunner.Entities
             public int Aqi { get; set; }
             public int Humidity { get; set; }
             public decimal Temperature { get; set; }
+
+            [JsonProperty("favorite_level")]
+            public int FavoriteLevel { get; set; }
+
+            [JsonProperty("speed")]
+            [JsonConverter(typeof(StringEnumConverter))]
+            public AirPurifierSpeed Speed { get; set; }
         }
 
         public static async Task<XiaomiAirPurifier> LoadFromEntityId(HomeAssistantConnector entityLoader, string entityId)
