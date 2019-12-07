@@ -1,6 +1,7 @@
 ﻿using AutomationRunner.Automations.Specific;
 using AutomationRunner.Common.Connector;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -52,6 +53,11 @@ namespace AutomationRunner.Automations.Supervisor
                 catch (HttpRequestException)
                 {
                     logger.LogWarning($"Cannot connect HomeAssistant. Retrying...");
+                }
+                catch (Exception exception)
+                {
+                    logger.LogError(exception, "Error on executing automations. Waiting minute and restarting...");
+                    await Task.Delay(TimeSpan.FromMinutes(1));
                 }
 
                 await Task.Delay(5000, cancellationToken);
