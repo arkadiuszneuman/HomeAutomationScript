@@ -7,9 +7,9 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace AutomationRunner.Automations.Fan.BedroomAirPurifier
+namespace AutomationRunner.Automations.Specific.Fan.BedroomAirPurifier
 {
-    public class AirPurifierProAutomations
+    public class AirPurifierProAutomations : IAutomation
     {
         private const double forTime = 3;
         private const int turningOffValue = 20;

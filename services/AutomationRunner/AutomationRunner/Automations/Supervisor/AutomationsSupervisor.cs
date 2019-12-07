@@ -1,6 +1,8 @@
-﻿using AutomationRunner.Automations.Fan.BedroomAirPurifier;
+﻿using AutomationRunner.Automations.Specific;
+using AutomationRunner.Automations.Specific.Fan.BedroomAirPurifier;
 using AutomationRunner.Common.Connector;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,16 +12,16 @@ namespace AutomationRunner.Automations.Supervisor
     public class AutomationsSupervisor
     {
         private readonly ILogger<AutomationsSupervisor> logger;
-        private readonly AirPurifierProAutomations automation;
+        private readonly IEnumerable<IAutomation> automations;
         private readonly HomeAssistantConnector connector;
 
         public AutomationsSupervisor(
             ILogger<AutomationsSupervisor> logger,
-            AirPurifierProAutomations automation,
+            IEnumerable<IAutomation> automations,
             HomeAssistantConnector connector)
         {
             this.logger = logger;
-            this.automation = automation;
+            this.automations = automations;
             this.connector = connector;
         }
 
@@ -33,14 +35,16 @@ namespace AutomationRunner.Automations.Supervisor
                 {
                     await connector.RefreshStates();
 
-                    var entity = await automation.LoadEntity();
-                    var value = automation.Watch(entity);
-                    //if (value != previousValue)
+                    foreach (var automation in automations)
                     {
-                        await automation.Update();
-                        previousValue = value;
+                        //var entity = await automation.LoadEntity();
+                        //var value = automation.Watch(entity);
+                        //if (value != previousValue)
+                        {
+                            await automation.Update();
+                            //previousValue = value;
+                        }
                     }
-
                 }
                 catch (HttpRequestException)
                 {
