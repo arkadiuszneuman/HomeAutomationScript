@@ -1,8 +1,8 @@
 ﻿using AutomationRunner.Automations.Specific;
-using AutomationRunner.Automations.Specific.Fan.BedroomAirPurifier;
 using AutomationRunner.Common.Connector;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,16 +35,19 @@ namespace AutomationRunner.Automations.Supervisor
                 {
                     await connector.RefreshStates();
 
-                    foreach (var automation in automations)
-                    {
+                    var updateTasks = automations.Select(a => a.Update());
+                    Task.WaitAll(updateTasks.ToArray(), cancellationToken);
+
+                    //foreach (var automation in automations)
+                    //{
                         //var entity = await automation.LoadEntity();
                         //var value = automation.Watch(entity);
                         //if (value != previousValue)
-                        {
-                            await automation.Update();
+                        //{
+                        //    await automation.Update();
                             //previousValue = value;
-                        }
-                    }
+                    //    }
+                    //}
                 }
                 catch (HttpRequestException)
                 {

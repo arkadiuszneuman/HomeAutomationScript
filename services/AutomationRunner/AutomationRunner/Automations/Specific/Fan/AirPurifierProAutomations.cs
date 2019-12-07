@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace AutomationRunner.Automations.Specific.Fan.BedroomAirPurifier
+namespace AutomationRunner.Automations.Specific.Fan
 {
     public class AirPurifierProAutomations : IAutomation
     {
