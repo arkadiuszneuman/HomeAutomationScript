@@ -73,12 +73,12 @@ namespace AutomationRunner.Automations.Specific.Fan
             if (airPurifier.State == "on")
             {
                 if (airPurifier.Attributes.Aqi <= 25)
-                    await airPurifier.SetSpeed(SpeedEnum.Auto);
+                    await airPurifier.SetSpeed(AirPurifierSpeed.Auto);
                 else
                 {
                     var level = Math.Min(airPurifier.Attributes.Aqi / 10, 16);
                     await airPurifier.SetLevel(level);
-                    await airPurifier.SetSpeed(SpeedEnum.Favorite);
+                    await airPurifier.SetSpeed(AirPurifierSpeed.Favorite);
                 }
             }
         }

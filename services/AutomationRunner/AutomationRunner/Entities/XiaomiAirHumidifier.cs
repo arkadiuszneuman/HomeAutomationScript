@@ -1,17 +1,20 @@
 ﻿using AutomationRunner.Common.Connector;
 using AutomationRunner.Entities.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Entities
 {
-    public enum AirPurifierSpeed
+    public enum AirHumidifierSpeed
     {
-        Auto,
-        Favorite,
-        Silent
+        High,
+        Medium,
+        Silent,
+        Auto
     }
 
-    public class XiaomiAirPurifier : BaseEntity
+    public class XiaomiAirHumidifier : BaseEntity
     {
         private HomeAssistantConnector EntityLoader { get; set; }
 
@@ -22,11 +25,15 @@ namespace AutomationRunner.Entities
             public int Aqi { get; set; }
             public int Humidity { get; set; }
             public decimal Temperature { get; set; }
+
+            [JsonProperty("speed")]
+            [JsonConverter(typeof(StringEnumConverter))]
+            public AirHumidifierSpeed Speed { get; set; }
         }
 
-        public static async Task<XiaomiAirPurifier> LoadFromEntityId(HomeAssistantConnector entityLoader, string entityId)
+        public static async Task<XiaomiAirHumidifier> LoadFromEntityId(HomeAssistantConnector entityLoader, string entityId)
         {
-            var deserializedObject = await entityLoader.LoadEntityFromStates<XiaomiAirPurifier>(entityId);
+            var deserializedObject = await entityLoader.LoadEntityFromStates<XiaomiAirHumidifier>(entityId);
             deserializedObject.EntityLoader = entityLoader;
             return deserializedObject;
         }
@@ -43,15 +50,9 @@ namespace AutomationRunner.Entities
             State = "off";
         }
 
-        public async Task SetSpeed(AirPurifierSpeed speed)
+        public async Task SetSpeed(AirHumidifierSpeed speed)
         {
             await EntityLoader.SendService("fan.set_speed", new SetSpeedService(EntityId, speed.ToString()));
-        }
-
-        public async Task SetLevel(int level)
-        {
-            await EntityLoader.SendService("fan.xiaomi_miio_set_favorite_level", 
-                new XiaomiMiioSetFavoriteLevelService(EntityId, level));
         }
     }
 }
