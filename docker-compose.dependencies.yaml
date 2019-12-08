@@ -1,7 +1,7 @@
 version: '2'
 services:
   influxdb:
-    image: "influxdb:1.7.7"
+    image: "influxdb:1.7.9"
     ports:
      - 8086:8086
      - 8083:8083
@@ -15,7 +15,7 @@ services:
     container_name: influxdb
 
   rabbitmq:
-    image: "rabbitmq:3.7.17-management"
+    image: "rabbitmq:3.7.23-management"
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -26,7 +26,7 @@ services:
     container_name: rabbit
 
   mosquitto:
-    image: "eclipse-mosquitto:1.6.4"
+    image: "eclipse-mosquitto:1.6.8"
     ports:
       - 1883:1883
       - 9001:9001

@@ -1,7 +1,7 @@
 version: '2'
 services:
   logstash:  
-    image: "docker.elastic.co/logstash/logstash:7.2.0"
+    image: "docker.elastic.co/logstash/logstash:7.5.0"
     volumes: 
       - ./logstash/config:/usr/share/logstash/config
       - ./logstash/pipeline:/usr/share/logstash/pipeline
@@ -14,7 +14,7 @@ services:
       - elasticsearch
 
   elasticsearch:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:7.2.0"
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.0"
     ports:
       - 9200:9200
       - 9300:9300
@@ -38,7 +38,7 @@ services:
     container_name: elasticsearch
 
   kibana:
-    image: "docker.elastic.co/kibana/kibana:7.2.0"
+    image: "docker.elastic.co/kibana/kibana:7.5.0"
     ports:
       - 5601:5601
     volumes:
