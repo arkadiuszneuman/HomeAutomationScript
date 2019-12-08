@@ -1,0 +1,6 @@
+- name: "Wyjście z domu"
+  entities:
+    light.halogen_1: off
+    light.halogen_2: off
+    light.halogen_4: off
+    
