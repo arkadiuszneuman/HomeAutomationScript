@@ -29,6 +29,16 @@
         topic: "home/stairs/maxlevel/set"
         payload_template: "{ level: \"100\" }"
 
+- alias: Ustawienie ciemnych schodów po północy
+  trigger:
+    platform: time
+    at: '00:00:01'
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: "home/stairs/maxlevel/set"
+        payload_template: "{ level: \"5\" }"
+
 - alias: Ustawienie jasności schodów po świcie
   trigger:
     platform: sun
