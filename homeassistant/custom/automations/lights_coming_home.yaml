@@ -1,30 +1,20 @@
-- alias: Oświecenie świateł podczas przyjścia do domu po zmierzchu
+- alias: Oświecenie świateł zewnętrznych podczas przyjścia do domu po zmierzchu
   trigger:
     platform: state
     entity_id: 
       - device_tracker.life360_arek
+      - device_tracker.life360_patrycja
     from: 'not_home'
     to: 'home'
   action:
-    - service: notify.push
-      data:
-        message: "Ktoś przyszedł do domu"
     - service: light.turn_on
       entity_id: light.lampka_zewnetrzna
     - service: switch.turn_on
       entity_id: switch.sonoff_1000541365
-    - service: light.turn_on
-      entity_id: light.halogen_1
-    - service: light.turn_on
-      entity_id: light.halogen_4
     - delay: 
         minutes: 10
     - service: light.turn_off
       entity_id: light.lampka_zewnetrzna
-    - service: light.turn_off
-      entity_id: light.halogen_1
-    - service: light.turn_off
-      entity_id: light.halogen_4
     - service: switch.turn_off
       entity_id: switch.sonoff_1000541365
   condition:
