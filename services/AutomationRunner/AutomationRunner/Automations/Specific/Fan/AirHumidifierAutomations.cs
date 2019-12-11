@@ -79,8 +79,7 @@ namespace AutomationRunner.Automations.Specific.Fan
                 {
                     var humidity when humidity <= 40 => AirHumidifierSpeed.High,
                     var humidity when humidity <= 50 => AirHumidifierSpeed.Medium,
-                    var humidity when humidity <= turningOnValue => AirHumidifierSpeed.Silent,
-                    _ => throw new ArgumentException("Invalid humidity")
+                    var humidity when humidity <= turningOnValue => AirHumidifierSpeed.Silent
                 };
 
                 if (speed != airHumidifer.Attributes.Speed)
