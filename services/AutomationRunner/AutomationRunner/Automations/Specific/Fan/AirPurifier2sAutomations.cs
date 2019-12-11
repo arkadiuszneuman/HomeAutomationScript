@@ -57,16 +57,22 @@ namespace AutomationRunner.Automations.Specific.Fan
             {
                 if (turnOffCondition.CheckFulfilled(airPurifier.Attributes.Aqi <= turningOffValue))
                 {
-                    logger.LogInformation("Turning off {0}, because aqi is lower or equal than {1} for {2} minutes",
-                        airPurifier.EntityId, turningOffValue, forTime);
-                    await airPurifier.TurnOff();
+                    if (airPurifier.State == "on")
+                    {
+                        logger.LogInformation("Turning off {0}, because aqi is lower or equal than {1} for {2} minutes",
+                            airPurifier.EntityId, turningOffValue, forTime);
+                        await airPurifier.TurnOff();
+                    }
                 }
 
                 if (turnOnCondition.CheckFulfilled(airPurifier.Attributes.Aqi > turningOffValue))
                 {
-                    logger.LogInformation("Turning on {0}, because aqi is bigger than {1} for {2} minutes",
-                        airPurifier.EntityId, turningOffValue, forTime);
-                    await airPurifier.TurnOn();
+                    if (airPurifier.State == "off")
+                    {
+                        logger.LogInformation("Turning on {0}, because aqi is bigger than {1} for {2} minutes",
+                            airPurifier.EntityId, turningOffValue, forTime);
+                        await airPurifier.TurnOn();
+                    }
                 }
 
                 if (airPurifier.State == "on")
