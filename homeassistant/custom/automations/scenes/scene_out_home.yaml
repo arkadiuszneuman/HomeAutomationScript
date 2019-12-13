@@ -4,40 +4,16 @@
     event_type: call_service
     event_data:
       service_data:
-        entity_id: scene.wyjscie_z_domu
+        entity_id: scene.wyjscie_z_domu_i_wylaczenie_wszystkiego
       domain: scene
       service: turn_on
   action:
-    - service: light.turn_on
-      entity_id: light.halogen_3
     - service: light.turn_on
       entity_id: light.lampka_zewnetrzna
     - service: switch.turn_on
       entity_id: switch.sonoff_1000541365
     - service: media_player.turn_off
       entity_id: media_player.sony_bravia
-    - service: light.turn_off
-      entity_id: light.grzybek
-    - service: light.turn_off
-      entity_id: light.salon_led
-    - service: switch.turn_off
-      entity_id: switch.sonoff_100051420f
-    - service: switch.turn_off
-      entity_id: switch.sonoff_1000513cd0
-    - service: switch.turn_off
-      entity_id: switch.sonoff_1000511f63
-    - service: mqtt.publish
-      data_template:
-        topic: "home/stairs/minlevel/set"
-        payload_template: "{ level: \"0\" }"
-    - delay:
-        seconds: 5
-    - service: media_player.turn_off
-      entity_id: media_player.denon
-    - delay: 
-        seconds: 60
-    - service: light.turn_off
-      entity_id: light.halogen_3
     - delay:
         seconds: 120
     - service: light.turn_off

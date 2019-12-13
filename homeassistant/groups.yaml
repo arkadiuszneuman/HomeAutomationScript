@@ -82,6 +82,8 @@ scene_view:
     - scene.dobranoc
     - scene.standardowe_oswietlenie
     - scene.ogladanie_tv
+    - scene.wyjscie_z_domu
+    - scene.wyjscie_z_domu_i_wylaczenie_wszystkiego
 
 domownicy:
   name: Domownicy
