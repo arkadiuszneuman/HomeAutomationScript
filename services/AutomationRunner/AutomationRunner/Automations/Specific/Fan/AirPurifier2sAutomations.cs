@@ -45,7 +45,7 @@ namespace AutomationRunner.Automations.Specific.Fan
         {
             var airPurifier = await LoadEntity();
 
-            if (dateTimeHelper.Now.Between(new TimeSpan(7, 0, 0), new TimeSpan(19, 0, 0)))
+            if (dateTimeHelper.Now.Between(new TimeSpan(8, 0, 0), new TimeSpan(19, 0, 0)))
             {
                 if (airPurifier.State == "on")
                 {
@@ -79,7 +79,32 @@ namespace AutomationRunner.Automations.Specific.Fan
                 {
                     if (dateTimeHelper.Now.Between(new TimeSpan(19, 0, 0), new TimeSpan(21, 0, 0)))
                     {
-                        if (airPurifier.Attributes.Aqi <= 15)
+                        var level = Math.Min((airPurifier.Attributes.Aqi / 10) + 2, 16);
+
+                        if (airPurifier.Attributes.Speed != AirPurifierSpeed.Favorite ||
+                            airPurifier.Attributes.FavoriteLevel != level)
+                        {
+                            logger.LogInformation("Changing speed of {0} to {1}",
+                                    airPurifier.EntityId, level);
+
+                            await airPurifier.SetLevel(level);
+                            await airPurifier.SetSpeed(AirPurifierSpeed.Favorite);
+                        }
+                    }
+                    else
+                    {
+                        if (airPurifier.Attributes.Aqi <= 20)
+                        {
+                            if (airPurifier.Attributes.Speed != AirPurifierSpeed.Silent)
+                            {
+                                logger.LogInformation("Changing speed of {0} to {1}",
+                                       airPurifier.EntityId, AirPurifierSpeed.Silent);
+
+                                await airPurifier.SetSpeed(AirPurifierSpeed.Silent);
+                            }
+                            
+                        }
+                        else
                         {
                             if (airPurifier.Attributes.Speed != AirPurifierSpeed.Auto)
                             {
@@ -87,30 +112,6 @@ namespace AutomationRunner.Automations.Specific.Fan
                                     airPurifier.EntityId);
                                 await airPurifier.SetSpeed(AirPurifierSpeed.Auto);
                             }
-                        }
-                        else
-                        {
-                            var level = Math.Min((airPurifier.Attributes.Aqi / 10) + 2, 16);
-
-                            if (airPurifier.Attributes.Speed != AirPurifierSpeed.Favorite ||
-                                airPurifier.Attributes.FavoriteLevel != level)
-                            {
-                                logger.LogInformation("Changing speed of {0} to {1}",
-                                       airPurifier.EntityId, level);
-
-                                await airPurifier.SetLevel(level);
-                                await airPurifier.SetSpeed(AirPurifierSpeed.Favorite);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (airPurifier.Attributes.Speed != AirPurifierSpeed.Silent)
-                        {
-                            logger.LogInformation("Changing speed of {0} to {1}",
-                                   airPurifier.EntityId, AirPurifierSpeed.Silent);
-
-                            await airPurifier.SetSpeed(AirPurifierSpeed.Silent);
                         }
                     }
                 }
