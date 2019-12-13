@@ -12,7 +12,7 @@ namespace AutomationRunner.Automations.Specific.Fan
     public class AirPurifierProAutomations : IAutomation
     {
         private const double forTime = 3;
-        private const int turningOffValue = 20;
+        private const int turningOffValue = 15;
 
         private readonly ILogger<AirPurifierProAutomations> logger;
         private readonly HomeAssistantConnector connector;
@@ -78,7 +78,7 @@ namespace AutomationRunner.Automations.Specific.Fan
 
             if (airPurifier.State == "on")
             {
-                if (airPurifier.Attributes.Aqi <= 25)
+                if (airPurifier.Attributes.Aqi < 20)
                 {
                     if (airPurifier.Attributes.Speed != AirPurifierSpeed.Auto)
                     {
@@ -89,7 +89,7 @@ namespace AutomationRunner.Automations.Specific.Fan
                 }
                 else
                 {
-                    var level = Math.Min(airPurifier.Attributes.Aqi / 10, 16);
+                    var level = Math.Min((airPurifier.Attributes.Aqi / 10) + 1, 16);
 
                     if (airPurifier.Attributes.Speed != AirPurifierSpeed.Favorite ||
                         airPurifier.Attributes.FavoriteLevel != level)
