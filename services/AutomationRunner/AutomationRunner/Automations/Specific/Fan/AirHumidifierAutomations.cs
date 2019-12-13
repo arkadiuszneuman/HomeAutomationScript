@@ -81,18 +81,19 @@ namespace AutomationRunner.Automations.Specific.Fan
 
             if (airHumidifer.State == "on")
             {
-                var speed = airPurifierPro.Attributes.Humidity switch
+                var changeHumidityInfo = airPurifierPro.Attributes.Humidity switch
                 {
-                    var humidity when humidity <= 40 => AirHumidifierSpeed.High,
-                    var humidity when humidity <= 50 => AirHumidifierSpeed.Medium,
-                    var humidity when humidity <= turningOnValue => AirHumidifierSpeed.Silent
+                    var humidity when humidity <= 40 => new { Change = true, Speed = AirHumidifierSpeed.High },
+                    var humidity when humidity <= 50 => new { Change = true, Speed = AirHumidifierSpeed.Medium },
+                    var humidity when humidity <= turningOnValue => new { Change = true, Speed = AirHumidifierSpeed.Silent },
+                    _ => new { Change = false, Speed = AirHumidifierSpeed.Auto }
                 };
-
-                if (speed != airHumidifer.Attributes.Speed)
+                
+                if (changeHumidityInfo.Change && changeHumidityInfo.Speed != airHumidifer.Attributes.Speed)
                 {
                     logger.LogInformation("Changing speed of {0} from {1} to {2}", 
-                        airHumidifer.EntityId, airHumidifer.Attributes.Speed, speed);
-                    await airHumidifer.SetSpeed(speed);
+                        airHumidifer.EntityId, airHumidifer.Attributes.Speed, changeHumidityInfo.Speed);
+                    await airHumidifer.SetSpeed(changeHumidityInfo.Speed);
                 }
             }
         }
