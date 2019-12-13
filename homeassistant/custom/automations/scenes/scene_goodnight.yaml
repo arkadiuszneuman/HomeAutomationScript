@@ -28,6 +28,12 @@
       entity_id: light.salon_led
     - service: switch.turn_off
       entity_id: switch.sonoff_1000541365
+    - service: switch.turn_off
+      entity_id: switch.sonoff_100051420f
+    - service: switch.turn_off
+      entity_id: switch.sonoff_1000513cd0
+    - service: switch.turn_off
+      entity_id: switch.sonoff_1000511f63
     - service: mqtt.publish
       data_template:
         topic: "home/stairs/minlevel/set"
@@ -160,10 +166,4 @@
         payload_template: "{ level: \"0\" }"
     - service: light.turn_off
       entity_id: light.halogen_3
-    - service: switch.turn_off
-      entity_id: switch.sonoff_100051420f
-    - service: switch.turn_off
-      entity_id: switch.sonoff_1000513cd0
-    - service: switch.turn_off
-      entity_id: switch.sonoff_1000511f63
     
