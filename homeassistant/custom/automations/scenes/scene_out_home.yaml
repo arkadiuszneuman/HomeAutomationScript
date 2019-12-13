@@ -4,7 +4,7 @@
     event_type: call_service
     event_data:
       service_data:
-        entity_id: scene.wyjscie_z_domu_i_wylaczenie_wszystkiego
+        entity_id: scene.wyjscie_z_domu
       domain: scene
       service: turn_on
   action:
@@ -12,8 +12,6 @@
       entity_id: light.lampka_zewnetrzna
     - service: switch.turn_on
       entity_id: switch.sonoff_1000541365
-    - service: media_player.turn_off
-      entity_id: media_player.sony_bravia
     - delay:
         seconds: 120
     - service: light.turn_off
