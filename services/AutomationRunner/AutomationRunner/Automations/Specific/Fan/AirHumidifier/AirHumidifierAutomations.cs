@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationRunner.Automations.Specific.Fan
+namespace AutomationRunner.Automations.Specific.Fan.AirHumidifier
 {
     public class AirHumidifierAutomations : IAutomation
     {

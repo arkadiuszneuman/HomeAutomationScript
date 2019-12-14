@@ -47,5 +47,10 @@ namespace AutomationRunner.Automations.Helpers
 
             return false;
         }
+
+        public void Reset()
+        {
+            shouldActionBeExecuted = true;
+        }
     }
 }
