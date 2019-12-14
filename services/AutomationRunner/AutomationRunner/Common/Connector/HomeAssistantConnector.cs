@@ -1,5 +1,6 @@
 ﻿using AutomationRunner.Entities;
 using AutomationRunner.Entities.Services;
+using AutomationRunner.Entities.Services.Models;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace AutomationRunner.Common.Connector
         }
 
         public async Task SendService<T>(string serviceId, T service)
-            where T: EntityIdService
+            where T: IService
         {
             using var client = clientFactory.GetHomeAssistantHttpClient();
             var uri = $"api/services/{serviceId.Replace('.', '/')}";

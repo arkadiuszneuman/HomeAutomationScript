@@ -1,5 +1,6 @@
 ﻿using AutomationRunner.Common.Connector;
 using AutomationRunner.Entities.Services;
+using AutomationRunner.Entities.Services.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Threading.Tasks;
