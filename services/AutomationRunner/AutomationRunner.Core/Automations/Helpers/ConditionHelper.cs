@@ -1,4 +1,5 @@
 ﻿using AutomationRunner.Core.Common;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace AutomationRunner.Core.Automations.Helpers
@@ -9,6 +10,8 @@ namespace AutomationRunner.Core.Automations.Helpers
         private TimeSpan forTime;
         private DateTime? firstDate;
         private bool shouldActionBeExecuted = true;
+        private string name;
+        private ILogger logger;
 
         public ConditionHelper(IDateTimeHelper dateTimeHelper)
         {
@@ -21,19 +24,30 @@ namespace AutomationRunner.Core.Automations.Helpers
             return this;
         }
 
+        public ConditionHelper Name(ILogger logger, string name)
+        {
+            this.name = name;
+            this.logger = logger;
+            return this;
+        }
+
         public bool CheckFulfilled(bool condition)
         {
+            Log($"Condition fulfilled: {condition}");
             if (condition)
             {
+                Log($"Action should be executed: {shouldActionBeExecuted}");
                 if (shouldActionBeExecuted)
                 {
                     if (firstDate == null)
                     {
                         firstDate = dateTimeHelper.Now;
+                        Log($"Initialized first date: {firstDate}. Action be executed on: {firstDate + forTime}");
                     }
 
                     if (firstDate + forTime <= dateTimeHelper.Now)
                     {
+                        Log($"Executing action. Zeroing action should be executed");
                         shouldActionBeExecuted = false;
                         return true;
                     }
@@ -41,11 +55,23 @@ namespace AutomationRunner.Core.Automations.Helpers
             }
             else
             {
+                Log($"Zeroing firstDate. Action should be executed: true");
                 firstDate = null;
                 shouldActionBeExecuted = true;
             }
 
             return false;
+        }
+
+        private void Log(string msg)
+        {
+            if (logger != null)
+            {
+                if (string.IsNullOrEmpty(name))
+                    logger.LogDebug("{0}", msg);
+                else
+                    logger.LogDebug("{0}: {1}", name, msg);
+            }
         }
 
         public void Reset()

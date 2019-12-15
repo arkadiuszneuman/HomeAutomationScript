@@ -34,10 +34,12 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             this.dateTimeHelper = dateTimeHelper;
             this.turnOffCondition = automationHelpersFactory
                 .GetConditionHelper()
+                .Name(logger, "Air humidifier turning off")
                 .For(TimeSpan.FromMinutes(forTime));
 
             this.turnOnCondition = automationHelpersFactory
                 .GetConditionHelper()
+                .Name(logger, "Air humidifier turning on")
                 .For(TimeSpan.FromMinutes(forTime));
         }
 
@@ -46,8 +48,10 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             var airPurifierPro = await LoadAirPurifierProEntity();
             var airHumidifer = await LoadAirHumidifierEntity();
 
+            logger.LogDebug("Checking air humidifier. Humidity: {0}", airPurifierPro.Attributes.Humidity);
             if (dateTimeHelper.Now.Between(new TimeSpan(0, 0, 0), new TimeSpan(6, 0, 0)))
             {
+                logger.LogDebug("Air humidifier should be turned off because of night");
                 if (airHumidifer.State == "on")
                 {
                     logger.LogInformation("Turning off {0}, because of night", airHumidifer.EntityId);
@@ -86,6 +90,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                     var humidity when humidity <= turningOnValue => new { Change = true, Speed = AirHumidifierSpeed.Silent },
                     _ => new { Change = false, Speed = AirHumidifierSpeed.Auto }
                 };
+
+                logger.LogDebug("Change humidity info. Change:{0}, Speed: {1}", changeHumidityInfo.Change, changeHumidityInfo.Speed);
 
                 if (changeHumidityInfo.Change && changeHumidityInfo.Speed != airHumidifer.Attributes.Speed)
                 {
