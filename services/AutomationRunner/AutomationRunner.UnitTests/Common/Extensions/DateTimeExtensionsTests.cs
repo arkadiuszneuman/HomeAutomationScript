@@ -1,4 +1,4 @@
-﻿using AutomationRunner.Common.Extensions;
+﻿using AutomationRunner.Core.Common.Extensions;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;

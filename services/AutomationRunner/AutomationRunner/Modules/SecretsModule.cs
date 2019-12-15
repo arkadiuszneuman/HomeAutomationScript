@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using AutomationRunner.Secrets;
+using AutomationRunner.Core.Secrets;
 
 namespace AutomationRunner.Modules
 {

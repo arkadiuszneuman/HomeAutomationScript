@@ -1,10 +1,8 @@
-﻿using AutomationRunner.Automations.Helpers;
-using AutomationRunner.Common;
+﻿using AutomationRunner.Core.Automations.Helpers;
+using AutomationRunner.Core.Common;
 using FluentAssertions;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace AutomationRunner.UnitTests.Automations.Helpers

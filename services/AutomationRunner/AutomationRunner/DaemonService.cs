@@ -1,5 +1,4 @@
-﻿using AutomationRunner.Automations.Supervisor;
-using AutomationRunner.Common.Connector;
+﻿using AutomationRunner.Core.Automations.Supervisor;
 using Microsoft.Extensions.Hosting;
 using System.Threading;
 using System.Threading.Tasks;

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationRunner", "Automat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationRunner.UnitTests", "AutomationRunner.UnitTests\AutomationRunner.UnitTests.csproj", "{7DA25456-BC7B-4B53-BC16-007134A25805}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationRunner.Core", "AutomationRunner.Core\AutomationRunner.Core.csproj", "{5E67CDDD-D08A-488D-B124-9D55B03D4AF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7DA25456-BC7B-4B53-BC16-007134A25805}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DA25456-BC7B-4B53-BC16-007134A25805}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DA25456-BC7B-4B53-BC16-007134A25805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E67CDDD-D08A-488D-B124-9D55B03D4AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E67CDDD-D08A-488D-B124-9D55B03D4AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E67CDDD-D08A-488D-B124-9D55B03D4AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E67CDDD-D08A-488D-B124-9D55B03D4AF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

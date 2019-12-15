@@ -1,9 +1,8 @@
 ﻿using Autofac;
+using AutomationRunner.Core.Config;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AutomationRunner.Modules
 {
@@ -13,8 +12,8 @@ namespace AutomationRunner.Modules
         {
             base.Load(builder);
 
-            var configTypes = ThisAssembly.GetTypes()
-                .Where(t => t?.Namespace?.StartsWith("AutomationRunner.Config",
+            var configTypes = typeof(HomeAssistantConfiguration).Assembly.GetTypes()
+                .Where(t => t?.Namespace?.StartsWith("AutomationRunner.Core.Config",
                     StringComparison.InvariantCultureIgnoreCase) ?? false);
 
             foreach (var configType in configTypes)
