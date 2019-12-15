@@ -54,7 +54,7 @@ services:
 
   automation-runner:
     build: 
-      context: ./services/AutomationRunner/AutomationRunner
+      context: ./services/AutomationRunner
       dockerfile: Dockerfile
     environment: 
       - WRAPPER_ENVIRONMENT=Docker
