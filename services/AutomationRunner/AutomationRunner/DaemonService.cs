@@ -8,14 +8,10 @@ namespace AutomationRunner
 {
     public class DaemonService : IHostedService
     {
-        private readonly HomeAssistantConnector entityLoader;
         private readonly AutomationsSupervisor automationsSupervisor;
 
-        public DaemonService(
-            HomeAssistantConnector entityLoader,
-            AutomationsSupervisor automationsSupervisor)
+        public DaemonService(AutomationsSupervisor automationsSupervisor)
         {
-            this.entityLoader = entityLoader;
             this.automationsSupervisor = automationsSupervisor;
         }
 
