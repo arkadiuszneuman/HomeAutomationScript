@@ -48,8 +48,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             var airPurifierPro = await LoadAirPurifierProEntity();
             var airHumidifer = await LoadAirHumidifierEntity();
 
-            logger.LogInformation("Checking air humidifier. Humidity: {Humidity}", airHumidifer.Attributes.Humidity);
-            logger.LogInformation("Air humidifier current state: {State}", airPurifierPro.State);
+            logger.LogDebug("Checking air humidifier. Humidity: {Humidity}", airHumidifer.Attributes.Humidity);
+            logger.LogDebug("Air humidifier current state: {State}", airPurifierPro.State);
 
             if (dateTimeHelper.Now.Between(new TimeSpan(0, 0, 0), new TimeSpan(6, 0, 0)))
             {
