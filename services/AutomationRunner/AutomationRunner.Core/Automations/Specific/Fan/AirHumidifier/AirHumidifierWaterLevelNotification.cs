@@ -52,8 +52,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
 
             if (notifyCondition.CheckFulfilled(waterLevelPercent < percentToInform))
             {
-                logger.LogInformation("Sending notification about water level. Actual: {0}%", waterLevelPercent);
-                await notificationPushService.PushNotification($"Zbyt mało wody: {waterLevelPercent}%");
+                logger.LogInformation("Sending notification about water level. Actual: {WaterLevelPercent}%", waterLevelPercent);
+                await notificationPushService.PushNotification($"Zbyt mało wody: {waterLevelPercent:N2}%");
             }
         }
 

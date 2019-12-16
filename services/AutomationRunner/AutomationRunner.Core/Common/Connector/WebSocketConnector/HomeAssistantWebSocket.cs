@@ -72,7 +72,7 @@ namespace AutomationRunner.Core.Common.Connector.WebSocketConnector
             if (!IsWebSocketConnected())
                 await Connect();
 
-            logger.LogDebug("Sending message: {0}", message);
+            logger.LogDebug("Sending message: {Message}", message);
             await clientWebSocket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(message)),
                 WebSocketMessageType.Text, true, cancellationToken);
         }
@@ -91,7 +91,7 @@ namespace AutomationRunner.Core.Common.Connector.WebSocketConnector
                     var result = await clientWebSocket.ReceiveAsync(bytesReceived, cancellationToken);
                     var message = Encoding.UTF8.GetString(bytesReceived.Array, 0, result.Count);
 
-                    logger.LogDebug("Received message: {0}", message);
+                    logger.LogDebug("Received message: {Message}", message);
                     response(message);
                 }
             });

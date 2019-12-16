@@ -37,8 +37,13 @@ namespace AutomationRunner.Core.Automations.Supervisor
                 {
                     await connector.RefreshStates();
 
-                    var updateTasks = automations.Select(a => a.Update());
-                    Task.WaitAll(updateTasks.ToArray(), cancellationToken);
+                    //var updateTasks = automations.Select(a => a.Update());
+                    //Task.WaitAll(updateTasks.ToArray(), cancellationToken);
+
+                    foreach (var automation in automations)
+                    {
+                        await automation.Update();
+                    }
 
                     //foreach (var automation in automations)
                     //{

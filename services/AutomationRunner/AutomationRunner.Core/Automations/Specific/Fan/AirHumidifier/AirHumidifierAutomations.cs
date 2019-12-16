@@ -48,13 +48,15 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             var airPurifierPro = await LoadAirPurifierProEntity();
             var airHumidifer = await LoadAirHumidifierEntity();
 
-            logger.LogDebug("Checking air humidifier. Humidity: {0}", airPurifierPro.Attributes.Humidity);
+            logger.LogInformation("Checking air humidifier. Humidity: {Humidity}", airHumidifer.Attributes.Humidity);
+            logger.LogInformation("Air humidifier current state: {State}", airPurifierPro.State);
+
             if (dateTimeHelper.Now.Between(new TimeSpan(0, 0, 0), new TimeSpan(6, 0, 0)))
             {
                 logger.LogDebug("Air humidifier should be turned off because of night");
                 if (airHumidifer.State == "on")
                 {
-                    logger.LogInformation("Turning off {0}, because of night", airHumidifer.EntityId);
+                    logger.LogInformation("Turning off {EntityId}, because of night", airHumidifer.EntityId);
                     await airHumidifer.TurnOff();
                 }
 
@@ -65,7 +67,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             {
                 if (airHumidifer.State == "on")
                 {
-                    logger.LogInformation("Turning off {0}, because aqi is bigger than {1} for {2} minutes",
+                    logger.LogInformation("Turning off {EntityId}, because aqi is bigger than {TurningOnValue} for {ForTime} minutes",
                     airHumidifer.EntityId, turningOnValue, forTime);
                     await airHumidifer.TurnOff();
                 }
@@ -75,8 +77,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             {
                 if (airHumidifer.State == "off")
                 {
-                    logger.LogInformation("Turning on {0}, because aqi is lower or equal than {1} for {2} minutes",
-                    airHumidifer.EntityId, turningOnValue, forTime);
+                    logger.LogInformation("Turning on {EntityId}, because aqi is bigger than {TurningOnValue} for {ForTime} minutes",
+                   airHumidifer.EntityId, turningOnValue, forTime);
                     await airHumidifer.TurnOn();
                 }
             }
@@ -91,11 +93,11 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                     _ => new { Change = false, Speed = AirHumidifierSpeed.Auto }
                 };
 
-                logger.LogDebug("Change humidity info. Change:{0}, Speed: {1}", changeHumidityInfo.Change, changeHumidityInfo.Speed);
+                logger.LogDebug("Change humidity info. Change:{Change}, Speed: {Speed}", changeHumidityInfo.Change, changeHumidityInfo.Speed);
 
                 if (changeHumidityInfo.Change && changeHumidityInfo.Speed != airHumidifer.Attributes.Speed)
                 {
-                    logger.LogInformation("Changing speed of {0} from {1} to {2}",
+                    logger.LogInformation("Changing speed of {EntityId} from {FromSpeed} to {ToSpeed}",
                         airHumidifer.EntityId, airHumidifer.Attributes.Speed, changeHumidityInfo.Speed);
                     await airHumidifer.SetSpeed(changeHumidityInfo.Speed);
                 }

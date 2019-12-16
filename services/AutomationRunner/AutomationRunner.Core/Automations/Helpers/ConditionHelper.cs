@@ -68,9 +68,9 @@ namespace AutomationRunner.Core.Automations.Helpers
             if (logger != null)
             {
                 if (string.IsNullOrEmpty(name))
-                    logger.LogDebug("{0}", msg);
+                    logger.LogDebug("{Message}", msg);
                 else
-                    logger.LogDebug("{0}: {1}", name, msg);
+                    logger.LogDebug("{Name}: {Message}", name, msg);
             }
         }
 

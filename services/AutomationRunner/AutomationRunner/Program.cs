@@ -4,7 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 using Serilog.Exceptions;
+using Serilog.Formatting.Elasticsearch;
 using Serilog.Sinks.Elasticsearch;
 using System;
 using System.IO;
@@ -61,8 +64,11 @@ namespace AutomationRunner
                 .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(elasticUri))
                 {
                     AutoRegisterTemplate = true,
-                    IndexFormat = elasticIndexFormat
+                    IndexFormat = elasticIndexFormat,
+                    MinimumLogEventLevel = LogEventLevel.Verbose,
+                    FailureCallback = e => Console.WriteLine("Unable to submit event " + e.MessageTemplate)
                 })
+                .MinimumLevel.Verbose()
                 .CreateLogger();
 
             logging.AddSerilog();

@@ -49,7 +49,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
             {
                 if (airPurifier.State == "on")
                 {
-                    logger.LogInformation("Turning off {0}, because of night", airPurifier.EntityId);
+                    logger.LogInformation("Turning off {EntityId}, because of night", airPurifier.EntityId);
                     await airPurifier.TurnOff();
                 }
 
@@ -60,7 +60,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
             {
                 if (airPurifier.State == "on")
                 {
-                    logger.LogInformation("Turning off {0}, because aqi is lower or equal than {1} for {2} minutes",
+                    logger.LogInformation("Turning off {EntityId}, because aqi is lower or equal than {TurningOffValue} for {ForTime} minutes",
                         airPurifier.EntityId, turningOffValue, forTime);
                     await airPurifier.TurnOff();
                 }
@@ -70,7 +70,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
             {
                 if (airPurifier.State == "off")
                 {
-                    logger.LogInformation("Turning on {0}, because aqi is bigger than {1} for {2} minutes",
+                    logger.LogInformation("Turning on {EntityId}, because aqi is lower or equal than {TurningOffValue} for {ForTime} minutes",
                         airPurifier.EntityId, turningOffValue, forTime);
                     await airPurifier.TurnOn();
                 }
@@ -82,8 +82,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                 {
                     if (airPurifier.Attributes.Speed != AirPurifierSpeed.Auto)
                     {
-                        logger.LogInformation("Changing speed of {0} to Auto",
-                            airPurifier.EntityId);
+                        logger.LogInformation("Changing speed of {EntityId} to {Speed}",
+                            airPurifier.EntityId, AirPurifierSpeed.Auto);
                         await airPurifier.SetSpeed(AirPurifierSpeed.Auto);
                     }
                 }
@@ -94,7 +94,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     if (airPurifier.Attributes.Speed != AirPurifierSpeed.Favorite ||
                         airPurifier.Attributes.FavoriteLevel != level)
                     {
-                        logger.LogInformation("Changing speed of {0} to {1}",
+                        logger.LogInformation("Changing speed of {EntityId} to {Level}",
                                airPurifier.EntityId, level);
 
                         await airPurifier.SetLevel(level);
