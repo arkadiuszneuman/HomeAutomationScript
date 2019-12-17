@@ -11,7 +11,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
 {
     public class AirPurifier2sAutomations : IAutomation
     {
-        private const double forTime = 3;
+        private const double forTime = 15;
         private const int turningOffValue = 10;
 
         private readonly ILogger<AirPurifier2sAutomations> logger;
