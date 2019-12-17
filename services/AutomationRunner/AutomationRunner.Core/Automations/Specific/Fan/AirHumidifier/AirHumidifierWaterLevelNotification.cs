@@ -48,7 +48,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                 return;
             }
 
-            var waterLevelPercent = GetPercentDepth(airHumidifer.Attributes.Depth);
+            var waterLevelPercent = GetPercentDepth(airHumidifer.Depth);
 
             if (waterLevelPercent.HasValue)
             {

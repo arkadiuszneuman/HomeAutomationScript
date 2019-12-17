@@ -18,19 +18,10 @@ namespace AutomationRunner.Core.Entities
     {
         private HomeAssistantConnector EntityLoader { get; set; }
 
-        public XiaomiAirPurifierAttributes Attributes { get; set; }
-
-        public class XiaomiAirPurifierAttributes
-        {
-            public int Aqi { get; set; }
-            public int Humidity { get; set; }
-            public decimal Temperature { get; set; }
-            public int? Depth { get; set; }
-
-            [JsonProperty("speed")]
-            [JsonConverter(typeof(StringEnumConverter))]
-            public AirHumidifierSpeed Speed { get; set; }
-        }
+        public int Humidity => GetAttributeValue<int>(nameof(Humidity));
+        public int Temperature => GetAttributeValue<int>(nameof(Temperature));
+        public int? Depth => GetAttributeValue<int>(nameof(Depth));
+        public AirHumidifierSpeed Speed => GetAttributeValue<AirHumidifierSpeed>(nameof(Speed));
 
         public static async Task<XiaomiAirHumidifier> LoadFromEntityId(HomeAssistantConnector entityLoader, string entityId)
         {
