@@ -25,7 +25,7 @@ namespace AutomationRunner.Core.Entities
             public int Aqi { get; set; }
             public int Humidity { get; set; }
             public decimal Temperature { get; set; }
-            public int Depth { get; set; }
+            public int? Depth { get; set; }
 
             [JsonProperty("speed")]
             [JsonConverter(typeof(StringEnumConverter))]

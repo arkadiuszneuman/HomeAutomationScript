@@ -50,15 +50,21 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
 
             var waterLevelPercent = GetPercentDepth(airHumidifer.Attributes.Depth);
 
-            if (notifyCondition.CheckFulfilled(waterLevelPercent < percentToInform))
+            if (waterLevelPercent.HasValue)
             {
-                logger.LogInformation("Sending notification about water level. Actual: {WaterLevelPercent}%", waterLevelPercent);
-                await notificationPushService.PushNotification($"Zbyt mało wody: {waterLevelPercent:N2}%");
+                if (notifyCondition.CheckFulfilled(waterLevelPercent.Value < percentToInform))
+                {
+                    logger.LogInformation("Sending notification about water level. Actual: {WaterLevelPercent}%", waterLevelPercent);
+                    await notificationPushService.PushNotification($"Zbyt mało wody: {waterLevelPercent:N2}%");
+                }
             }
         }
 
-        private double GetPercentDepth(int depth)
+        private double? GetPercentDepth(int? depth)
         {
+            if (!depth.HasValue)
+                return null;
+
             return depth / 1.2;
         }
     }
