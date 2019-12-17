@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AutomationRunner.Core.Common.Connector;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -6,6 +7,8 @@ namespace AutomationRunner.Core.Entities
 {
     public class BaseEntity
     {
+        public HomeAssistantConnector Connector { get; set; }
+
         [JsonProperty("entity_id")]
         public string EntityId { get; set; }
         public string State { get; set; }

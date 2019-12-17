@@ -93,7 +93,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                     _ => new { Change = false, Speed = AirHumidifierSpeed.Auto }
                 };
 
-                logger.LogDebug("Change humidity info. Change:{Change}, Speed: {Speed}", changeHumidityInfo.Change, changeHumidityInfo.Speed);
+                logger.LogDebug("Change humidity info. Change: {Change}, Speed: {Speed}", changeHumidityInfo.Change, changeHumidityInfo.Speed);
 
                 if (changeHumidityInfo.Change && changeHumidityInfo.Speed != airHumidifer.Speed)
                 {

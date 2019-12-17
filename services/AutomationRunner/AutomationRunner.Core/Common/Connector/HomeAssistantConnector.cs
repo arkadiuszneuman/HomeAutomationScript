@@ -43,6 +43,8 @@ namespace AutomationRunner.Core.Common.Connector
             if (selectedEntity == null)
                 throw new EntityNotFoundException(entityId);
 
+            selectedEntity.Connector = this;
+
             return selectedEntity;
         }
 

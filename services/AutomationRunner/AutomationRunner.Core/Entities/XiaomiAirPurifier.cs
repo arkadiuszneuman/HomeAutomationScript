@@ -15,8 +15,6 @@ namespace AutomationRunner.Core.Entities
 
     public class XiaomiAirPurifier : BaseEntity
     {
-        private HomeAssistantConnector Connector { get; set; }
-
         public int Aqi => GetAttributeValue<int>(nameof(Aqi));
         public int Humidity =>GetAttributeValue<int>(nameof(Humidity));
         public int Temperature => GetAttributeValue<int>(nameof(Temperature));
@@ -25,9 +23,7 @@ namespace AutomationRunner.Core.Entities
 
         public static async Task<XiaomiAirPurifier> LoadFromEntityId(HomeAssistantConnector connector, string entityId)
         {
-            var deserializedObject = await connector.LoadEntityFromStates<XiaomiAirPurifier>(entityId);
-            deserializedObject.Connector = connector;
-            return deserializedObject;
+            return await connector.LoadEntityFromStates<XiaomiAirPurifier>(entityId);
         }
 
         public async Task TurnOn()
