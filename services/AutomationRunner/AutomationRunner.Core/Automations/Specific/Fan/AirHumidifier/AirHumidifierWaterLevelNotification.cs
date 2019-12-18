@@ -12,7 +12,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
 {
     public class AirHumidifierWaterLevelNotification : IAutomation
     {
-        private const double percentToInform = 20;
+        private const double percentToInform = 10;
 
         private readonly ILogger<AirHumidifierAutomations> logger;
         private readonly HomeAssistantConnector connector;
