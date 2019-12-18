@@ -38,11 +38,9 @@ namespace AutomationRunner.Core.Common.Connector
         public async Task Start(CancellationToken cancellationToken = default)
         {
             await webSocketConnector.OnResponse(OnResponse, cancellationToken);
-            await SendAuth(cancellationToken);
-            await SendSubscribeEvents(cancellationToken);
         }
 
-        private async Task SendSubscribeEvents(CancellationToken cancellationToken)
+        private async Task SendSubscribeEvents(CancellationToken cancellationToken = default)
         {
             await Send(new
             {
@@ -52,7 +50,7 @@ namespace AutomationRunner.Core.Common.Connector
         }
 
 
-        private async Task SendAuth(CancellationToken cancellationToken)
+        private async Task SendAuth(CancellationToken cancellationToken = default)
         {
             await Send(new
             {
@@ -79,8 +77,8 @@ namespace AutomationRunner.Core.Common.Connector
             {
                 ("event", "state_changed", _, _) => HandleStateChangedEvent(response),
                 ("event", "call_service", "scene", "turn_on") => HandleSceneActivation(response),
-                ("auth_required", _, _, _) => Task.Factory.StartNew(() => logger.LogDebug("Got auth_requred, logging in")),
-                ("auth_ok", _, _, _) => Task.Factory.StartNew(() => logger.LogDebug("Successfully logged in")),
+                ("auth_required", _, _, _) => SendAuth().ContinueWith(s => SendSubscribeEvents()),
+                ("auth_ok", _, _, _) => Task.Factory.StartNew(() => logger.LogInformation("Successfully logged in")),
                 ("result", _, _, _) => Task.Factory.StartNew(() => logger.LogDebug("Successfully subscribed for events")),
                 _ => Task.Factory.StartNew(() => logger.LogDebug("No data for type {Type}: {Json}", type, response))
             };

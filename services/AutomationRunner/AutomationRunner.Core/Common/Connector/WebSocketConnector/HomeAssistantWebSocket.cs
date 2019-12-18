@@ -1,6 +1,7 @@
 ﻿using AutomationRunner.Core.Config;
 using Microsoft.Extensions.Logging;
 using System;
+using System.IO;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -85,14 +86,29 @@ namespace AutomationRunner.Core.Common.Connector.WebSocketConnector
 
                 while (true)
                 {
-                    if (!IsWebSocketConnected())
-                        await Connect(cancellationToken);
+                    try
+                    {
+                        if (!IsWebSocketConnected())
+                            await Connect(cancellationToken);
 
-                    var result = await clientWebSocket.ReceiveAsync(bytesReceived, cancellationToken);
-                    var message = Encoding.UTF8.GetString(bytesReceived.Array, 0, result.Count);
+                        var result = await clientWebSocket.ReceiveAsync(bytesReceived, cancellationToken);
+                        var message = Encoding.UTF8.GetString(bytesReceived.Array, 0, result.Count);
 
-                    logger.LogDebug("Received message: {Message}", message);
-                    await response(message);
+                        if (!string.IsNullOrEmpty(message))
+                        {
+                            logger.LogDebug("Received message: {Message}", message);
+                            await response(message);
+                        }
+                    }
+                    catch (IOException)
+                    {
+                        //ignore
+                    }
+                    catch (Exception e)
+                    {
+                        logger.LogError(e, "Something wrong while receiving response, retrying");
+                        await Task.Delay(5000);
+                    }
                 }
             });
         }
