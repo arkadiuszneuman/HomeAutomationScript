@@ -77,7 +77,7 @@ namespace AutomationRunner.Core.Common.Connector.WebSocketConnector
                 WebSocketMessageType.Text, true, cancellationToken);
         }
 
-        public async Task OnResponse(Action<string> response, CancellationToken cancellationToken = default)
+        public async Task OnResponse(Func<string, Task> response, CancellationToken cancellationToken = default)
         {
             await Task.Factory.StartNew(async () =>
             {
@@ -92,7 +92,7 @@ namespace AutomationRunner.Core.Common.Connector.WebSocketConnector
                     var message = Encoding.UTF8.GetString(bytesReceived.Array, 0, result.Count);
 
                     logger.LogDebug("Received message: {Message}", message);
-                    response(message);
+                    await response(message);
                 }
             });
         }

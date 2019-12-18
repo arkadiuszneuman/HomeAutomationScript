@@ -7,7 +7,7 @@ namespace AutomationRunner.Core.Common.Connector.WebSocketConnector
     public interface IWebSocketConnector
     {
         Task Connect(CancellationToken cancellationToken = default);
-        Task OnResponse(Action<string> response, CancellationToken cancellationToken = default);
+        Task OnResponse(Func<string, Task> response, CancellationToken cancellationToken = default);
         Task SendAsync(string message, CancellationToken cancellationToken = default);
     }
 }

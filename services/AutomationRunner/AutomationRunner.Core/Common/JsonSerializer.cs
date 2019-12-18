@@ -19,5 +19,10 @@ namespace AutomationRunner.Core.Common
             serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             return JsonConvert.DeserializeObject<T>(json, serializerSettings);
         }
+
+        public static dynamic DeserializeObject(string json)
+        {
+            return JsonConvert.DeserializeObject(json);
+        }
     }
 }
