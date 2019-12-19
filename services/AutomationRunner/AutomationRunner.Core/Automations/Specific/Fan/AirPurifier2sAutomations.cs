@@ -12,6 +12,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
     public class AirPurifier2sAutomations : IAutomation
     {
         private const double forTime = 15;
+        private const double speedChangeForTime = 20;
         private const int turningOffValue = 10;
 
         private readonly ILogger<AirPurifier2sAutomations> logger;
@@ -19,6 +20,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
         private readonly IDateTimeHelper dateTimeHelper;
         private readonly ConditionHelper turnOffCondition;
         private readonly ConditionHelper turnOnCondition;
+        private readonly ConditionHelper silentSpeedCondition;
+        private readonly ConditionHelper autoSpeedCondition;
 
         public Task<XiaomiAirPurifier> LoadEntity() => XiaomiAirPurifier.LoadFromEntityId(connector, "fan.air_purifier_2s");
         public Func<XiaomiAirPurifier, decimal> Watch => entity => entity.Aqi;
@@ -39,6 +42,14 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
             this.turnOnCondition = automationHelpersFactory
                 .GetConditionHelper()
                 .For(TimeSpan.FromMinutes(forTime));
+
+            this.silentSpeedCondition = automationHelpersFactory
+                .GetConditionHelper()
+                .For(TimeSpan.FromMinutes(speedChangeForTime));
+
+            this.autoSpeedCondition = automationHelpersFactory
+                .GetConditionHelper()
+                .For(TimeSpan.FromMinutes(speedChangeForTime));
         }
 
         public async Task Update()
@@ -93,7 +104,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     }
                     else
                     {
-                        if (airPurifier.Aqi <= 20)
+                        if (silentSpeedCondition.CheckFulfilled(airPurifier.Aqi <= 20))
                         {
                             if (airPurifier.Speed != AirPurifierSpeed.Silent)
                             {
@@ -102,9 +113,9 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
 
                                 await airPurifier.SetSpeed(AirPurifierSpeed.Silent);
                             }
-
                         }
-                        else
+
+                        if (autoSpeedCondition.CheckFulfilled(airPurifier.Aqi > 20))
                         {
                             if (airPurifier.Speed != AirPurifierSpeed.Auto)
                             {
