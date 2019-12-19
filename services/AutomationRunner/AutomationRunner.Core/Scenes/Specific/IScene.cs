@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Scenes.Specific
 {
@@ -6,6 +7,6 @@ namespace AutomationRunner.Core.Scenes.Specific
     {
         public string Name { get; }
 
-        public Task Activated();
+        public Task Activated(CancellationToken cancellationToken = default);
     }
 }

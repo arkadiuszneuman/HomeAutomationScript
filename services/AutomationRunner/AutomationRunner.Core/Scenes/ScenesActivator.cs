@@ -43,7 +43,7 @@ namespace AutomationRunner.Core.Scenes
             if (sceneToActivate != null)
             {
                 await connector.RefreshStates();
-                await sceneToActivate.Activated();
+                sceneToActivate.Activated();
             }
         }
 
