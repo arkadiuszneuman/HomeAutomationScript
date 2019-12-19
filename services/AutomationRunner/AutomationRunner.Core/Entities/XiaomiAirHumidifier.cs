@@ -1,7 +1,5 @@
 ﻿using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Entities.Services.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
