@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Runtime.Intrinsics.X86;
 
 namespace AutomationRunner.Core.Common
 {
@@ -10,6 +9,7 @@ namespace AutomationRunner.Core.Common
         {
             var serializerSettings = new JsonSerializerSettings();
             serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            serializerSettings.NullValueHandling = NullValueHandling.Ignore;
             return JsonConvert.SerializeObject(value, serializerSettings);
         }
 
