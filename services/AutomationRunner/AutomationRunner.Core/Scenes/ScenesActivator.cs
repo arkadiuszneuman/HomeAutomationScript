@@ -1,7 +1,6 @@
 ﻿using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Scenes.Specific;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -15,6 +14,20 @@ namespace AutomationRunner.Core.Scenes
         private readonly IEnumerable<IScene> scenes;
         private readonly HomeAssistantWebSocketConnector webSocketConnector;
         private readonly HomeAssistantConnector connector;
+
+        private readonly Dictionary<string, TaskWithCancellationToken> activatedScenes = new Dictionary<string, TaskWithCancellationToken>();
+
+        private class TaskWithCancellationToken
+        {
+            public Task Task { get; set; }
+            public CancellationTokenSource CancellationTokenSource { get; set; }
+
+            public TaskWithCancellationToken(Task task, CancellationTokenSource cancellationTokenSource)
+            {
+                Task = task;
+                CancellationTokenSource = cancellationTokenSource;
+            }
+        }
 
         public ScenesActivator(
             ILogger<ScenesActivator> logger,
@@ -42,8 +55,22 @@ namespace AutomationRunner.Core.Scenes
 
             if (sceneToActivate != null)
             {
+                if (activatedScenes.ContainsKey(sceneName))
+                {
+                    var activatedSceneTask = activatedScenes[sceneName];
+                    if (!activatedSceneTask.Task.IsCompleted)
+                        activatedSceneTask.CancellationTokenSource.Cancel();
+
+                    activatedScenes.Remove(sceneName);
+                }
+                
                 await connector.RefreshStates();
-                sceneToActivate.Activated();
+
+                var cancellationTokenSource = new CancellationTokenSource();
+                var sceneTask = sceneToActivate.Activated(cancellationTokenSource.Token);
+
+                activatedScenes.Add(sceneName, new TaskWithCancellationToken(sceneTask, cancellationTokenSource));
+
                 logger.LogInformation("Activated scene {sceneName}", sceneToActivate.Name);
             }
         }
