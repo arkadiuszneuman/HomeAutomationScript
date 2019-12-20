@@ -15,6 +15,6 @@ namespace AutomationRunner.Core.Entities.Services.Models
         public List<int> Color { get; set; }
 
         [JsonProperty("brightness_pct")]
-        public byte? BrightnessPercent { get; set; }
+        public int? BrightnessPercent { get; set; }
     }
 }

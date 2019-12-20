@@ -2,6 +2,8 @@
 using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities.Services.Models;
+using AutomationRunner.Core.Entities.Validators;
+using FluentValidation;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -42,9 +44,16 @@ namespace AutomationRunner.Core.Entities
             return await entityLoader.LoadEntityFromStates<RgbLight>(lightName.GetEntityId());
         }
 
-        public async Task TurnOn(Color? color = null, byte? brightnessPercent = null, TimeSpan? transitionTime = null)
+        public async Task TurnOn(Color? color = null, int? brightnessPercent = null, TimeSpan? transitionTime = null)
         {
             var service = new RgbColorService(EntityId);
+
+            if (brightnessPercent.HasValue)
+            {
+                new PercentValidation().ValidateAndThrow(brightnessPercent.Value);
+                service.BrightnessPercent = brightnessPercent;
+            }
+
             if (color != null)
             {
                 service.Color = new List<int>(3);
@@ -56,7 +65,6 @@ namespace AutomationRunner.Core.Entities
             if (transitionTime != null)
                 service.Transition = Convert.ToInt32(transitionTime.Value.TotalSeconds);
 
-            service.BrightnessPercent = brightnessPercent;
 
             await Connector.SendService("light.turn_on", service);
             State = "on";
