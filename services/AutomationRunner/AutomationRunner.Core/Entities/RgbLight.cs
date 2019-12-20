@@ -2,6 +2,7 @@
 using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities.Services.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -19,6 +20,22 @@ namespace AutomationRunner.Core.Entities
             [EntityId("light.salon_led")]
             TvLEDs
         }
+
+        public Color Color
+        {
+            get
+            {
+                if (!Attributes.ContainsKey("rgb_color"))
+                    return default;
+
+                var attributeValue = (JArray)Attributes["rgb_color"];
+
+                return Color.FromArgb(attributeValue[0].Value<int>(),
+                    attributeValue[1].Value<int>(), attributeValue[2].Value<int>());
+            }
+        }
+
+        public byte BrightnessPercent => Convert.ToByte(GetAttributeValue<byte>("brightness") / 2.55);
 
         public static async Task<RgbLight> LoadFromEntityId(HomeAssistantConnector entityLoader, Name lightName)
         {
