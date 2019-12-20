@@ -4,6 +4,7 @@ using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities.Services.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
@@ -30,10 +31,16 @@ namespace AutomationRunner.Core.Entities
             return await connector.LoadEntityFromStates<Switch>(switchName.GetEntityId());
         }
 
-        public static async IAsyncEnumerable<Switch> LoadFromEntitiesId(HomeAssistantConnector connector, params Name[] switchNames)
+        public static IEnumerable<Task<Switch>> LoadFromEntitiesId(HomeAssistantConnector connector, params Name[] switchNames)
         {
             foreach (var switchName in switchNames)
-                yield return await LoadFromEntityId(connector, switchName);
+                yield return LoadFromEntityId(connector, switchName);
+        }
+
+        public static IEnumerable<Task<Switch>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)
+        {
+            foreach (Name lightName in ((Name[])Enum.GetValues(typeof(Name))).Except(except))
+                yield return LoadFromEntityId(connector, lightName);
         }
 
         public async Task TurnOn()

@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
@@ -42,6 +43,12 @@ namespace AutomationRunner.Core.Entities
         public static async Task<RgbLight> LoadFromEntityId(HomeAssistantConnector entityLoader, Name lightName)
         {
             return await entityLoader.LoadEntityFromStates<RgbLight>(lightName.GetEntityId());
+        }
+
+        public static IEnumerable<Task<RgbLight>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)
+        {
+            foreach (Name lightName in ((Name[])Enum.GetValues(typeof(Name))).Except(except))
+                yield return LoadFromEntityId(connector, lightName);
         }
 
         public async Task TurnOn(Color? color = null, int? brightnessPercent = null, TimeSpan? transitionTime = null)

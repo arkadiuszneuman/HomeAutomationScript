@@ -44,6 +44,7 @@ namespace AutomationRunner.Core.Scenes
             {
                 await connector.RefreshStates();
                 sceneToActivate.Activated();
+                logger.LogInformation("Activated scene {sceneName}", sceneToActivate.Name);
             }
         }
 

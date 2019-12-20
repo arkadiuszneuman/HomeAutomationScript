@@ -1,4 +1,5 @@
 ﻿using AutomationRunner.Core.Common.Connector;
+using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,7 @@ namespace AutomationRunner.Core.Scenes.Specific
             var switches = Switch.LoadFromEntitiesId(connector, Switch.Name.ChildLight, 
                 Switch.Name.ChristmassTree, Switch.Name.SalonLights);
 
-            await foreach (var @switch in switches)
-                await @switch.TurnOn();
-
+            await switches.TurnOnAll();
             await mushroom.TurnOnWithRandomColor();
         }
     }
