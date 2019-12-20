@@ -2,6 +2,8 @@
 using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities.Services.Models;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
@@ -23,9 +25,15 @@ namespace AutomationRunner.Core.Entities
             ExternalLight
         }
 
-        public static async Task<Switch> LoadFromEntityId(HomeAssistantConnector entityLoader, Name lightName)
+        public static async Task<Switch> LoadFromEntityId(HomeAssistantConnector connector, Name switchName)
         {
-            return await entityLoader.LoadEntityFromStates<Switch>(lightName.GetEntityId());
+            return await connector.LoadEntityFromStates<Switch>(switchName.GetEntityId());
+        }
+
+        public static async IAsyncEnumerable<Switch> LoadFromEntitiesId(HomeAssistantConnector connector, params Name[] switchNames)
+        {
+            foreach (var switchName in switchNames)
+                yield return await LoadFromEntityId(connector, switchName);
         }
 
         public async Task TurnOn()

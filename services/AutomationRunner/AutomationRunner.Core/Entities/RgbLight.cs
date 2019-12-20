@@ -69,6 +69,12 @@ namespace AutomationRunner.Core.Entities
             await Connector.SendService("light.turn_on", service);
             State = "on";
         }
+        
+        public Task TurnOnWithRandomColor()
+        {
+            var random = new Random();
+            return TurnOn(Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)));
+        }
 
         public async Task TurnOff()
         {
