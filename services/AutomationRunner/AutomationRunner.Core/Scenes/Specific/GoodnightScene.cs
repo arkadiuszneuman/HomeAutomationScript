@@ -37,7 +37,7 @@ namespace AutomationRunner.Core.Scenes.Specific
             await allRgbLights.TurnOffAll();
             await allSwitches.TurnOffAll();
 
-            await Task.Delay(TimeSpan.FromSeconds(10));
+            await Task.Delay(TimeSpan.FromMinutes(5));
             if (cancellationToken.IsCancellationRequested)
                 return;
 
