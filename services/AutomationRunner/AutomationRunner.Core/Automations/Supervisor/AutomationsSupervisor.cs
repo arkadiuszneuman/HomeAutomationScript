@@ -57,10 +57,6 @@ namespace AutomationRunner.Core.Automations.Supervisor
                 {
                     logger.LogWarning($"Cannot connect HomeAssistant. Retrying...");
                 }
-                catch (OperationCanceledException)
-                {
-                    // ignore
-                }
                 catch (Exception exception)
                 {
                     logger.LogError(exception, "Error on executing automations. Waiting minute and restarting...");
