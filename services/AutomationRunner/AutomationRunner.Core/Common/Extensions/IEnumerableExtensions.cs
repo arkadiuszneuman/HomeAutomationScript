@@ -21,6 +21,12 @@ namespace AutomationRunner.Core.Common.Extensions
                 await (await light).TurnOff();
         }
 
+        public static async Task TurnOffAll(this IEnumerable<Task<MediaPlayer>> mediaPlayers)
+        {
+            foreach (var mediaPlayer in mediaPlayers)
+                await (await mediaPlayer).TurnOff();
+        }
+
         public static async Task TurnOffAll(this IEnumerable<Task<Switch>> switches)
         {
             foreach (var @switch in switches)
@@ -43,6 +49,12 @@ namespace AutomationRunner.Core.Common.Extensions
         {
             foreach (var @switch in switches)
                 await (await @switch).TurnOn();
+        }
+
+        public static async Task TurnOnAll(this IEnumerable<Task<MediaPlayer>> mediaPlayers)
+        {
+            foreach (var mediaPlayer in mediaPlayers)
+                await (await mediaPlayer).TurnOn();
         }
     }
 }
