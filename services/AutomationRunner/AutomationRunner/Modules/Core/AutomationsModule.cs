@@ -12,7 +12,8 @@ namespace AutomationRunner.Modules.Core
             builder.RegisterAssemblyTypes(typeof(IAutomation).Assembly)
                .Where(a => a.Namespace.StartsWith("AutomationRunner.Core.Automations"))
                .AsImplementedInterfaces()
-               .AsSelf();
+               .AsSelf()
+               .SingleInstance();
         }
     }
 }

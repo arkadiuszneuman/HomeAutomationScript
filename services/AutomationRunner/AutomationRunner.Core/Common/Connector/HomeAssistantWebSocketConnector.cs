@@ -1,15 +1,11 @@
-﻿using AutomationRunner.Core.Common.Connector.WebSocketConnector;
+﻿using AutomationRunner.Core.Common.Connector.Responses;
+using AutomationRunner.Core.Common.Connector.WebSocketConnector;
 using AutomationRunner.Core.Secrets;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using AutomationRunner.Core.Common.Connector.Responses;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using System.Dynamic;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 
 namespace AutomationRunner.Core.Common.Connector
 {
@@ -22,6 +18,9 @@ namespace AutomationRunner.Core.Common.Connector
 
         private readonly Dictionary<Guid, Func<string, Task>> subscribedSceneActivations =
             new Dictionary<Guid, Func<string, Task>>();
+
+        private readonly Dictionary<Guid, Func<OldNewState, Task>> subscribedStateChangedActions =
+            new Dictionary<Guid, Func<OldNewState, Task>>();
 
         public HomeAssistantWebSocketConnector(
             ILogger<HomeAssistantWebSocketConnector> logger,
@@ -91,22 +90,31 @@ namespace AutomationRunner.Core.Common.Connector
             var callServiceObject = JsonSerializer.DeserializeObject<CallServiceResponse>(response);
             foreach (var subscribedSceneActivation in subscribedSceneActivations.Values)
                 await subscribedSceneActivation(callServiceObject.Event.Data.ServiceData["entity_id"].ToString());
-        }   
+        }
 
-        private Task HandleStateChangedEvent(string response)
+        private async Task HandleStateChangedEvent(string response)
         {
             var stateChangedObject = JsonSerializer.DeserializeObject<StateChangedResponse>(response);
             stateChangedObject.Event.Data.NewState.Connector
                 = stateChangedObject.Event.Data.OldState.Connector
                 = connector;
 
-            return Task.CompletedTask;
+            foreach (var subscribedStateChangedAction in subscribedStateChangedActions.Values)
+                await subscribedStateChangedAction(new OldNewState(stateChangedObject.Event.Data.OldState,
+                    stateChangedObject.Event.Data.NewState));
         }
 
         public Guid SubscribeActivateScene(Func<string, Task> action)
         {
             var sceneId = Guid.NewGuid();
             subscribedSceneActivations.Add(sceneId, action);
+            return sceneId;
+        }
+
+        public Guid SubscribeStateChanged(Func<OldNewState, Task> action)
+        {
+            var sceneId = Guid.NewGuid();
+            subscribedStateChangedActions.Add(sceneId, action);
             return sceneId;
         }
     }

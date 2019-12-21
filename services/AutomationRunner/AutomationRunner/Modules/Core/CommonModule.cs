@@ -17,6 +17,9 @@ namespace AutomationRunner.Modules.Core
 
             builder.RegisterType<HomeAssistantConnector>()
                 .SingleInstance();
+
+            builder.RegisterType<HomeAssistantWebSocketConnector>()
+               .SingleInstance();
         }
     }
 }

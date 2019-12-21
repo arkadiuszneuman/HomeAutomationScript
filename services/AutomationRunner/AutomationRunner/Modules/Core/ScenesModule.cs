@@ -13,7 +13,8 @@ namespace AutomationRunner.Modules.Core
             builder.RegisterAssemblyTypes(typeof(IScene).Assembly)
                .Where(a => a.Namespace.StartsWith("AutomationRunner.Core.Scenes"))
                .AsImplementedInterfaces()
-               .AsSelf();
+               .AsSelf()
+               .SingleInstance();
         }
     }
 }
