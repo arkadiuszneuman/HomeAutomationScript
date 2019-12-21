@@ -30,9 +30,9 @@ namespace AutomationRunner.Core.Entities
             ExternalLight
         }
 
-        public static async Task<Light> LoadFromEntityId(HomeAssistantConnector entityLoader, Name lightName)
+        public static async Task<Light> LoadFromEntityId(HomeAssistantConnector connector, Name lightName)
         {
-            return await entityLoader.LoadEntityFromStates<Light>(lightName.GetEntityId());
+            return await connector.LoadEntityFromStates<Light>(lightName.GetEntityId());
         }
 
         public static IEnumerable<Task<Light>> LoadFromEntitiesId(HomeAssistantConnector connector, params Name[] lightNames)
