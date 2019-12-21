@@ -26,10 +26,10 @@ namespace AutomationRunner.Core.Scenes.Specific
             var stairs = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.StairsMinimumBrightness);
 
             var switches = Switch.LoadFromEntitiesId(connector, Switch.Name.ChildLight, 
-                Switch.Name.ChristmassTree, Switch.Name.SalonLights);
+                Switch.Name.ChristmasTree, Switch.Name.SalonLights);
 
             await switches.TurnOnAll();
-            await stairs.SetValue(20);
+            await stairs.SetValueBasedOnTvState();
             await mushroom.TurnOnWithRandomColor();
         }
     }

@@ -17,7 +17,7 @@ namespace AutomationRunner.Core.Entities
             ChildLight,
 
             [EntityId("switch.sonoff_100051420f")]
-            ChristmassTree,
+            ChristmasTree,
 
             [EntityId("switch.sonoff_1000511f63")]
             SalonLights,

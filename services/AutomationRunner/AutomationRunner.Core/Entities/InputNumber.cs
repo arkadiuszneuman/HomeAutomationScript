@@ -22,9 +22,9 @@ namespace AutomationRunner.Core.Entities
             StairsMaximumBrightness
         }
 
-        public static async Task<InputNumber> LoadFromEntityId(HomeAssistantConnector entityLoader, Name inputNumberName)
+        public static async Task<InputNumber> LoadFromEntityId(HomeAssistantConnector connector, Name inputNumberName)
         {
-            return await entityLoader.LoadEntityFromStates<InputNumber>(inputNumberName.GetEntityId());
+            return await connector.LoadEntityFromStates<InputNumber>(inputNumberName.GetEntityId());
         }
 
         public async Task SetValue(int value)
@@ -32,7 +32,12 @@ namespace AutomationRunner.Core.Entities
             new PercentValidation().ValidateAndThrow(value);
 
             await Connector.SendService("input_number.set_value", new ValueServiceModel(EntityId, value));
-            State = "on";
+        }
+
+        public async Task SetValueBasedOnTvState()
+        {
+            var tv = await MediaPlayer.LoadFromEntityId(Connector, MediaPlayer.Name.Tv);
+            await (tv.State == "on" ? SetValue(5) : SetValue(20));
         }
     }
 }

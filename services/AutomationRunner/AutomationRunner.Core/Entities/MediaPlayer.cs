@@ -5,7 +5,6 @@ using AutomationRunner.Core.Entities.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
@@ -56,14 +55,10 @@ namespace AutomationRunner.Core.Entities
             State = "off";
         }
 
-        public async Task SelectSource(string source)
-        {
+        public async Task SelectSource(string source) =>
             await Connector.SendService("media_player.select_source", new SourceServiceModel(EntityId, source));
-        }
 
-        public async Task SetVolumeLevel(int volume)
-        {
+        public async Task SetVolumeLevel(int volume) =>
             await Connector.SendService("media_player.volume_set", new VolumeServiceModel(EntityId, volume));
-        }
     }
 }
