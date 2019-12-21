@@ -43,7 +43,7 @@ namespace AutomationRunner.Core.Scenes
 
         public async Task Start(CancellationToken cancellationToken)
         {
-            logger.LogInformation($"Starting scene activation listeners {string.Join(", ", scenes.Select(a => a.Name))}");
+            logger.LogInformation("Starting scene activation listeners {Listeners}", scenes.Select(a => a.Name));
 
             webSocketConnector.SubscribeActivateScene(OnSceneActivated);
             await webSocketConnector.Start(cancellationToken);

@@ -32,7 +32,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
         public async Task Start(CancellationToken cancellationToken)
         {
             decimal previousValue = -1;
-            logger.LogInformation($"Starting automations {string.Join(", ", automations.Select(a => a.GetType().Name))}");
+            logger.LogInformation("Starting automations {Automations}", automations.Select(a => a.GetType().Name));
 
             while (!cancellationToken.IsCancellationRequested)
             {
