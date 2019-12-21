@@ -30,7 +30,10 @@ namespace AutomationRunner.Core.Common.Extensions
         public static async Task TurnOffAll(this IEnumerable<Task<Switch>> switches)
         {
             foreach (var @switch in switches)
+            {
                 await (await @switch).TurnOff();
+                await Task.Delay(TimeSpan.FromSeconds(0.5));
+            }
         }
 
         public static async Task TurnOnAll(this IEnumerable<Task<Light>> lights)
