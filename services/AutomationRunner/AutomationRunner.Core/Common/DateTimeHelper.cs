@@ -5,10 +5,12 @@ namespace AutomationRunner.Core.Common
     public interface IDateTimeHelper
     {
         DateTime Now { get; }
+        DateTime UtcNow { get; }
     }
 
     public class DateTimeHelper : IDateTimeHelper
     {
-        public virtual DateTime Now => DateTime.Now;
+        public DateTime Now => DateTime.Now;
+        public DateTime UtcNow => DateTime.UtcNow;
     }
 }

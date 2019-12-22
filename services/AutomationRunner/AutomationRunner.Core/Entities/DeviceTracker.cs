@@ -36,15 +36,16 @@ namespace AutomationRunner.Core.Entities
                 yield return LoadFromEntityId(connector, lightName);
         }
 
-        public static IEnumerable<Task<DeviceTracker>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)
+        public static IEnumerable<Task<DeviceTracker>> LoadAllDeviceTrackers(HomeAssistantConnector connector, params Name[] except)
         {
-            foreach (Name lightName in ((Name[])Enum.GetValues(typeof(Name))).Except(except))
-                yield return LoadFromEntityId(connector, lightName);
+            foreach (Name deviceTrackerName in ((Name[])Enum.GetValues(typeof(Name))).Except(except))
+                yield return LoadFromEntityId(connector, deviceTrackerName);
         }
 
-        public static async Task<bool> IsAnyoneHome(HomeAssistantConnector connector)
+        public static async Task<bool> IsAnyoneHome(HomeAssistantConnector connector, params Name[] except)
         {
-            var deviceTrackersTasks = LoadFromEntitiesId(connector, Name.Arek, Name.Patrycja);
+            var usersToFind = new[] { Name.Arek, Name.Patrycja }.Except(except);
+            var deviceTrackersTasks = LoadFromEntitiesId(connector, usersToFind.ToArray());
 
             var deviceTrackers = new List<DeviceTracker>();
             foreach (var deviceTrackerTask in deviceTrackersTasks)

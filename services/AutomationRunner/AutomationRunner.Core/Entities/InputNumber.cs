@@ -4,6 +4,8 @@ using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities.Services.Models;
 using AutomationRunner.Core.Entities.Validators;
 using FluentValidation;
+using System;
+using System.Buffers.Text;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
@@ -20,6 +22,13 @@ namespace AutomationRunner.Core.Entities
 
             [EntityId("input_number.stairs_max_brightness")]
             StairsMaximumBrightness
+        }
+
+        public static InputNumber CreateBasedOnBaseEntity(BaseEntity oldState)
+        {
+            var entity = new InputNumber();
+            entity.UpdateEntity(oldState);
+            return entity;
         }
 
         public static async Task<InputNumber> LoadFromEntityId(HomeAssistantConnector connector, Name inputNumberName)

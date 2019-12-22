@@ -26,5 +26,14 @@ namespace AutomationRunner.Core.Entities
 
             return (T)Convert.ChangeType(attributeValue, typeof(T));
         }
+
+        public virtual void UpdateEntity<T>(T entity)
+            where T : BaseEntity
+        {
+            EntityId = entity.EntityId;
+            State = entity.State;
+            Attributes = entity.Attributes;
+            Connector = entity.Connector;
+        }
     }
 }

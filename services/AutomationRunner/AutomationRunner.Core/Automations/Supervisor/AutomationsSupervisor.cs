@@ -1,15 +1,10 @@
 ﻿using AutomationRunner.Core.Automations.Specific;
-using AutomationRunner.Core.Common;
 using AutomationRunner.Core.Common.Connector;
-using AutomationRunner.Core.Common.Connector.Responses;
-using AutomationRunner.Core.Entities;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Buffers.Text;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,20 +17,23 @@ namespace AutomationRunner.Core.Automations.Supervisor
         private readonly IEnumerable<IAutomation> automations;
         private readonly HomeAssistantConnector connector;
         private readonly HomeAssistantWebSocketConnector webSocketConnector;
-        private readonly IEnumerable<IStateAutomation> stateAutomations;
+        private readonly IEnumerable<IEntityStateAutomation> stateAutomations;
+        private readonly IEnumerable<IEntitiesStateAutomation> entitesStatesAutomations;
 
         public AutomationsSupervisor(
             ILogger<AutomationsSupervisor> logger,
             IEnumerable<IAutomation> automations,
             HomeAssistantConnector connector,
             HomeAssistantWebSocketConnector webSocketConnector,
-            IEnumerable<IStateAutomation> stateAutomations)
+            IEnumerable<IEntityStateAutomation> entityStateAutomations,
+            IEnumerable<IEntitiesStateAutomation> entitesStatesAutomations)
         {
             this.logger = logger;
             this.automations = automations;
             this.connector = connector;
             this.webSocketConnector = webSocketConnector;
-            this.stateAutomations = stateAutomations;
+            this.stateAutomations = entityStateAutomations;
+            this.entitesStatesAutomations = entitesStatesAutomations;
         }
 
         public async Task Start(CancellationToken cancellationToken)
@@ -70,9 +68,18 @@ namespace AutomationRunner.Core.Automations.Supervisor
         private async Task OnStateChanged(OldNewState oldNewState)
         {
             await connector.RefreshStates();
-            
-            foreach (var automation in stateAutomations.Where(s => s.EntityName == oldNewState.NewState.EntityId))
-                await automation.Update(oldNewState.OldState, oldNewState.NewState);
+
+            IEnumerable<IStateUpdate> singleEntityStateAutomations = stateAutomations
+                .Where(s => s.EntityName == oldNewState.NewState.EntityId);
+
+            IEnumerable<IStateUpdate> manyEntitiesStateEutomations = entitesStatesAutomations
+                .Where(s => s.EntityNames.Contains(oldNewState.NewState.EntityId));
+
+            foreach (var automation in singleEntityStateAutomations.Union(manyEntitiesStateEutomations))
+            {
+                logger.LogInformation("Starting state automation {automation}", automation);
+                automation.Update(oldNewState.OldState, oldNewState.NewState);
+            }
         }
     }
 }

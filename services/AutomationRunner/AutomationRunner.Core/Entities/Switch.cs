@@ -23,7 +23,7 @@ namespace AutomationRunner.Core.Entities
             SalonLights,
 
             [EntityId("switch.sonoff_1000541365")]
-            ExternalLight
+            GardenLight
         }
 
         public static async Task<Switch> LoadFromEntityId(HomeAssistantConnector connector, Name switchName)
