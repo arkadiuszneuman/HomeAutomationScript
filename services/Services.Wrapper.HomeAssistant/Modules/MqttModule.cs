@@ -23,7 +23,8 @@ namespace Services.Wrapper.HomeAssistant.Modules
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(type => type.GetInterfaces()
                     .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISubscribedTopic<>)) && type.IsClass)
-                .AsImplementedInterfaces();
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
     }
 }

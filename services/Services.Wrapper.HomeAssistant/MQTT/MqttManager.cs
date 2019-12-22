@@ -5,6 +5,7 @@ using MQTTnet.Client;
 using MQTTnet.Client.Options;
 using MQTTnet.Exceptions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Services.Wrapper.HomeAssistant.Config;
 using Services.Wrapper.HomeAssistant.MQTT.Topics;
 using Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics;
@@ -128,9 +129,26 @@ namespace Services.Wrapper.HomeAssistant.MQTT
 
                     Func<string, Task> func = async payload =>
                     {
-                        var param = payload != null ? 
-                            (T)JsonConvert.DeserializeObject<T>(payload) :
-                            default;
+                        T param = default;
+
+                        if (payload != null)
+                        {
+                            if (IsValidJson(payload))
+                            {
+                                param = JsonConvert.DeserializeObject<T>(payload);
+                            }
+                            else
+                            {
+                                if (typeof(T).IsAssignableTo<IMessageModel>())
+                                {
+                                    var instance = Activator.CreateInstance<T>() as IMessageModel;
+                                    instance.Message = payload;
+                                    param = (T)instance;
+                                }
+                                else
+                                    throw new ArgumentException("Payload is simple string so model should implement IMessageModel");
+                            }
+                        }
 
 
                         _logger.LogInformation("Executing handler {handler}", subscribedTopic.GetType());
@@ -165,6 +183,35 @@ namespace Services.Wrapper.HomeAssistant.MQTT
                     _logger.LogWarning("Execute function with topic {topic} AND NO PAYLOAD", topic.TopicName);
 
                 await topic.FuncToExecute(payload);
+            }
+        }
+
+        private bool IsValidJson(string strInput)
+        {
+            strInput = strInput.Trim();
+            if ((strInput.StartsWith("{") && strInput.EndsWith("}")) || //For object
+                (strInput.StartsWith("[") && strInput.EndsWith("]"))) //For array
+            {
+                try
+                {
+                    var obj = JToken.Parse(strInput);
+                    return true;
+                }
+                catch (JsonReaderException jex)
+                {
+                    //Exception in parsing json
+                    Console.WriteLine(jex.Message);
+                    return false;
+                }
+                catch (Exception ex) //some other exception
+                {
+                    Console.WriteLine(ex.ToString());
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
             }
         }
     }

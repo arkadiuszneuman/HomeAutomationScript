@@ -36,6 +36,9 @@ namespace Services.Wrapper.HomeAssistant
             await _mqttManager.ConnectAsync();
             await _mqttManager.AddHandler<MinLevelModel>();
             await _mqttManager.AddHandler<MaxLevelModel>();
+            await _mqttManager.AddHandler<WindowCoverStateModel>();
+            await _mqttManager.AddHandler<WindowCoverSetPositionModel>();
+            await _mqttManager.Publish<WindowCoverPositionTopic>(c => "0");
 
             _rabbitManager
                 .Connect()
