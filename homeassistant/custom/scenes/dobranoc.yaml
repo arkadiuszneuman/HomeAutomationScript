@@ -1,4 +1,4 @@
 - name: "Dobranoc"
-  entities:
-    cover.roleta_salon: closed
+  entities: {}
+    # cover.roleta_salon: closed
     

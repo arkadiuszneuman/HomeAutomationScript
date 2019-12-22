@@ -1,12 +1,12 @@
 - name: "Standardowe oświetlenie"
-  entities:
-    light.salon_led:
-      state: off
-    light.grzybek:
-      state: on
-      rgb_color: [255, 0, 0]
-      brightness: 70
-    switch.sonoff_100051420f: on
-    switch.sonoff_1000513cd0: on
-    switch.sonoff_1000511f63: on
-    switch.sonoff_1000541365: on
+  entities: {}
+    # light.salon_led:
+    #   state: off
+    # light.grzybek:
+    #   state: on
+    #   rgb_color: [255, 0, 0]
+    #   brightness: 70
+    # switch.sonoff_100051420f: on
+    # switch.sonoff_1000513cd0: on
+    # switch.sonoff_1000511f63: on
+    # switch.sonoff_1000541365: on
