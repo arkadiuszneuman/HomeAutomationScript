@@ -1,7 +1,7 @@
 - alias: "Denon Volume"
   trigger:
     platform: state
-    entity_id: input_number.volume_setpoint
+    entity_id: input_number.denon_volume
   action:
     - service:  media_player.volume_set
       # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable

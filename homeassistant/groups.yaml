@@ -34,7 +34,7 @@ media:
   entities:
     - media_player.sony_bravia
     - media_player.denon
-    - input_number.volume_setpoint
+    - input_number.denon_volume
     - media_player.spotify
     - media_player.playstation_4
 

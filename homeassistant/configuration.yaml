@@ -268,7 +268,7 @@ cast:
     - host: 192.168.1.108
 
 input_number:
-  volume_setpoint:
+  denon_volume:
     name: Denon głośność
     initial: 25
     min: 1
