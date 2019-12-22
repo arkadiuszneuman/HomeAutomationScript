@@ -199,13 +199,25 @@ fan:
     name: "Air Humidifier"
 
 cover:
-  - platform: command_line
-    covers:
-      roleta_salon:
-        friendly_name: Roleta salon
-        command_open: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=0"
-        command_close: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=100"
-        command_stop: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=0"
+  - platform: mqtt
+    name: "Roleta salon"
+    command_topic: "home/cover/set"
+    position_topic: "home/cover/position"
+    set_position_topic: "home/cover/set_position"
+    payload_open: "{ state: \"open\" }"
+    payload_close: "{ state: \"close\" }"
+    payload_stop: "{ state: \"stop\" }"
+    retain: true
+    optimistic: true
+
+# cover:
+#   - platform: command_line
+#     covers:
+#       roleta_salon:
+#         friendly_name: Roleta salon
+#         command_open: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=0"
+#         command_close: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=100"
+#         command_stop: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=0"
         # command_state: state_command garage
         
 light:
