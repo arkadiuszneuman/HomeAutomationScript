@@ -207,18 +207,8 @@ cover:
     payload_open: "{ state: \"open\" }"
     payload_close: "{ state: \"close\" }"
     payload_stop: "{ state: \"stop\" }"
-    retain: true
-    optimistic: true
-
-# cover:
-#   - platform: command_line
-#     covers:
-#       roleta_salon:
-#         friendly_name: Roleta salon
-#         command_open: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=0"
-#         command_close: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=100"
-#         command_stop: "/usr/bin/curl -X GET http://192.168.1.198/changelevel?level=0"
-        # command_state: state_command garage
+    retain: false
+    optimistic: false
         
 light:
   - platform: limitlessled
@@ -302,46 +292,14 @@ input_number:
     unit_of_measurement: '%'
 
 input_boolean:
-  set_roller_10:
-    name: Roleta 10%
-    initial: off
-  set_roller_20:
-    name: Roleta 20%
-    initial: off
-  set_roller_30:
-    name: Roleta 30%
-    initial: off
-  set_roller_50:
-    name: Roleta 50%
-    initial: off
-  set_roller_70:
-    name: Roleta 70%
-    initial: off
   notify_weather:
     name: Informuj o pogodzie po zejściu
     initial: off
-
-rest_command:
-  window_cover_percent:
-    url: 'http://192.168.1.198/changelevel?level={{percent}}'
 
 notify:
   - platform: pushbullet
     name: push
     api_key: !secret pushbullet_api_key
-
-# device_tracker:
-# - platform: nmap_tracker
-#   hosts:
-#     - 192.168.1.103-104
-#   track_new_devices: yes
-#   interval_seconds: 10
-#   home_interval: 1
-  # - platform: ping
-  #   interval_seconds: 120
-  #   consider_home: 60
-  #   hosts:
-  #     laptop: 192.168.1.106
 
 weather:
   - platform: openweathermap

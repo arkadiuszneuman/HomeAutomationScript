@@ -23,11 +23,6 @@ window_covers:
   name: Roleta
   entities:
     - cover.roleta_salon
-    - input_boolean.set_roller_10
-    - input_boolean.set_roller_20
-    - input_boolean.set_roller_30
-    - input_boolean.set_roller_50
-    - input_boolean.set_roller_70
     
 media:
   name: Media
