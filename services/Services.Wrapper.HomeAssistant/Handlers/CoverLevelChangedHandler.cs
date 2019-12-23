@@ -23,8 +23,9 @@ namespace Services.Wrapper.HomeAssistant.Handlers
 
         public async Task Execute(CoverLevelChangedModel model)
         {
-            logger.LogInformation("Received cover level from Rabbit - sending to MQTT: {level}", model.Level);
-            await mqttManager.Publish<WindowCoverPositionTopic>(c => model.Level.ToString());
+            var level = 100 - model.Level;
+            logger.LogInformation("Received cover level from Rabbit - sending to MQTT: {level}", level);
+            await mqttManager.Publish<WindowCoverPositionTopic>(c => level.ToString());
         }
     }
 }

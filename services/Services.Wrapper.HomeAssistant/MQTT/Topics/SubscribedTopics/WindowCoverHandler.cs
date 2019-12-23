@@ -51,19 +51,23 @@ namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
                 restClient.BaseUrl = new Uri(windowCoverConfiguration.Hostname);
                 var request = new RestRequest(windowCoverConfiguration.Resource);
 
-                int levelToSet = message.State switch
+                int? levelToSet = message.State switch
                 {
                     "open" => 0,
                     "close" => 100,
-                    "stop" => 0,
+                    "stop" => null,
                     _ => throw new ArgumentException("Invalid level")
                 };
 
-                request.AddParameter("level", levelToSet);
+                if (levelToSet.HasValue)
+                {
+                    request.AddParameter("level", levelToSet.Value);
 
-                await restClient.ExecuteTaskAsync(request);
-                logger.LogInformation("Sending to MQTT: {level}", levelToSet);
-                await mqttManager.Publish<WindowCoverPositionTopic>(c => levelToSet.ToString());
+                    await restClient.ExecuteTaskAsync(request);
+                    var level = 100 - levelToSet.Value;
+                    logger.LogInformation("Sending to MQTT: {level}", level);
+                    await mqttManager.Publish<WindowCoverPositionTopic>(c => level.ToString());
+                }
             }
         }
 
@@ -73,7 +77,7 @@ namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
             {
                 restClient.BaseUrl = new Uri(windowCoverConfiguration.Hostname);
                 var request = new RestRequest(windowCoverConfiguration.Resource);
-                request.AddParameter("level", message.Message);
+                request.AddParameter("level", 100 - Convert.ToInt32(message.Message));
 
                 await restClient.ExecuteTaskAsync(request);
                 logger.LogInformation("Sending to MQTT: {level}", message.Message);
