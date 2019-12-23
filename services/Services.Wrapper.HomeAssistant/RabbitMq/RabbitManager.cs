@@ -8,6 +8,7 @@ using RawRabbit.vNext;
 using Services.Common.Models;
 using Services.Wrapper.HomeAssistant.Config;
 using Services.Wrapper.HomeAssistant.Handlers;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -69,7 +70,17 @@ namespace Services.Wrapper.HomeAssistant.RabbitMq
             if (_busClient != null)
             {
                 var handler = _lifetimeScope.Resolve<IHandler<T>>();
-                _busClient.SubscribeAsync<T>(async (msg, context) => await handler.Execute(msg));
+                _busClient.SubscribeAsync<T>(async (msg, context) =>
+                {
+                    try
+                    {
+                        await handler.Execute(msg);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.LogError(e, "Got exception while executing a handler");
+                    }
+                });
             }
 
             return this;

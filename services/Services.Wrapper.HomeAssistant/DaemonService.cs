@@ -5,6 +5,7 @@ using MQTTnet.Client;
 using RawRabbit.Configuration;
 using RawRabbit.vNext;
 using Services.Common.Models;
+using Services.Wrapper.HomeAssistant.Common;
 using Services.Wrapper.HomeAssistant.Config;
 using Services.Wrapper.HomeAssistant.MQTT;
 using Services.Wrapper.HomeAssistant.MQTT.Topics;
@@ -21,29 +22,35 @@ namespace Services.Wrapper.HomeAssistant
         private readonly ILogger _logger;
         private readonly RabbitManager _rabbitManager;
         private readonly MqttManager _mqttManager;
+        private readonly ProgramStartedInformation _programStartedInformation;
 
         public DaemonService(ILogger<DaemonService> logger,
             RabbitManager rabbitManager,
-            MqttManager mqttManager)
+            MqttManager mqttManager,
+            ProgramStartedInformation programStartedInformation)
         {
             _logger = logger;
             _rabbitManager = rabbitManager;
             _mqttManager = mqttManager;
+            _programStartedInformation = programStartedInformation;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
+            _programStartedInformation.DateTime = DateTime.Now;
+
             await _mqttManager.ConnectAsync();
+            await _mqttManager.Publish<WindowCoverPositionTopic>(c => "100");
             await _mqttManager.AddHandler<MinLevelModel>();
             await _mqttManager.AddHandler<MaxLevelModel>();
             await _mqttManager.AddHandler<WindowCoverStateModel>();
             await _mqttManager.AddHandler<WindowCoverSetPositionModel>();
-            await _mqttManager.Publish<WindowCoverPositionTopic>(c => "0");
 
             _rabbitManager
                 .Connect()
                 .AddHandler<TriggeredUpperStairSensorModel>()
-                .AddHandler<TriggeredBottomStairSensorModel>();
+                .AddHandler<TriggeredBottomStairSensorModel>()
+                .AddHandler<CoverLevelChangedModel>();
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
