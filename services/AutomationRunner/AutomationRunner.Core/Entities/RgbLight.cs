@@ -58,7 +58,7 @@ namespace AutomationRunner.Core.Entities
             if (brightnessPercent.HasValue)
             {
                 new PercentValidation().ValidateAndThrow(brightnessPercent.Value);
-                service.BrightnessPercent = brightnessPercent;
+                service.BrightnessPercent = brightnessPercent * 2;
             }
 
             if (color != null)
