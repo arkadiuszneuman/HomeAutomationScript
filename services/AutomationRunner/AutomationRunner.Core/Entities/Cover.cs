@@ -14,6 +14,8 @@ namespace AutomationRunner.Core.Entities
             Salon
         }
 
+        public int Position => GetAttributeValue<int>("current_position");
+
         public static async Task<Cover> LoadFromEntityId(HomeAssistantConnector entityLoader, Name coverName)
         {
             return await entityLoader.LoadEntityFromStates<Cover>(coverName.GetEntityId());
@@ -27,6 +29,11 @@ namespace AutomationRunner.Core.Entities
         public async Task CloseCover()
         {
             await Connector.SendService("cover.close_cover", new EntityIdService(EntityId));
+        }
+
+        public async Task SetCoverPosition(int position)
+        {
+            await Connector.SendService("cover.set_cover_position", new CoverPositionServiceModel(EntityId, position));
         }
     }
 }

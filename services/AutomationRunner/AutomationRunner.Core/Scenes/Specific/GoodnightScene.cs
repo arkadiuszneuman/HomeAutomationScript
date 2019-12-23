@@ -31,10 +31,12 @@ namespace AutomationRunner.Core.Scenes.Specific
             var stairsLight = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.StairsMinimumBrightness);
             var mediaPlayers = MediaPlayer.LoadAll(connector, MediaPlayer.Name.Denon);
             var denon = await MediaPlayer.LoadFromEntityId(connector, MediaPlayer.Name.Denon);
+            var cover = await Cover.LoadFromEntityId(connector, Cover.Name.Salon);
 
             await lightsToSwitchOn.TurnOnAll();
             await stairsLight.SetValue(30);
 
+            await cover.CloseCover();
             await mediaPlayers.TurnOffAll();
             await allLights.TurnOffAll();
             await allRgbLights.TurnOffAll();
