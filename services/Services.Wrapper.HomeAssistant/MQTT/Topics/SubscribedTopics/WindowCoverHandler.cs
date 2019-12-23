@@ -3,8 +3,6 @@ using RestSharp;
 using Services.Wrapper.HomeAssistant.Common;
 using Services.Wrapper.HomeAssistant.Config;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
@@ -19,13 +17,14 @@ namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
         public string Message { get; set; }
     }
 
-    public class WindowCoverHandler : ISubscribedTopic<WindowCoverStateModel>, 
+    public class WindowCoverHandler : ISubscribedTopic<WindowCoverStateModel>,
         ISubscribedTopic<WindowCoverSetPositionModel>
     {
         private readonly ILogger<WindowCoverHandler> logger;
         private readonly IRestClient restClient;
         private readonly WindowCoverConfiguration windowCoverConfiguration;
         private readonly ProgramStartedInformation programStartedInformation;
+        private readonly MqttManager mqttManager;
 
         string ISubscribedTopic<WindowCoverStateModel>.TopicName => "home/cover/set";
         string ISubscribedTopic<WindowCoverSetPositionModel>.TopicName => "home/cover/set_position";
@@ -33,12 +32,14 @@ namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
         public WindowCoverHandler(ILogger<WindowCoverHandler> logger,
             IRestClient restClient,
             WindowCoverConfiguration windowCoverConfiguration,
-            ProgramStartedInformation programStartedInformation)
+            ProgramStartedInformation programStartedInformation,
+            MqttManager mqttManager)
         {
             this.logger = logger;
             this.restClient = restClient;
             this.windowCoverConfiguration = windowCoverConfiguration;
             this.programStartedInformation = programStartedInformation;
+            this.mqttManager = mqttManager;
         }
 
         public async Task Handle(WindowCoverStateModel message)
@@ -61,6 +62,8 @@ namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
                 request.AddParameter("level", levelToSet);
 
                 await restClient.ExecuteTaskAsync(request);
+                logger.LogInformation("Sending to MQTT: {level}", levelToSet);
+                await mqttManager.Publish<WindowCoverPositionTopic>(c => levelToSet.ToString());
             }
         }
 
@@ -73,6 +76,8 @@ namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
                 request.AddParameter("level", message.Message);
 
                 await restClient.ExecuteTaskAsync(request);
+                logger.LogInformation("Sending to MQTT: {level}", message.Message);
+                await mqttManager.Publish<WindowCoverPositionTopic>(c => message.Message);
             }
         }
     }
