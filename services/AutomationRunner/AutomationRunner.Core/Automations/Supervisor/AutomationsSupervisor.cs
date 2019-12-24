@@ -14,7 +14,6 @@ namespace AutomationRunner.Core.Automations.Supervisor
     public class AutomationsSupervisor
     {
         private readonly ILogger<AutomationsSupervisor> logger;
-        private readonly IEnumerable<IAutomation> automations;
         private readonly HomeAssistantConnector connector;
         private readonly HomeAssistantWebSocketConnector webSocketConnector;
         private readonly IEnumerable<IEntityStateAutomation> stateAutomations;
@@ -27,7 +26,6 @@ namespace AutomationRunner.Core.Automations.Supervisor
 
         public AutomationsSupervisor(
             ILogger<AutomationsSupervisor> logger,
-            IEnumerable<IAutomation> automations,
             HomeAssistantConnector connector,
             HomeAssistantWebSocketConnector webSocketConnector,
             IEnumerable<IEntityStateAutomation> entityStateAutomations,
@@ -36,7 +34,6 @@ namespace AutomationRunner.Core.Automations.Supervisor
             IDateTimeHelper dateTimeHelper)
         {
             this.logger = logger;
-            this.automations = automations;
             this.connector = connector;
             this.webSocketConnector = webSocketConnector;
             this.stateAutomations = entityStateAutomations;
@@ -47,7 +44,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
 
         public async Task Start(CancellationToken cancellationToken)
         {
-            logger.LogInformation("Starting automations {Automations}", automations.Select(a => a.GetType().Name));
+            logger.LogInformation("Starting time update automations {Automations}", timeUpdateAutomations.Select(a => a.GetType().Name));
 
             webSocketConnector.SubscribeStateChanged(OnStateChanged);
 
@@ -64,23 +61,21 @@ namespace AutomationRunner.Core.Automations.Supervisor
                     {
                         if (!executedTimeUpdateAutomations.ContainsKey(timeUpdateAutomation))
                         {
-                            logger.LogInformation("Updating {Type} - time to updated passed", timeUpdateAutomation.GetType().Name);
+                            logger.LogInformation("Updating {Type} - at start", timeUpdateAutomation.GetType().Name);
                             timeUpdateAutomation.Update();
                             executedTimeUpdateAutomations.Add(timeUpdateAutomation, now);
                         }
                         else
                         {
                             var lastUpdate = executedTimeUpdateAutomations[timeUpdateAutomation];
-                            if (now - timeUpdateAutomation.UpdateEvery > lastUpdate)
+                            if (now - timeUpdateAutomation.UpdateEvery >= lastUpdate)
                             {
-                                logger.LogInformation("Updating {Type} - time to updated passed", timeUpdateAutomation.GetType().Name);
+                                logger.LogInformation("Updating {Type} - time to update have passed", timeUpdateAutomation.GetType().Name);
                                 timeUpdateAutomation.Update();
                                 executedTimeUpdateAutomations[timeUpdateAutomation] = now;
                             }
                         }
                     }
-                    //foreach (var automation in automations)
-                    //    await automation.Update();
                 }
                 catch (HttpRequestException)
                 {
