@@ -5,7 +5,6 @@ using AutomationRunner.Core.Entities;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Automations.Specific
@@ -16,7 +15,7 @@ namespace AutomationRunner.Core.Automations.Specific
         private readonly HomeAssistantConnector connector;
         private readonly IDateTimeHelper dateTimeHelper;
 
-        public IEnumerable<string> EntityNames => new[] { 
+        public IEnumerable<string> EntityNames => new[] {
             DeviceTracker.Name.Arek.GetEntityId(),
             DeviceTracker.Name.Patrycja.GetEntityId()
         };

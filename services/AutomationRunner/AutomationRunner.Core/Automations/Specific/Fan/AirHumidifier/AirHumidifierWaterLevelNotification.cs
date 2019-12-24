@@ -35,7 +35,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             this.dateTimeHelper = dateTimeHelper;
             this.notifyCondition = automationHelpersFactory
                 .GetConditionHelper()
-                .For(TimeSpan.Zero);
+                .For(TimeSpan.Zero)
+                .Name(logger, this.GetType().Name);
         }
 
         public async Task Update()
@@ -52,6 +53,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
 
             if (waterLevelPercent.HasValue)
             {
+                logger.LogDebug("Got water level percent {WaterLevelPercent}", waterLevelPercent.Value);
+
                 if (notifyCondition.CheckFulfilled(waterLevelPercent.Value < percentToInform))
                 {
                     logger.LogInformation("Sending notification about water level. Actual: {WaterLevelPercent}%", waterLevelPercent);
@@ -63,7 +66,12 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
         private double? GetPercentDepth(int? depth)
         {
             if (!depth.HasValue)
+            {
+                logger.LogInformation("No depth information");
                 return null;
+            }
+
+            logger.LogDebug("Got depth: {Depth}", depth);
 
             return depth / 1.2;
         }

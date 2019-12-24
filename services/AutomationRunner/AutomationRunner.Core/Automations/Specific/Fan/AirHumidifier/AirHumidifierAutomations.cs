@@ -20,7 +20,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
         private readonly ConditionHelper turnOffCondition;
         private readonly ConditionHelper turnOnCondition;
 
-        public Task<XiaomiAirPurifier> LoadAirPurifierProEntity() => XiaomiAirPurifier.LoadFromEntityId(connector, "fan.air_purifier_pro");
+        public Task<XiaomiAirPurifier> LoadAirPurifierProEntity() => XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifierPro);
         public Task<XiaomiAirHumidifier> LoadAirHumidifierEntity() => XiaomiAirHumidifier.LoadFromEntityId(connector, "fan.air_humidifier");
 
         public AirHumidifierAutomations(

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Automations.Specific.Fan
 {
-    public class AirPurifierProAutomations : IAutomation
+    public class AirPurifierProAutomations : IEntityStateAutomation, ITimeUpdate
     {
         private const double forTime = 5;
         private const int turningOffValue = 15;
@@ -20,8 +20,9 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
         private readonly ConditionHelper turnOffCondition;
         private readonly ConditionHelper turnOnCondition;
 
-        public Task<XiaomiAirPurifier> LoadEntity() => XiaomiAirPurifier.LoadFromEntityId(connector, "fan.air_purifier_pro");
-        public Func<XiaomiAirPurifier, decimal> Watch => entity => entity.Aqi;
+        public string EntityName => XiaomiAirPurifier.Name.AirPurifierPro.GetEntityId();
+        
+        public TimeSpan UpdateEvery { get; } = TimeSpan.FromSeconds(10);
 
         public AirPurifierProAutomations(
             ILogger<AirPurifierProAutomations> logger,
@@ -41,9 +42,14 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                 .For(TimeSpan.FromMinutes(forTime));
         }
 
+        public Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        {
+            return Update();
+        }
+
         public async Task Update()
         {
-            var airPurifier = await LoadEntity();
+            var airPurifier = await XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifierPro);
 
             if (dateTimeHelper.Now.Between(new TimeSpan(23, 0, 0), new TimeSpan(6, 0, 0)))
             {

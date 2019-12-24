@@ -1,4 +1,6 @@
-﻿using AutomationRunner.Core.Common.Connector;
+﻿using AutomationRunner.Core.Common;
+using AutomationRunner.Core.Common.Connector;
+using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities.Services.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -15,15 +17,24 @@ namespace AutomationRunner.Core.Entities
 
     public class XiaomiAirPurifier : BaseEntity
     {
+        public enum Name
+        {
+            [EntityId("fan.air_purifier_pro")]
+            AirPurifierPro,
+
+            [EntityId("fan.air_purifier_2s")]
+            AirPurifier2S
+        }
+
         public int Aqi => GetAttributeValue<int>(nameof(Aqi));
         public int Humidity =>GetAttributeValue<int>(nameof(Humidity));
         public int Temperature => GetAttributeValue<int>(nameof(Temperature));
         public int FavoriteLevel => GetAttributeValue<int>("favorite_level");
         public AirPurifierSpeed Speed => GetAttributeValue<AirPurifierSpeed>(nameof(Speed));
 
-        public static async Task<XiaomiAirPurifier> LoadFromEntityId(HomeAssistantConnector connector, string entityId)
+        public static async Task<XiaomiAirPurifier> LoadFromEntityId(HomeAssistantConnector connector, Name entityId)
         {
-            return await connector.LoadEntityFromStates<XiaomiAirPurifier>(entityId);
+            return await connector.LoadEntityFromStates<XiaomiAirPurifier>(entityId.GetEntityId());
         }
 
         public async Task TurnOn()

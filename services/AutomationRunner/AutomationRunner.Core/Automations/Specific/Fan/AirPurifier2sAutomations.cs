@@ -23,7 +23,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
         private readonly ConditionHelper silentSpeedCondition;
         private readonly ConditionHelper autoSpeedCondition;
 
-        public Task<XiaomiAirPurifier> LoadEntity() => XiaomiAirPurifier.LoadFromEntityId(connector, "fan.air_purifier_2s");
+        public Task<XiaomiAirPurifier> LoadEntity() => XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifier2S);
         public Func<XiaomiAirPurifier, decimal> Watch => entity => entity.Aqi;
 
         public AirPurifier2sAutomations(
