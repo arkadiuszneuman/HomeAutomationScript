@@ -55,13 +55,16 @@ namespace AutomationRunner.Core.Automations.Supervisor
             {
                 try
                 {
-                    await connector.RefreshStates();
-
                     var now = dateTimeHelper.Now;
+
+                    if (executedTimeUpdateAutomations.Any(keyValue => now - keyValue.Key.UpdateEvery > keyValue.Value))
+                        await connector.RefreshStates();
+
                     foreach (var timeUpdateAutomation in timeUpdateAutomations)
                     {
                         if (!executedTimeUpdateAutomations.ContainsKey(timeUpdateAutomation))
                         {
+                            logger.LogInformation("Updating {Type} - time to updated passed", timeUpdateAutomation.GetType().Name);
                             timeUpdateAutomation.Update();
                             executedTimeUpdateAutomations.Add(timeUpdateAutomation, now);
                         }
@@ -70,6 +73,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
                             var lastUpdate = executedTimeUpdateAutomations[timeUpdateAutomation];
                             if (now - timeUpdateAutomation.UpdateEvery > lastUpdate)
                             {
+                                logger.LogInformation("Updating {Type} - time to updated passed", timeUpdateAutomation.GetType().Name);
                                 timeUpdateAutomation.Update();
                                 executedTimeUpdateAutomations[timeUpdateAutomation] = now;
                             }

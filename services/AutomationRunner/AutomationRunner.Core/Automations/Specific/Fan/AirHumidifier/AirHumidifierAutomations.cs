@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
 {
-    public class AirHumidifierAutomations : IAutomation
+    public class AirHumidifierAutomations : IEntityStateAutomation, ITimeUpdate
     {
         private const double forTime = 3;
         private const int turningOnValue = 60;
@@ -20,8 +20,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
         private readonly ConditionHelper turnOffCondition;
         private readonly ConditionHelper turnOnCondition;
 
-        public Task<XiaomiAirPurifier> LoadAirPurifierProEntity() => XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifierPro);
-        public Task<XiaomiAirHumidifier> LoadAirHumidifierEntity() => XiaomiAirHumidifier.LoadFromEntityId(connector, "fan.air_humidifier");
+        public string EntityName { get; } = XiaomiAirHumidifier.Name.AirHumidifier.GetEntityId();
+        public TimeSpan UpdateEvery { get; } = TimeSpan.FromMinutes(forTime);
 
         public AirHumidifierAutomations(
             ILogger<AirHumidifierAutomations> logger,
@@ -43,10 +43,15 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                 .For(TimeSpan.FromMinutes(forTime));
         }
 
+        public Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        {
+            return Update();
+        }
+
         public async Task Update()
         {
-            var airPurifierPro = await LoadAirPurifierProEntity();
-            var airHumidifer = await LoadAirHumidifierEntity();
+            var airPurifierPro = await XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifierPro);
+            var airHumidifer = await XiaomiAirHumidifier.LoadFromEntityId(connector, XiaomiAirHumidifier.Name.AirHumidifier);
 
             logger.LogDebug("Checking air humidifier. Humidity: {Humidity}", airHumidifer.Humidity);
             logger.LogDebug("Air humidifier current state: {State}", airPurifierPro.State);

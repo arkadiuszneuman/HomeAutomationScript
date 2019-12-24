@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
 {
-    public class AirHumidifierWaterLevelNotification : IAutomation
+    public class AirHumidifierWaterLevelNotification : IEntityStateAutomation, ITimeUpdate
     {
         private const double percentToInform = 10;
 
@@ -20,7 +20,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
         private readonly IDateTimeHelper dateTimeHelper;
         private readonly ConditionHelper notifyCondition;
 
-        public Task<XiaomiAirHumidifier> LoadAirHumidifierEntity() => XiaomiAirHumidifier.LoadFromEntityId(connector, "fan.air_humidifier");
+        public string EntityName { get; } = XiaomiAirHumidifier.Name.AirHumidifier.GetEntityId();
+        public TimeSpan UpdateEvery { get; } = TimeSpan.FromHours(1);
 
         public AirHumidifierWaterLevelNotification(
             ILogger<AirHumidifierAutomations> logger,
@@ -39,9 +40,14 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                 .Name(logger, this.GetType().Name);
         }
 
+        public Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        {
+            return Update();
+        }
+
         public async Task Update()
         {
-            var airHumidifer = await LoadAirHumidifierEntity();
+            var airHumidifer = await XiaomiAirHumidifier.LoadFromEntityId(connector, XiaomiAirHumidifier.Name.AirHumidifier);
 
             if (dateTimeHelper.Now.Between(new TimeSpan(23, 0, 0), new TimeSpan(8, 0, 0)))
             {
