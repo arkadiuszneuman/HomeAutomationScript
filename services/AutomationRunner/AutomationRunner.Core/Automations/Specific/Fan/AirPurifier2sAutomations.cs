@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Automations.Specific.Fan
 {
-    public class AirPurifier2sAutomations : IAutomation
+    public class AirPurifier2sAutomations : IEntityStateAutomation, ITimeUpdate
     {
         private const double forTime = 15;
         private const double speedChangeForTime = 20;
@@ -23,8 +23,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
         private readonly ConditionHelper silentSpeedCondition;
         private readonly ConditionHelper autoSpeedCondition;
 
-        public Task<XiaomiAirPurifier> LoadEntity() => XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifier2S);
-        public Func<XiaomiAirPurifier, decimal> Watch => entity => entity.Aqi;
+        public string EntityName { get; } = XiaomiAirPurifier.Name.AirPurifier2S.GetEntityId();
+        public TimeSpan UpdateEvery { get; } = TimeSpan.FromMinutes(Math.Min(forTime, speedChangeForTime));
 
         public AirPurifier2sAutomations(
             ILogger<AirPurifier2sAutomations> logger,
@@ -52,9 +52,14 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                 .For(TimeSpan.FromMinutes(speedChangeForTime));
         }
 
+        public Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        {
+            return Update();
+        }
+
         public async Task Update()
         {
-            var airPurifier = await LoadEntity();
+            var airPurifier = await XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifier2S);
 
             if (dateTimeHelper.Now.Between(new TimeSpan(8, 0, 0), new TimeSpan(19, 0, 0)))
             {

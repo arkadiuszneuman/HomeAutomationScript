@@ -22,7 +22,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
 
         public string EntityName => XiaomiAirPurifier.Name.AirPurifierPro.GetEntityId();
         
-        public TimeSpan UpdateEvery { get; } = TimeSpan.FromSeconds(10);
+        public TimeSpan UpdateEvery { get; } = TimeSpan.FromMinutes(forTime);
 
         public AirPurifierProAutomations(
             ILogger<AirPurifierProAutomations> logger,
