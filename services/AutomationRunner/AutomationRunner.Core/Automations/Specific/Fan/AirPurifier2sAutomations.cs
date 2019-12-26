@@ -94,7 +94,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
 
                 if (airPurifier.State == "on")
                 {
-                    if (dateTimeHelper.Now.Between(new TimeSpan(19, 0, 0), new TimeSpan(21, 0, 0)))
+                    if (dateTimeHelper.Now.Between(new TimeSpan(18, 0, 0), new TimeSpan(20, 0, 0)))
                     {
                         var level = Math.Min((airPurifier.Aqi / 10) + 2, 16);
 
