@@ -11,7 +11,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
 {
     public class AirPurifier2sAutomations : IEntityStateAutomation, ITimeUpdate
     {
-        private const double forTime = 15;
+        private const double forTurnOnTime = 5;
+        private const double forTurnOffTime = 15;
         private const double speedChangeForTime = 20;
         private const int turningOffValue = 10;
 
@@ -24,7 +25,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
         private readonly ConditionHelper autoSpeedCondition;
 
         public string EntityName { get; } = XiaomiAirPurifier.Name.AirPurifier2S.GetEntityId();
-        public TimeSpan UpdateEvery { get; } = TimeSpan.FromMinutes(Math.Min(forTime, speedChangeForTime));
+        public TimeSpan UpdateEvery { get; } = TimeSpan.FromMinutes(Math.Min(Math.Min(forTurnOnTime, forTurnOffTime), speedChangeForTime));
 
         public AirPurifier2sAutomations(
             ILogger<AirPurifier2sAutomations> logger,
@@ -37,11 +38,11 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
             this.dateTimeHelper = dateTimeHelper;
             this.turnOffCondition = automationHelpersFactory
                 .GetConditionHelper()
-                .For(TimeSpan.FromMinutes(forTime));
+                .For(TimeSpan.FromMinutes(forTurnOffTime));
 
             this.turnOnCondition = automationHelpersFactory
                 .GetConditionHelper()
-                .For(TimeSpan.FromMinutes(forTime));
+                .For(TimeSpan.FromMinutes(forTurnOnTime));
 
             this.silentSpeedCondition = automationHelpersFactory
                 .GetConditionHelper()
@@ -76,7 +77,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     if (airPurifier.State == "on")
                     {
                         logger.LogInformation("Turning off {EntityId}, because aqi is lower or equal than {TurningOffValue} for {ForTime} minutes",
-                            airPurifier.EntityId, turningOffValue, forTime);
+                            airPurifier.EntityId, turningOffValue, forTurnOnTime);
                         await airPurifier.TurnOff();
                     }
                 }
@@ -86,7 +87,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     if (airPurifier.State == "off")
                     {
                         logger.LogInformation("Turning on {EntityId}, because aqi is lower or equal than {TurningOffValue} for {ForTime} minutes",
-                            airPurifier.EntityId, turningOffValue, forTime);
+                            airPurifier.EntityId, turningOffValue, forTurnOnTime);
                         await airPurifier.TurnOn();
                     }
                 }
