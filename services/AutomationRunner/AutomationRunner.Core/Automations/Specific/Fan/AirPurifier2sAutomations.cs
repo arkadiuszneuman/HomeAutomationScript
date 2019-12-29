@@ -94,6 +94,14 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                         logger.LogInformation("Turning on {EntityId}, because aqi is lower or equal than {TurningOffValue} for {ForTime} minutes",
                             airPurifier.EntityId, turningOffValue, forTurnOnTime);
                         await airPurifier.TurnOn();
+
+                        if (airPurifier.Speed != AirPurifierSpeed.Silent)
+                        {
+                            logger.LogInformation("Changing speed of {EntityId} to {Speed} after turning on",
+                                   airPurifier.EntityId, AirPurifierSpeed.Silent);
+
+                            await airPurifier.SetSpeed(AirPurifierSpeed.Silent);
+                        }
                     }
                 }
 
