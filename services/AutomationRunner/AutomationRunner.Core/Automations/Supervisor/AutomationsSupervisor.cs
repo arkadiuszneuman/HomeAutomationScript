@@ -45,7 +45,6 @@ namespace AutomationRunner.Core.Automations.Supervisor
         public async Task Start(CancellationToken cancellationToken)
         {
             logger.LogInformation("Starting time update automations {Automations}", timeUpdateAutomations.Select(a => a.GetType().Name));
-
             webSocketConnector.SubscribeStateChanged(OnStateChanged);
 
             while (!cancellationToken.IsCancellationRequested)

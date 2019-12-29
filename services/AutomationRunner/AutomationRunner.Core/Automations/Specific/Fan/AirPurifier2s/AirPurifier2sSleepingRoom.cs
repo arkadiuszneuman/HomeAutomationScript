@@ -7,16 +7,16 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace AutomationRunner.Core.Automations.Specific.Fan
+namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
 {
-    public class AirPurifier2sAutomations : IEntityStateAutomation, ITimeUpdate
+    public class AirPurifier2sSleepingRoom : IEntityStateAutomation, ITimeUpdate, IAirPurifiers2sAutomationType
     {
         private const double forTurnOnTime = 5;
         private const double forTurnOffTime = 15;
         private const double speedChangeForTime = 20;
         private const int turningOffValue = 10;
 
-        private readonly ILogger<AirPurifier2sAutomations> logger;
+        private readonly ILogger<AirPurifier2sSleepingRoom> logger;
         private readonly HomeAssistantConnector connector;
         private readonly IDateTimeHelper dateTimeHelper;
         private readonly ConditionHelper turnOffCondition;
@@ -26,9 +26,10 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
 
         public string EntityName { get; } = XiaomiAirPurifier.Name.AirPurifier2S.GetEntityId();
         public TimeSpan UpdateEvery { get; } = TimeSpan.FromMinutes(Math.Min(Math.Min(forTurnOnTime, forTurnOffTime), speedChangeForTime));
+        public string AutomationType { get; } = "Sypialnia";
 
-        public AirPurifier2sAutomations(
-            ILogger<AirPurifier2sAutomations> logger,
+        public AirPurifier2sSleepingRoom(
+            ILogger<AirPurifier2sSleepingRoom> logger,
             HomeAssistantConnector connector,
             AutomationHelpersFactory automationHelpersFactory,
             IDateTimeHelper dateTimeHelper)
@@ -60,6 +61,13 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
 
         public async Task Update()
         {
+            var automationType = await InputSelect.LoadFromEntityId(connector, InputSelect.Name.AirPurifier2sAutomationType);
+            if (automationType.State != AutomationType)
+            {
+                ClearConditions();
+                return;
+            }
+
             var airPurifier = await XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifier2S);
 
             if (dateTimeHelper.Now.Between(new TimeSpan(8, 0, 0), new TimeSpan(19, 0, 0)))
@@ -70,10 +78,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     await airPurifier.TurnOff();
                 }
 
-                turnOnCondition.Reset();
-                turnOffCondition.Reset();
-                silentSpeedCondition.Reset();
-                autoSpeedCondition.Reset();
+                ClearConditions();
             }
             else
             {
@@ -146,6 +151,14 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     }
                 }
             }
+        }
+
+        private void ClearConditions()
+        {
+            turnOnCondition.Reset();
+            turnOffCondition.Reset();
+            silentSpeedCondition.Reset();
+            autoSpeedCondition.Reset();
         }
     }
 }
