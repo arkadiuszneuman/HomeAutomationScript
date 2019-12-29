@@ -69,6 +69,11 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     logger.LogInformation("Turning off {EntityId}, because of no one in the room", airPurifier.EntityId);
                     await airPurifier.TurnOff();
                 }
+
+                turnOnCondition.Reset();
+                turnOffCondition.Reset();
+                silentSpeedCondition.Reset();
+                autoSpeedCondition.Reset();
             }
             else
             {

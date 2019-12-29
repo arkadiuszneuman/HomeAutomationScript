@@ -14,7 +14,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
     {
         private const double percentToInform = 10;
 
-        private readonly ILogger<AirHumidifierAutomations> logger;
+        private readonly ILogger<AirHumidifierWaterLevelNotification> logger;
         private readonly HomeAssistantConnector connector;
         private readonly NotificationPushService notificationPushService;
         private readonly IDateTimeHelper dateTimeHelper;
@@ -24,7 +24,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
         public TimeSpan UpdateEvery { get; } = TimeSpan.FromHours(1);
 
         public AirHumidifierWaterLevelNotification(
-            ILogger<AirHumidifierAutomations> logger,
+            ILogger<AirHumidifierWaterLevelNotification> logger,
             HomeAssistantConnector connector,
             AutomationHelpersFactory automationHelpersFactory,
             NotificationPushService notificationPushService,

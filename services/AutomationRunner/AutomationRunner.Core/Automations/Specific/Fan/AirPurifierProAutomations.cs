@@ -59,6 +59,9 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     await airPurifier.TurnOff();
                 }
 
+                turnOnCondition.Reset();
+                turnOffCondition.Reset();
+
                 return;
             }
 

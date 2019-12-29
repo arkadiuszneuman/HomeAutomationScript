@@ -63,7 +63,11 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                 {
                     logger.LogInformation("Turning off {EntityId}, because of night", airHumidifer.EntityId);
                     await airHumidifer.TurnOff();
+                   
                 }
+
+                turnOnCondition.Reset();
+                turnOffCondition.Reset();
 
                 return;
             }
