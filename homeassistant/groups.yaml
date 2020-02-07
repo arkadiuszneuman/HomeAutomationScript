@@ -49,6 +49,14 @@ vacuum:
     - script.vacuum_salon
     - script.vacuum_clean_floor
 
+fan:
+  name: Wentylator
+  entities:
+    - fan.air_purifier_pro
+    - fan.air_humidifier
+    - fan.air_purifier_2s
+    - input_select.air_purifier_2s_automation_type
+
 main_view:
   view: yes
   icon: mdi:home
@@ -58,9 +66,8 @@ main_view:
     - group.stairs
     - group.window_covers
     - group.vacuum
-    - fan.air_purifier_pro
-    - fan.air_humidifier
-    - fan.air_purifier_2s
+    - group.fan
+    
 
 media_view:
   view: yes

@@ -77,10 +77,6 @@ google_assistant:
     - media_player
     - scene
     - script
-  # entity_config:
-  #   light.halogen_1:
-  #     expose: false
-  #     room: LIVING_ROOM
 
 mqtt:
   broker: localhost
@@ -305,3 +301,11 @@ weather:
   - platform: openweathermap
     api_key: !secret openweathermap_api_key
     mode: daily
+
+input_select:
+  air_purifier_2s_automation_type:
+    name: Typ automatyzacji
+    options:
+      - Sypialnia
+      - Trening na bieżni
+    icon: mdi:format-list-bulleted-type
