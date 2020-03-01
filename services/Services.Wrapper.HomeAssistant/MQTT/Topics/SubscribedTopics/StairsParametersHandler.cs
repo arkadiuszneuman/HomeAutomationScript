@@ -4,6 +4,7 @@ using Services.Wrapper.HomeAssistant.Config;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,32 +40,28 @@ namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
             _stairsConfiguration = stairsConfiguration;
         }
 
-        public Task Handle(MinLevelModel message)
+        public async Task Handle(MinLevelModel message)
         {
-            _logger.LogInformation("Sending stairs min level {level}", message.Level);
-
             _restClient.BaseUrl = new Uri(_stairsConfiguration.Hostname);
             var request = new RestRequest(_stairsConfiguration.Resource);
             request.AddParameter("minlevel", message.Level);
-            _restClient.ExecuteAsync(request, response =>
-            {
-            });
 
-            return Task.CompletedTask;
+            _logger.LogInformation("Sending stairs minimum level {level}", message.Level);
+            var response = await _restClient.ExecuteTaskAsync(request);
+            if (response.StatusCode != HttpStatusCode.OK)
+                _logger.LogWarning("Invalid response code for request");
         }
 
-        public Task Handle(MaxLevelModel message)
+        public async Task Handle(MaxLevelModel message)
         {
-            _logger.LogInformation("Sending stairs max level {level}", message.Level);
-
             _restClient.BaseUrl = new Uri(_stairsConfiguration.Hostname);
             var request = new RestRequest(_stairsConfiguration.Resource);
             request.AddParameter("maxlevel", message.Level);
-            _restClient.ExecuteAsync(request, response =>
-            {
-            });
 
-            return Task.CompletedTask;
+            _logger.LogInformation("Sending stairs maximum level {level}", message.Level);
+            var response = await _restClient.ExecuteTaskAsync(request);
+            if (response.StatusCode != HttpStatusCode.OK)
+                _logger.LogWarning("Invalid response code for request");
         }
     }
 }

@@ -3,6 +3,7 @@ using RestSharp;
 using Services.Wrapper.HomeAssistant.Common;
 using Services.Wrapper.HomeAssistant.Config;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
@@ -63,7 +64,10 @@ namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
                 {
                     request.AddParameter("level", levelToSet.Value);
 
-                    await restClient.ExecuteTaskAsync(request);
+                    var response = await restClient.ExecuteTaskAsync(request);
+                    if (response.StatusCode != HttpStatusCode.OK)
+                        logger.LogWarning("Invalid response code for request");
+
                     var level = 100 - levelToSet.Value;
                     logger.LogInformation("Sending to MQTT: {level}", level);
                     await mqttManager.Publish<WindowCoverPositionTopic>(c => level.ToString());
@@ -79,7 +83,10 @@ namespace Services.Wrapper.HomeAssistant.MQTT.Topics.SubscribedTopics
                 var request = new RestRequest(windowCoverConfiguration.Resource);
                 request.AddParameter("level", 100 - Convert.ToInt32(message.Message));
 
-                await restClient.ExecuteTaskAsync(request);
+                var response = await restClient.ExecuteTaskAsync(request);
+                if (response.StatusCode != HttpStatusCode.OK)
+                    logger.LogWarning("Invalid response code for request");
+
                 logger.LogInformation("Sending to MQTT: {level}", message.Message);
                 await mqttManager.Publish<WindowCoverPositionTopic>(c => message.Message);
             }
