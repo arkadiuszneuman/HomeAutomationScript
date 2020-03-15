@@ -31,7 +31,7 @@ namespace AutomationRunner.Core.Scenes.Specific
             var officeLight = await Switch.LoadFromEntityId(connector, Switch.Name.OfficeLight);
             var stairsLight = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.StairsMinimumBrightness);
             var mediaPlayers = MediaPlayer.LoadAll(connector, MediaPlayer.Name.Denon);
-            var denon = await MediaPlayer.LoadFromEntityId(connector, MediaPlayer.Name.Denon);
+            //var denon = await MediaPlayer.LoadFromEntityId(connector, MediaPlayer.Name.Denon);
             var cover = await Cover.LoadFromEntityId(connector, Cover.Name.Salon);
 
             await lightsToSwitchOn.TurnOnAll();
@@ -47,7 +47,7 @@ namespace AutomationRunner.Core.Scenes.Specific
             await Task.Delay(TimeSpan.FromSeconds(10));
             if (cancellationToken.IsCancellationRequested)
                 return;
-            await denon.TurnOff();
+            //await denon.TurnOff();
 
             await Task.Delay(TimeSpan.FromMinutes(5));
             if (cancellationToken.IsCancellationRequested)
