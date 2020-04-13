@@ -50,11 +50,10 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
 
         public async Task Update()
         {
-            var airPurifierPro = await XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifierPro);
             var airHumidifer = await XiaomiAirHumidifier.LoadFromEntityId(connector, XiaomiAirHumidifier.Name.AirHumidifier);
 
             logger.LogDebug("Checking air humidifier. Humidity: {Humidity}", airHumidifer.Humidity);
-            logger.LogDebug("Air humidifier current state: {State}", airPurifierPro.State);
+            logger.LogDebug("Air humidifier current state: {State}", airHumidifer.State);
 
             if (dateTimeHelper.Now.Between(new TimeSpan(0, 0, 0), new TimeSpan(6, 0, 0)))
             {
@@ -72,7 +71,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                 return;
             }
 
-            if (turnOffCondition.CheckFulfilled(airPurifierPro.Humidity > turningOnValue))
+            if (turnOffCondition.CheckFulfilled(airHumidifer.Humidity > turningOnValue))
             {
                 if (airHumidifer.State == "on")
                 {
@@ -82,7 +81,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                 }
             }
 
-            if (turnOnCondition.CheckFulfilled(airPurifierPro.Humidity <= turningOnValue))
+            if (turnOnCondition.CheckFulfilled(airHumidifer.Humidity <= turningOnValue))
             {
                 if (airHumidifer.State == "off")
                 {
@@ -94,7 +93,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
 
             if (airHumidifer.State == "on")
             {
-                var changeHumidityInfo = airPurifierPro.Humidity switch
+                var changeHumidityInfo = airHumidifer.Humidity switch
                 {
                     var humidity when humidity <= 40 => new { Change = true, Speed = AirHumidifierSpeed.High },
                     var humidity when humidity <= 50 => new { Change = true, Speed = AirHumidifierSpeed.Medium },
