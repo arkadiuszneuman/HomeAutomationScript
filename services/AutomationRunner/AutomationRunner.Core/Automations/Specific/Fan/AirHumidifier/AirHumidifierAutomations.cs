@@ -55,12 +55,11 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             logger.LogDebug("Checking air humidifier. Humidity: {Humidity}", airHumidifer.Humidity);
             logger.LogDebug("Air humidifier current state: {State}", airHumidifer.State);
 
-            if (dateTimeHelper.Now.Between(new TimeSpan(0, 0, 0), new TimeSpan(6, 0, 0)))
+            if (dateTimeHelper.Now.Between(new TimeSpan(10, 0, 0), new TimeSpan(19, 0, 0)))
             {
-                logger.LogDebug("Air humidifier should be turned off because of night");
                 if (airHumidifer.State == "on")
                 {
-                    logger.LogInformation("Turning off {EntityId}, because of night", airHumidifer.EntityId);
+                    logger.LogInformation("Turning off {EntityId}, because of day", airHumidifer.EntityId);
                     await airHumidifer.TurnOff();
                    
                 }
