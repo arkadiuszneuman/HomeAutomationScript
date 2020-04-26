@@ -12,7 +12,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
     public class AirHumidifierAutomations : IEntityStateAutomation, ITimeUpdate
     {
         private const double forTime = 3;
-        private const int turningOnValue = 60;
+        private const int turningOnValue = 45;
+        private const int turningOffValue = 55;
 
         private readonly ILogger<AirHumidifierAutomations> logger;
         private readonly HomeAssistantConnector connector;
@@ -35,12 +36,12 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             this.turnOffCondition = automationHelpersFactory
                 .GetConditionHelper()
                 .Name(logger, "Air humidifier turning off")
-                .For(TimeSpan.FromMinutes(forTime));
+                .For(TimeSpan.FromMinutes(1));
 
             this.turnOnCondition = automationHelpersFactory
                 .GetConditionHelper()
                 .Name(logger, "Air humidifier turning on")
-                .For(TimeSpan.FromMinutes(forTime));
+                .For(TimeSpan.FromMinutes(10));
         }
 
         public Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
@@ -61,7 +62,6 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                 {
                     logger.LogInformation("Turning off {EntityId}, because of day", airHumidifer.EntityId);
                     await airHumidifer.TurnOff();
-                   
                 }
 
                 turnOnCondition.Reset();
@@ -70,12 +70,12 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                 return;
             }
 
-            if (turnOffCondition.CheckFulfilled(airHumidifer.Humidity > turningOnValue))
+            if (turnOffCondition.CheckFulfilled(airHumidifer.Humidity >= turningOffValue))
             {
                 if (airHumidifer.State == "on")
                 {
                     logger.LogInformation("Turning off {EntityId}, because humidity is bigger than {TurningOnValue} for {ForTime} minutes",
-                        airHumidifer.EntityId, turningOnValue, forTime);
+                        airHumidifer.EntityId, turningOffValue, forTime);
                     await airHumidifer.TurnOff();
                 }
             }
@@ -96,7 +96,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
                 {
                     var humidity when humidity <= 40 => new { Change = true, Speed = AirHumidifierSpeed.High },
                     var humidity when humidity <= 50 => new { Change = true, Speed = AirHumidifierSpeed.Medium },
-                    var humidity when humidity <= turningOnValue => new { Change = true, Speed = AirHumidifierSpeed.Silent },
+                    var humidity when humidity <= turningOffValue => new { Change = true, Speed = AirHumidifierSpeed.Silent },
                     _ => new { Change = false, Speed = AirHumidifierSpeed.Auto }
                 };
 
