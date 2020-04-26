@@ -60,7 +60,6 @@ namespace AutomationRunner.Core.Scenes.Specific
 
             await allLights.TurnOffAll();
             await allRgbLights.TurnOffAll();
-            await allSwitches.TurnOffAll();
             await lightsToSwitchOn.TurnOffAll();
             await stairsLight.SetValue(0);
         }
