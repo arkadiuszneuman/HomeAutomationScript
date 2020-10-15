@@ -1,63 +1,60 @@
-﻿using AutomationRunner.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using System.Threading.Tasks;
+using AutomationRunner.Core.Entities;
 
 namespace AutomationRunner.Core.Common.Extensions
 {
-    public static class IEnumerableExtensions
+    public static class EnumerableExtensions
     {
-        public static async Task TurnOffAll(this IEnumerable<Task<Light>> lights)
+        public static async Task TurnOffAll(this IEnumerable<Light> lights)
         {
             foreach (var light in lights)
-                await (await light).TurnOff();
+                await light.TurnOff();
         }
 
-        public static async Task TurnOffAll(this IEnumerable<Task<RgbLight>> lights)
+        public static async Task TurnOffAll(this IEnumerable<RgbLight> lights)
         {
             foreach (var light in lights)
-                await (await light).TurnOff();
+                await light.TurnOff();
         }
 
-        public static async Task TurnOffAll(this IEnumerable<Task<MediaPlayer>> mediaPlayers)
+        public static async Task TurnOffAll(this IEnumerable<MediaPlayer> mediaPlayers)
         {
             foreach (var mediaPlayer in mediaPlayers)
-                await (await mediaPlayer).TurnOff();
+                await mediaPlayer.TurnOff();
         }
 
-        public static async Task TurnOffAll(this IEnumerable<Task<Switch>> switches)
+        public static async Task TurnOffAll(this IEnumerable<Switch> switches)
         {
             foreach (var @switch in switches)
-            {
-                await (await @switch).TurnOff();
-                await Task.Delay(TimeSpan.FromSeconds(0.5));
-            }
+                await @switch.TurnOff();
         }
 
-        public static async Task TurnOnAll(this IEnumerable<Task<Light>> lights)
+        public static async Task TurnOnAll(this IEnumerable<Light> lights)
         {
             foreach (var light in lights)
-                await (await light).TurnOn();
+                await light.TurnOn();
         }
 
-        public static async Task TurnOnAll(this IEnumerable<Task<RgbLight>> lights, Color? color = null, int? brightnessPercent = null, TimeSpan? transitionTime = null)
+        public static async Task TurnOnAll(this IEnumerable<RgbLight> lights, Color? color = null,
+            int? brightnessPercent = null, TimeSpan? transitionTime = null)
         {
             foreach (var light in lights)
-                await (await light).TurnOn(color, brightnessPercent, transitionTime);
+                await light.TurnOn(color, brightnessPercent, transitionTime);
         }
 
-        public static async Task TurnOnAll(this IEnumerable<Task<Switch>> switches)
+        public static async Task TurnOnAll(this IEnumerable<Switch> switches)
         {
             foreach (var @switch in switches)
-                await (await @switch).TurnOn();
+                await @switch.TurnOn();
         }
 
-        public static async Task TurnOnAll(this IEnumerable<Task<MediaPlayer>> mediaPlayers)
+        public static async Task TurnOnAll(this IEnumerable<MediaPlayer> mediaPlayers)
         {
             foreach (var mediaPlayer in mediaPlayers)
-                await (await mediaPlayer).TurnOn();
+                await mediaPlayer.TurnOn();
         }
     }
 }

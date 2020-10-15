@@ -45,10 +45,13 @@ namespace AutomationRunner.Core.Entities
             return await entityLoader.LoadEntityFromStates<RgbLight>(lightName.GetEntityId());
         }
 
-        public static IEnumerable<Task<RgbLight>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)
+        public static async Task<IList<RgbLight>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)
         {
+            var tasks = new List<RgbLight>();
             foreach (Name lightName in ((Name[])Enum.GetValues(typeof(Name))).Except(except))
-                yield return LoadFromEntityId(connector, lightName);
+                tasks.Add(await LoadFromEntityId(connector, lightName));
+
+            return tasks;
         }
 
         public async Task TurnOn(Color? color = null, int? brightnessPercent = null, TimeSpan? transitionTime = null)
@@ -58,7 +61,7 @@ namespace AutomationRunner.Core.Entities
             if (brightnessPercent.HasValue)
             {
                 new PercentValidation().ValidateAndThrow(brightnessPercent.Value);
-                service.BrightnessPercent = brightnessPercent * 2;
+                service.BrightnessPercent = brightnessPercent;
             }
 
             if (color != null)

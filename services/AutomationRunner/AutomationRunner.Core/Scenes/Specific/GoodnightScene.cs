@@ -24,12 +24,12 @@ namespace AutomationRunner.Core.Scenes.Specific
 
         public async Task Activated(CancellationToken cancellationToken = default)
         {
-            var lightsToSwitchOn = Light.LoadFromEntitiesId(connector, Light.Name.Halogen2, Light.Name.Halogen3);
-            var allLights = Light.LoadAllLights(connector, Light.Name.Halogen2, Light.Name.Halogen3);
-            var allRgbLights = RgbLight.LoadAllLights(connector);
-            var allSwitches = Switch.LoadAllLights(connector);
+            var lightsToSwitchOn = await Light.LoadFromEntitiesId(connector, Light.Name.Halogen2, Light.Name.Halogen3);
+            var allLights = await Light.LoadAllLights(connector, Light.Name.Halogen2, Light.Name.Halogen3);
+            var allRgbLights = await RgbLight.LoadAllLights(connector);
+            var allSwitches = await Switch.LoadAllLights(connector);
             var stairsLight = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.StairsMinimumBrightness);
-            var mediaPlayers = MediaPlayer.LoadAll(connector, MediaPlayer.Name.Denon);
+            var mediaPlayers = await MediaPlayer.LoadAll(connector, MediaPlayer.Name.Denon);
             //var denon = await MediaPlayer.LoadFromEntityId(connector, MediaPlayer.Name.Denon);
             var cover = await Cover.LoadFromEntityId(connector, Cover.Name.Salon);
 
@@ -42,21 +42,15 @@ namespace AutomationRunner.Core.Scenes.Specific
             await allRgbLights.TurnOffAll();
             await allSwitches.TurnOffAll();
 
-            await Task.Delay(TimeSpan.FromSeconds(10));
-            if (cancellationToken.IsCancellationRequested)
-                return;
+            await Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
             //await denon.TurnOff();
 
-            await Task.Delay(TimeSpan.FromMinutes(5));
-            if (cancellationToken.IsCancellationRequested)
-                return;
+            await Task.Delay(TimeSpan.FromMinutes(5), cancellationToken);
 
             await lightsToSwitchOn.TurnOffAll();
             await stairsLight.SetValue(0);
 
-            await Task.Delay(TimeSpan.FromSeconds(10));
-            if (cancellationToken.IsCancellationRequested)
-                return;
+            await Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
 
             await allLights.TurnOffAll();
             await allRgbLights.TurnOffAll();
