@@ -60,6 +60,8 @@ namespace Services.Wrapper.HomeAssistant.MQTT
             var options = new MqttClientOptionsBuilder()
                 .WithClientId(_clientId)
                 .WithTcpServer(_mqttConfiguration.Hostname, _mqttConfiguration.Port)
+                .WithKeepAlivePeriod(TimeSpan.FromSeconds(30))
+                .WithCommunicationTimeout(TimeSpan.FromSeconds(30))
                 .Build();
 
             _mqttClient.UseConnectedHandler(args => _logger.LogInformation("MQTT connected"));
