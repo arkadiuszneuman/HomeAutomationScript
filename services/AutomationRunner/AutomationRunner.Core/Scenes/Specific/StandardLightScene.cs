@@ -1,4 +1,5 @@
-﻿using AutomationRunner.Core.Common.Connector;
+﻿using System.Drawing;
+using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities;
 using System.Threading;
@@ -23,9 +24,9 @@ namespace AutomationRunner.Core.Scenes.Specific
             var tvleds = await RgbLight.LoadFromEntityId(connector, RgbLight.Name.TvLEDs);
             var stairs = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.StairsMinimumBrightness);
 
-            var lights = Light.LoadFromEntitiesId(connector, Light.Name.Halogen1, Light.Name.Halogen4);
+            var lights = await Light.LoadFromEntitiesId(connector, Light.Name.Halogen1, Light.Name.Halogen4);
 
-            await tvleds.TurnOn(brightnessPercent: 50);
+            await tvleds.TurnOnStandardWhite();
             await lights.TurnOnAll();
             await stairs.SetValueBasedOnTvState();
             await mushroom.TurnOnWithRandomColor();

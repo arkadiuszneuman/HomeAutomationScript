@@ -18,10 +18,11 @@ namespace AutomationRunner.Core.Entities
         public bool Rising => GetAttributeValue<bool>("rising");
 
         private IDateTimeHelper DateTimeHelper { get; set; }
+        public static string EntityId => "sun.sun";
 
         public static async Task<Sun> Load(HomeAssistantConnector connector, IDateTimeHelper dateTimeHelper)
         {
-            var sun = await connector.LoadEntityFromStates<Sun>("sun.sun");
+            var sun = await connector.LoadEntityFromStates<Sun>(EntityId);
             sun.DateTimeHelper = dateTimeHelper;
             return sun;
         }

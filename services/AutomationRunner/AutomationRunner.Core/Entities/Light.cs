@@ -35,16 +35,22 @@ namespace AutomationRunner.Core.Entities
             return await connector.LoadEntityFromStates<Light>(lightName.GetEntityId());
         }
 
-        public static IEnumerable<Task<Light>> LoadFromEntitiesId(HomeAssistantConnector connector, params Name[] lightNames)
+        public static async Task<IList<Light>> LoadFromEntitiesId(HomeAssistantConnector connector, params Name[] lightNames)
         {
+            var lights = new List<Light>();
             foreach (var lightName in lightNames)
-                yield return LoadFromEntityId(connector, lightName);
-        }
+                lights.Add(await LoadFromEntityId(connector, lightName));
 
-        public static IEnumerable<Task<Light>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)
+            return lights;
+        }
+        
+        public static async Task<IList<Light>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)
         {
+            var lights = new List<Light>();
             foreach (Name lightName in ((Name[])Enum.GetValues(typeof(Name))).Except(except))
-                yield return LoadFromEntityId(connector, lightName);
+                lights.Add(await LoadFromEntityId(connector, lightName));
+
+            return lights;
         }
 
         public async Task TurnOn()

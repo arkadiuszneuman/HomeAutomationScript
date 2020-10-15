@@ -36,11 +36,14 @@ namespace AutomationRunner.Core.Entities
             foreach (var lightName in lightNames)
                 yield return LoadFromEntityId(connector, lightName);
         }
-
-        public static IEnumerable<Task<MediaPlayer>> LoadAll(HomeAssistantConnector connector, params Name[] except)
+        
+        public static async Task<IList<MediaPlayer>> LoadAll(HomeAssistantConnector connector, params Name[] except)
         {
+            var mediaPlayers = new List<MediaPlayer>();
             foreach (Name lightName in ((Name[])Enum.GetValues(typeof(Name))).Except(except))
-                yield return LoadFromEntityId(connector, lightName);
+                mediaPlayers.Add(await LoadFromEntityId(connector, lightName));
+
+            return mediaPlayers;
         }
 
         public async Task TurnOn()
@@ -60,5 +63,12 @@ namespace AutomationRunner.Core.Entities
 
         public async Task SetVolumeLevel(int volume) =>
             await Connector.SendService("media_player.volume_set", new VolumeServiceModel(EntityId, volume));
+
+        public static MediaPlayer CreateBasedOnBaseEntity(BaseEntity state)
+        {
+            var entity = new MediaPlayer();
+            entity.UpdateEntity(state);
+            return entity;
+        }
     }
 }

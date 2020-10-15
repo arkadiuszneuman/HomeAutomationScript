@@ -36,11 +36,14 @@ namespace AutomationRunner.Core.Entities
             foreach (var switchName in switchNames)
                 yield return LoadFromEntityId(connector, switchName);
         }
-
-        public static IEnumerable<Task<Switch>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)
+        
+        public static async Task<IList<Switch>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)
         {
+            var switches = new List<Switch>();
             foreach (Name lightName in ((Name[])Enum.GetValues(typeof(Name))).Except(except))
-                yield return LoadFromEntityId(connector, lightName);
+                switches.Add(await LoadFromEntityId(connector, lightName));
+
+            return switches;
         }
 
         public async Task TurnOn()
