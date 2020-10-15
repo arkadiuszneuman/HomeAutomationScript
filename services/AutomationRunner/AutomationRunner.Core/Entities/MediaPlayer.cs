@@ -63,5 +63,12 @@ namespace AutomationRunner.Core.Entities
 
         public async Task SetVolumeLevel(int volume) =>
             await Connector.SendService("media_player.volume_set", new VolumeServiceModel(EntityId, volume));
+
+        public static MediaPlayer CreateBasedOnBaseEntity(BaseEntity state)
+        {
+            var entity = new MediaPlayer();
+            entity.UpdateEntity(state);
+            return entity;
+        }
     }
 }

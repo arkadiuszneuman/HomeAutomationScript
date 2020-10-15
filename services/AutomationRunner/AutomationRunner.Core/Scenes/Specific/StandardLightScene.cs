@@ -26,7 +26,7 @@ namespace AutomationRunner.Core.Scenes.Specific
 
             var lights = await Light.LoadFromEntitiesId(connector, Light.Name.Halogen1, Light.Name.Halogen4);
 
-            await tvleds.TurnOn(Color.FromArgb(255, 255, 163, 72), brightnessPercent: 100);
+            await tvleds.TurnOnStandardWhite();
             await lights.TurnOnAll();
             await stairs.SetValueBasedOnTvState();
             await mushroom.TurnOnWithRandomColor();

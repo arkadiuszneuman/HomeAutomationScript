@@ -79,7 +79,10 @@ namespace AutomationRunner.Core.Entities
             await Connector.SendService("light.turn_on", service);
             State = "on";
         }
-        
+
+        public Task TurnOnStandardWhite(int brightnessPercent = 100) => 
+            TurnOn(Color.FromArgb(255, 255, 163, 72), brightnessPercent);
+
         public Task TurnOnWithRandomColor()
         {
             var random = new Random();
