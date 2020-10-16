@@ -61,7 +61,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
                         if (!executedTimeUpdateAutomations.ContainsKey(timeUpdateAutomation))
                         {
                             logger.LogInformation("Updating {Type} - at start", timeUpdateAutomation.GetType().Name);
-                            timeUpdateAutomation.Update();
+                            _ = timeUpdateAutomation.Update();
                             executedTimeUpdateAutomations.Add(timeUpdateAutomation, now);
                         }
                         else
@@ -70,7 +70,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
                             if (now - timeUpdateAutomation.UpdateEvery >= lastUpdate)
                             {
                                 logger.LogInformation("Updating {Type} - time to update have passed", timeUpdateAutomation.GetType().Name);
-                                timeUpdateAutomation.Update();
+                                _ = timeUpdateAutomation.Update();
                                 executedTimeUpdateAutomations[timeUpdateAutomation] = now;
                             }
                         }
@@ -83,7 +83,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
                 catch (Exception exception)
                 {
                     logger.LogError(exception, "Error on executing automations. Waiting minute and restarting...");
-                    await Task.Delay(TimeSpan.FromMinutes(1));
+                    await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
                 }
 
                 await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
@@ -97,13 +97,13 @@ namespace AutomationRunner.Core.Automations.Supervisor
             IEnumerable<IStateUpdate> singleEntityStateAutomations = stateAutomations
                 .Where(s => s.EntityName == oldNewState.NewState.EntityId);
 
-            IEnumerable<IStateUpdate> manyEntitiesStateEutomations = entitesStatesAutomations
+            IEnumerable<IStateUpdate> manyEntitiesStateAutomations = entitesStatesAutomations
                 .Where(s => s.EntityNames.Contains(oldNewState.NewState.EntityId));
 
-            foreach (var automation in singleEntityStateAutomations.Union(manyEntitiesStateEutomations))
+            foreach (var automation in singleEntityStateAutomations.Union(manyEntitiesStateAutomations))
             {
                 logger.LogInformation("Starting state automation {automation}", automation);
-                automation.Update(oldNewState.OldState, oldNewState.NewState);
+                _ = automation.Update(oldNewState.OldState, oldNewState.NewState);
             }
         }
     }
