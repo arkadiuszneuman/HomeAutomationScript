@@ -70,7 +70,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
 
             var airPurifier = await XiaomiAirPurifier.LoadFromEntityId(connector, XiaomiAirPurifier.Name.AirPurifier2S);
 
-            if (dateTimeHelper.Now.Between(new TimeSpan(8, 0, 0), new TimeSpan(19, 0, 0)))
+            if (dateTimeHelper.Now.Between(new TimeSpan(10, 0, 0), new TimeSpan(13, 0, 0)))
             {
                 if (airPurifier.State == "on")
                 {
@@ -96,7 +96,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
                 {
                     if (airPurifier.State == "off")
                     {
-                        logger.LogInformation("Turning on {EntityId}, because aqi is lower or equal than {TurningOffValue} for {ForTime} minutes",
+                        logger.LogInformation("Turning on {EntityId}, because aqi is greater or equal than {TurningOffValue} for {ForTime} minutes",
                             airPurifier.EntityId, turningOffValue, forTurnOnTime);
                         await airPurifier.TurnOn();
 
@@ -141,11 +141,16 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
 
                         if (autoSpeedCondition.CheckFulfilled(airPurifier.Aqi > 20))
                         {
-                            if (airPurifier.Speed != AirPurifierSpeed.Auto)
+                            var level = Math.Min((airPurifier.Aqi / 10), 16);
+
+                            if (airPurifier.Speed != AirPurifierSpeed.Favorite ||
+                                airPurifier.FavoriteLevel != level)
                             {
-                                logger.LogInformation("Changing speed of {EntityId} to {Speed}",
-                                    airPurifier.EntityId, AirPurifierSpeed.Auto);
-                                await airPurifier.SetSpeed(AirPurifierSpeed.Auto);
+                                logger.LogInformation("Changing speed of {EntityId} to {Level}",
+                                    airPurifier.EntityId, level);
+
+                                await airPurifier.SetLevel(level);
+                                await airPurifier.SetSpeed(AirPurifierSpeed.Favorite);
                             }
                         }
                     }
