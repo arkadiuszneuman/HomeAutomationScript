@@ -153,6 +153,7 @@ influxdb:
       - fan.air_purifier_pro
       - fan.air_humidifier
       - fan.air_purifier_2s
+      - sensor.sunlight_pct
 
 binary_sensor:
   - platform: workday
