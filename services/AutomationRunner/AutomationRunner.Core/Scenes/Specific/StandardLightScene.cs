@@ -23,9 +23,9 @@ namespace AutomationRunner.Core.Scenes.Specific
             var mushroom = await RgbLight.LoadFromEntityId(connector, RgbLight.Name.Mushroom);
             var tvleds = await RgbLight.LoadFromEntityId(connector, RgbLight.Name.TvLEDs);
             var stairs = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.StairsMinimumBrightness);
-
+            
             var lights = await Light.LoadFromEntitiesId(connector, Light.Name.Halogen1, Light.Name.Halogen4);
-
+            
             await tvleds.TurnOnStandardWhite();
             await lights.TurnOnAll();
             await stairs.SetValueBasedOnTvState();
