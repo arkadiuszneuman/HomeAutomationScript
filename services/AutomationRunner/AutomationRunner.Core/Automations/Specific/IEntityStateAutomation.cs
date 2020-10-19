@@ -10,6 +10,11 @@ namespace AutomationRunner.Core.Automations.Specific
         Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity);
     }
 
+    public interface IShouldUpdate
+    {
+        Task<bool> ShouldUpdate(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity);
+    }
+
     public interface ITimeUpdate
     {
         TimeSpan UpdateEvery { get; }

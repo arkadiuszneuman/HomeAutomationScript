@@ -102,8 +102,15 @@ namespace AutomationRunner.Core.Automations.Supervisor
 
             foreach (var automation in singleEntityStateAutomations.Union(manyEntitiesStateAutomations))
             {
-                logger.LogInformation("Starting state automation {automation}", automation);
-                _ = automation.Update(oldNewState.OldState, oldNewState.NewState);
+                var shouldUpdate = true;
+                if (automation is IShouldUpdate shouldUpdateAutomation)
+                    shouldUpdate = await shouldUpdateAutomation.ShouldUpdate(oldNewState.OldState, oldNewState.NewState);
+                
+                if (shouldUpdate)
+                {
+                    logger.LogInformation("Starting state automation {automation}", automation);
+                    _ = automation.Update(oldNewState.OldState, oldNewState.NewState);
+                }
             }
         }
     }

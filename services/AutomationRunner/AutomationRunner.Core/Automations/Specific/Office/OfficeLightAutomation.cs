@@ -6,7 +6,7 @@ using AutomationRunner.Core.Entities;
 
 namespace AutomationRunner.Core.Automations.Specific.Office
 {
-    public class OfficeLightAutomation : IEntitiesStateAutomation
+    public class OfficeLightAutomation : BaseAutomation, IEntitiesStateAutomation
     {
         private readonly HomeAssistantConnector connector;
 
@@ -21,13 +21,21 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             this.connector = connector;
         }
 
-        public async Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        public override async Task<bool> ShouldUpdate(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
-            if (oldStateBaseEntity.State != newStateBaseEntity.State) 
-                await Update();
+            if (oldStateBaseEntity.State != newStateBaseEntity.State)
+            {
+                var autoOfficeLight =
+                    await connector.LoadEntityFromStates<InputBoolean>(InputBoolean.Name.AutomaticOfficeLight
+                        .GetEntityId());
+
+                return autoOfficeLight.IsSwitchedOn();
+            }
+
+            return false;
         }
 
-        private async Task Update()
+        public override async Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             var computerLight = await connector.LoadEntityFromStates<Switch>(Switch.Name.OfficeLight.GetEntityId());
             var switchLightOn = await ShouldLightBeSwitchedOn();
@@ -40,13 +48,9 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             var sunlight = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.Sunlight.GetEntityId());
 
             if (laptopEthernet.State == "on")
-            {
                 if (int.TryParse(sunlight.State, out var result))
-                {
                     if (result <= 8)
                         return true;
-                }
-            }
 
             return false;
         }
