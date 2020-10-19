@@ -14,9 +14,12 @@ homeassistant:
   customize: !include customize.yaml
 
 logger:
-  default: info
+  default: warning
   logs:
     homeassistant.core: critical
+    homeassistant.components.fan: error
+    homeassistant.components.airly: critical
+    homeassistant.config_entries: error
 
 # Enables the frontend
 frontend:
@@ -170,6 +173,14 @@ binary_sensor:
   - platform: mqtt
     state_topic: "home/stairs/set_going_up"
     name: Schody wejście na górę
+  - platform: ping #need to add ip of HA to firewall rule
+    host: 192.168.1.106
+    name: "Laptop Ethernet"
+    count: 2
+    scan_interval: 15
+  - platform: ping
+    host: 192.168.1.125
+    name: "Laptop WiFi"
 
 sonoff:
   username: !secret sonoff_login
