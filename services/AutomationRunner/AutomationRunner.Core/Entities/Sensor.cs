@@ -7,7 +7,9 @@ namespace AutomationRunner.Core.Entities
         public enum Name
         {
             [EntityId("sensor.sunlight_pct")]
-            Sunlight
+            Sunlight,
+            [EntityId("binary_sensor.laptop_ethernet")]
+            LaptopEthernet
         }
     }
 }
