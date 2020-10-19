@@ -177,7 +177,7 @@ binary_sensor:
     host: 192.168.1.106
     name: "Laptop Ethernet"
     count: 2
-    scan_interval: 15
+    scan_interval: 2
   - platform: ping
     host: 192.168.1.125
     name: "Laptop WiFi"
@@ -303,6 +303,9 @@ input_boolean:
   notify_weather:
     name: Informuj o pogodzie po zejściu
     initial: off
+  auto_office_light:
+    name: Automatycznie steruj oświetleniem w salonie
+    initial: true
 
 notify:
   - platform: pushbullet
