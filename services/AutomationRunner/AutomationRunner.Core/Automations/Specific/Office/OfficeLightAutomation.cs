@@ -49,7 +49,7 @@ namespace AutomationRunner.Core.Automations.Specific.Office
 
             if (laptopEthernet.State == "on")
                 if (int.TryParse(sunlight.State, out var result))
-                    if (result <= 8)
+                    if (result <= 7)
                         return true;
 
             return false;
