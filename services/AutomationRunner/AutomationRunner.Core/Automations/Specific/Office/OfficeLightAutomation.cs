@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutomationRunner.Core.Common;
 using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities;
@@ -9,6 +11,7 @@ namespace AutomationRunner.Core.Automations.Specific.Office
     public class OfficeLightAutomation : BaseAutomation, IEntitiesStateAutomation
     {
         private readonly HomeAssistantConnector connector;
+        private readonly IDateTimeHelper dateTimeHelper;
 
         public IEnumerable<string> EntityNames => new[]
         {
@@ -16,18 +19,18 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             Sensor.Name.LaptopEthernet.GetEntityId()
         };
 
-        public OfficeLightAutomation(HomeAssistantConnector connector)
+        public OfficeLightAutomation(HomeAssistantConnector connector,
+            IDateTimeHelper dateTimeHelper)
         {
             this.connector = connector;
+            this.dateTimeHelper = dateTimeHelper;
         }
 
         public override async Task<bool> ShouldUpdate(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             if (oldStateBaseEntity.State != newStateBaseEntity.State)
             {
-                var autoOfficeLight =
-                    await connector.LoadEntityFromStates<InputBoolean>(InputBoolean.Name.AutomaticOfficeLight
-                        .GetEntityId());
+                var autoOfficeLight = await connector.LoadEntityFromStates<InputBoolean>(InputBoolean.Name.AutomaticOfficeLight.GetEntityId());
 
                 return autoOfficeLight.IsSwitchedOn();
             }
@@ -48,9 +51,17 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             var sunlight = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.Sunlight.GetEntityId());
 
             if (laptopEthernet.State == "on")
+            {
                 if (int.TryParse(sunlight.State, out var result))
-                    if (result <= 8)
+                {
+                    var minimumSunState = 11;
+                    if (dateTimeHelper.Now.TimeOfDay > new TimeSpan(12, 0, 0))
+                        minimumSunState = 8;
+                    
+                    if (result <= minimumSunState)
                         return true;
+                }
+            }
 
             return false;
         }
