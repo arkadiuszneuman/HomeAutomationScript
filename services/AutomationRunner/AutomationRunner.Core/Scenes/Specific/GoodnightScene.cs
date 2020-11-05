@@ -43,6 +43,7 @@ namespace AutomationRunner.Core.Scenes.Specific
             await allSwitches.TurnOffAll();
 
             await Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
+            await allRgbLights.TurnOffAll();
             //await denon.TurnOff();
 
             await Task.Delay(TimeSpan.FromMinutes(5), cancellationToken);
