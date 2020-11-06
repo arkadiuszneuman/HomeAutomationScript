@@ -11,7 +11,7 @@ namespace AutomationRunner.Modules.Core
             base.Load(builder);
 
             builder.RegisterAssemblyTypes(typeof(DateTimeHelper).Assembly)
-                .Where(a => a.Namespace.StartsWith("AutomationRunner.Core.Common"))
+                .Where(a => a.Namespace?.StartsWith("AutomationRunner.Core.Common") ?? false)
                 .AsImplementedInterfaces()
                 .AsSelf();
 

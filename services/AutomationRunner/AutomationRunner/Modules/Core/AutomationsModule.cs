@@ -10,7 +10,7 @@ namespace AutomationRunner.Modules.Core
             base.Load(builder);
 
             builder.RegisterAssemblyTypes(typeof(IEntityStateAutomation).Assembly)
-               .Where(a => a.Namespace.StartsWith("AutomationRunner.Core.Automations"))
+               .Where(a => a.Namespace?.StartsWith("AutomationRunner.Core.Automations") ?? false)
                .AsImplementedInterfaces()
                .AsSelf()
                .SingleInstance();
