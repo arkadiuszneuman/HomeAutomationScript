@@ -54,9 +54,9 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             {
                 if (int.TryParse(sunlight.State, out var result))
                 {
-                    var minimumSunState = 11;
+                    var minimumSunState = 15;
                     if (dateTimeHelper.Now.TimeOfDay > new TimeSpan(12, 0, 0))
-                        minimumSunState = 8;
+                        minimumSunState = 11;
                     
                     if (result <= minimumSunState)
                         return true;
