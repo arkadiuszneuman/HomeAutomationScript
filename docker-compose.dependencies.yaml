@@ -1,21 +1,21 @@
-version: '2'
+version: "2"
 services:
   influxdb:
-    image: "influxdb:1.7.9"
+    image: "influxdb:1.7.10"
     ports:
-     - 8086:8086
-     - 8083:8083
-    volumes: 
+      - 8086:8086
+      - 8083:8083
+    volumes:
       - ./influxdb:/var/lib/influxdb
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-    environment: 
+    environment:
       - INFLUXDB_DB=home_assistant
     network_mode: host
     container_name: influxdb
 
   rabbitmq:
-    image: "rabbitmq:3.7.23-management"
+    image: "rabbitmq:3.8.9-management"
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -26,11 +26,11 @@ services:
     container_name: rabbit
 
   mosquitto:
-    image: "eclipse-mosquitto:1.6.8"
+    image: "eclipse-mosquitto:1.6.12"
     ports:
       - 1883:1883
       - 9001:9001
-    volumes: 
+    volumes:
       - ./mosquitto:/mosquitto
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro

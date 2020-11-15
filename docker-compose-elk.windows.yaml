@@ -1,8 +1,8 @@
-version: '2'
+version: "2"
 services:
-  logstash:  
-    image: "docker.elastic.co/logstash/logstash:7.5.0"
-    volumes: 
+  logstash:
+    image: "docker.elastic.co/logstash/logstash:7.9.3"
+    volumes:
       - ./logstash/config:/usr/share/logstash/config
       - ./logstash/pipeline:/usr/share/logstash/pipeline
       - ./homeassistant:/usr/share/homeassistant
@@ -10,18 +10,18 @@ services:
       - /etc/localtime:/etc/localtime:ro
     container_name: logstash
     network_mode: host
-    depends_on: 
+    depends_on:
       - elasticsearch
 
   elasticsearch:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.0"
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.9.3"
     ports:
       - 9200:9200
       - 9300:9300
     environment:
       - cluster.name=es-prod-docker-cluster
       - bootstrap.memory_lock=true
-      # - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
       - discovery.type=single-node
     volumes:
       - ./elasticsearchdata:/usr/share/elasticsearch/data
@@ -38,7 +38,7 @@ services:
     container_name: elasticsearch
 
   kibana:
-    image: "docker.elastic.co/kibana/kibana:7.5.0"
+    image: "docker.elastic.co/kibana/kibana:7.9.3"
     ports:
       - 5601:5601
     volumes:
@@ -47,5 +47,5 @@ services:
       - /etc/localtime:/etc/localtime:ro
     container_name: kibana
     network_mode: host
-    depends_on: 
+    depends_on:
       - elasticsearch

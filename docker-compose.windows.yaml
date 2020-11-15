@@ -1,20 +1,20 @@
-version: '2'
+version: "2"
 services:
-  ha:  
+  ha:
     image: "homeassistant/home-assistant:0.102.3"
     ports:
-     - 8123:8123
-    volumes: 
+      - 8123:8123
+    volumes:
       - ./homeassistant:/config
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-    depends_on: 
+    depends_on:
       - mysql
     network_mode: host
     container_name: ha
-    
+
   grafana:
-    image: "grafana/grafana:6.5.1"
+    image: "grafana/grafana:7.3.2"
     ports:
       - 3000:3000
     volumes:
@@ -26,7 +26,7 @@ services:
     user: "1000"
 
   mysql:
-    image: mysql:8.0.18
+    image: mysql:8.0.22
     command: --default-authentication-plugin=mysql_native_password
     ports:
       - 3306:3306
@@ -40,10 +40,10 @@ services:
     network_mode: host
 
   backup-creator:
-    build: 
+    build:
       context: ./services/Services.BackupCreator
       dockerfile: Dockerfile
-    environment: 
+    environment:
       - WRAPPER_ENVIRONMENT=Docker
       - HOST=Win
     volumes:
@@ -54,12 +54,12 @@ services:
     container_name: bc
 
   # backup-creator2:
-  #   build: 
+  #   build:
   #     context: ./services/PythonServices/BackupCreator
   #     dockerfile: Dockerfile
   #   ports:
   #    - 5001:5001
-  #   environment: 
+  #   environment:
   #     - WRAPPER_ENVIRONMENT=Docker
   #   volumes:
   #     - ./:/maindir
