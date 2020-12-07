@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutomationRunner.Core.Automations.Specific.Christmas;
 
 namespace AutomationRunner.Core.Automations.Specific
 {
@@ -55,7 +56,9 @@ namespace AutomationRunner.Core.Automations.Specific
                     await Task.Delay(TimeSpan.FromMinutes(10));
 
                     await externalLight.TurnOff();
-                    await gardenLight.TurnOff();
+                    
+                    if (!Consts.Christmas || dateTimeHelper.UtcNow.TimeOfDay > ChristmasAutomation.SwitchOffOn)
+                        await gardenLight.TurnOff();
                 }
             }
         }
