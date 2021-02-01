@@ -1,4 +1,6 @@
-﻿using AutomationRunner.Core.Common;
+﻿using System.Threading.Tasks;
+using AutomationRunner.Core.Common;
+using AutomationRunner.Core.Entities.Services.Models;
 
 namespace AutomationRunner.Core.Entities
 {
@@ -10,9 +12,18 @@ namespace AutomationRunner.Core.Entities
             AutomaticOfficeLight
         }
 
-        public bool IsSwitchedOn()
+        public bool IsSwitchedOn() => State == "on";
+
+        public async Task TurnOn()
         {
-            return State == "on";
+            await Connector.SendService("input_boolean.turn_on", new EntityIdService(EntityId));
+            State = "on";
+        }
+        
+        public async Task TurnOff()
+        {
+            await Connector.SendService("input_boolean.turn_off", new EntityIdService(EntityId));
+            State = "off";
         }
     }
 }
