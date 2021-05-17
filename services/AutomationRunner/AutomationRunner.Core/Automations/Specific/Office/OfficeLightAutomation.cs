@@ -16,7 +16,8 @@ namespace AutomationRunner.Core.Automations.Specific.Office
         public IEnumerable<string> EntityNames => new[]
         {
             Sensor.Name.Sunlight.GetEntityId(),
-            Sensor.Name.LaptopEthernet.GetEntityId()
+            Sensor.Name.LaptopEthernet.GetEntityId(),
+            Sensor.Name.BusinessLaptopWifi.GetEntityId()
         };
 
         public OfficeLightAutomation(HomeAssistantConnector connector,
@@ -48,9 +49,10 @@ namespace AutomationRunner.Core.Automations.Specific.Office
         private async Task<bool> ShouldLightBeSwitchedOn()
         {
             var laptopEthernet = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.LaptopEthernet.GetEntityId());
+            var businessLaptop = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.BusinessLaptopWifi.GetEntityId());
             var sunlight = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.Sunlight.GetEntityId());
 
-            if (laptopEthernet.State == "on")
+            if (laptopEthernet.State == "on" || businessLaptop.State == "on")
             {
                 if (int.TryParse(sunlight.State, out var result))
                 {

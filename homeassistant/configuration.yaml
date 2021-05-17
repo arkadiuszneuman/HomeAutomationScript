@@ -181,6 +181,11 @@ binary_sensor:
   - platform: ping
     host: 192.168.1.125
     name: "Laptop WiFi"
+  - platform: ping #need to add ip of HA to firewall rule
+    host: 192.168.1.135
+    name: "Laptop Służbowy WiFi"
+    count: 2
+    scan_interval: 2
 
 sonoff:
   username: !secret sonoff_login
