@@ -211,17 +211,36 @@ fan:
     token: !secret air_humidifier
     name: "Air Humidifier"
 
+# cover:
+#   - platform: mqtt
+#     name: "Roleta salon"
+#     command_topic: "home/cover/set"
+#     position_topic: "home/cover/position"
+#     set_position_topic: "home/cover/set_position"
+#     payload_open: "{ state: \"open\" }"
+#     payload_close: "{ state: \"close\" }"
+#     payload_stop: "{ state: \"stop\" }"
+#     retain: false
+#     optimistic: false
+
 cover:
   - platform: mqtt
     name: "Roleta salon"
-    command_topic: "home/cover/set"
-    position_topic: "home/cover/position"
-    set_position_topic: "home/cover/set_position"
-    payload_open: "{ state: \"open\" }"
-    payload_close: "{ state: \"close\" }"
-    payload_stop: "{ state: \"stop\" }"
+    state_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0"
+    command_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command"
+    position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/pos"
+    set_position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command/pos"
+    # availability_topic: "shellies/shellyswitch25-98CDAC24CF74/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    qos: 1
     retain: false
-    optimistic: false
+    payload_open: "open"
+    payload_close: "close"
+    payload_stop: "stop"
+    position_open: 100
+    position_closed: 0
+    optimistic: false 
         
 light:
   - platform: limitlessled
