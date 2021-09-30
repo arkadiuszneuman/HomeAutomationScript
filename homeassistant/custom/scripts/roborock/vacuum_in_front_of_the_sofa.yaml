@@ -1,8 +1,0 @@
-vacuum_in_front_of_the_sofa:
-  alias: 'Przed kanapą'
-  sequence:
-    - service: vacuum.send_command
-      data:
-        entity_id: vacuum.roborock
-        command: app_zoned_clean
-        params:  [[23299,27110,25849,28010,1]]

@@ -1,5 +1,5 @@
-- name: "Running"
+- name: "Bieganie"
   entities: {}
 
-- name: "Stop running"
+- name: "Zakończ bieganie"
   entities: {}

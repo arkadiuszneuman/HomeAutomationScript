@@ -18,7 +18,6 @@ logger:
   logs:
     homeassistant.core: critical
     homeassistant.components.fan: error
-    homeassistant.components.airly: critical
     homeassistant.config_entries: error
 
 # Enables the frontend
@@ -40,8 +39,8 @@ http:
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 # updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
+# Optional, allows Home Assistant developers to focus on popular components.
+# include_used_components: true
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 # conversation:
@@ -64,30 +63,39 @@ system_health:
 tts:
   - platform: google_translate
     service_name: google_say
-    language: 'pl'
+    language: "pl"
 
 # Cloud
 #cloud:
 
 google_assistant:
-  project_id: tidy-elf-231815
-  api_key: !secret google_assistant_api_key
+  project_id: home-assistant-267be
+  service_account: !include google-assistant.json
+  report_state: true
   exposed_domains:
     - switch
     - light
-    - group
     - cover
     - media_player
     - scene
     - script
+  entity_config:
+    scene.dobranoc:
+      name: Goodnight
+    scene.ogladanie_tv:
+      name: "Watch TV"
+    scene.bieganie:
+      name: "Running"
+    scene.zakoncz_bieganie:
+      name: "Stop running"
+    scene.standardowe_oswietlenie:
+      name: "Standard light"
+    scene.wyjscie_z_domu:
+      name: "Out home"
 
 mqtt:
   broker: localhost
 
-hacs:
-  token: !secret hacs_github_token
-
-group: !include groups.yaml
 automation: !include_dir_merge_list custom/automations/
 script: !include_dir_merge_named custom/scripts/
 
@@ -115,20 +123,14 @@ recorder:
       - switch.sonoff_1000513cd0
       - switch.sonoff_1000511f63
       - media_player.spotify
-      - vacuum.roborock
+      - vacuum.roborock_s5
       - media_player.playstation_4
       - !secret steam_sensor_name
-    
 
 influxdb:
   host: localhost
   include:
     entities:
-      - sensor.airly_pm1
-      - sensor.airly_pm25_percent
-      - sensor.airly_pm10_percent
-      - sensor.airly_pm25
-      - sensor.airly_pm10
       - media_player.sony_bravia
       - media_player.denon
       - light.salon_led
@@ -150,7 +152,7 @@ influxdb:
       - sensor.wilgotnosc_przedpokoj
       - media_player.spotify
       - weather.openweathermap
-      - vacuum.roborock
+      - vacuum.roborock_s5
       - media_player.playstation_4
       - !secret steam_sensor_name
       - fan.air_purifier_pro
@@ -191,38 +193,6 @@ sonoff:
   username: !secret sonoff_login
   password: !secret sonoff_pass
 
-vacuum:
-  - platform: xiaomi_miio
-    host: 192.168.1.113
-    token: !secret roborock
-    name: Roborock
-
-fan:
-  - platform: xiaomi_miio
-    host: 192.168.1.121
-    token: !secret air_purifier_pro
-    name: "Air Purifier Pro"
-  - platform: xiaomi_miio
-    host: 192.168.1.119
-    token: !secret air_purifier_2s
-    name: "Air Purifier 2s"
-  - platform: xiaomi_miio
-    host: 192.168.1.112
-    token: !secret air_humidifier
-    name: "Air Humidifier"
-
-# cover:
-#   - platform: mqtt
-#     name: "Roleta salon"
-#     command_topic: "home/cover/set"
-#     position_topic: "home/cover/position"
-#     set_position_topic: "home/cover/set_position"
-#     payload_open: "{ state: \"open\" }"
-#     payload_close: "{ state: \"close\" }"
-#     payload_stop: "{ state: \"stop\" }"
-#     retain: false
-#     optimistic: false
-
 cover:
   - platform: mqtt
     name: "Roleta salon"
@@ -240,21 +210,21 @@ cover:
     payload_stop: "stop"
     position_open: 100
     position_closed: 0
-    optimistic: false 
-        
+    optimistic: false
+
 light:
   - platform: limitlessled
     bridges:
-    - host: 192.168.1.101
-      groups:
-      - number: 1
-        type: rgbww
-        name: Salon LED
-        fade: off
-      - number: 2
-        type: bridge-led
-        name: Grzybek
-        fade: off
+      - host: 192.168.1.101
+        groups:
+          - number: 1
+            type: rgbww
+            name: Salon LED
+            fade: off
+          - number: 2
+            type: bridge-led
+            name: Grzybek
+            fade: off
   - platform: mqtt
     name: "Halogen 1"
     state_topic: "/ESP_Lampy_Salon_Boczne/Relay1/Switch"
@@ -286,20 +256,9 @@ light:
     payload_on: "0"
     payload_off: "1"
 
-
-media_player:
-  - platform: braviatv
-    name: "Sony Bravia"
-    host: 192.168.1.108
-  - platform: spotify
-    client_id: !secret spotify_clientid
-    client_secret: !secret spotify_clientsecret
-  - platform: denon
-    host: 192.168.1.100
-
-cast:
-  media_player:
-    - host: 192.168.1.108
+spotify:
+  client_id: !secret spotify_clientid
+  client_secret: !secret spotify_clientsecret
 
 input_number:
   denon_volume:
@@ -314,19 +273,16 @@ input_number:
     min: 0
     max: 100
     step: 1
-    unit_of_measurement: '%'
+    unit_of_measurement: "%"
   stairs_max_brightness:
     name: Maksymalna jasność schodów
     initial: 100
     min: 0
     max: 100
     step: 1
-    unit_of_measurement: '%'
+    unit_of_measurement: "%"
 
 input_boolean:
-  notify_weather:
-    name: Informuj o pogodzie po zejściu
-    initial: off
   auto_office_light:
     name: Automatycznie steruj oświetleniem w salonie
     initial: true

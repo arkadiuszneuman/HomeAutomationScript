@@ -1,38 +1,38 @@
 vacuum_clean_floor:
-  alias: 'Potrójne sprzątanie piętra'
+  alias: "Potrójne sprzątanie"
   sequence:
     - service: vacuum.start
       data:
-        entity_id: vacuum.roborock
-    - delay: '00:00:01'
+        entity_id: vacuum.roborock_s5
+    - delay: "00:00:01"
     - service: vacuum.set_fan_speed
       data:
-        entity_id: vacuum.roborock
-        fan_speed: 100
-    - wait_template: "{{ is_state('vacuum.roborock', 'docked') or is_state('vacuum.roborock', 'idle') }}"
-      timeout: '01:30:00'
-      continue_on_timeout: 'false'
+        entity_id: vacuum.roborock_s5
+        fan_speed: Turbo
+    - wait_template: "{{ is_state('vacuum.roborock_s5', 'docked') or is_state('vacuum.roborock_s5', 'idle') }}"
+      timeout: "01:30:00"
+      continue_on_timeout: "false"
 
     - service: vacuum.start
       data:
-        entity_id: vacuum.roborock
-    - delay: '00:00:01'
+        entity_id: vacuum.roborock_s5
+    - delay: "00:00:01"
     - service: vacuum.set_fan_speed
       data:
-        entity_id: vacuum.roborock
-        fan_speed: 105
-    - wait_template: "{{ is_state('vacuum.roborock', 'docked') or is_state('vacuum.roborock', 'idle') }}"
-      timeout: '01:30:00'
-      continue_on_timeout: 'false'
+        entity_id: vacuum.roborock_s5
+        fan_speed: Gentle
+    - wait_template: "{{ is_state('vacuum.roborock_s5', 'docked') or is_state('vacuum.roborock_s5', 'idle') }}"
+      timeout: "01:30:00"
+      continue_on_timeout: "false"
 
     - service: vacuum.start
       data:
-        entity_id: vacuum.roborock
-    - delay: '00:00:01'
+        entity_id: vacuum.roborock_s5
+    - delay: "00:00:01"
     - service: vacuum.set_fan_speed
       data:
-        entity_id: vacuum.roborock
-        fan_speed: 105
-    - wait_template: "{{ is_state('vacuum.roborock', 'docked') or is_state('vacuum.roborock', 'idle') }}"
-      timeout: '01:30:00'
-      continue_on_timeout: 'false'
+        entity_id: vacuum.roborock_s5
+        fan_speed: Gentle
+    - wait_template: "{{ is_state('vacuum.roborock_s5', 'docked') or is_state('vacuum.roborock_s5', 'idle') }}"
+      timeout: "01:30:00"
+      continue_on_timeout: "false"

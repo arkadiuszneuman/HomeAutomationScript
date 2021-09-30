@@ -13,16 +13,16 @@ namespace AutomationRunner.Core.Entities
     {
         public enum Name
         {
-            [EntityId("media_player.denon")]
+            [EntityId("media_player.denon_avr_x1400h")]
             Denon,
 
             [EntityId("media_player.playstation_4")]
             Playstation4,
 
-            [EntityId("media_player.sony_bravia")]
+            [EntityId("media_player.sony_bravia_tv")]
             Tv,
 
-            [EntityId("media_player.spotify")]
+            [EntityId("media_player.spotify_arkadiusz_neuman")]
             Spotify
         }
 

@@ -2,8 +2,8 @@ version: '2'
 services:
   ha:
     image: "homeassistant/raspberrypi3-homeassistant:0.91.4"
-    ports:
-     - 8123:8123
+    # ports:
+     # - 8123:8123
     volumes: 
       - ./homeassistant:/config
       - /etc/letsencrypt:/etc/letsencrypt
@@ -12,8 +12,8 @@ services:
 
   grafana:
     image: "proxx/grafana-armv7:6.1.1"
-    ports:
-      - 3000:3000
+    # ports:
+      # - 3000:3000
     volumes:
       - ./grafana:/var/lib/grafana
     user: "root"
@@ -24,8 +24,8 @@ services:
     build:
       context: ./services/DataCollector
       dockerfile: Dockerfile
-    ports:
-      - 5000:5000
+    # ports:
+      # - 5000:5000
     environment: 
       - WRAPPER_ENVIRONMENT=Docker
     network_mode: host

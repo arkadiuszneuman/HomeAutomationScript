@@ -1,8 +1,0 @@
-vacuum_next_to_the_window:
-  alias: 'Przy oknie'
-  sequence:
-    - service: vacuum.send_command
-      data:
-        entity_id: vacuum.roborock
-        command: app_zoned_clean
-        params: [[22739,25485,23489,28485,1]]

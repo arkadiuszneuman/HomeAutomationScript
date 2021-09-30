@@ -10,7 +10,7 @@ namespace AutomationRunner.Core.Scenes.Specific
     public class RunningScene  : IScene
     {
         private readonly HomeAssistantConnector connector;
-        public string Name => "scene.running";
+        public string Name => "scene.bieganie";
         
         public RunningScene(HomeAssistantConnector connector)
         {
@@ -32,7 +32,7 @@ namespace AutomationRunner.Core.Scenes.Specific
     {
         private readonly HomeAssistantConnector connector;
         private readonly OfficeLightAutomation officeLightAutomation;
-        public string Name => "scene.stop_running";
+        public string Name => "scene.zakoncz_bieganie";
         
         public StopRunningScene(HomeAssistantConnector connector,
             OfficeLightAutomation officeLightAutomation)
