@@ -12,3 +12,4 @@ services/PythonServices/MailSender/secrets.json
 services/PythonServices/MailSender/cache.json
 services/AutomationRunner/AutomationRunner/secrets.json
 .vs/
+homeassistant/google-assistant.json
