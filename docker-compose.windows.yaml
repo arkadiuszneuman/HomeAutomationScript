@@ -1,9 +1,9 @@
 version: "2"
 services:
   ha:
-    image: homeassistant/home-assistant:2021.9
+    image: homeassistant/home-assistant:2021.10
     # ports:
-      # - 8123:8123
+    # - 8123:8123
     volumes:
       - ./homeassistant:/config
       - /etc/timezone:/etc/timezone:ro
@@ -16,7 +16,7 @@ services:
   grafana:
     image: "grafana/grafana:8.0.4"
     # ports:
-      # - 3000:3000
+    # - 3000:3000
     volumes:
       - ./grafana:/var/lib/grafana
       - /etc/timezone:/etc/timezone:ro
@@ -29,7 +29,7 @@ services:
     image: mysql:8.0.25
     command: --default-authentication-plugin=mysql_native_password
     # ports:
-      # - 3306:3306
+    # - 3306:3306
     volumes:
       - ./mysql:/var/lib/mysql
       - /etc/timezone:/etc/timezone:ro

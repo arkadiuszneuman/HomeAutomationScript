@@ -19,10 +19,10 @@ namespace AutomationRunner.Core.Entities
     {
         public enum Name
         {
-            [EntityId("fan.air_purifier_pro")]
+            [EntityId("fan.filtr_powietrza")]
             AirPurifierPro,
 
-            [EntityId("fan.air_purifier_2s")]
+            [EntityId("fan.mi_air_purifier_2s")]
             AirPurifier2S
         }
 

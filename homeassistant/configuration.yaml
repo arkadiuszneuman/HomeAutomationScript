@@ -155,9 +155,9 @@ influxdb:
       - vacuum.roborock_s5
       - media_player.playstation_4
       - !secret steam_sensor_name
-      - fan.air_purifier_pro
+      - fan.filtr_powietrza
       - fan.air_humidifier
-      - fan.air_purifier_2s
+      - fan.mi_air_purifier_2s
       - sensor.sunlight_pct
 
 binary_sensor:
