@@ -81,17 +81,28 @@ google_assistant:
     - script
   entity_config:
     scene.dobranoc:
-      name: Goodnight
+      name: "Goodnight"
+      aliases:
+        - Goodnight
+        - "See you"
+        - "Bye"
+        - "Bye bye"
     scene.ogladanie_tv:
       name: "Watch TV"
     scene.bieganie:
       name: "Running"
     scene.zakoncz_bieganie:
-      name: "Stop running"
+      name: "Running Stop"
     scene.standardowe_oswietlenie:
       name: "Standard light"
     scene.wyjscie_z_domu:
       name: "Out home"
+      aliases:
+        - "Out home"
+    scene.swiatlo_zewnetrzne:
+      name: "External and garden light"
+      aliases:
+        - "External and garden light"
 
 mqtt:
   broker: localhost
@@ -107,7 +118,7 @@ recorder:
   purge_interval: 0
   include:
     entities:
-      - media_player.sony_bravia
+      - media_player.sony_bravia_tv
       - media_player.denon
       - light.salon_led
       - light.grzybek
@@ -122,16 +133,19 @@ recorder:
       - switch.sonoff_100051420f
       - switch.sonoff_1000513cd0
       - switch.sonoff_1000511f63
-      - media_player.spotify
+      - media_player.spotify_arkadiusz_neuman
       - vacuum.roborock_s5
       - media_player.playstation_4
       - !secret steam_sensor_name
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.speedtest_ping
 
 influxdb:
   host: localhost
   include:
     entities:
-      - media_player.sony_bravia
+      - media_player.sony_bravia_tv
       - media_player.denon
       - light.salon_led
       - light.grzybek
@@ -150,7 +164,7 @@ influxdb:
       - switch.sonoff_1000511f63
       - sensor.temperatura_przedpokoj
       - sensor.wilgotnosc_przedpokoj
-      - media_player.spotify
+      - media_player.spotify_arkadiusz_neuman
       - weather.openweathermap
       - vacuum.roborock_s5
       - media_player.playstation_4
@@ -159,6 +173,9 @@ influxdb:
       - fan.air_humidifier
       - fan.mi_air_purifier_2s
       - sensor.sunlight_pct
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.speedtest_ping
 
 binary_sensor:
   - platform: workday
@@ -186,6 +203,11 @@ binary_sensor:
   - platform: ping #need to add ip of HA to firewall rule
     host: 192.168.1.135
     name: "Laptop Służbowy WiFi"
+    count: 2
+    scan_interval: 2
+  - platform: ping #need to add ip of HA to firewall rule
+    host: 192.168.1.136
+    name: "Komputer stacjonarny"
     count: 2
     scan_interval: 2
 
@@ -255,10 +277,6 @@ light:
     command_topic: "/ESP_Przedpokoj/gpio/12"
     payload_on: "0"
     payload_off: "1"
-
-spotify:
-  client_id: !secret spotify_clientid
-  client_secret: !secret spotify_clientsecret
 
 input_number:
   denon_volume:

@@ -23,8 +23,7 @@ namespace AutomationRunner.Core.Scenes.Specific
             var tvleds = await RgbLight.LoadFromEntityId(connector, RgbLight.Name.TvLEDs);
             var stairs = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.StairsMinimumBrightness);
 
-            var lights = await Light.LoadFromEntitiesId(connector, Light.Name.Halogen1, Light.Name.Halogen2, Light.Name.Halogen3,
-                Light.Name.Halogen4);
+            var lights = await Light.LoadFromEntitiesId(connector, Light.Name.Halogen1);
 
             await tvleds.TurnOnStandardWhite();
             await lights.TurnOnAll();

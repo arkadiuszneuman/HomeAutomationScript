@@ -1,10 +1,10 @@
 version: "2"
 services:
   influxdb:
-    image: "influxdb:2.0.7"
+    image: "influxdb:2.1"
     # ports:
-      # - 8086:8086
-      # - 8083:8083
+    # - 8086:8086
+    # - 8083:8083
     volumes:
       - ./influxdb:/var/lib/influxdb
       - /etc/timezone:/etc/timezone:ro
@@ -13,29 +13,32 @@ services:
       - INFLUXDB_DB=home_assistant
     network_mode: host
     container_name: influxdb
+    restart: unless-stopped
 
   rabbitmq:
-    image: "rabbitmq:3.8.18-management"
+    image: "rabbitmq:3.9-management"
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     # ports:
-      # - 5672:5672
-      # - 15672:15672
+    # - 5672:5672
+    # - 15672:15672
     network_mode: host
     container_name: rabbit
+    restart: unless-stopped
 
   mosquitto:
-    image: "eclipse-mosquitto:2.0.11"
+    image: "eclipse-mosquitto:2.0"
     # ports:
-      # - 1883:1883
-      # - 9001:9001
+    # - 1883:1883
+    # - 9001:9001
     volumes:
       - ./mosquitto:/mosquitto
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     network_mode: host
     container_name: mosquitto
+    restart: unless-stopped
 
   start_dependencies:
     image: dadarek/wait-for-dependencies

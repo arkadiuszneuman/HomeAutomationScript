@@ -79,14 +79,14 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
             {
                 var level = Math.Min((airPurifier.Aqi / 10) + 3, 16);
 
-                if (airPurifier.Speed != AirPurifierSpeed.Favorite ||
+                if (airPurifier.PresetMode != AirPurifierPresetMode.Favorite ||
                     airPurifier.FavoriteLevel != level)
                 {
                     logger.LogInformation("Changing speed of {EntityId} to {Level}",
                             airPurifier.EntityId, level);
 
-                    await airPurifier.SetLevel(level);
-                    await airPurifier.SetSpeed(AirPurifierSpeed.Favorite);
+                    await airPurifier.SetFavoriteLevel(level);
+                    await airPurifier.SetPresetMode(AirPurifierPresetMode.Favorite);
                 }
             }
         }

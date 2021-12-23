@@ -17,7 +17,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
         private readonly HomeAssistantConnector connector;
         private readonly HomeAssistantWebSocketConnector webSocketConnector;
         private readonly IEnumerable<IEntityStateAutomation> stateAutomations;
-        private readonly IEnumerable<IEntitiesStateAutomation> entitesStatesAutomations;
+        private readonly IEnumerable<IEntitiesStateAutomation> entitiesStatesAutomations;
         private readonly IEnumerable<ITimeUpdate> timeUpdateAutomations;
         private readonly IDateTimeHelper dateTimeHelper;
 
@@ -29,7 +29,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
             HomeAssistantConnector connector,
             HomeAssistantWebSocketConnector webSocketConnector,
             IEnumerable<IEntityStateAutomation> entityStateAutomations,
-            IEnumerable<IEntitiesStateAutomation> entitesStatesAutomations,
+            IEnumerable<IEntitiesStateAutomation> entitiesStatesAutomations,
             IEnumerable<ITimeUpdate> timeUpdateAutomations,
             IDateTimeHelper dateTimeHelper)
         {
@@ -37,7 +37,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
             this.connector = connector;
             this.webSocketConnector = webSocketConnector;
             this.stateAutomations = entityStateAutomations;
-            this.entitesStatesAutomations = entitesStatesAutomations;
+            this.entitiesStatesAutomations = entitiesStatesAutomations;
             this.timeUpdateAutomations = timeUpdateAutomations;
             this.dateTimeHelper = dateTimeHelper;
         }
@@ -78,7 +78,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
                 }
                 catch (HttpRequestException)
                 {
-                    logger.LogWarning($"Cannot connect HomeAssistant. Retrying...");
+                    logger.LogWarning("Cannot connect HomeAssistant. Retrying...");
                 }
                 catch (Exception exception)
                 {
@@ -92,24 +92,27 @@ namespace AutomationRunner.Core.Automations.Supervisor
 
         private async Task OnStateChanged(OldNewState oldNewState)
         {
-            await connector.RefreshStates();
-
-            IEnumerable<IStateUpdate> singleEntityStateAutomations = stateAutomations
-                .Where(s => s.EntityName == oldNewState.NewState.EntityId);
-
-            IEnumerable<IStateUpdate> manyEntitiesStateAutomations = entitesStatesAutomations
-                .Where(s => s.EntityNames.Contains(oldNewState.NewState.EntityId));
-
-            foreach (var automation in singleEntityStateAutomations.Union(manyEntitiesStateAutomations))
+            if (oldNewState.OldState is not null && oldNewState.NewState is not null)
             {
-                var shouldUpdate = true;
-                if (automation is IShouldUpdate shouldUpdateAutomation)
-                    shouldUpdate = await shouldUpdateAutomation.ShouldUpdate(oldNewState.OldState, oldNewState.NewState);
-                
-                if (shouldUpdate)
+                await connector.RefreshStates();
+
+                IEnumerable<IStateUpdate> singleEntityStateAutomations = stateAutomations
+                    .Where(s => s.EntityName == oldNewState.NewState?.EntityId);
+
+                IEnumerable<IStateUpdate> manyEntitiesStateAutomations = entitiesStatesAutomations
+                    .Where(s => s.EntityNames.Contains(oldNewState.NewState?.EntityId));
+
+                foreach (var automation in singleEntityStateAutomations.Union(manyEntitiesStateAutomations))
                 {
-                    logger.LogInformation("Starting state automation {automation}", automation);
-                    _ = automation.Update(oldNewState.OldState, oldNewState.NewState);
+                    var shouldUpdate = true;
+                    if (automation is IShouldUpdate shouldUpdateAutomation)
+                        shouldUpdate = await shouldUpdateAutomation.ShouldUpdate(oldNewState.OldState, oldNewState.NewState);
+
+                    if (shouldUpdate)
+                    {
+                        logger.LogInformation("Starting state automation {Automation}", automation);
+                        _ = automation.Update(oldNewState.OldState, oldNewState.NewState);
+                    }
                 }
             }
         }

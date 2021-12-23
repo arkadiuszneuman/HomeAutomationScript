@@ -95,13 +95,15 @@ namespace AutomationRunner.Core.Common.Connector
         private async Task HandleStateChangedEvent(string response)
         {
             var stateChangedObject = JsonSerializer.DeserializeObject<StateChangedResponse>(response);
-            stateChangedObject.Event.Data.NewState.Connector
-                = stateChangedObject.Event.Data.OldState.Connector
-                = connector;
+            if (stateChangedObject.Event?.Data?.NewState != null)
+                stateChangedObject.Event.Data.NewState.Connector = connector;
+            
+            if (stateChangedObject.Event?.Data?.OldState != null)
+                stateChangedObject.Event.Data.OldState.Connector = connector;
 
             foreach (var subscribedStateChangedAction in subscribedStateChangedActions.Values)
-                await subscribedStateChangedAction(new OldNewState(stateChangedObject.Event.Data.OldState,
-                    stateChangedObject.Event.Data.NewState));
+                await subscribedStateChangedAction(new OldNewState(stateChangedObject.Event?.Data?.OldState,
+                    stateChangedObject.Event?.Data?.NewState));
         }
 
         public Guid SubscribeActivateScene(Func<string, Task> action)

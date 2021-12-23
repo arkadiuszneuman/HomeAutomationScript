@@ -58,13 +58,13 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     logger.LogInformation("Turning off {EntityId}, because of night", airPurifier.EntityId);
                     await airPurifier.TurnOff();
                 }
-
+            
                 turnOnCondition.Reset();
                 turnOffCondition.Reset();
-
+            
                 return;
             }
-
+            
             if (turnOffCondition.CheckFulfilled(airPurifier.Aqi <= turningOffValue))
             {
                 if (airPurifier.State == "on")
@@ -74,7 +74,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     await airPurifier.TurnOff();
                 }
             }
-
+            
             if (turnOnCondition.CheckFulfilled(airPurifier.Aqi > turningOffValue))
             {
                 if (airPurifier.State == "off")
@@ -84,30 +84,30 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                     await airPurifier.TurnOn();
                 }
             }
-
+            
             if (airPurifier.State == "on")
             {
                 if (airPurifier.Aqi < 20)
                 {
-                    if (airPurifier.Speed != AirPurifierSpeed.Auto)
+                    if (airPurifier.PresetMode != AirPurifierPresetMode.Auto)
                     {
                         logger.LogInformation("Changing speed of {EntityId} to {Speed}",
-                            airPurifier.EntityId, AirPurifierSpeed.Auto);
-                        await airPurifier.SetSpeed(AirPurifierSpeed.Auto);
+                            airPurifier.EntityId, AirPurifierPresetMode.Auto);
+                        await airPurifier.SetPresetMode(AirPurifierPresetMode.Auto);
                     }
                 }
                 else
                 {
                     var level = Math.Min((airPurifier.Aqi / 10) + 1, 16);
-
-                    if (airPurifier.Speed != AirPurifierSpeed.Favorite ||
+            
+                    if (airPurifier.PresetMode != AirPurifierPresetMode.Favorite ||
                         airPurifier.FavoriteLevel != level)
                     {
                         logger.LogInformation("Changing speed of {EntityId} to {Level}",
                                airPurifier.EntityId, level);
-
-                        await airPurifier.SetLevel(level);
-                        await airPurifier.SetSpeed(AirPurifierSpeed.Favorite);
+            
+                        await airPurifier.SetFavoriteLevel(level);
+                        await airPurifier.SetPresetMode(AirPurifierPresetMode.Favorite);
                     }
                 }
             }

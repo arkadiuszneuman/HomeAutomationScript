@@ -1,14 +1,13 @@
-﻿using AutomationRunner.Core.Common;
+﻿using System;
+using AutomationRunner.Core.Common;
 using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities.Services.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
 {
-    public enum AirPurifierSpeed
+    public enum AirPurifierPresetMode
     {
         Auto,
         Favorite,
@@ -26,15 +25,20 @@ namespace AutomationRunner.Core.Entities
             AirPurifier2S
         }
 
-        public int Aqi => GetAttributeValue<int>(nameof(Aqi));
-        public int Humidity =>GetAttributeValue<int>(nameof(Humidity));
-        public int Temperature => GetAttributeValue<int>(nameof(Temperature));
-        public int FavoriteLevel => GetAttributeValue<int>("favorite_level");
-        public AirPurifierSpeed Speed => GetAttributeValue<AirPurifierSpeed>(nameof(Speed));
+        public int Aqi => Convert.ToInt32(pm25Sensor.State);
+        public int FavoriteLevel => Convert.ToInt32(favoriteLevelNumber.State);
+        public AirPurifierPresetMode PresetMode => GetAttributeValue<AirPurifierPresetMode>("preset_mode");
+
+        private BaseEntity pm25Sensor;
+        private BaseEntity favoriteLevelNumber;
 
         public static async Task<XiaomiAirPurifier> LoadFromEntityId(HomeAssistantConnector connector, Name entityId)
         {
-            return await connector.LoadEntityFromStates<XiaomiAirPurifier>(entityId.GetEntityId());
+            var purifier =  await connector.LoadEntityFromStates<XiaomiAirPurifier>(entityId.GetEntityId());
+            purifier.pm25Sensor = await connector.LoadEntityFromStates<BaseEntity>($"sensor.{entityId.GetEntityId().Replace(".", "")}_pm2_5");
+            purifier.favoriteLevelNumber = await connector.LoadEntityFromStates<BaseEntity>($"number.{entityId.GetEntityId().Replace(".", "")}_favorite_level");
+
+            return purifier;
         }
 
         public async Task TurnOn()
@@ -49,15 +53,15 @@ namespace AutomationRunner.Core.Entities
             State = "off";
         }
 
-        public async Task SetSpeed(AirPurifierSpeed speed)
+        public async Task SetPresetMode(AirPurifierPresetMode presetMode)
         {
-            await Connector.SendService("fan.set_speed", new SetSpeedService(EntityId, speed.ToString()));
+            await Connector.SendService("fan.set_preset_mode", new SetPresetModeService(EntityId, presetMode.ToString()));
         }
 
-        public async Task SetLevel(int level)
+        public async Task SetFavoriteLevel(int level)
         {
-            await Connector.SendService("fan.xiaomi_miio_set_favorite_level",
-                new XiaomiMiioSetFavoriteLevelService(EntityId, level));
+            await Connector.SendService("number.set_value",
+                new XiaomiMiioSetFavoriteLevelService($"number.{EntityId.Replace(".", "")}_favorite_level", level));
         }
     }
 }

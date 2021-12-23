@@ -46,7 +46,7 @@ namespace AutomationRunner.Core.Entities
 
         public async Task SetSpeed(AirHumidifierSpeed speed)
         {
-            await Connector.SendService("fan.set_speed", new SetSpeedService(EntityId, speed.ToString()));
+            await Connector.SendService("fan.set_speed", new SetPresetModeService(EntityId, speed.ToString()));
         }
     }
 }

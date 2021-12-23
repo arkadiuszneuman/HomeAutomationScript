@@ -1,66 +1,71 @@
-version: '2'
+version: "2"
 services:
   ha:
     image: "homeassistant/raspberrypi3-homeassistant:0.91.4"
     # ports:
-     # - 8123:8123
-    volumes: 
+    # - 8123:8123
+    volumes:
       - ./homeassistant:/config
       - /etc/letsencrypt:/etc/letsencrypt
     network_mode: host
     container_name: ha
+    restart: unless-stopped
 
   grafana:
     image: "proxx/grafana-armv7:6.1.1"
     # ports:
-      # - 3000:3000
+    # - 3000:3000
     volumes:
       - ./grafana:/var/lib/grafana
     user: "root"
     network_mode: host
     container_name: grafana
-    
+    restart: unless-stopped
+
   data-collector:
     build:
       context: ./services/DataCollector
       dockerfile: Dockerfile
     # ports:
-      # - 5000:5000
-    environment: 
+    # - 5000:5000
+    environment:
       - WRAPPER_ENVIRONMENT=Docker
     network_mode: host
     container_name: dc
+    restart: unless-stopped
 
   home-assistant-wrapper:
-    build: 
+    build:
       context: ./services/Services.Wrapper.HomeAssistant
       dockerfile: Dockerfile
-    environment: 
+    environment:
       - WRAPPER_ENVIRONMENT=Docker
     network_mode: host
     container_name: haw
+    restart: unless-stopped
 
   backup-creator:
-    build: 
+    build:
       context: ./services/Services.BackupCreator
       dockerfile: Dockerfile
-    environment: 
+    environment:
       - WRAPPER_ENVIRONMENT=Docker
       - HOST=Rpi
     volumes:
       - ./:/maindir
     network_mode: host
     container_name: bc
+    restart: unless-stopped
 
   automation-runner:
-    build: 
+    build:
       context: ./services/AutomationRunner
       dockerfile: Dockerfile
-    environment: 
+    environment:
       - WRAPPER_ENVIRONMENT=Docker
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     network_mode: host
     container_name: ar
-  
+    restart: unless-stopped

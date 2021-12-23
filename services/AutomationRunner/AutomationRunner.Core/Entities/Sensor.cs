@@ -11,7 +11,9 @@ namespace AutomationRunner.Core.Entities
             [EntityId("binary_sensor.laptop_ethernet")]
             LaptopEthernet,
             [EntityId("binary_sensor.laptop_sluzbowy_wifi")]
-            BusinessLaptopWifi
+            BusinessLaptopWifi,
+            [EntityId("binary_sensor.komputer_stacjonarny")]
+            DesktopComputer
         }
     }
 }

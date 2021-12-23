@@ -13,3 +13,6 @@ services/PythonServices/MailSender/cache.json
 services/AutomationRunner/AutomationRunner/secrets.json
 .vs/
 homeassistant/google-assistant.json
+grafana/
+homeassistant/home-assistant.log.1
+homeassistant/home-assistant.log.fault

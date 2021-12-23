@@ -4,15 +4,15 @@ namespace AutomationRunner.Core.Entities.Services.Models
 {
     public class XiaomiMiioSetFavoriteLevelService : EntityIdService
     {
-        public XiaomiMiioSetFavoriteLevelService(string entityId, int level)
+        public XiaomiMiioSetFavoriteLevelService(string entityId, int value)
             : base(entityId)
         {
-            if (level < 0 || level > 16)
+            if (value < 0 || value > 16)
                 throw new ValidationException("Level should be between 0 and 16");
 
-            Level = level;
+            Value = value;
         }
 
-        public int Level { get; private set; }
+        public int Value { get; private set; }
     }
 }
