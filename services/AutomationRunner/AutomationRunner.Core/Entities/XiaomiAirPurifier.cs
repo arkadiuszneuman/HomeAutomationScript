@@ -25,7 +25,8 @@ namespace AutomationRunner.Core.Entities
             AirPurifier2S
         }
 
-        public int Aqi => Convert.ToInt32(pm25Sensor.State);
+        public int Aqi => int.TryParse(pm25Sensor.State, out var value) ? value : 0;
+
         public int FavoriteLevel => Convert.ToInt32(favoriteLevelNumber.State);
         public AirPurifierPresetMode PresetMode => GetAttributeValue<AirPurifierPresetMode>("preset_mode");
 
