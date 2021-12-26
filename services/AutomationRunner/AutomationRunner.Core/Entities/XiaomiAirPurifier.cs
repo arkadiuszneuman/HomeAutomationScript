@@ -9,7 +9,7 @@ namespace AutomationRunner.Core.Entities
 {
     public enum AirPurifierPresetMode
     {
-        Auto,
+        Auto = 1,
         Favorite,
         Silent
     }

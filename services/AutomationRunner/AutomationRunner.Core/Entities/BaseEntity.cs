@@ -22,7 +22,12 @@ namespace AutomationRunner.Core.Entities
             var attributeValue = Attributes[name.ToLower()];
 
             if (typeof(T).IsEnum)
+            {
+                if (attributeValue is null)
+                    return default;
+                
                 return (T)Enum.Parse(typeof(T), attributeValue.ToString());
+            }
 
             return (T)Convert.ChangeType(attributeValue, typeof(T));
         }
