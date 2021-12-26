@@ -14,7 +14,7 @@ namespace AutomationRunner.Core.Automations.Specific.Christmas
         private bool doneToday;
         public TimeSpan UpdateEvery => TimeSpan.FromMinutes(5);
 
-        public static TimeSpan SwitchOffOn = new TimeSpan(21, 0, 0);
+        public static TimeSpan SwitchOffOn = new(21, 0, 0);
 
         public ChristmasAutomation(HomeAssistantConnector connector,
             IDateTimeHelper dateTimeHelper)
