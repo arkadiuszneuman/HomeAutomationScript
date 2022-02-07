@@ -93,6 +93,10 @@ google_assistant:
       name: "Running"
     scene.zakoncz_bieganie:
       name: "Running Stop"
+      aliases:
+        - "Running stop"
+        - "Stop running"
+        - "Rest"
     scene.standardowe_oswietlenie:
       name: "Standard light"
     scene.wyjscie_z_domu:
@@ -299,6 +303,12 @@ input_number:
     max: 100
     step: 1
     unit_of_measurement: "%"
+  minimum_light_for_light:
+    name: Minimalny procent światła
+    initial: 30
+    min: 1
+    max: 100
+    step: 1
 
 input_boolean:
   auto_office_light:
@@ -309,11 +319,6 @@ notify:
   - platform: pushbullet
     name: push
     api_key: !secret pushbullet_api_key
-
-weather:
-  - platform: openweathermap
-    api_key: !secret openweathermap_api_key
-    mode: daily
 
 input_select:
   air_purifier_2s_automation_type:

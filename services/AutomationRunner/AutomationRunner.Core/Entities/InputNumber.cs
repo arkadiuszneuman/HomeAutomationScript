@@ -5,7 +5,7 @@ using AutomationRunner.Core.Entities.Services.Models;
 using AutomationRunner.Core.Entities.Validators;
 using FluentValidation;
 using System;
-using System.Buffers.Text;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
@@ -21,8 +21,13 @@ namespace AutomationRunner.Core.Entities
             StairsMinimumBrightness,
 
             [EntityId("input_number.stairs_max_brightness")]
-            StairsMaximumBrightness
+            StairsMaximumBrightness,
+            
+            [EntityId("input_number.minimum_light_for_light")]
+            MinimumLightForLight
         }
+
+        public decimal Value => Convert.ToDecimal(State, new CultureInfo("en-US"));
 
         public static InputNumber CreateBasedOnBaseEntity(BaseEntity oldState)
         {

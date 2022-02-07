@@ -18,7 +18,8 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             Sensor.Name.Sunlight.GetEntityId(),
             Sensor.Name.LaptopEthernet.GetEntityId(),
             Sensor.Name.BusinessLaptopWifi.GetEntityId(),
-            Sensor.Name.DesktopComputer.GetEntityId()
+            Sensor.Name.DesktopComputer.GetEntityId(),
+            InputNumber.Name.MinimumLightForLight.GetEntityId()
         };
 
         public OfficeLightAutomation(HomeAssistantConnector connector,
@@ -53,15 +54,16 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             var businessLaptop = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.BusinessLaptopWifi.GetEntityId());
             var computer = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.DesktopComputer.GetEntityId());
             var sunlight = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.Sunlight.GetEntityId());
+            var minimumLightForLight = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.MinimumLightForLight);
 
             if (laptopEthernet.State == "on" || businessLaptop.State == "on" || computer.State == "on")
             {
                 if (!int.TryParse(sunlight.State, out var result))
                     return false;
                 
-                var minimumSunState = 30;
+                var minimumSunState = minimumLightForLight.Value;
                 if (dateTimeHelper.Now.TimeOfDay > new TimeSpan(12, 0, 0))
-                    minimumSunState = 11;
+                    minimumSunState = minimumLightForLight.Value - 5;
 
                 return result <= minimumSunState;
             }
