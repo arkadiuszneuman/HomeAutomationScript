@@ -25,6 +25,13 @@ namespace AutomationRunner.Core.Entities
             [EntityId("media_player.spotify_arkadiusz_neuman")]
             Spotify
         }
+        
+        public enum RepeatMode
+        {
+            All,
+            One,
+            Off
+        }
 
         public static async Task<MediaPlayer> LoadFromEntityId(HomeAssistantConnector entityLoader, Name lightName)
         {
@@ -63,6 +70,15 @@ namespace AutomationRunner.Core.Entities
 
         public async Task SetVolumeLevel(int volume) =>
             await Connector.SendService("media_player.volume_set", new VolumeServiceModel(EntityId, volume));
+
+        public async Task Play() => 
+            await Connector.SendService("media_player.media_play", new EntityIdService(EntityId));
+        
+        public async Task PlayMedia(string contentId, string contentType) => 
+            await Connector.SendService("media_player.play_media", new PlayMediaServiceModel(EntityId, contentId, contentType));
+
+        public async Task SetRepeat(RepeatMode repeatMode) => 
+            await Connector.SendService("media_player.repeat_set", new RepeatModeServiceModel(EntityId, repeatMode));
 
         public static MediaPlayer CreateBasedOnBaseEntity(BaseEntity state)
         {

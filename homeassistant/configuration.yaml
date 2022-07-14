@@ -107,6 +107,10 @@ google_assistant:
       name: "External and garden light"
       aliases:
         - "External and garden light"
+    scene.paulina_idzie_spac:
+      name: "Paulina goes to sleep"
+      aliases:
+        - "Paulina goes to sleep"
 
 mqtt:
   broker: localhost
@@ -210,7 +214,7 @@ binary_sensor:
     count: 2
     scan_interval: 2
   - platform: ping #need to add ip of HA to firewall rule
-    host: 192.168.1.136
+    host: 192.168.1.140
     name: "Komputer stacjonarny"
     count: 2
     scan_interval: 2
@@ -314,6 +318,9 @@ input_boolean:
   auto_office_light:
     name: Automatycznie steruj oświetleniem w salonie
     initial: true
+  holiday_mode:
+    name: Tryb wakacyjny
+    initial: false
 
 notify:
   - platform: pushbullet
@@ -327,3 +334,7 @@ input_select:
       - Sypialnia
       - Trening na bieżni
     icon: mdi:format-list-bulleted-type
+
+spotify:
+  client_id: !secret spotify_clientid
+  client_secret: !secret spotify_clientsecret

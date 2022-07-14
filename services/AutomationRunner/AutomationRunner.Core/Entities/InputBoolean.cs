@@ -9,7 +9,9 @@ namespace AutomationRunner.Core.Entities
         public enum Name
         {
             [EntityId("input_boolean.auto_office_light")]
-            AutomaticOfficeLight
+            AutomaticOfficeLight,
+            [EntityId("input_boolean.holiday_mode")]
+            HolidayMode
         }
 
         public bool IsSwitchedOn() => State == "on";
