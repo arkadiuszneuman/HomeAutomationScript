@@ -74,10 +74,12 @@ public class HolidayModeAutomation : BaseAutomation, IEntitiesStateAutomation, I
                     }
                 }
 
-                if (result < 4 && dateTimeHelper.Now.TimeOfDay > new TimeSpan(8, 0, 0) && dateTimeHelper.Now.TimeOfDay < new TimeSpan(23,
-                        new Random().Next(0, 50), 0))
+                if (result < 4)
                 {
-                    await allLights.TurnOnAll();
+                    if (dateTimeHelper.Now.TimeOfDay > new TimeSpan(8, 0, 0) && dateTimeHelper.Now.TimeOfDay < new TimeSpan(23, 12, 0))
+                        await allLights.TurnOffAll();
+                    else 
+                        await allLights.TurnOnAll();
                 }
                 else
                 {
