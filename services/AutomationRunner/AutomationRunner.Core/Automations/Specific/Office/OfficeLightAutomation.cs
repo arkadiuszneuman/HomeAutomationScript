@@ -18,6 +18,7 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             Sensor.Name.Sunlight.GetEntityId(),
             Sensor.Name.LaptopEthernet.GetEntityId(),
             Sensor.Name.BusinessLaptopWifi.GetEntityId(),
+            Sensor.Name.LaptopWifi.GetEntityId(),
             Sensor.Name.DesktopComputer.GetEntityId(),
             InputNumber.Name.MinimumLightForLight.GetEntityId()
         };
@@ -52,11 +53,12 @@ namespace AutomationRunner.Core.Automations.Specific.Office
         {
             var laptopEthernet = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.LaptopEthernet.GetEntityId());
             var businessLaptop = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.BusinessLaptopWifi.GetEntityId());
+            var laptopWifi = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.LaptopWifi.GetEntityId());
             var computer = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.DesktopComputer.GetEntityId());
             var sunlight = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.Sunlight.GetEntityId());
             var minimumLightForLight = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.MinimumLightForLight);
 
-            if (laptopEthernet.State == "on" || businessLaptop.State == "on" || computer.State == "on")
+            if (laptopEthernet.State == "on" || businessLaptop.State == "on" || computer.State == "on" || laptopWifi.State == "on")
             {
                 if (!int.TryParse(sunlight.State, out var result))
                     return false;

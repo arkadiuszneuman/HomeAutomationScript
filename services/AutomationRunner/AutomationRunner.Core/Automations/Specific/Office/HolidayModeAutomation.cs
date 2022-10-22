@@ -5,6 +5,7 @@ using AutomationRunner.Core.Common;
 using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace AutomationRunner.Core.Automations.Specific.Office;
 
@@ -12,6 +13,7 @@ public class HolidayModeAutomation : BaseAutomation, IEntitiesStateAutomation, I
 {
     private readonly HomeAssistantConnector connector;
     private readonly IDateTimeHelper dateTimeHelper;
+    private readonly ILogger<HolidayModeAutomation> logger;
 
     public TimeSpan UpdateEvery => TimeSpan.FromMinutes(1);
 
@@ -22,10 +24,12 @@ public class HolidayModeAutomation : BaseAutomation, IEntitiesStateAutomation, I
     };
 
     public HolidayModeAutomation(HomeAssistantConnector connector,
-        IDateTimeHelper dateTimeHelper)
+        IDateTimeHelper dateTimeHelper,
+        ILogger<HolidayModeAutomation> logger)
     {
         this.connector = connector;
         this.dateTimeHelper = dateTimeHelper;
+        this.logger = logger;
     }
 
     public override async Task<bool> ShouldUpdate(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
@@ -44,7 +48,6 @@ public class HolidayModeAutomation : BaseAutomation, IEntitiesStateAutomation, I
     {
         await Update();
     }
-
 
     public async Task Update()
     {
@@ -76,7 +79,7 @@ public class HolidayModeAutomation : BaseAutomation, IEntitiesStateAutomation, I
 
                 if (result < 4)
                 {
-                    if (dateTimeHelper.Now.TimeOfDay > new TimeSpan(8, 0, 0) && dateTimeHelper.Now.TimeOfDay < new TimeSpan(23, 12, 0))
+                    if (dateTimeHelper.Now.TimeOfDay < new TimeSpan(8, 0, 0) || dateTimeHelper.Now.TimeOfDay > new TimeSpan(22, 00, 0))
                         await allLights.TurnOffAll();
                     else 
                         await allLights.TurnOnAll();

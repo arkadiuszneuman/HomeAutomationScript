@@ -10,6 +10,8 @@ namespace AutomationRunner.Core.Entities
             Sunlight,
             [EntityId("binary_sensor.laptop_ethernet")]
             LaptopEthernet,
+            [EntityId("binary_sensor.laptop_wifi")]
+            LaptopWifi,
             [EntityId("binary_sensor.laptop_sluzbowy_wifi")]
             BusinessLaptopWifi,
             [EntityId("binary_sensor.komputer_stacjonarny")]

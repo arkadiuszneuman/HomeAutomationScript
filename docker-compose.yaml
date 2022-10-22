@@ -63,9 +63,6 @@ services:
       dockerfile: Dockerfile
     environment:
       - WRAPPER_ENVIRONMENT=Docker
-    volumes:
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
     network_mode: host
     container_name: ar
     restart: unless-stopped

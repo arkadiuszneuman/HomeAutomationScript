@@ -44,7 +44,7 @@ namespace AutomationRunner.Core.Scenes.Specific
             await Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
             await allRgbLights.TurnOffAll();
 
-            await Task.Delay(TimeSpan.FromMinutes(5), cancellationToken);
+            await Task.Delay(TimeSpan.FromMinutes(15), cancellationToken);
 
             await lightsToSwitchOn.TurnOffAll();
             await stairsLight.SetValue(0);

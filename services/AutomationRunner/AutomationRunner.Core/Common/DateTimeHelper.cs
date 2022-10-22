@@ -1,4 +1,5 @@
 ﻿using System;
+using TimeZoneConverter;
 
 namespace AutomationRunner.Core.Common
 {
@@ -10,7 +11,15 @@ namespace AutomationRunner.Core.Common
 
     public class DateTimeHelper : IDateTimeHelper
     {
-        public DateTime Now => DateTime.Now;
+        public DateTime Now
+        {
+            get
+            {
+                var tzi = TZConvert.GetTimeZoneInfo("Central European Standard Time");
+                return TimeZoneInfo.ConvertTimeFromUtc(UtcNow, tzi);
+            }
+        }
+
         public DateTime UtcNow => DateTime.UtcNow;
     }
 }
