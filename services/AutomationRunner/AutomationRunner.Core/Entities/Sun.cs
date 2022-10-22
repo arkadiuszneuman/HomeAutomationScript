@@ -18,7 +18,7 @@ namespace AutomationRunner.Core.Entities
         public bool Rising => GetAttributeValue<bool>("rising");
 
         private IDateTimeHelper DateTimeHelper { get; set; }
-        public static string EntityId => "sun.sun";
+        public static new string EntityId => "sun.sun";
 
         public static async Task<Sun> Load(HomeAssistantConnector connector, IDateTimeHelper dateTimeHelper)
         {

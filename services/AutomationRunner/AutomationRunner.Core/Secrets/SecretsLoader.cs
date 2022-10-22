@@ -27,6 +27,8 @@ namespace AutomationRunner.Core.Secrets
 
                 var json = File.ReadAllText(secretsPath);
                 var secrets = JsonConvert.DeserializeObject<SecretsConfig>(json);
+                if (secrets is null)
+                    throw new ArgumentException("Invalid secrets");
 
                 return secrets;
             }

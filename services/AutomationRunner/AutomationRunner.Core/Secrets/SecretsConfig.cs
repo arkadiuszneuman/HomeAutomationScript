@@ -2,6 +2,6 @@
 {
     public class SecretsConfig
     {
-        public string HomeAssistantToken { get; set; }
+        public string HomeAssistantToken { get; set; } = string.Empty;
     }
 }

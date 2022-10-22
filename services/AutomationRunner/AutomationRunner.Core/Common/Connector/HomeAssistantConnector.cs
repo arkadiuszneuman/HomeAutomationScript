@@ -15,7 +15,7 @@ namespace AutomationRunner.Core.Common.Connector
         private readonly ILogger<HomeAssistantConnector> logger;
         private readonly HomeAssistantHttpClientFactory clientFactory;
 
-        private string loadedStates;
+        private string? loadedStates;
 
         public HomeAssistantConnector(
             ILogger<HomeAssistantConnector> logger,

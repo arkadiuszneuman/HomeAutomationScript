@@ -12,8 +12,8 @@ namespace AutomationRunner.UnitTests.Automations.Helpers
         [Fact]
         public void Return_true_if_condition_is_fulfilled_for_set_time()
         {
-            var now = new DateTime(2019, 3, 6, 12, 32, 42);
             var dateTimeHelper = Substitute.For<IDateTimeHelper>();
+            var now = new DateTime(2019, 3, 6, 12, 32, 42);
             dateTimeHelper.Now.Returns(x => now);
 
             var sut = new ConditionHelper(dateTimeHelper)

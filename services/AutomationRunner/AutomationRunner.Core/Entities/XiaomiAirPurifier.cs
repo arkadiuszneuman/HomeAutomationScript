@@ -30,8 +30,8 @@ namespace AutomationRunner.Core.Entities
         public int FavoriteLevel => Convert.ToInt32(favoriteLevelNumber.State);
         public AirPurifierPresetMode PresetMode => GetAttributeValue<AirPurifierPresetMode>("preset_mode");
 
-        private BaseEntity pm25Sensor;
-        private BaseEntity favoriteLevelNumber;
+        private BaseEntity? pm25Sensor;
+        private BaseEntity? favoriteLevelNumber;
 
         public static async Task<XiaomiAirPurifier> LoadFromEntityId(HomeAssistantConnector connector, Name entityId)
         {

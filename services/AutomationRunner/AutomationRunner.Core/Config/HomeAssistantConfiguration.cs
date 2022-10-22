@@ -2,7 +2,7 @@
 {
     public class HomeAssistantConfiguration
     {
-        public string Uri { get; set; }
-        public string WebSocketsUri { get; set; }
+        public string Uri { get; set; } = string.Empty;
+        public string WebSocketsUri { get; set; } = string.Empty;
     }
 }
