@@ -112,8 +112,68 @@ google_assistant:
       aliases:
         - "Paulina goes to sleep"
 
-# mqtt:
-#   broker: localhost
+mqtt:
+  light:  
+  - name: "Halogen 1"
+    state_topic: "/ESP_Lampy_Salon_Boczne/Relay1/Switch"
+    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/16"
+    payload_on: "0"
+    payload_off: "1"
+  - name: "Halogen 2"
+    state_topic: "/ESP_Lampy_Salon_Boczne/Relay2/Switch"
+    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/2"
+    payload_on: "0"
+    payload_off: "1"
+  - name: "Halogen 3"
+    state_topic: "/ESP_Lampy_Salon_Boczne/Relay3/Switch"
+    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/13"
+    payload_on: "0"
+    payload_off: "1"
+  - name: "Halogen 4"
+    state_topic: "/ESP_Lampy_Salon_Boczne/Relay4/Switch"
+    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/12"
+    payload_on: "0"
+    payload_off: "1"
+  - name: "Lampka zewnętrzna"
+    state_topic: "/ESP_Przedpokoj/Relay1/Switch"
+    command_topic: "/ESP_Przedpokoj/gpio/12"
+    payload_on: "0"
+    payload_off: "1"
+  binary_sensor:
+  - state_topic: "home/stairs/bottom_motion_detector/set"
+    name: Schody czujnik dolny
+  - state_topic: "home/stairs/upper_motion_detector/set"
+    name: Schody czujnik górny
+  - state_topic: "home/stairs/set_going_down"
+    name: Schody zejście na dół
+  - state_topic: "home/stairs/set_going_up"
+    name: Schody wejście na górę
+  cover:
+  - name: "Roleta salon"
+    state_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0"
+    command_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command"
+    position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/pos"
+    set_position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command/pos"
+    # availability_topic: "shellies/shellyswitch25-98CDAC24CF74/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    qos: 1
+    retain: false
+    payload_open: "open"
+    payload_close: "close"
+    payload_stop: "stop"
+    position_open: 100
+    position_closed: 0
+    optimistic: false
+  sensor:
+  - state_topic: "/ESP_Przedpokoj/Temp/Temperature"
+    name: "Temperatura przedpokój"
+    unit_of_measurement: "°C"
+    value_template: '{{ value }}'
+  - state_topic: "/ESP_Przedpokoj/Temp/Humidity"
+    name: "Wilgotność przedpokój"
+    unit_of_measurement: "%"
+    value_template: '{{ value }}'
 
 automation: !include_dir_merge_list custom/automations/
 script: !include_dir_merge_named custom/scripts/
@@ -187,18 +247,6 @@ influxdb:
 binary_sensor:
   - platform: workday
     country: PL
-  - platform: mqtt
-    state_topic: "home/stairs/bottom_motion_detector/set"
-    name: Schody czujnik dolny
-  - platform: mqtt
-    state_topic: "home/stairs/upper_motion_detector/set"
-    name: Schody czujnik górny
-  - platform: mqtt
-    state_topic: "home/stairs/set_going_down"
-    name: Schody zejście na dół
-  - platform: mqtt
-    state_topic: "home/stairs/set_going_up"
-    name: Schody wejście na górę
   - platform: ping #need to add ip of HA to firewall rule
     host: 192.168.1.106
     name: "Laptop Ethernet"
@@ -223,25 +271,6 @@ sonoff:
   username: !secret sonoff_login
   password: !secret sonoff_pass
 
-cover:
-  - platform: mqtt
-    name: "Roleta salon"
-    state_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0"
-    command_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command"
-    position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/pos"
-    set_position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command/pos"
-    # availability_topic: "shellies/shellyswitch25-98CDAC24CF74/online"
-    payload_available: "true"
-    payload_not_available: "false"
-    qos: 1
-    retain: false
-    payload_open: "open"
-    payload_close: "close"
-    payload_stop: "stop"
-    position_open: 100
-    position_closed: 0
-    optimistic: false
-
 light:
   - platform: limitlessled
     bridges:
@@ -255,36 +284,6 @@ light:
             type: bridge-led
             name: Grzybek
             fade: off
-  - platform: mqtt
-    name: "Halogen 1"
-    state_topic: "/ESP_Lampy_Salon_Boczne/Relay1/Switch"
-    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/16"
-    payload_on: "0"
-    payload_off: "1"
-  - platform: mqtt
-    name: "Halogen 2"
-    state_topic: "/ESP_Lampy_Salon_Boczne/Relay2/Switch"
-    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/2"
-    payload_on: "0"
-    payload_off: "1"
-  - platform: mqtt
-    name: "Halogen 3"
-    state_topic: "/ESP_Lampy_Salon_Boczne/Relay3/Switch"
-    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/13"
-    payload_on: "0"
-    payload_off: "1"
-  - platform: mqtt
-    name: "Halogen 4"
-    state_topic: "/ESP_Lampy_Salon_Boczne/Relay4/Switch"
-    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/12"
-    payload_on: "0"
-    payload_off: "1"
-  - platform: mqtt
-    name: "Lampka zewnętrzna"
-    state_topic: "/ESP_Przedpokoj/Relay1/Switch"
-    command_topic: "/ESP_Przedpokoj/gpio/12"
-    payload_on: "0"
-    payload_off: "1"
 
 input_number:
   denon_volume:
