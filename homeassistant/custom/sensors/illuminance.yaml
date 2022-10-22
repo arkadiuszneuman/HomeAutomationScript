@@ -7,7 +7,7 @@
         - sensor.huis_cloud_coverage
       value_template: >-
         {%- set elevation = state_attr('sun.sun','elevation') | float %}
-        {%- set cloud_coverage = states('sensor.owm_cloud_coverage') | float %}
+        {%- set cloud_coverage = states('sensor.openweathermap_cloud_coverage') | float %}
         {%- set cloud_factor = (1 - (0.75 * ( cloud_coverage / 100) ** 3 )) %}
         {%- set min_elevation = -6 %}
         {%- set max_elevation = 90 %}

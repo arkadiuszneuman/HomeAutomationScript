@@ -112,8 +112,8 @@ google_assistant:
       aliases:
         - "Paulina goes to sleep"
 
-mqtt:
-  broker: localhost
+# mqtt:
+#   broker: localhost
 
 automation: !include_dir_merge_list custom/automations/
 script: !include_dir_merge_named custom/scripts/
@@ -123,7 +123,6 @@ sensor: !include_dir_merge_list custom/sensors/
 
 recorder:
   db_url: mysql://root:wsadqe@192.168.1.115:3306/home_assistant?charset=utf8
-  purge_interval: 0
   include:
     entities:
       - media_player.sony_bravia_tv
@@ -335,7 +334,3 @@ input_select:
       - Sypialnia
       - Trening na bieżni
     icon: mdi:format-list-bulleted-type
-
-spotify:
-  client_id: !secret spotify_clientid
-  client_secret: !secret spotify_clientsecret
