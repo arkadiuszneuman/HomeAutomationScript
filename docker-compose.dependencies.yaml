@@ -1,7 +1,7 @@
 version: "2"
 services:
   influxdb:
-    image: "influxdb:2.1"
+    image: "bitnami/influxdb:2.4.0"
     # ports:
     # - 8086:8086
     # - 8083:8083
@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
 
   rabbitmq:
-    image: "rabbitmq:3.9-management"
+    image: "rabbitmq:3.11.2-management"
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
