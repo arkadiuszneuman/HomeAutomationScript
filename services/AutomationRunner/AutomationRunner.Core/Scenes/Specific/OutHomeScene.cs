@@ -36,14 +36,17 @@ namespace AutomationRunner.Core.Scenes.Specific
                 await gardenLight.TurnOn();
                 await cover.CloseCover();
             }
-
-            await mediaPlayers.TurnOffAll();
+            
             await allLights.TurnOffAll();
             await allRgbLights.TurnOffAll();
             await allSwitches.TurnOffAll();
             await stairsLight.SetValue(0);
 
-            await Task.Delay(TimeSpan.FromMinutes(15), cancellationToken);
+            await Task.Delay(TimeSpan.FromMinutes(5), cancellationToken);
+            
+            await mediaPlayers.TurnOffAll();
+
+            await Task.Delay(TimeSpan.FromMinutes(10), cancellationToken);
 
             await lightsToSwitchOn.TurnOffAll();
             await gardenLight.TurnOff();
