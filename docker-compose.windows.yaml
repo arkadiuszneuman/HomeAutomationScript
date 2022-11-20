@@ -1,7 +1,7 @@
 version: "2"
 services:
   ha:
-    image: homeassistant/home-assistant:2022.9
+    image: homeassistant/home-assistant:2022.11
     # ports:
     # - 8123:8123
     volumes:
@@ -12,6 +12,21 @@ services:
       - mysql
     network_mode: host
     container_name: ha
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.23.2
+    # ports:
+    # - 8123:8123
+    volumes:
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt/live/arekha.duckdns.org/fullchain.pem:/etc/letsencrypt/live/arekha.duckdns.org/fullchain.pem:ro
+      - /etc/letsencrypt/live/arekha.duckdns.org/privkey.pem:/etc/letsencrypt/live/arekha.duckdns.org/privkey.pem:ro
+      - ./nginx/dhparams.pem:/etc/nginx/ssl/dhparams.pem:ro
+    depends_on:
+      - ha
+    network_mode: host
+    container_name: nginx
     restart: unless-stopped
 
   grafana:

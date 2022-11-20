@@ -12,10 +12,10 @@ namespace AutomationRunner.Core.Entities
     {
         public enum Name
         {
-            [EntityId("device_tracker.life360_arek")]
+            [EntityId("device_tracker.arek")]
             Arek,
 
-            [EntityId("device_tracker.life360_patrycja")]
+            [EntityId("device_tracker.patrycja")]
             Patrycja
         }
 
