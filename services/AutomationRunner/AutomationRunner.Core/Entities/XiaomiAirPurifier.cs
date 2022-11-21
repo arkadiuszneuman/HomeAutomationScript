@@ -56,7 +56,7 @@ namespace AutomationRunner.Core.Entities
 
         public async Task SetPresetMode(AirPurifierPresetMode presetMode)
         {
-            await Connector.SendService("fan.set_preset_mode", new SetPresetModeService(EntityId, presetMode.ToString()));
+            await Connector.SendService("fan.set_preset_mode", new SetModeService(EntityId, presetMode.ToString()));
         }
 
         public async Task SetFavoriteLevel(int level)

@@ -18,7 +18,7 @@ namespace AutomationRunner.Core.Entities
     {
         public enum Name
         {
-            [EntityId("fan.air_humidifier")]
+            [EntityId("humidifier.smartmi_evaporative_humidifier")]
             AirHumidifier
         }
 
@@ -34,19 +34,19 @@ namespace AutomationRunner.Core.Entities
 
         public async Task TurnOn()
         {
-            await Connector.SendService("fan.turn_on", new EntityIdService(EntityId));
+            await Connector.SendService("humidifier.turn_on", new EntityIdService(EntityId));
             State = "on";
         }
 
         public async Task TurnOff()
         {
-            await Connector.SendService("fan.turn_off", new EntityIdService(EntityId));
+            await Connector.SendService("humidifier.turn_off", new EntityIdService(EntityId));
             State = "off";
         }
 
         public async Task SetSpeed(AirHumidifierSpeed speed)
         {
-            await Connector.SendService("fan.set_speed", new SetPresetModeService(EntityId, speed.ToString()));
+            await Connector.SendService("humidifier.set_mode", new SetModeService(EntityId, speed.ToString()));
         }
     }
 }
