@@ -1,5 +1,4 @@
-﻿using AutomationRunner.Core.Automations.Helpers;
-using AutomationRunner.Core.Common;
+﻿using AutomationRunner.Core.Common;
 using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Common.Extensions;
 using AutomationRunner.Core.Entities;
@@ -11,8 +10,6 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
 {
     public class AirHumidifierAutomations : IEntityStateAutomation, ITimeUpdate
     {
-        private const int turningOffValue = 55;
-
         private readonly ILogger<AirHumidifierAutomations> logger;
         private readonly HomeAssistantConnector connector;
         private readonly IDateTimeHelper dateTimeHelper;
