@@ -42,7 +42,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
                 .For(TimeSpan.FromMinutes(forTime));
         }
 
-        public Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        public Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             return Update();
         }

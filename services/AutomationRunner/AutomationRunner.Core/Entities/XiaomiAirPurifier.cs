@@ -14,7 +14,7 @@ namespace AutomationRunner.Core.Entities
         Silent
     }
 
-    public class XiaomiAirPurifier : BaseEntity
+    public record XiaomiAirPurifier : BaseEntity
     {
         public enum Name
         {
@@ -44,24 +44,24 @@ namespace AutomationRunner.Core.Entities
 
         public async Task TurnOn()
         {
-            await Connector.SendService("fan.turn_on", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("fan.turn_on", new EntityIdService(EntityId));
             State = "on";
         }
 
         public async Task TurnOff()
         {
-            await Connector.SendService("fan.turn_off", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("fan.turn_off", new EntityIdService(EntityId));
             State = "off";
         }
 
         public async Task SetPresetMode(AirPurifierPresetMode presetMode)
         {
-            await Connector.SendService("fan.set_preset_mode", new SetModeService(EntityId, presetMode.ToString()));
+            await Connector.SendServiceAsync("fan.set_preset_mode", new SetModeService(EntityId, presetMode.ToString()));
         }
 
         public async Task SetFavoriteLevel(int level)
         {
-            await Connector.SendService("number.set_value",
+            await Connector.SendServiceAsync("number.set_value",
                 new XiaomiMiioSetFavoriteLevelService($"number.{EntityId.Replace(".", "")}_favorite_level", level));
         }
     }

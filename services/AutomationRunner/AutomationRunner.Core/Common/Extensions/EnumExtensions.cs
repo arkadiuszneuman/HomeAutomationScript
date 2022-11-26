@@ -12,15 +12,12 @@ namespace AutomationRunner.Core.Common.Extensions
             Type type = en.GetType();
             MemberInfo[] memInfo = type.GetMember(en.ToString());
 
-            if (memInfo != null && memInfo.Length > 0)
-            {
-                object[] attrs = memInfo[0].GetCustomAttributes(typeof(EntityIdAttribute), false);
+            if (memInfo.Length <= 0) 
+                return en.ToString();
+            
+            var attrs = memInfo[0].GetCustomAttributes(typeof(EntityIdAttribute), false);
 
-                if (attrs != null && attrs.Length > 0)
-                    return ((EntityIdAttribute)attrs[0]).Text;
-            }
-
-            return en.ToString();
+            return attrs.Length > 0 ? ((EntityIdAttribute)attrs[0]).Text : en.ToString();
         }
     }
 }

@@ -4,7 +4,7 @@ using AutomationRunner.Core.Entities.Services.Models;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class InputBoolean : BaseEntity
+    public record InputBoolean : BaseEntity
     {
         public enum Name
         {
@@ -18,13 +18,13 @@ namespace AutomationRunner.Core.Entities
 
         public async Task TurnOn()
         {
-            await Connector.SendService("input_boolean.turn_on", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("input_boolean.turn_on", new EntityIdService(EntityId));
             State = "on";
         }
         
         public async Task TurnOff()
         {
-            await Connector.SendService("input_boolean.turn_off", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("input_boolean.turn_off", new EntityIdService(EntityId));
             State = "off";
         }
     }

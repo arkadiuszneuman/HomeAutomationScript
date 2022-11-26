@@ -7,7 +7,7 @@ namespace AutomationRunner.Core.Automations.Specific
 {
     public interface IStateUpdate
     {
-        Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity);
+        Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity);
     }
 
     public interface IShouldUpdate

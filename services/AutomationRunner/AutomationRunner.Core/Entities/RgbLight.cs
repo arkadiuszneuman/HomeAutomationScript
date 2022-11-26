@@ -13,15 +13,20 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class RgbLight : BaseEntity
+    public record RgbLight : BaseEntity
     {
         public enum Name
         {
             [EntityId("light.grzybek")]
             Mushroom,
-
             [EntityId("light.salon_led")]
-            TvLEDs
+            TvLEDs,
+            [EntityId("light.halogen_5")]
+            Halogen5,
+            [EntityId("light.halogen_6")]
+            Halogen6,
+            [EntityId("light.lampa_gabinet")]
+            OfficeBigLight
         }
 
         public Color Color
@@ -76,7 +81,7 @@ namespace AutomationRunner.Core.Entities
                 service.Transition = Convert.ToInt32(transitionTime.Value.TotalSeconds);
 
 
-            await Connector.SendService("light.turn_on", service);
+            await Connector.SendServiceAsync("light.turn_on", service);
             State = "on";
         }
 
@@ -91,7 +96,7 @@ namespace AutomationRunner.Core.Entities
 
         public async Task TurnOff()
         {
-            await Connector.SendService("light.turn_off", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("light.turn_off", new EntityIdService(EntityId));
             State = "off";
         }
     }

@@ -26,7 +26,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
             this.automationTypes = automationTypes;
         }
 
-        public async Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        public async Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             if (oldStateBaseEntity.State == newStateBaseEntity.State)
                 return;

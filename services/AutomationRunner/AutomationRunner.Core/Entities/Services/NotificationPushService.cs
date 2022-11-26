@@ -15,7 +15,7 @@ namespace AutomationRunner.Core.Entities.Services
 
         public async Task PushNotification(string text)
         {
-            await connector.SendService("notify.push", new NotificationServiceModel(text));
+            await connector.SendServiceAsync("notify.push", new NotificationServiceModel(text));
         }
     }
 }

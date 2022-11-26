@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Common.Connector
@@ -57,19 +58,19 @@ namespace AutomationRunner.Core.Common.Connector
             return JsonSerializer.DeserializeObject<IEnumerable<T>>(loadedStates);
         }
 
-        public async Task SendService<T>(string serviceId, T service)
+        public async Task SendServiceAsync<T>(string serviceId, T service, CancellationToken cancellationToken = default)
             where T : IService
         {
             using var client = clientFactory.GetHomeAssistantHttpClient();
             var uri = $"api/services/{serviceId.Replace('.', '/')}";
             var json = JsonSerializer.SerializeObject(service);
             var response = await client.PostAsync(uri,
-                new StringContent(json, Encoding.UTF8, "application/json"));
+                new StringContent(json, Encoding.UTF8, "application/json"), cancellationToken);
 
             if (response.StatusCode != HttpStatusCode.OK)
                 logger.LogError("Error while sending status to {0} with body {1}", uri, json);
 
-            await Task.Delay(25); // bug in HA, we need to wait between each activations
+            await Task.Delay(25, cancellationToken); // bug in HA, we need to wait between each activations
         }
 
         public async Task RefreshStates()

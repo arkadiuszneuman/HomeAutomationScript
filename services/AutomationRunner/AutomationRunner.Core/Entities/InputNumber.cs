@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class InputNumber : BaseEntity
+    public record InputNumber : BaseEntity
     {
         public enum Name
         {
@@ -45,7 +45,7 @@ namespace AutomationRunner.Core.Entities
         {
             new PercentValidation().ValidateAndThrow(value);
 
-            await Connector.SendService("input_number.set_value", new ValueServiceModel(EntityId, value));
+            await Connector.SendServiceAsync("input_number.set_value", new ValueServiceModel(EntityId, value));
         }
 
         public async Task SetValueBasedOnTvState()

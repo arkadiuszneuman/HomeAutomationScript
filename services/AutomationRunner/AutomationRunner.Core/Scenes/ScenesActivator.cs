@@ -71,11 +71,11 @@ namespace AutomationRunner.Core.Scenes
 
                 activatedScenes.Add(sceneName, new TaskWithCancellationToken(sceneTask, cancellationTokenSource));
 
-                logger.LogInformation("Activated scene {sceneName}", sceneToActivate.Name);
+                logger.LogInformation("Activated scene {SceneName}", sceneToActivate.Name);
             }
         }
 
-        private IScene GetSceneToActivate(string sceneName)
+        private IScene? GetSceneToActivate(string sceneName)
         {
             var scenesToActivate = scenes.Where(s => s.Name == sceneName).ToList();
             if (scenesToActivate.Count > 1)

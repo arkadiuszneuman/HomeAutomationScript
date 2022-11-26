@@ -30,7 +30,7 @@ namespace AutomationRunner.Core.Automations.Specific
             this.dateTimeHelper = dateTimeHelper;
         }
 
-        public async Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        public async Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             var oldState = InputNumber.CreateBasedOnBaseEntity(oldStateBaseEntity);
             var newState = InputNumber.CreateBasedOnBaseEntity(newStateBaseEntity);

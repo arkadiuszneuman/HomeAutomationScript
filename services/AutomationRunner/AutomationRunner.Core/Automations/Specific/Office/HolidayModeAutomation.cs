@@ -44,7 +44,7 @@ public class HolidayModeAutomation : BaseAutomation, IEntitiesStateAutomation, I
         return false;
     }
 
-    public override async Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+    public override async Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
     {
         await Update();
     }

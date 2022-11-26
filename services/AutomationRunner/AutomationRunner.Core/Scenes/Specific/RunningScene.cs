@@ -49,7 +49,7 @@ namespace AutomationRunner.Core.Scenes.Specific
             await autoOfficeLight.TurnOn();
             await treadmill.TurnOff();
 
-            await officeLightAutomation.Update(null, null);
+            await officeLightAutomation.UpdateAsync(null, null);
         }
     }
 }

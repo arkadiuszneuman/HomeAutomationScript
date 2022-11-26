@@ -27,7 +27,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
             this.dateTimeHelper = dateTimeHelper;
         }
 
-        public Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        public Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             return Update();
         }

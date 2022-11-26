@@ -42,10 +42,17 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             return false;
         }
 
-        public override async Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        public override async Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             var computerLight = await connector.LoadEntityFromStates<Switch>(Switch.Name.OfficeLight.GetEntityId());
+            var officeBigLight = await connector.LoadEntityFromStates<RgbLight>(RgbLight.Name.OfficeBigLight.GetEntityId());
             var switchLightOn = await ShouldLightBeSwitchedOn();
+
+            if (switchLightOn)
+                await officeBigLight.TurnOn();
+            else
+                await officeBigLight.TurnOff();
+
             await computerLight.Turn(switchLightOn);
         }
 

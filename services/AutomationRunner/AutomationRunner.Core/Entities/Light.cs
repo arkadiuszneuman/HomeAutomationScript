@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class Light : BaseEntity
+    public record Light : BaseEntity
     {
         public enum Name
         {
@@ -55,13 +55,13 @@ namespace AutomationRunner.Core.Entities
 
         public async Task TurnOn()
         {
-            await Connector.SendService("light.turn_on", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("light.turn_on", new EntityIdService(EntityId));
             State = "on";
         }
 
         public async Task TurnOff()
         {
-            await Connector.SendService("light.turn_off", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("light.turn_off", new EntityIdService(EntityId));
             State = "off";
         }
     }

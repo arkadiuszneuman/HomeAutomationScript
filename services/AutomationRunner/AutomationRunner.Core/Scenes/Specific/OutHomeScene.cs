@@ -7,29 +7,26 @@ using AutomationRunner.Core.Entities;
 
 namespace AutomationRunner.Core.Scenes.Specific
 {
-    public class OutHomeScene : IScene
+    public class OutHomeScene : BaseScene
     {
-        private readonly HomeAssistantConnector connector;
+        public override string Name => "scene.wyjscie_z_domu";
 
-        public string Name => "scene.wyjscie_z_domu";
-
-        public OutHomeScene(HomeAssistantConnector connector)
+        public OutHomeScene(HomeAssistantConnector connector) : base(connector)
         {
-            this.connector = connector;
         }
 
-        public async Task Activated(CancellationToken cancellationToken = default)
+        public override async Task Activated(CancellationToken cancellationToken = default)
         {
-            var lightsToSwitchOn = await Light.LoadFromEntitiesId(connector, Light.Name.Halogen2, Light.Name.Halogen3, Light.Name.ExternalLight);
-            var allLights = await Light.LoadAllLights(connector, Light.Name.Halogen2, Light.Name.Halogen3, Light.Name.ExternalLight);
-            var allRgbLights = await RgbLight.LoadAllLights(connector);
-            var allSwitches = await Switch.LoadAllLights(connector, Switch.Name.GardenLight);
-            var stairsLight = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.StairsMinimumBrightness);
-            var mediaPlayers = await MediaPlayer.LoadAll(connector);
-            var cover = await Cover.LoadFromEntityId(connector, Cover.Name.Salon);
-            var gardenLight = await Switch.LoadFromEntityId(connector, Switch.Name.GardenLight);
+            var lightsToSwitchOn = await Light.LoadFromEntitiesId(Connector, Light.Name.Halogen2, Light.Name.Halogen3, Light.Name.ExternalLight);
+            var allLights = await Light.LoadAllLights(Connector, Light.Name.Halogen2, Light.Name.Halogen3, Light.Name.ExternalLight);
+            var allRgbLights = await RgbLight.LoadAllLights(Connector);
+            var allSwitches = await Switch.LoadAllLights(Connector, Switch.Name.GardenLight);
+            var stairsLight = await InputNumber.LoadFromEntityId(Connector, InputNumber.Name.StairsMinimumBrightness);
+            var mediaPlayers = await MediaPlayer.LoadAll(Connector);
+            var cover = await Cover.LoadFromEntityId(Connector, Cover.Name.Salon);
+            var gardenLight = await Switch.LoadFromEntityId(Connector, Switch.Name.GardenLight);
 
-            var sunlight = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.Sunlight.GetEntityId());
+            var sunlight = await Connector.LoadEntityFromStates<Sensor>(Sensor.Name.Sunlight.GetEntityId());
             if (int.TryParse(sunlight.State, out var result) && result < 4)
             {
                 await lightsToSwitchOn.TurnOnAll();

@@ -14,7 +14,7 @@ namespace AutomationRunner.Core.Entities
         Auto
     }
 
-    public class XiaomiAirHumidifier : BaseEntity
+    public record XiaomiAirHumidifier : BaseEntity
     {
         public enum Name
         {
@@ -34,19 +34,19 @@ namespace AutomationRunner.Core.Entities
 
         public async Task TurnOn()
         {
-            await Connector.SendService("humidifier.turn_on", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("humidifier.turn_on", new EntityIdService(EntityId));
             State = "on";
         }
 
         public async Task TurnOff()
         {
-            await Connector.SendService("humidifier.turn_off", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("humidifier.turn_off", new EntityIdService(EntityId));
             State = "off";
         }
 
         public async Task SetSpeed(AirHumidifierSpeed speed)
         {
-            await Connector.SendService("humidifier.set_mode", new SetModeService(EntityId, speed.ToString()));
+            await Connector.SendServiceAsync("humidifier.set_mode", new SetModeService(EntityId, speed.ToString()));
         }
     }
 }

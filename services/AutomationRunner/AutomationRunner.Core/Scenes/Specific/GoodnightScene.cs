@@ -11,26 +11,24 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Scenes.Specific
 {
-    public class GoodnightScene : IScene
+    public class GoodnightScene : BaseScene
     {
-        private readonly HomeAssistantConnector connector;
+        public override string Name => "scene.dobranoc";
 
-        public string Name => "scene.dobranoc";
-
-        public GoodnightScene(HomeAssistantConnector connector)
+        public GoodnightScene(HomeAssistantConnector connector) : base(connector)
         {
-            this.connector = connector;
         }
 
-        public async Task Activated(CancellationToken cancellationToken = default)
+        public override async Task Activated(CancellationToken cancellationToken = default)
         {
-            var lightsToSwitchOn = await Light.LoadFromEntitiesId(connector, Light.Name.Halogen2, Light.Name.Halogen3);
-            var allLights = await Light.LoadAllLights(connector, Light.Name.Halogen2, Light.Name.Halogen3);
-            var allRgbLights = await RgbLight.LoadAllLights(connector);
-            var allSwitches = await Switch.LoadAllLights(connector);
-            var stairsLight = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.StairsMinimumBrightness);
-            var mediaPlayers = await MediaPlayer.LoadAll(connector);
-            var cover = await Cover.LoadFromEntityId(connector, Cover.Name.Salon);
+            var lightsToSwitchOn = await Light.LoadFromEntitiesId(Connector, Light.Name.Halogen2, Light.Name.Halogen3);
+            var allLights = await Light.LoadAllLights(Connector, Light.Name.Halogen2, Light.Name.Halogen3);
+            var allRgbLights = await RgbLight.LoadAllLights(Connector);
+            var allSwitches = await Switch.LoadAllLights(Connector, Switch.Name.OfficeLight);
+            var officeLight = await Switch.LoadFromEntityId(Connector, Switch.Name.OfficeLight);
+            var stairsLight = await InputNumber.LoadFromEntityId(Connector, InputNumber.Name.StairsMinimumBrightness);
+            var mediaPlayers = await MediaPlayer.LoadAll(Connector);
+            var cover = await Cover.LoadFromEntityId(Connector, Cover.Name.Salon);
 
             await lightsToSwitchOn.TurnOnAll();
             await stairsLight.SetValue(30);
@@ -40,11 +38,15 @@ namespace AutomationRunner.Core.Scenes.Specific
             await allLights.TurnOffAll();
             await allRgbLights.TurnOffAll();
             await allSwitches.TurnOffAll();
+            await officeLight.TurnOn();
 
             await Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
             await allRgbLights.TurnOffAll();
+            
+            await Task.Delay(TimeSpan.FromMinutes(5), cancellationToken);
+            await officeLight.TurnOff();
 
-            await Task.Delay(TimeSpan.FromMinutes(15), cancellationToken);
+            await Task.Delay(TimeSpan.FromMinutes(10), cancellationToken);
 
             await lightsToSwitchOn.TurnOffAll();
             await stairsLight.SetValue(0);

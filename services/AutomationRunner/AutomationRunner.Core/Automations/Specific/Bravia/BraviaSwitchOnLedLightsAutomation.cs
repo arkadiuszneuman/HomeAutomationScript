@@ -29,7 +29,7 @@ namespace AutomationRunner.Core.Automations.Specific.Bravia
             this.dateTimeHelper = dateTimeHelper;
         }
 
-        public async Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        public async Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             if (oldStateBaseEntity.EntityId == MediaPlayer.Name.Tv.GetEntityId())
             {

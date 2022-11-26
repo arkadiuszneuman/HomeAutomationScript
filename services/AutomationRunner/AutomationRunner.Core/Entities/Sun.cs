@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class Sun : BaseEntity
+    public record Sun : BaseEntity
     {
         public DateTime NextRisingUtc => GetAttributeValue<DateTime>("next_rising");
         public DateTime NextSettingUtc => GetAttributeValue<DateTime>("next_setting");

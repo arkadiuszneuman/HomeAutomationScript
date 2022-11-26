@@ -9,7 +9,7 @@ using AutomationRunner.Core.Entities.Services.Models;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class Switch : BaseEntity
+    public record Switch : BaseEntity
     {
         public enum Name
         {
@@ -47,13 +47,13 @@ namespace AutomationRunner.Core.Entities
 
         public async Task TurnOn()
         {
-            await Connector.SendService("switch.turn_on", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("switch.turn_on", new EntityIdService(EntityId));
             State = "on";
         }
 
         public async Task TurnOff()
         {
-            await Connector.SendService("switch.turn_off", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("switch.turn_off", new EntityIdService(EntityId));
             State = "off";
         }
     }

@@ -1,4 +1,6 @@
-homeassistant: true
+homeassistant:
+  legacy_entity_attributes: true
+  legacy_triggers: false
 permit_join: true
 mqtt:
   base_topic: zigbee2mqtt
@@ -10,3 +12,18 @@ frontend:
 devices:
   '0x001788010c4a524d':
     friendly_name: Lampa gabinet
+  '0x001788010c4a5327':
+    friendly_name: '0x001788010c4a5327'
+  '0x00158d00058812b2':
+    friendly_name: Cube
+    homeassistant:
+      name: ' '
+    optimistic: true
+    retain: false
+  '0x84b4dbfffe1f094a':
+    friendly_name: Halogen 5
+  '0x1c34f1fffe7b1d41':
+    friendly_name: Halogen 6
+advanced:
+  log_level: debug
+availability: true

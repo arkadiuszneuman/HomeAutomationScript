@@ -57,7 +57,7 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
                 .For(TimeSpan.FromMinutes(speedChangeForTime));
         }
 
-        public Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        public Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             return Update();
         }

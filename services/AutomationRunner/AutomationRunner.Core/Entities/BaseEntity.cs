@@ -2,19 +2,20 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class BaseEntity
+    public record BaseEntity
     {
         public HomeAssistantConnector Connector { get; set; }
 
-        [JsonProperty("entity_id")]
-        public string EntityId { get; set; }
-        public string State { get; set; }
-        public Dictionary<string, object> Attributes { get; set; }
+        [JsonProperty("entity_id")] 
+        public string EntityId { get; set; } = string.Empty;
+        public string State { get; set; } = String.Empty;
+        public Dictionary<string, object> Attributes { get; private set; } = new();
 
-        protected T GetAttributeValue<T>(string name)
+        protected T? GetAttributeValue<T>(string name)
         {
             if (!Attributes.ContainsKey(name.ToLower()))
                 return default;
@@ -23,10 +24,7 @@ namespace AutomationRunner.Core.Entities
 
             if (typeof(T).IsEnum)
             {
-                if (attributeValue is null)
-                    return default;
-                
-                return (T)Enum.Parse(typeof(T), attributeValue.ToString());
+                return (T)Enum.Parse(typeof(T), attributeValue.ToString() ?? string.Empty);
             }
 
             return (T)Convert.ChangeType(attributeValue, typeof(T));

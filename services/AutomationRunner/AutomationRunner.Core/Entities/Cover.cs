@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class Cover : BaseEntity
+    public record Cover : BaseEntity
     {
         public enum Name
         {
@@ -23,17 +23,17 @@ namespace AutomationRunner.Core.Entities
 
         public async Task OpenCover()
         {
-            await Connector.SendService("cover.open_cover", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("cover.open_cover", new EntityIdService(EntityId));
         }
 
         public async Task CloseCover()
         {
-            await Connector.SendService("cover.close_cover", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("cover.close_cover", new EntityIdService(EntityId));
         }
 
         public async Task SetCoverPosition(int position)
         {
-            await Connector.SendService("cover.set_cover_position", new CoverPositionServiceModel(EntityId, position));
+            await Connector.SendServiceAsync("cover.set_cover_position", new CoverPositionServiceModel(EntityId, position));
         }
     }
 }

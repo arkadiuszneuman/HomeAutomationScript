@@ -73,9 +73,9 @@ services:
     restart: unless-stopped
 
   zigbee2mqtt:
-    container_name: zigbee2mqtt
     image: koenkk/zigbee2mqtt
-    restart: unless-stopped
+    depends_on:
+      - ha
     volumes:
       - ./zigbee2mqtt/data:/app/data
       - /run/udev:/run/udev:ro
@@ -88,6 +88,8 @@ services:
       # Make sure this matched your adapter location
       - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2660192-if00:/dev/ttyACM0
     network_mode: host
+    container_name: z2m
+    restart: unless-stopped
 
   # backup-creator2:
   #   build:

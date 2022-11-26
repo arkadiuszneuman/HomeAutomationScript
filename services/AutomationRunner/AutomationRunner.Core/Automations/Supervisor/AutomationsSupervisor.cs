@@ -111,7 +111,7 @@ namespace AutomationRunner.Core.Automations.Supervisor
                     if (shouldUpdate)
                     {
                         logger.LogInformation("Starting state automation {Automation}", automation);
-                        _ = automation.Update(oldNewState.OldState, oldNewState.NewState);
+                        _ = automation.UpdateAsync(oldNewState.OldState, oldNewState.NewState);
                     }
                 }
             }

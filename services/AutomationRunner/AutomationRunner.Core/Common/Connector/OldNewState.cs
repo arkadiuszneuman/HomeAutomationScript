@@ -7,10 +7,10 @@ namespace AutomationRunner.Core.Common.Connector
 {
     public class OldNewState
     {
-        public BaseEntity OldState { get; }
-        public BaseEntity NewState { get; }
+        public BaseEntity? OldState { get; }
+        public BaseEntity? NewState { get; }
 
-        public OldNewState(BaseEntity oldState, BaseEntity newState)
+        public OldNewState(BaseEntity? oldState, BaseEntity? newState)
         {
             OldState = oldState;
             NewState = newState;

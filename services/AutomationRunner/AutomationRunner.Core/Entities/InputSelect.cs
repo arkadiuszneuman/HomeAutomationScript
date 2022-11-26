@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class InputSelect : BaseEntity
+    public record InputSelect : BaseEntity
     {
         public enum Name
         {
@@ -25,6 +25,6 @@ namespace AutomationRunner.Core.Entities
             await connector.LoadEntityFromStates<InputSelect>(inputNumberName.GetEntityId());
 
         public async Task SelectOption(string option) => 
-            await Connector.SendService("input_select.select_option", new OptionServiceModel(EntityId, option));
+            await Connector.SendServiceAsync("input_select.select_option", new OptionServiceModel(EntityId, option));
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class DeviceTracker : BaseEntity
+    public record DeviceTracker : BaseEntity
     {
         public enum Name
         {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AutomationRunner.Core.Entities
 {
-    public class MediaPlayer : BaseEntity
+    public record MediaPlayer : BaseEntity
     {
         public enum Name
         {
@@ -55,30 +55,30 @@ namespace AutomationRunner.Core.Entities
 
         public async Task TurnOn()
         {
-            await Connector.SendService("media_player.turn_on", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("media_player.turn_on", new EntityIdService(EntityId));
             State = "on";
         }
 
         public async Task TurnOff()
         {
-            await Connector.SendService("media_player.turn_off", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("media_player.turn_off", new EntityIdService(EntityId));
             State = "off";
         }
 
         public async Task SelectSource(string source) =>
-            await Connector.SendService("media_player.select_source", new SourceServiceModel(EntityId, source));
+            await Connector.SendServiceAsync("media_player.select_source", new SourceServiceModel(EntityId, source));
 
         public async Task SetVolumeLevel(int volume) =>
-            await Connector.SendService("media_player.volume_set", new VolumeServiceModel(EntityId, volume));
+            await Connector.SendServiceAsync("media_player.volume_set", new VolumeServiceModel(EntityId, volume));
 
         public async Task Play() => 
-            await Connector.SendService("media_player.media_play", new EntityIdService(EntityId));
+            await Connector.SendServiceAsync("media_player.media_play", new EntityIdService(EntityId));
         
         public async Task PlayMedia(string contentId, string contentType) => 
-            await Connector.SendService("media_player.play_media", new PlayMediaServiceModel(EntityId, contentId, contentType));
+            await Connector.SendServiceAsync("media_player.play_media", new PlayMediaServiceModel(EntityId, contentId, contentType));
 
         public async Task SetRepeat(RepeatMode repeatMode) => 
-            await Connector.SendService("media_player.repeat_set", new RepeatModeServiceModel(EntityId, repeatMode));
+            await Connector.SendServiceAsync("media_player.repeat_set", new RepeatModeServiceModel(EntityId, repeatMode));
 
         public static MediaPlayer CreateBasedOnBaseEntity(BaseEntity state)
         {

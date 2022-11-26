@@ -23,7 +23,7 @@ namespace AutomationRunner.Core.Automations.Specific.Christmas
             this.dateTimeHelper = dateTimeHelper;
         }
         
-        public override Task Update(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
+        public override Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
         {
             return Update();
         }
