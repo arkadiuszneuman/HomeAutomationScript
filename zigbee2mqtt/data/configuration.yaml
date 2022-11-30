@@ -13,7 +13,7 @@ devices:
   '0x001788010c4a524d':
     friendly_name: Lampa gabinet
   '0x001788010c4a5327':
-    friendly_name: '0x001788010c4a5327'
+    friendly_name: Lampka gabinet 1
   '0x00158d00058812b2':
     friendly_name: Cube
     homeassistant:
@@ -24,6 +24,12 @@ devices:
     friendly_name: Halogen 5
   '0x1c34f1fffe7b1d41':
     friendly_name: Halogen 6
+  '0x54ef44100056c8c7':
+    friendly_name: Buda
+  '0x54ef44100056c323':
+    friendly_name: Gabinet
+  '0x0017880108be5be4':
+    friendly_name: Lampa dzieci
 advanced:
   log_level: debug
 availability: true

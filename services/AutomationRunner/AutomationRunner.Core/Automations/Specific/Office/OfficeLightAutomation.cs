@@ -46,13 +46,11 @@ namespace AutomationRunner.Core.Automations.Specific.Office
         {
             var computerLight = await connector.LoadEntityFromStates<Switch>(Switch.Name.OfficeLight.GetEntityId());
             var officeBigLight = await connector.LoadEntityFromStates<RgbLight>(RgbLight.Name.OfficeBigLight.GetEntityId());
+            var officeSmallLight = await connector.LoadEntityFromStates<RgbLight>(RgbLight.Name.OfficeSmallLight.GetEntityId());
             var switchLightOn = await ShouldLightBeSwitchedOn();
-
-            if (switchLightOn)
-                await officeBigLight.TurnOn();
-            else
-                await officeBigLight.TurnOff();
-
+            
+            await officeBigLight.Turn(switchLightOn);
+            await officeSmallLight.Turn(switchLightOn);
             await computerLight.Turn(switchLightOn);
         }
 
@@ -65,19 +63,18 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             var sunlight = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.Sunlight.GetEntityId());
             var minimumLightForLight = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.MinimumLightForLight);
 
-            if (laptopEthernet.State == "on" || businessLaptop.State == "on" || computer.State == "on" || laptopWifi.State == "on")
-            {
-                if (!int.TryParse(sunlight.State, out var result))
-                    return false;
+            if (laptopEthernet.State != "on" && businessLaptop.State != "on" && computer.State != "on" && laptopWifi.State != "on") 
+                return false;
+            
+            if (!int.TryParse(sunlight.State, out var result))
+                return false;
                 
-                var minimumSunState = minimumLightForLight.Value;
-                if (dateTimeHelper.Now.TimeOfDay > new TimeSpan(12, 0, 0))
-                    minimumSunState = minimumLightForLight.Value - 5;
+            var minimumSunState = minimumLightForLight.Value;
+            if (dateTimeHelper.Now.TimeOfDay > new TimeSpan(12, 0, 0))
+                minimumSunState = minimumLightForLight.Value - 5;
 
-                return result <= minimumSunState;
-            }
+            return result <= minimumSunState;
 
-            return false;
         }
     }
 }

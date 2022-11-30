@@ -26,7 +26,9 @@ namespace AutomationRunner.Core.Entities
             [EntityId("light.halogen_6")]
             Halogen6,
             [EntityId("light.lampa_gabinet")]
-            OfficeBigLight
+            OfficeBigLight,
+            [EntityId("light.lampka_gabinet_1")]
+            OfficeSmallLight
         }
 
         public Color Color
@@ -65,16 +67,18 @@ namespace AutomationRunner.Core.Entities
 
             if (brightnessPercent.HasValue)
             {
-                new PercentValidation().ValidateAndThrow(brightnessPercent.Value);
+                await new PercentValidation().ValidateAndThrowAsync(brightnessPercent.Value);
                 service.BrightnessPercent = brightnessPercent;
             }
 
             if (color != null)
             {
-                service.Color = new List<int>(3);
-                service.Color.Add(color.Value.R);
-                service.Color.Add(color.Value.G);
-                service.Color.Add(color.Value.B);
+                service.Color = new List<int>(3)
+                {
+                    color.Value.R,
+                    color.Value.G,
+                    color.Value.B
+                };
             }
 
             if (transitionTime != null)
@@ -83,6 +87,14 @@ namespace AutomationRunner.Core.Entities
 
             await Connector.SendServiceAsync("light.turn_on", service);
             State = "on";
+        }
+        
+        public async Task Turn(bool on, Color? color = null, int? brightnessPercent = null, TimeSpan? transitionTime = null)
+        {
+            if (on)
+                await TurnOn(color, brightnessPercent, transitionTime);
+            else
+                await TurnOff();
         }
 
         public Task TurnOnStandardWhite(int brightnessPercent = 100) => 

@@ -14,6 +14,7 @@ public class CubeAutomation : BaseAutomation, IEntitiesStateAutomation
     private readonly StandardLightScene standardLightScene;
     private readonly OutHomeScene outHomeScene;
     private readonly GoodnightScene goodnightScene;
+    private readonly WatchTvScene watchTvScene;
     private readonly IDateTimeHelper dateTimeHelper;
     private Cube? previousCubeState;
     private DateTime? startingGoodNight;
@@ -22,12 +23,14 @@ public class CubeAutomation : BaseAutomation, IEntitiesStateAutomation
         StandardLightScene standardLightScene,
         OutHomeScene outHomeScene,
         GoodnightScene goodnightScene,
+        WatchTvScene watchTvScene,
         IDateTimeHelper dateTimeHelper)
     {
         this.connector = connector;
         this.standardLightScene = standardLightScene;
         this.outHomeScene = outHomeScene;
         this.goodnightScene = goodnightScene;
+        this.watchTvScene = watchTvScene;
         this.dateTimeHelper = dateTimeHelper;
     }
 
@@ -69,6 +72,15 @@ public class CubeAutomation : BaseAutomation, IEntitiesStateAutomation
             if (dateTimeHelper.UtcNow - startingGoodNight < TimeSpan.FromSeconds(30))
             {
                 await goodnightScene.ActivateAsync();
+                startingGoodNight = null;
+            }
+        }
+        
+        if (cube.Action == Cube.CubeAction.RotateRight)
+        {
+            if (dateTimeHelper.UtcNow - startingGoodNight < TimeSpan.FromSeconds(30))
+            {
+                await watchTvScene.ActivateAsync();
                 startingGoodNight = null;
             }
         }

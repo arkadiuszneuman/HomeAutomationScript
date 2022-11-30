@@ -24,8 +24,7 @@ namespace AutomationRunner.Core.Scenes.Specific
             var lightsToSwitchOn = await Light.LoadFromEntitiesId(Connector, Light.Name.Halogen2, Light.Name.Halogen3);
             var allLights = await Light.LoadAllLights(Connector, Light.Name.Halogen2, Light.Name.Halogen3);
             var allRgbLights = await RgbLight.LoadAllLights(Connector);
-            var allSwitches = await Switch.LoadAllLights(Connector, Switch.Name.OfficeLight);
-            var officeLight = await Switch.LoadFromEntityId(Connector, Switch.Name.OfficeLight);
+            var allSwitches = await Switch.LoadAllLights(Connector);
             var stairsLight = await InputNumber.LoadFromEntityId(Connector, InputNumber.Name.StairsMinimumBrightness);
             var mediaPlayers = await MediaPlayer.LoadAll(Connector);
             var cover = await Cover.LoadFromEntityId(Connector, Cover.Name.Salon);
@@ -38,14 +37,10 @@ namespace AutomationRunner.Core.Scenes.Specific
             await allLights.TurnOffAll();
             await allRgbLights.TurnOffAll();
             await allSwitches.TurnOffAll();
-            await officeLight.TurnOn();
 
             await Task.Delay(TimeSpan.FromSeconds(10), cancellationToken);
             await allRgbLights.TurnOffAll();
             
-            await Task.Delay(TimeSpan.FromMinutes(5), cancellationToken);
-            await officeLight.TurnOff();
-
             await Task.Delay(TimeSpan.FromMinutes(10), cancellationToken);
 
             await lightsToSwitchOn.TurnOffAll();
