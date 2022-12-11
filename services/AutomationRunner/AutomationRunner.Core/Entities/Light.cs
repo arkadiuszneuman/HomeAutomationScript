@@ -27,7 +27,10 @@ namespace AutomationRunner.Core.Entities
             Halogen4,
 
             [EntityId("light.lampka_zewnetrzna")]
-            ExternalLight
+            ExternalLight,
+            
+            [EntityId("light.lampa_dzieci")]
+            KidsLight
         }
 
         public static async Task<Light> LoadFromEntityId(HomeAssistantConnector connector, Name lightName)
@@ -63,6 +66,14 @@ namespace AutomationRunner.Core.Entities
         {
             await Connector.SendServiceAsync("light.turn_off", new EntityIdService(EntityId));
             State = "off";
+        }
+        
+        public async Task Turn(bool on)
+        {
+            if (on)
+                await TurnOn();
+            else
+                await TurnOff();
         }
     }
 }

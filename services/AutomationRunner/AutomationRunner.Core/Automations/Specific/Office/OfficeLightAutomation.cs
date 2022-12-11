@@ -11,23 +11,20 @@ namespace AutomationRunner.Core.Automations.Specific.Office
     public class OfficeLightAutomation : BaseAutomation, IEntitiesStateAutomation
     {
         private readonly HomeAssistantConnector connector;
-        private readonly IDateTimeHelper dateTimeHelper;
 
         public IEnumerable<string> EntityNames => new[]
         {
-            Sensor.Name.Sunlight.GetEntityId(),
             Sensor.Name.LaptopEthernet.GetEntityId(),
             Sensor.Name.BusinessLaptopWifi.GetEntityId(),
             Sensor.Name.LaptopWifi.GetEntityId(),
             Sensor.Name.DesktopComputer.GetEntityId(),
-            InputNumber.Name.MinimumLightForLight.GetEntityId()
+            InputNumber.Name.MinimumLightForLight.GetEntityId(),
+            AqaraP1.Sensors.Lux.GetEntityId()
         };
 
-        public OfficeLightAutomation(HomeAssistantConnector connector,
-            IDateTimeHelper dateTimeHelper)
+        public OfficeLightAutomation(HomeAssistantConnector connector)
         {
             this.connector = connector;
-            this.dateTimeHelper = dateTimeHelper;
         }
 
         public override async Task<bool> ShouldUpdate(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
@@ -60,21 +57,13 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             var businessLaptop = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.BusinessLaptopWifi.GetEntityId());
             var laptopWifi = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.LaptopWifi.GetEntityId());
             var computer = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.DesktopComputer.GetEntityId());
-            var sunlight = await connector.LoadEntityFromStates<Sensor>(Sensor.Name.Sunlight.GetEntityId());
+            var hutAqaraP1 = await AqaraP1.LoadFromEntityId(connector, AqaraP1.Name.Hut);
             var minimumLightForLight = await InputNumber.LoadFromEntityId(connector, InputNumber.Name.MinimumLightForLight);
 
             if (laptopEthernet.State != "on" && businessLaptop.State != "on" && computer.State != "on" && laptopWifi.State != "on") 
                 return false;
-            
-            if (!int.TryParse(sunlight.State, out var result))
-                return false;
-                
-            var minimumSunState = minimumLightForLight.Value;
-            if (dateTimeHelper.Now.TimeOfDay > new TimeSpan(12, 0, 0))
-                minimumSunState = minimumLightForLight.Value - 5;
 
-            return result <= minimumSunState;
-
+            return hutAqaraP1.Illuminance < minimumLightForLight.Value;
         }
     }
 }

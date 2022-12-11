@@ -27,8 +27,8 @@ namespace AutomationRunner.Core.Scenes.Specific
             var lights = await Light.LoadFromEntitiesId(Connector, Light.Name.Halogen1, Light.Name.Halogen2, Light.Name.Halogen3, Light.Name.Halogen4);
 
             await tvleds.TurnOnStandardWhite();
-            await halogen5.TurnOn(Color.FromArgb(42, 0, 255));
-            await halogen6.TurnOn(Color.FromArgb(255, 0, 255));
+            await halogen5.TurnOn();
+            await halogen6.TurnOn();
             await lights.TurnOnAll();
             await lightsToSwitchOff.TurnOffAll();
             await stairs.SetValueBasedOnTvState();

@@ -24,8 +24,8 @@ public class WatchTvScene : BaseScene
         var tvleds = await RgbLight.LoadFromEntityId(Connector, RgbLight.Name.TvLEDs);
 
         await tvleds.TurnOnStandardWhite();
-        await halogen5.TurnOn(Color.FromArgb(42, 0, 255));
-        await halogen6.TurnOn(Color.FromArgb(255, 0, 255));
+        await halogen5.TurnOn();
+        await halogen6.TurnOn();
         await mushroom.TurnOnWithRandomColor();
         await halogens.TurnOffAll();
     }

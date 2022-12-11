@@ -30,6 +30,10 @@ devices:
     friendly_name: Gabinet
   '0x0017880108be5be4':
     friendly_name: Lampa dzieci
+  '0xa4c138d2bcf6033b':
+    friendly_name: Przekaźnik gabinet
+  '0xa4c138c4445c06ec':
+    friendly_name: Przekaźnik dzieci
 advanced:
   log_level: debug
 availability: true

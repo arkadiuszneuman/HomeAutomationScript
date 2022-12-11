@@ -39,7 +39,7 @@ public record Cube : Sensor
         Side
     }
     
-    public enum Name
+    public new enum Name
     {
         [EntityId("sensor.cube_action")]
         Cube

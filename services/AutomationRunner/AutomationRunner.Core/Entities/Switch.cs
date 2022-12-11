@@ -19,7 +19,9 @@ namespace AutomationRunner.Core.Entities
 
             [EntityId("switch.sonoff_1000511f63")] OfficeLight,
 
-            [EntityId("switch.sonoff_1000541365")] GardenLight
+            [EntityId("switch.sonoff_1000541365")] GardenLight,
+            [EntityId("switch.przekaznik_gabinet")] OfficeRelay,
+            [EntityId("switch.przekaznik_dzieci")] KidsRelay
         }
 
         public static async Task<Switch> LoadFromEntityId(HomeAssistantConnector connector, Name switchName)

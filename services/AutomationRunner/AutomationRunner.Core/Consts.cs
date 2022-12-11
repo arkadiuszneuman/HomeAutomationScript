@@ -2,6 +2,6 @@
 {
     public class Consts
     {
-        public const bool Christmas = false;
+        public const bool Christmas = true;
     }
 }
