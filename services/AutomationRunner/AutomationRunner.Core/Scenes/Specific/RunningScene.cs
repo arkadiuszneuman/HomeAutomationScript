@@ -21,10 +21,10 @@ namespace AutomationRunner.Core.Scenes.Specific
         {
             var autoOfficeLight = await connector.LoadEntityFromStates<InputBoolean>(InputBoolean.Name.AutomaticOfficeLight.GetEntityId());
             var officeLight = await connector.LoadEntityFromStates<Switch>(Switch.Name.OfficeLight.GetEntityId());
-            var treadmill = await connector.LoadEntityFromStates<Switch>(Switch.Name.ChildLight.GetEntityId());
+            // var treadmill = await connector.LoadEntityFromStates<Switch>(Switch.Name.ChildLight.GetEntityId());
             await autoOfficeLight.TurnOff();
             await officeLight.TurnOn();
-            await treadmill.TurnOn();
+            // await treadmill.TurnOn();
         }
     }
     
@@ -44,7 +44,7 @@ namespace AutomationRunner.Core.Scenes.Specific
         public async Task Activated(CancellationToken cancellationToken = default)
         {
             var autoOfficeLight = await connector.LoadEntityFromStates<InputBoolean>(InputBoolean.Name.AutomaticOfficeLight.GetEntityId());
-            var treadmill = await connector.LoadEntityFromStates<Switch>(Switch.Name.ChildLight.GetEntityId());
+            var treadmill = await connector.LoadEntityFromStates<Switch>(Switch.Name.Treadmill.GetEntityId());
             
             await autoOfficeLight.TurnOn();
             await treadmill.TurnOff();

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using AutomationRunner.Core.Common.Connector;
 using AutomationRunner.Core.Common.Extensions;
@@ -36,8 +38,8 @@ public class RelaysLights : BaseAutomation, IEntitiesStateAutomation
     {
         if (_dictionary.ContainsKey(oldStateBaseEntity.EntityId))
         {
-            var light = await connector.LoadEntityFromStates<Light>(_dictionary[oldStateBaseEntity.EntityId]);
-            await light.Turn(newStateBaseEntity.State == "on");
+            var light = await connector.LoadEntityFromStates<RgbLight>(_dictionary[oldStateBaseEntity.EntityId]);
+            await light.Turn(newStateBaseEntity.State == "on", Color.FromArgb(255, 255, 182), 100, TimeSpan.FromSeconds(1));
         }
     }
 }

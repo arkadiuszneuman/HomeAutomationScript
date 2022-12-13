@@ -28,5 +28,11 @@ public class WatchTvScene : BaseScene
         await halogen6.TurnOn();
         await mushroom.TurnOnWithRandomColor();
         await halogens.TurnOffAll();
+        
+        if (Consts.Christmas)
+        {
+            var christmasLight = await Switch.LoadFromEntityId(Connector, Switch.Name.ChristmasTree);
+            await christmasLight.TurnOn();
+        }
     }
 }

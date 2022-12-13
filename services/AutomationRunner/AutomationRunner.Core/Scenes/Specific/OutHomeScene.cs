@@ -38,6 +38,12 @@ namespace AutomationRunner.Core.Scenes.Specific
             await allRgbLights.TurnOffAll();
             await allSwitches.TurnOffAll();
             await stairsLight.SetValue(0);
+            
+            if (Consts.Christmas)
+            {
+                var christmasLight = await Switch.LoadFromEntitiesId(Connector, Switch.Name.ChristmasTree, Switch.Name.Treadmill);
+                await christmasLight.TurnOffAll();
+            }
 
             await Task.Delay(TimeSpan.FromMinutes(5), cancellationToken);
             

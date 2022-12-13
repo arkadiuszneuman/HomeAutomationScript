@@ -13,7 +13,7 @@ namespace AutomationRunner.Core.Entities
     {
         public enum Name
         {
-            [EntityId("switch.sonoff_1000513cd0")] ChildLight,
+            [EntityId("switch.sonoff_1000513cd0")] Treadmill,
 
             [EntityId("switch.sonoff_100051420f")] ChristmasTree,
 
@@ -29,11 +29,11 @@ namespace AutomationRunner.Core.Entities
             return await connector.LoadEntityFromStates<Switch>(switchName.GetEntityId());
         }
 
-        public static IEnumerable<Task<Switch>> LoadFromEntitiesId(HomeAssistantConnector connector,
+        public static async Task<IReadOnlyList<Switch>> LoadFromEntitiesId(HomeAssistantConnector connector,
             params Name[] switchNames)
         {
-            foreach (var switchName in switchNames)
-                yield return LoadFromEntityId(connector, switchName);
+            var switchesTasks = switchNames.Select(x => LoadFromEntityId(connector, x));
+            return await Task.WhenAll(switchesTasks);
         }
 
         public static async Task<IList<Switch>> LoadAllLights(HomeAssistantConnector connector, params Name[] except)

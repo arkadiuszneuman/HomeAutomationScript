@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using AutomationRunner.Core.Common;
 using AutomationRunner.Core.Common.Connector;
@@ -46,7 +47,7 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             var officeSmallLight = await connector.LoadEntityFromStates<RgbLight>(RgbLight.Name.OfficeSmallLight.GetEntityId());
             var switchLightOn = await ShouldLightBeSwitchedOn();
             
-            await officeBigLight.Turn(switchLightOn);
+            await officeBigLight.Turn(switchLightOn, Color.FromArgb(191, 0, 255), 100, TimeSpan.FromSeconds(1));
             await officeSmallLight.Turn(switchLightOn);
             await computerLight.Turn(switchLightOn);
         }

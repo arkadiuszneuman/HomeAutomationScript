@@ -33,6 +33,12 @@ namespace AutomationRunner.Core.Scenes.Specific
             await lightsToSwitchOff.TurnOffAll();
             await stairs.SetValueBasedOnTvState();
             await mushroom.TurnOnWithRandomColor();
+
+            if (Consts.Christmas)
+            {
+                var christmasLight = await Switch.LoadFromEntityId(Connector, Switch.Name.ChristmasTree);
+                await christmasLight.TurnOn();
+            }
         }
     }
 }
