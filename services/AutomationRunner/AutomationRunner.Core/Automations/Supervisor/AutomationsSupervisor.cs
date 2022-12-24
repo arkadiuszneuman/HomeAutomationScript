@@ -102,7 +102,8 @@ namespace AutomationRunner.Core.Automations.Supervisor
                 IEnumerable<IStateUpdate> manyEntitiesStateAutomations = entitiesStatesAutomations
                     .Where(s => s.EntityNames.Contains(oldNewState.NewState?.EntityId));
 
-                foreach (var automation in singleEntityStateAutomations.Union(manyEntitiesStateAutomations))
+                foreach (var automation in singleEntityStateAutomations.Union(manyEntitiesStateAutomations)
+                             .Where(x => x.Enabled))
                 {
                     var shouldUpdate = true;
                     if (automation is IShouldUpdate shouldUpdateAutomation)

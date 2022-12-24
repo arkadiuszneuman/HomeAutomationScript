@@ -19,6 +19,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
         private readonly NotificationPushService notificationPushService;
         private readonly IDateTimeHelper dateTimeHelper;
         private readonly ConditionHelper notifyCondition;
+        
+        public bool Enabled => true;
 
         public string EntityName { get; } = XiaomiAirHumidifier.Name.AirHumidifier.GetEntityId();
         public TimeSpan UpdateEvery { get; } = TimeSpan.FromHours(1);

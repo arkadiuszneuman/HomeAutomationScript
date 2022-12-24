@@ -19,6 +19,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan
         private readonly IDateTimeHelper dateTimeHelper;
         private readonly ConditionHelper turnOffCondition;
         private readonly ConditionHelper turnOnCondition;
+        
+        public bool Enabled => true;
 
         public string EntityName => XiaomiAirPurifier.Name.AirPurifierPro.GetEntityId();
         

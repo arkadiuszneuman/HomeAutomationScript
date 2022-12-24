@@ -18,6 +18,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
         private readonly HomeAssistantConnector connector;
         private readonly ConditionHelper turnOffCondition;
         private readonly ConditionHelper turnOnCondition;
+        
+        public bool Enabled => true;
 
         public string EntityName { get; } = XiaomiAirPurifier.Name.AirPurifier2S.GetEntityId();
         public TimeSpan UpdateEvery { get; } = TimeSpan.FromMinutes(Math.Min(forTurnOnTime, forTurnOffTime));

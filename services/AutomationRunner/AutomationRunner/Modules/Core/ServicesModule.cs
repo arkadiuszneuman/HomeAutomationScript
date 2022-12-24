@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using AutomationRunner.Core.Entities.Services.Models;
+using AutomationRunner.Core.Scenes;
 
 namespace AutomationRunner.Modules.Core
 {
@@ -13,6 +14,9 @@ namespace AutomationRunner.Modules.Core
                .Where(a => a.Namespace?.StartsWith("AutomationRunner.Core.Entities.Services") ?? false)
                .AsImplementedInterfaces()
                .AsSelf();
+
+            builder.RegisterType<ScenesActivator>()
+                .SingleInstance();
         }
     }
 }

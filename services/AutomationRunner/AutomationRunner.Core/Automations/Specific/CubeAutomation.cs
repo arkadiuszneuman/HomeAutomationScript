@@ -35,6 +35,7 @@ public class CubeAutomation : BaseAutomation, IEntitiesStateAutomation
     }
 
     public IEnumerable<string> EntityNames => Cube.GetAllCubeSensors();
+    public override bool Enabled => false;
 
     public override async Task<bool> ShouldUpdate(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
     {

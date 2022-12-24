@@ -15,6 +15,8 @@ namespace AutomationRunner.Core.Automations.Specific
         private readonly ILogger<LightsComingHomeAutomation> logger;
         private readonly HomeAssistantConnector connector;
         private readonly IDateTimeHelper dateTimeHelper;
+        public bool Enabled => true;
+
 
         public IEnumerable<string> EntityNames => new[] {
             DeviceTracker.Name.Arek.GetEntityId(),

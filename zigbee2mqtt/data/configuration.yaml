@@ -34,6 +34,8 @@ devices:
     friendly_name: Przekaźnik gabinet
   '0xa4c138c4445c06ec':
     friendly_name: Przekaźnik dzieci
+  '0x0c4314fffe49e195':
+    friendly_name: Pilot
 advanced:
   log_level: debug
 availability: true

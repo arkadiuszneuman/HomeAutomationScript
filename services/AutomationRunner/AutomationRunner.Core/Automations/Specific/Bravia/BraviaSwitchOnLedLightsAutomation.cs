@@ -12,6 +12,7 @@ namespace AutomationRunner.Core.Automations.Specific.Bravia
     {
         private readonly HomeAssistantConnector connector;
         private readonly IDateTimeHelper dateTimeHelper;
+        public bool Enabled => true;
 
         private DateTime? lastUpdateAfterSunset;
 

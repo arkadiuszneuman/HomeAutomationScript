@@ -55,14 +55,7 @@ namespace AutomationRunner.Core.Scenes
 
             if (sceneToActivate != null)
             {
-                if (activatedScenes.ContainsKey(sceneName))
-                {
-                    var activatedSceneTask = activatedScenes[sceneName];
-                    if (!activatedSceneTask.Task.IsCompleted)
-                        activatedSceneTask.CancellationTokenSource.Cancel();
-
-                    activatedScenes.Remove(sceneName);
-                }
+                CancelScene(sceneName);
                 
                 await connector.RefreshStates();
 
@@ -83,6 +76,18 @@ namespace AutomationRunner.Core.Scenes
 
             var sceneToActivate = scenesToActivate.SingleOrDefault();
             return sceneToActivate;
+        }
+
+        public void CancelScene(string sceneName)
+        {
+            if (activatedScenes.ContainsKey(sceneName))
+            {
+                var activatedSceneTask = activatedScenes[sceneName];
+                if (!activatedSceneTask.Task.IsCompleted)
+                    activatedSceneTask.CancellationTokenSource.Cancel();
+
+                activatedScenes.Remove(sceneName);
+            }
         }
     }
 }

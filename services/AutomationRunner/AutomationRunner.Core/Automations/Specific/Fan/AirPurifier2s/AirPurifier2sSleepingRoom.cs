@@ -23,6 +23,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
         private readonly ConditionHelper turnOnCondition;
         private readonly ConditionHelper silentSpeedCondition;
         private readonly ConditionHelper autoSpeedCondition;
+        
+        public bool Enabled => true;
 
         public string EntityName { get; } = XiaomiAirPurifier.Name.AirPurifier2S.GetEntityId();
 

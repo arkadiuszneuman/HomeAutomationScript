@@ -15,6 +15,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirPurifier2s
     {
         private readonly ILogger<ChangedAirPurifier2sAutomationType> logger;
         private readonly IEnumerable<IAirPurifiers2sAutomationType> automationTypes;
+        
+        public bool Enabled => true;
 
         public string EntityName { get; } = InputSelect.Name.AirPurifier2sAutomationType.GetEntityId();
 

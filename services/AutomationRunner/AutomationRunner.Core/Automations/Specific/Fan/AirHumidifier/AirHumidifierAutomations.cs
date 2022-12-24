@@ -13,6 +13,8 @@ namespace AutomationRunner.Core.Automations.Specific.Fan.AirHumidifier
         private readonly ILogger<AirHumidifierAutomations> logger;
         private readonly HomeAssistantConnector connector;
         private readonly IDateTimeHelper dateTimeHelper;
+        
+        public bool Enabled => true;
 
         public string EntityName { get; } = XiaomiAirHumidifier.Name.AirHumidifier.GetEntityId();
         public TimeSpan UpdateEvery { get; } = TimeSpan.FromMinutes(1);
