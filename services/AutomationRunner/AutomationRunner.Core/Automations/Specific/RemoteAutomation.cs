@@ -16,22 +16,19 @@ public class RemoteAutomation : BaseAutomation, IEntitiesStateAutomation
     private readonly OutHomeScene outHomeScene;
     private readonly GoodnightScene goodnightScene;
     private readonly WatchTvScene watchTvScene;
-    private readonly ScenesActivator scenesActivator;
     
     public IEnumerable<string> EntityNames => new[] { Remote.Name.Remote.GetEntityId() };
 
     private static CancellationTokenSource cancellationTokenSource = new();
-    private static bool isStandardLightScene = false;
 
     public RemoteAutomation(HomeAssistantConnector connector, StandardLightScene standardLightScene,
-        OutHomeScene outHomeScene, GoodnightScene goodnightScene, WatchTvScene watchTvScene, ScenesActivator scenesActivator)
+        OutHomeScene outHomeScene, GoodnightScene goodnightScene, WatchTvScene watchTvScene)
     {
         this.connector = connector;
         this.standardLightScene = standardLightScene;
         this.outHomeScene = outHomeScene;
         this.goodnightScene = goodnightScene;
         this.watchTvScene = watchTvScene;
-        this.scenesActivator = scenesActivator;
     }
 
     public override async Task UpdateAsync(BaseEntity oldStateBaseEntity, BaseEntity newStateBaseEntity)
@@ -43,23 +40,22 @@ public class RemoteAutomation : BaseAutomation, IEntitiesStateAutomation
         
         switch (remote.Action)
         {
-            case Remote.RemoteAction.Toggle:
-                var task = isStandardLightScene
-                    ? watchTvScene.ActivateAsync(cancellationTokenSource.Token)
-                    : standardLightScene.ActivateAsync(cancellationTokenSource.Token);
-
-                isStandardLightScene = !isStandardLightScene;
-
-                await task;
-                
+            case Remote.RemoteAction.ArrowLeftClick:
+                _ = standardLightScene.ActivateAsync(cancellationTokenSource.Token);
                 break;
-            
+            case Remote.RemoteAction.ArrowRightClick:
+                _ = watchTvScene.ActivateAsync(cancellationTokenSource.Token);
+                break;
+            case Remote.RemoteAction.ArrowRightHold:
+                var rgbLights = await RgbLight.LoadAllLights(connector, RgbLight.Name.Mushroom, RgbLight.Name.TvLEDs);
+                await watchTvScene.ActivateAsync(cancellationTokenSource.Token);
+                _ = rgbLights.TurnOffAll();
+                break;
             case Remote.RemoteAction.BrightnessUpClick:
-                await outHomeScene.ActivateAsync(cancellationTokenSource.Token);
+                _ = outHomeScene.ActivateAsync(cancellationTokenSource.Token);
                 break;
-            
             case Remote.RemoteAction.BrightnessDownClick:
-                await goodnightScene.ActivateAsync(cancellationTokenSource.Token);
+                _ = goodnightScene.ActivateAsync(cancellationTokenSource.Token);
                 break;
         }
     }

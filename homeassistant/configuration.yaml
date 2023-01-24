@@ -193,7 +193,7 @@ scene: !include_dir_list custom/scenes/
 sensor: !include_dir_merge_list custom/sensors/
 
 recorder:
-  db_url: mysql://root:wsadqe@192.168.1.115:3306/home_assistant?charset=utf8
+  db_url: mysql://root:wsadqe@10.0.0.115:3306/home_assistant?charset=utf8
   include:
     entities:
       - media_player.sony_bravia_tv
@@ -261,21 +261,21 @@ binary_sensor:
   - platform: workday
     country: PL
   - platform: ping #need to add ip of HA to firewall rule
-    host: 192.168.1.106
+    host: 10.0.0.201
     name: "Laptop Ethernet"
     count: 2
     scan_interval: 2
   - platform: ping
-    host: 192.168.1.125
+    host: 10.0.0.202
     name: "Laptop WiFi"
     count: 2
   - platform: ping #need to add ip of HA to firewall rule
-    host: 192.168.1.135
+    host: 10.0.0.203
     name: "Laptop Służbowy WiFi"
     count: 2
     scan_interval: 2
   - platform: ping #need to add ip of HA to firewall rule
-    host: 192.168.1.140
+    host: 10.0.0.204
     name: "Komputer stacjonarny"
     count: 2
     scan_interval: 2
@@ -287,7 +287,7 @@ sonoff:
 light:
   - platform: limitlessled
     bridges:
-      - host: 192.168.1.101
+      - host: 10.0.0.210
         groups:
           - number: 1
             type: rgbww

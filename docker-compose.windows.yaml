@@ -91,6 +91,17 @@ services:
     container_name: z2m
     restart: unless-stopped
 
+  node-red:
+    image: nodered/node-red:2.2.3
+    environment:
+      - TZ=Europe/Warsaw
+    #    ports:
+    #      - "1880:1880"
+    volumes:
+      - ./nodered:/data
+    network_mode: host
+    container_name: node-red
+
   # backup-creator2:
   #   build:
   #     context: ./services/PythonServices/BackupCreator

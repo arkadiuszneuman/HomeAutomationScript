@@ -70,7 +70,7 @@ namespace AutomationRunner.Core.Common.Connector
             if (response.StatusCode != HttpStatusCode.OK)
                 logger.LogError("Error while sending status to {0} with body {1}", uri, json);
 
-            await Task.Delay(25, cancellationToken); // bug in HA, we need to wait between each activations
+            await Task.Delay(5, cancellationToken); // bug in HA, we need to wait between each activations
         }
 
         public async Task RefreshStates()

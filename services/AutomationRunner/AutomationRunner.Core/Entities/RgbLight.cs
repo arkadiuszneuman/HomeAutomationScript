@@ -28,7 +28,9 @@ namespace AutomationRunner.Core.Entities
             [EntityId("light.lampa_gabinet")]
             OfficeBigLight,
             [EntityId("light.lampka_gabinet_1")]
-            OfficeSmallLight
+            OfficeSmallLight1,
+            [EntityId("light.lampka_gabinet_2")]
+            OfficeSmallLight2
         }
 
         public Color Color

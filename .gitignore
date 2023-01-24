@@ -20,3 +20,4 @@ homeassistant/custom_components/
 homeassistant/www/community/
 zigbee2mqtt/data/log/
 zigbee2mqtt/data/state.json
+/nodered
