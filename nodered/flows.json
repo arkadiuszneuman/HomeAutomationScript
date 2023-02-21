@@ -2,15 +2,47 @@
     {
         "id": "032795029faf4456",
         "type": "tab",
-        "label": "Flow 1",
-        "disabled": true,
+        "label": "Pilot Ikea",
+        "disabled": false,
         "info": "",
         "env": []
     },
     {
         "id": "f9ac8b9539c832a3",
         "type": "tab",
-        "label": "Standard Light Scene",
+        "label": "Sceny salon",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b2adcefb2c1343bd",
+        "type": "tab",
+        "label": "Sceny bieganie",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c64ddd5143775f97",
+        "type": "tab",
+        "label": "Scena wyjście z domu",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "67fa2eb0703016d1",
+        "type": "tab",
+        "label": "Scena światło zewnętrzne",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b2dfaac53f4ee54b",
+        "type": "tab",
+        "label": "Przekaźniki światła",
         "disabled": false,
         "info": "",
         "env": []
@@ -42,7 +74,7 @@
         "id": "c9432689e0f580a4",
         "type": "server-state-changed",
         "z": "032795029faf4456",
-        "name": "",
+        "name": "Pilot",
         "server": "163c9f2450f671da",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -93,8 +125,8 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 220,
-        "y": 180,
+        "x": 90,
+        "y": 40,
         "wires": [
             [
                 "17c9759e599d8ad6"
@@ -105,47 +137,39 @@
         "id": "17c9759e599d8ad6",
         "type": "function",
         "z": "032795029faf4456",
-        "name": "function 1",
-        "func": "msg.result=msg.data.old_state.attributes.action\nreturn msg;",
+        "name": "Pobierz akcję",
+        "func": "msg.payload=msg.data.new_state.attributes.action\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 280,
+        "x": 280,
+        "y": 40,
         "wires": [
             [
-                "5f5897596cca335d",
                 "03fbfc2607454ccd"
             ]
         ]
-    },
-    {
-        "id": "5f5897596cca335d",
-        "type": "debug",
-        "z": "032795029faf4456",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 600,
-        "y": 280,
-        "wires": []
     },
     {
         "id": "03fbfc2607454ccd",
         "type": "switch",
         "z": "032795029faf4456",
         "name": "",
-        "property": "result",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
+            {
+                "t": "eq",
+                "v": "arrow_left_click",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "arrow_left_hold",
+                "vt": "str"
+            },
             {
                 "t": "eq",
                 "v": "arrow_right_click",
@@ -153,41 +177,107 @@
             },
             {
                 "t": "eq",
-                "v": "arrow_left_click",
+                "v": "brightness_up_click",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "brightness_down_click",
                 "vt": "str"
             }
         ],
         "checkall": "false",
         "repair": false,
-        "outputs": 2,
-        "x": 310,
-        "y": 380,
+        "outputs": 5,
+        "x": 270,
+        "y": 180,
         "wires": [
             [
-                "ec28e26a5ea6fcd9"
+                "afe8c622ef8d03cf"
             ],
             [
-                "73173199c08bcb27"
+                "afe8c622ef8d03cf",
+                "ec87287eb765068e"
+            ],
+            [
+                "c235e6ab9602c43b"
+            ],
+            [
+                "de51c69e72662118"
+            ],
+            [
+                "874e3a434553d62f"
             ]
         ]
     },
     {
-        "id": "ec28e26a5ea6fcd9",
+        "id": "c235e6ab9602c43b",
         "type": "api-call-service",
         "z": "032795029faf4456",
-        "name": "Włączenie halogenów ",
+        "name": "Standardowe oświetlenie",
         "server": "163c9f2450f671da",
         "version": 5,
-        "debugenabled": false,
-        "domain": "light",
+        "debugenabled": true,
+        "domain": "scene",
         "service": "turn_on",
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.halogen_1",
-            "light.halogen_2",
-            "light.halogen_3",
-            "light.halogen_4"
+            "scene.standardowe_oswietlenie"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 550,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "afe8c622ef8d03cf",
+        "type": "api-call-service",
+        "z": "032795029faf4456",
+        "name": "Oglądanie TV",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "scene",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.ogladanie_tv"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de51c69e72662118",
+        "type": "api-call-service",
+        "z": "032795029faf4456",
+        "name": "Wyjście z domu",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "scene",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.wyjscie_z_domu"
         ],
         "data": "",
         "dataType": "jsonata",
@@ -196,16 +286,68 @@
         "outputProperties": [],
         "queue": "none",
         "x": 520,
-        "y": 380,
+        "y": 220,
         "wires": [
             []
         ]
     },
     {
-        "id": "73173199c08bcb27",
+        "id": "874e3a434553d62f",
         "type": "api-call-service",
         "z": "032795029faf4456",
+        "name": "Dobranoc",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "scene",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.dobranoc"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 500,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ec87287eb765068e",
+        "type": "delay",
+        "z": "032795029faf4456",
         "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 140,
+        "wires": [
+            [
+                "7c08316b5b85778b"
+            ]
+        ]
+    },
+    {
+        "id": "7c08316b5b85778b",
+        "type": "api-call-service",
+        "z": "032795029faf4456",
+        "name": "Wyłącz światła RGB",
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
@@ -214,10 +356,8 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.halogen_1",
-            "light.halogen_2",
-            "light.halogen_3",
-            "light.halogen_4"
+            "light.halogen_5",
+            "light.halogen_6"
         ],
         "data": "",
         "dataType": "jsonata",
@@ -225,8 +365,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 503.66668701171875,
-        "y": 445.8888854980469,
+        "x": 720,
+        "y": 140,
         "wires": [
             []
         ]
@@ -235,7 +375,7 @@
         "id": "ab69e26fbb15c02a",
         "type": "server-state-changed",
         "z": "f9ac8b9539c832a3",
-        "name": "",
+        "name": "Standardowe oświetlenie",
         "server": "163c9f2450f671da",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -286,11 +426,13 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 240,
-        "y": 180,
+        "x": 150,
+        "y": 40,
         "wires": [
             [
-                "d3041cfa24e0aab5"
+                "d3041cfa24e0aab5",
+                "9aa642cfa8beb53a",
+                "e0811da42f75fb5d"
             ]
         ]
     },
@@ -298,7 +440,7 @@
         "id": "2613dc838cbd5e47",
         "type": "api-call-service",
         "z": "f9ac8b9539c832a3",
-        "name": "",
+        "name": "Grzybek",
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
@@ -309,14 +451,14 @@
         "entityId": [
             "light.grzybek"
         ],
-        "data": "{\t   \"rgb_color\": randomColor\t}",
+        "data": "{\t   \"rgb_color\": randomColor,\t   \"brightness_pct\": 100\t}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 790,
-        "y": 180,
+        "x": 580,
+        "y": 40,
         "wires": [
             []
         ]
@@ -332,12 +474,1657 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 180,
+        "x": 400,
+        "y": 40,
         "wires": [
             [
                 "2613dc838cbd5e47"
             ]
+        ]
+    },
+    {
+        "id": "9aa642cfa8beb53a",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Salon LED",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.salon_led"
+        ],
+        "data": "{\t   \"rgb_color\": [255, 163, 72],\t   \"brightness_pct\": 100\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 390,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e0811da42f75fb5d",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Halogeny",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.halogen_1",
+            "light.halogen_2",
+            "light.halogen_3",
+            "light.halogen_4",
+            "light.halogen_5",
+            "light.halogen_6"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 380,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "135e151637506a67",
+        "type": "server-state-changed",
+        "z": "f9ac8b9539c832a3",
+        "name": "Oglądanie TV",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "scene.ogladanie_tv",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "47e15f61dc69ae10",
+                "4bd6ada147963d2f",
+                "5ead5c978b3ae8b3",
+                "691e105a52748b8a"
+            ]
+        ]
+    },
+    {
+        "id": "e704175af4919eb9",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Grzybek",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.grzybek"
+        ],
+        "data": "{\t   \"rgb_color\": randomColor,\t   \"brightness_pct\": 100\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 580,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47e15f61dc69ae10",
+        "type": "function",
+        "z": "f9ac8b9539c832a3",
+        "name": "Random Color",
+        "func": "msg.randomColor = [Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), Math.floor(Math.random() * 255)]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 280,
+        "wires": [
+            [
+                "e704175af4919eb9"
+            ]
+        ]
+    },
+    {
+        "id": "4bd6ada147963d2f",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Salon LED",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.salon_led"
+        ],
+        "data": "{\t   \"rgb_color\": [255, 163, 72],\t   \"brightness_pct\": 100\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 390,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5ead5c978b3ae8b3",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Halogeny włączone",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.halogen_5",
+            "light.halogen_6"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 410,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "691e105a52748b8a",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Halogeny wyłączone",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.halogen_1",
+            "light.halogen_2",
+            "light.halogen_3",
+            "light.halogen_4"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 420,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bb7c06a04832d1e5",
+        "type": "server-state-changed",
+        "z": "f9ac8b9539c832a3",
+        "name": "Dobranoc",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "scene.dobranoc",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 560,
+        "wires": [
+            [
+                "df9faafd8fbeefbe",
+                "653e83d3f1ffa715",
+                "9a2d2552d2f887b8",
+                "db52d73c44600f2d"
+            ]
+        ]
+    },
+    {
+        "id": "9a2d2552d2f887b8",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Włącz światła",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.halogen_2",
+            "light.halogen_3"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 360,
+        "y": 560,
+        "wires": [
+            [
+                "0deb1030d7e6e0be"
+            ]
+        ]
+    },
+    {
+        "id": "df9faafd8fbeefbe",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Wyłącz światła",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.grzybek",
+            "light.halogen_1",
+            "light.halogen_4",
+            "light.halogen_5",
+            "light.halogen_6",
+            "light.lampa_dzieci",
+            "light.lampa_gabinet",
+            "light.lampka_gabinet_1",
+            "light.lampka_zewnetrzna",
+            "light.salon_led"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 360,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "653e83d3f1ffa715",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Wyłącz przekaźniki",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_1000513cd0",
+            "switch.sonoff_100051420f",
+            "switch.sonoff_1000511f63",
+            "switch.sonoff_1000541365",
+            "switch.przekaznik_dzieci",
+            "switch.przekaznik_gabinet"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 370,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0deb1030d7e6e0be",
+        "type": "delay",
+        "z": "f9ac8b9539c832a3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 560,
+        "wires": [
+            [
+                "ef73919d8b4fc840"
+            ]
+        ]
+    },
+    {
+        "id": "ef73919d8b4fc840",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Wyłącz światła, które zostały włączone",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.halogen_2",
+            "light.halogen_3"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 790,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db52d73c44600f2d",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Zamknij roletę",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "cover",
+        "service": "close_cover",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "cover.roleta_salon"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 360,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de6c7a6f5a8968f7",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "name": "Wyłącz media playery",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.denon_avr_x1400h",
+            "media_player.kd_55xe9005",
+            "media_player.playstation_4",
+            "media_player.sony_bravia_tv"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 380,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "78d30d26a52fab3b",
+        "type": "server-state-changed",
+        "z": "b2adcefb2c1343bd",
+        "name": "Bieganie",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "scene.bieganie",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "bcd2981a6282f92d",
+                "abdb678895507741",
+                "04619304953732d0"
+            ]
+        ]
+    },
+    {
+        "id": "bcd2981a6282f92d",
+        "type": "api-call-service",
+        "z": "b2adcefb2c1343bd",
+        "name": "Wyłącz automatyczne sterowanie oświetleniem w salonie",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.auto_office_light"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 610,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "abdb678895507741",
+        "type": "api-call-service",
+        "z": "b2adcefb2c1343bd",
+        "name": "Włącz światła RGB",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.lampa_gabinet",
+            "light.lampka_gabinet_1"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 490,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "04619304953732d0",
+        "type": "api-call-service",
+        "z": "b2adcefb2c1343bd",
+        "name": "Włącz bieżnię i lampę",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_1000513cd0",
+            "switch.sonoff_1000511f63"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 500,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c4210de99aa36378",
+        "type": "server-state-changed",
+        "z": "b2adcefb2c1343bd",
+        "name": "Zakończ Bieganie",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "scene.zakoncz_bieganie",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "6cf1832a97e41bd3",
+                "4f4b3fc8976ae592",
+                "0f529defee31c9cf"
+            ]
+        ],
+        "icon": "font-awesome/fa-bed"
+    },
+    {
+        "id": "6cf1832a97e41bd3",
+        "type": "api-call-service",
+        "z": "b2adcefb2c1343bd",
+        "name": "Włącz automatyczne sterowanie oświetleniem w salonie",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.auto_office_light"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 610,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4f4b3fc8976ae592",
+        "type": "api-call-service",
+        "z": "b2adcefb2c1343bd",
+        "name": "Wyłącz światła RGB",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.lampa_gabinet",
+            "light.lampka_gabinet_1"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 500,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0f529defee31c9cf",
+        "type": "api-call-service",
+        "z": "b2adcefb2c1343bd",
+        "name": "Wyłącz bieżnię i lampę",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_1000513cd0",
+            "switch.sonoff_1000511f63"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 500,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ccc9d90b522a0043",
+        "type": "server-state-changed",
+        "z": "c64ddd5143775f97",
+        "name": "Wyjście z domu",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "scene.wyjscie_z_domu",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 140,
+        "y": 40,
+        "wires": [
+            [
+                "df7df673be1d9c98",
+                "eed6e467f5db8361",
+                "0688d9d91fc90393"
+            ]
+        ]
+    },
+    {
+        "id": "df7df673be1d9c98",
+        "type": "api-current-state",
+        "z": "c64ddd5143775f97",
+        "name": "Światło słoneczne poniżej 4",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "4",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "entity_id": "sensor.sunlight_pct",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 420,
+        "y": 40,
+        "wires": [
+            [
+                "0b66e0c8549d8e06",
+                "547d67abf9f23416"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0b66e0c8549d8e06",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "name": "Włącz światła",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.halogen_2",
+            "light.halogen_3",
+            "light.lampka_zewnetrzna"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 680,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "547d67abf9f23416",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "name": "Włącz oświetlenie zewnętrzne",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_1000541365"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 730,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f69501279babcc0b",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "name": "Zamknij roletę",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "cover",
+        "service": "close_cover",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "cover.roleta_salon"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 680,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eed6e467f5db8361",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "name": "Wyłącz światła",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.grzybek",
+            "light.halogen_1",
+            "light.halogen_4",
+            "light.halogen_5",
+            "light.halogen_6",
+            "light.lampa_dzieci",
+            "light.lampa_gabinet",
+            "light.lampka_gabinet_1",
+            "light.salon_led"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 380,
+        "y": 160,
+        "wires": [
+            [
+                "39869291426f147a"
+            ]
+        ]
+    },
+    {
+        "id": "0688d9d91fc90393",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "name": "Wyłącz przekaźniki",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_1000513cd0",
+            "switch.sonoff_100051420f",
+            "switch.sonoff_1000511f63",
+            "switch.przekaznik_dzieci",
+            "switch.przekaznik_gabinet"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 390,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39869291426f147a",
+        "type": "delay",
+        "z": "c64ddd5143775f97",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 600,
+        "y": 200,
+        "wires": [
+            [
+                "6cb112ecdff54584"
+            ]
+        ]
+    },
+    {
+        "id": "6cb112ecdff54584",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "name": "Wyłacz media playery",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.denon_avr_x1400h",
+            "media_player.playstation_4",
+            "media_player.sony_bravia_tv"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 820,
+        "y": 200,
+        "wires": [
+            [
+                "d346729c0c228393"
+            ]
+        ]
+    },
+    {
+        "id": "d346729c0c228393",
+        "type": "delay",
+        "z": "c64ddd5143775f97",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 260,
+        "wires": [
+            [
+                "5fa367aaafad48a6",
+                "1068a9af2313d51a"
+            ]
+        ]
+    },
+    {
+        "id": "5fa367aaafad48a6",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "name": "Wyłącz światła, które zostały włączone",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.halogen_2",
+            "light.halogen_3",
+            "light.lampka_zewnetrzna"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 870,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1068a9af2313d51a",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "name": "Włącz oświetlenie zewnętrzne, które zostało włączone",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_1000541365"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 920,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a70ba87b7369ed2c",
+        "type": "server-state-changed",
+        "z": "67fa2eb0703016d1",
+        "name": "Światło zewnętrzne",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "scene.swiatlo_zewnetrzne",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "366f78566d1be9b2",
+                "aae4b5a0da16c2e7"
+            ]
+        ]
+    },
+    {
+        "id": "366f78566d1be9b2",
+        "type": "api-call-service",
+        "z": "67fa2eb0703016d1",
+        "name": "Włącz lampkę",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.lampka_zewnetrzna"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 360,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aae4b5a0da16c2e7",
+        "type": "api-call-service",
+        "z": "67fa2eb0703016d1",
+        "name": "Włącz oświetlenie",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_1000541365"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 370,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "256099695343d75f",
+        "type": "server-state-changed",
+        "z": "b2dfaac53f4ee54b",
+        "name": "Przekaźnik gabinet",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.przekaznik_gabinet",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "51286361c38d1a1f"
+            ]
+        ]
+    },
+    {
+        "id": "c0f8fe11c977af5e",
+        "type": "api-call-service",
+        "z": "b2dfaac53f4ee54b",
+        "name": "Włącz lampę gabinet",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.lampa_gabinet"
+        ],
+        "data": "{    \t    \"rgbw_color\": [255, 255, 182, 50], \t    \"brightness_pct\": 100,\t    \"transition\": 1\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "51286361c38d1a1f",
+        "type": "switch",
+        "z": "b2dfaac53f4ee54b",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 80,
+        "wires": [
+            [
+                "c0f8fe11c977af5e"
+            ],
+            [
+                "f058df0fe57496b9"
+            ]
+        ]
+    },
+    {
+        "id": "f058df0fe57496b9",
+        "type": "api-call-service",
+        "z": "b2dfaac53f4ee54b",
+        "name": "Wyłącz lampę gabinet",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.lampa_gabinet"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "06675ac64db9a31e",
+        "type": "server-state-changed",
+        "z": "b2dfaac53f4ee54b",
+        "name": "Przekaźnik dzieci",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.przekaznik_dzieci",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "7809a71fb18fd5ea"
+            ]
+        ]
+    },
+    {
+        "id": "e8154bd964622703",
+        "type": "api-call-service",
+        "z": "b2dfaac53f4ee54b",
+        "name": "Włącz lampę gabinet",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.lampa_dzieci"
+        ],
+        "data": "{    \t    \"brightness_pct\": 100,\t    \"transition\": 1\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7809a71fb18fd5ea",
+        "type": "switch",
+        "z": "b2dfaac53f4ee54b",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 220,
+        "wires": [
+            [
+                "e8154bd964622703"
+            ],
+            [
+                "8726a485ef956e46"
+            ]
+        ]
+    },
+    {
+        "id": "8726a485ef956e46",
+        "type": "api-call-service",
+        "z": "b2dfaac53f4ee54b",
+        "name": "Wyłącz lampę dzieci",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.lampa_dzieci"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 240,
+        "wires": [
+            []
         ]
     }
 ]
