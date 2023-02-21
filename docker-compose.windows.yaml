@@ -92,7 +92,7 @@ services:
     restart: unless-stopped
 
   node-red:
-    image: nodered/node-red:2.2.3
+    image: nodered/node-red:3.0.2
     environment:
       - TZ=Europe/Warsaw
     #    ports:
@@ -101,6 +101,7 @@ services:
       - ./nodered:/data
     network_mode: host
     container_name: node-red
+    restart: unless-stopped
 
   # backup-creator2:
   #   build:

@@ -36,8 +36,6 @@ devices:
     friendly_name: Przekaźnik dzieci
   '0x0c4314fffe49e195':
     friendly_name: Pilot
-  '0x94deb8fffeaa9333':
-    friendly_name: Lampka gabinet 2
 advanced:
   log_level: debug
 availability: true
