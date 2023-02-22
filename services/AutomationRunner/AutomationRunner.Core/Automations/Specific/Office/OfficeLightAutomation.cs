@@ -45,12 +45,10 @@ namespace AutomationRunner.Core.Automations.Specific.Office
             var computerLight = await connector.LoadEntityFromStates<Switch>(Switch.Name.OfficeLight.GetEntityId());
             var officeBigLight = await connector.LoadEntityFromStates<RgbLight>(RgbLight.Name.OfficeBigLight.GetEntityId());
             var officeSmallLight1 = await connector.LoadEntityFromStates<RgbLight>(RgbLight.Name.OfficeSmallLight1.GetEntityId());
-            var officeSmallLight2 = await connector.LoadEntityFromStates<RgbLight>(RgbLight.Name.OfficeSmallLight2.GetEntityId());
             var switchLightOn = await ShouldLightBeSwitchedOn();
             
             await officeBigLight.Turn(switchLightOn, Color.FromArgb(255, 33, 159), 100, TimeSpan.FromSeconds(1));
             await officeSmallLight1.Turn(switchLightOn);
-            await officeSmallLight2.Turn(switchLightOn);
             await computerLight.Turn(switchLightOn);
         }
 
