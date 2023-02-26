@@ -24,3 +24,4 @@ zigbee2mqtt/data/database.db
 nodered/.*
 nodered/node_modules
 nodered/flows_cred.json
+homeassistant/backups/
