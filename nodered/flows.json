@@ -1073,7 +1073,8 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "media_player.spotify_arkadiusz_neuman"
+            "media_player.pokoj_dzieciecy",
+            "media_player.salon"
         ],
         "data": "",
         "dataType": "jsonata",
