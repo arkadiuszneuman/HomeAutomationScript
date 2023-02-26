@@ -1,0 +1,40 @@
+- id: '1677194303516'
+  name: Dobranoc
+  entities: {}
+  icon: mdi:sleep
+  metadata: {}
+- id: '1677194585177'
+  name: Oglądanie TV
+  entities: {}
+  icon: mdi:television
+  metadata: {}
+- id: '1677194631174'
+  name: Wyjście z domu
+  entities: {}
+  icon: mdi:home-city-outline
+  metadata: {}
+- id: '1677194689750'
+  name: Światło zewnętrzne
+  entities: {}
+  icon: mdi:lightbulb-group
+  metadata: {}
+- id: '1677194712294'
+  name: Bieganie
+  entities: {}
+  icon: mdi:run
+  metadata: {}
+- id: '1677194736458'
+  name: Zakończ bieganie
+  entities: {}
+  icon: mdi:bed
+  metadata: {}
+- id: '1677194767593'
+  name: Standardowe oświetlenie
+  entities: {}
+  icon: mdi:vanity-light
+  metadata: {}
+- id: '1677195431690'
+  name: Dzieci dobranoc
+  entities: {}
+  icon: mdi:sleep
+  metadata: {}

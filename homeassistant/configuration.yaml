@@ -1,17 +1,17 @@
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: Dom
-  # Location required to calculate the time the sun rises and sets
-  latitude: !secret latitude
-  longitude: !secret longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 287
-  # metric for Metric, imperial for Imperial
-  unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: Europe/Warsaw
-  # Customization file
-  customize: !include customize.yaml
+  # name: Dom
+  # # Location required to calculate the time the sun rises and sets
+  # latitude: !secret latitude
+  # longitude: !secret longitude
+  # # Impacts weather/sunrise data (altitude above sea level in meters)
+  # elevation: 287
+  # # metric for Metric, imperial for Imperial
+  # unit_system: metric
+  # # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # time_zone: Europe/Warsaw
+  # # Customization file
+  # customize: !include customize.yaml
 
 logger:
   default: warning
@@ -29,6 +29,10 @@ config:
 api:
 
 mobile_app:
+
+default_config:
+
+wake_on_lan:
 
 http:
   # For extra security set this to only accept connections on localhost if NGINX is on the same machine
@@ -124,72 +128,73 @@ google_assistant:
         - "Paulina goes to sleep"
 
 mqtt:
-  light:  
-  - name: "Halogen 1"
-    state_topic: "/ESP_Lampy_Salon_Boczne/Relay1/Switch"
-    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/16"
-    payload_on: "0"
-    payload_off: "1"
-  - name: "Halogen 2"
-    state_topic: "/ESP_Lampy_Salon_Boczne/Relay2/Switch"
-    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/2"
-    payload_on: "0"
-    payload_off: "1"
-  - name: "Halogen 3"
-    state_topic: "/ESP_Lampy_Salon_Boczne/Relay3/Switch"
-    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/13"
-    payload_on: "0"
-    payload_off: "1"
-  - name: "Halogen 4"
-    state_topic: "/ESP_Lampy_Salon_Boczne/Relay4/Switch"
-    command_topic: "/ESP_Lampy_Salon_Boczne/gpio/12"
-    payload_on: "0"
-    payload_off: "1"
-  - name: "Lampka zewnętrzna"
-    state_topic: "/ESP_Przedpokoj/Relay1/Switch"
-    command_topic: "/ESP_Przedpokoj/gpio/12"
-    payload_on: "0"
-    payload_off: "1"
+  light:
+    - name: "Halogen 1"
+      state_topic: "/ESP_Lampy_Salon_Boczne/Relay1/Switch"
+      command_topic: "/ESP_Lampy_Salon_Boczne/gpio/16"
+      payload_on: "0"
+      payload_off: "1"
+    - name: "Halogen 2"
+      state_topic: "/ESP_Lampy_Salon_Boczne/Relay2/Switch"
+      command_topic: "/ESP_Lampy_Salon_Boczne/gpio/2"
+      payload_on: "0"
+      payload_off: "1"
+    - name: "Halogen 3"
+      state_topic: "/ESP_Lampy_Salon_Boczne/Relay3/Switch"
+      command_topic: "/ESP_Lampy_Salon_Boczne/gpio/13"
+      payload_on: "0"
+      payload_off: "1"
+    - name: "Halogen 4"
+      state_topic: "/ESP_Lampy_Salon_Boczne/Relay4/Switch"
+      command_topic: "/ESP_Lampy_Salon_Boczne/gpio/12"
+      payload_on: "0"
+      payload_off: "1"
+    - name: "Lampka zewnętrzna"
+      state_topic: "/ESP_Przedpokoj/Relay1/Switch"
+      command_topic: "/ESP_Przedpokoj/gpio/12"
+      payload_on: "0"
+      payload_off: "1"
   binary_sensor:
-  - state_topic: "home/stairs/bottom_motion_detector/set"
-    name: Schody czujnik dolny
-  - state_topic: "home/stairs/upper_motion_detector/set"
-    name: Schody czujnik górny
-  - state_topic: "home/stairs/set_going_down"
-    name: Schody zejście na dół
-  - state_topic: "home/stairs/set_going_up"
-    name: Schody wejście na górę
+    - state_topic: "home/stairs/bottom_motion_detector/set"
+      name: Schody czujnik dolny
+    - state_topic: "home/stairs/upper_motion_detector/set"
+      name: Schody czujnik górny
+    - state_topic: "home/stairs/set_going_down"
+      name: Schody zejście na dół
+    - state_topic: "home/stairs/set_going_up"
+      name: Schody wejście na górę
   cover:
-  - name: "Roleta salon"
-    state_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0"
-    command_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command"
-    position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/pos"
-    set_position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command/pos"
-    # availability_topic: "shellies/shellyswitch25-98CDAC24CF74/online"
-    payload_available: "true"
-    payload_not_available: "false"
-    qos: 1
-    retain: false
-    payload_open: "open"
-    payload_close: "close"
-    payload_stop: "stop"
-    position_open: 100
-    position_closed: 0
-    optimistic: false
+    - name: "Roleta salon"
+      state_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0"
+      command_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command"
+      position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/pos"
+      set_position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command/pos"
+      # availability_topic: "shellies/shellyswitch25-98CDAC24CF74/online"
+      payload_available: "true"
+      payload_not_available: "false"
+      qos: 1
+      retain: false
+      payload_open: "open"
+      payload_close: "close"
+      payload_stop: "stop"
+      position_open: 100
+      position_closed: 0
+      optimistic: false
   sensor:
-  - state_topic: "/ESP_Przedpokoj/Temp/Temperature"
-    name: "Temperatura przedpokój"
-    unit_of_measurement: "°C"
-    value_template: '{{ value }}'
-  - state_topic: "/ESP_Przedpokoj/Temp/Humidity"
-    name: "Wilgotność przedpokój"
-    unit_of_measurement: "%"
-    value_template: '{{ value }}'
+    - state_topic: "/ESP_Przedpokoj/Temp/Temperature"
+      name: "Temperatura przedpokój"
+      unit_of_measurement: "°C"
+      value_template: "{{ value }}"
+    - state_topic: "/ESP_Przedpokoj/Temp/Humidity"
+      name: "Wilgotność przedpokój"
+      unit_of_measurement: "%"
+      value_template: "{{ value }}"
 
 automation: !include_dir_merge_list custom/automations/
 script: !include_dir_merge_named custom/scripts/
 
-scene: !include_dir_list custom/scenes/
+# scene: !include_dir_list custom/scenes/
+scene: !include scenes.yaml
 sensor: !include_dir_merge_list custom/sensors/
 
 recorder:
@@ -298,52 +303,6 @@ light:
             name: Grzybek
             fade: off
 
-input_number:
-  denon_volume:
-    name: Denon głośność
-    initial: 25
-    min: 1
-    max: 100
-    step: 1
-  stairs_min_brightness:
-    name: Minimalna jasność schodów
-    initial: 0
-    min: 0
-    max: 100
-    step: 1
-    unit_of_measurement: "%"
-  stairs_max_brightness:
-    name: Maksymalna jasność schodów
-    initial: 100
-    min: 0
-    max: 100
-    step: 1
-    unit_of_measurement: "%"
-  minimum_light_for_light:
-    name: Minimalne światło
-    initial: 1000
-    min: 0
-    max: 2000
-    step: 100
-    unit_of_measurement: "lux"
-
-input_boolean:
-  auto_office_light:
-    name: Automatycznie steruj oświetleniem w salonie
-    initial: true
-  holiday_mode:
-    name: Tryb wakacyjny
-    initial: false
-
-notify:
-  - platform: pushbullet
-    name: push
-    api_key: !secret pushbullet_api_key
-
-input_select:
-  air_purifier_2s_automation_type:
-    name: Typ automatyzacji
-    options:
-      - Sypialnia
-      - Trening na bieżni
-    icon: mdi:format-list-bulleted-type
+spotcast:
+  sp_dc: !secret spotcast_dc
+  sp_key: !secret spotcast_key

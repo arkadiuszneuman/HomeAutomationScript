@@ -37,5 +37,15 @@ devices:
   '0x0c4314fffe49e195':
     friendly_name: Pilot
 advanced:
-  log_level: debug
+  log_level: warn
+  log_syslog:
+    app_name: Zigbee2MQTT
+    eol: /n
+    host: localhost
+    localhost: localhost
+    path: /dev/log
+    pid: process.pid
+    port: 123
+    protocol: tcp4
+    type: '5424'
 availability: true

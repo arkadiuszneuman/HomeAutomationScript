@@ -57,12 +57,12 @@ services:
     container_name: bc
     restart: unless-stopped
 
-  automation-runner:
-    build:
-      context: ./services/AutomationRunner
-      dockerfile: Dockerfile
-    environment:
-      - WRAPPER_ENVIRONMENT=Docker
-    network_mode: host
-    container_name: ar
-    restart: unless-stopped
+  # automation-runner:
+  #   build:
+  #     context: ./services/AutomationRunner
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     - WRAPPER_ENVIRONMENT=Docker
+  #   network_mode: host
+  #   container_name: ar
+  #   restart: unless-stopped

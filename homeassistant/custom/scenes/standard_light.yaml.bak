@@ -1,9 +1,0 @@
-- name: "Standardowe oświetlenie"
-  entities:
-    light.salon_led:
-      state: on
-      xy_color: [0.5, 0.4]
-      brightness: 100
-    light.halogen_1: on
-    light.halogen_3: on
-    switch.sonoff_1000511f63: on
