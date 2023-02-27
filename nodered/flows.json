@@ -40,6 +40,92 @@
         "env": []
     },
     {
+        "id": "af8f36db90accee4",
+        "type": "subflow",
+        "name": "Jest po zdarzeniu słońca",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "3b2c343db93d427e"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 680,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "daea339ab68c1fd7",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 680,
+                "y": 260,
+                "wires": [
+                    {
+                        "id": "daea339ab68c1fd7",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "eb68edfcacde6b9c",
+        "type": "subflow",
+        "name": "Jest po zachodzie słońca",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "cec651b26840e41e"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 620,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "fba19fc151a2a4bf",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 620,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "fba19fc151a2a4bf",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
         "id": "b1e916dd1d7de0b8",
         "type": "group",
         "z": "6768cfb18f6fc541",
@@ -57,53 +143,6 @@
         "y": 39
     },
     {
-        "id": "7b4bf04699360b3b",
-        "type": "group",
-        "z": "c64ddd5143775f97",
-        "g": "e6dd97d81ea3c6fc",
-        "name": "Wyjście z domu",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "ccc9d90b522a0043",
-            "df7df673be1d9c98",
-            "0b66e0c8549d8e06",
-            "547d67abf9f23416",
-            "f69501279babcc0b",
-            "eed6e467f5db8361",
-            "0688d9d91fc90393",
-            "39869291426f147a",
-            "6cb112ecdff54584",
-            "d346729c0c228393",
-            "5fa367aaafad48a6",
-            "1068a9af2313d51a"
-        ],
-        "x": 34,
-        "y": 39,
-        "w": 1112,
-        "h": 362
-    },
-    {
-        "id": "e6c342613b5643d5",
-        "type": "group",
-        "z": "c64ddd5143775f97",
-        "g": "e6dd97d81ea3c6fc",
-        "name": "Światło zewnętrzne",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "a70ba87b7369ed2c",
-            "366f78566d1be9b2",
-            "aae4b5a0da16c2e7"
-        ],
-        "x": 34,
-        "y": 439,
-        "w": 472,
-        "h": 142
-    },
-    {
         "id": "c14793f7d268df8d",
         "type": "group",
         "z": "c64ddd5143775f97",
@@ -118,81 +157,13 @@
             "675994b71b3f1f8c",
             "7e94098b490c2a42",
             "7901c3e6992a0bf9",
-            "46f8a3ad7d4e7a83"
+            "46f8a3ad7d4e7a83",
+            "11e768a1c90e889b"
         ],
-        "x": 14,
+        "x": 34,
         "y": 619,
-        "w": 952,
+        "w": 1172,
         "h": 142
-    },
-    {
-        "id": "6c27fe9f99943679",
-        "type": "group",
-        "z": "f9ac8b9539c832a3",
-        "g": "5ecf1bec7b70063f",
-        "name": "Standardowe oświetlenie",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "ab69e26fbb15c02a",
-            "2613dc838cbd5e47",
-            "d3041cfa24e0aab5",
-            "9aa642cfa8beb53a",
-            "e0811da42f75fb5d"
-        ],
-        "x": 54,
-        "y": 379,
-        "w": 652,
-        "h": 202
-    },
-    {
-        "id": "141453e63c302779",
-        "type": "group",
-        "z": "f9ac8b9539c832a3",
-        "g": "5ecf1bec7b70063f",
-        "name": "Oglądanie TV",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "135e151637506a67",
-            "e704175af4919eb9",
-            "47e15f61dc69ae10",
-            "4bd6ada147963d2f",
-            "5ead5c978b3ae8b3",
-            "691e105a52748b8a"
-        ],
-        "x": 54,
-        "y": 599,
-        "w": 652,
-        "h": 262
-    },
-    {
-        "id": "1e79f0715558075a",
-        "type": "group",
-        "z": "f9ac8b9539c832a3",
-        "g": "5ecf1bec7b70063f",
-        "name": "Dobranoc",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "bb7c06a04832d1e5",
-            "9a2d2552d2f887b8",
-            "df9faafd8fbeefbe",
-            "653e83d3f1ffa715",
-            "0deb1030d7e6e0be",
-            "ef73919d8b4fc840",
-            "db52d73c44600f2d",
-            "de6c7a6f5a8968f7",
-            "6ba31741d4e8b920",
-            "ee21f8b9965153a0"
-        ],
-        "x": 54,
-        "y": 879,
-        "w": 972,
-        "h": 342
     },
     {
         "id": "5ecf1bec7b70063f",
@@ -282,9 +253,7 @@
             "34bf6fd15fb1ab7f"
         ],
         "x": 14,
-        "y": 19,
-        "w": 1492,
-        "h": 362
+        "y": 19
     },
     {
         "id": "cc6d91f602947828",
@@ -299,9 +268,123 @@
             "9577ec21e7b1473f"
         ],
         "x": 8,
-        "y": 413,
-        "w": 884,
-        "h": 474
+        "y": 413
+    },
+    {
+        "id": "7b4bf04699360b3b",
+        "type": "group",
+        "z": "c64ddd5143775f97",
+        "g": "e6dd97d81ea3c6fc",
+        "name": "Wyjście z domu",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "ccc9d90b522a0043",
+            "df7df673be1d9c98",
+            "0b66e0c8549d8e06",
+            "547d67abf9f23416",
+            "f69501279babcc0b",
+            "eed6e467f5db8361",
+            "0688d9d91fc90393",
+            "39869291426f147a",
+            "6cb112ecdff54584",
+            "d346729c0c228393",
+            "5fa367aaafad48a6",
+            "1068a9af2313d51a"
+        ],
+        "x": 34,
+        "y": 39,
+        "w": 1112,
+        "h": 362
+    },
+    {
+        "id": "e6c342613b5643d5",
+        "type": "group",
+        "z": "c64ddd5143775f97",
+        "g": "e6dd97d81ea3c6fc",
+        "name": "Światło zewnętrzne",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "a70ba87b7369ed2c",
+            "366f78566d1be9b2",
+            "aae4b5a0da16c2e7"
+        ],
+        "x": 34,
+        "y": 439,
+        "w": 472,
+        "h": 142
+    },
+    {
+        "id": "6c27fe9f99943679",
+        "type": "group",
+        "z": "f9ac8b9539c832a3",
+        "g": "5ecf1bec7b70063f",
+        "name": "Standardowe oświetlenie",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "ab69e26fbb15c02a",
+            "2613dc838cbd5e47",
+            "d3041cfa24e0aab5",
+            "9aa642cfa8beb53a",
+            "e0811da42f75fb5d"
+        ],
+        "x": 54,
+        "y": 379,
+        "w": 652,
+        "h": 202
+    },
+    {
+        "id": "141453e63c302779",
+        "type": "group",
+        "z": "f9ac8b9539c832a3",
+        "g": "5ecf1bec7b70063f",
+        "name": "Oglądanie TV",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "135e151637506a67",
+            "e704175af4919eb9",
+            "47e15f61dc69ae10",
+            "4bd6ada147963d2f",
+            "5ead5c978b3ae8b3",
+            "691e105a52748b8a"
+        ],
+        "x": 54,
+        "y": 599,
+        "w": 652,
+        "h": 262
+    },
+    {
+        "id": "1e79f0715558075a",
+        "type": "group",
+        "z": "f9ac8b9539c832a3",
+        "g": "5ecf1bec7b70063f",
+        "name": "Dobranoc",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "bb7c06a04832d1e5",
+            "9a2d2552d2f887b8",
+            "df9faafd8fbeefbe",
+            "653e83d3f1ffa715",
+            "0deb1030d7e6e0be",
+            "ef73919d8b4fc840",
+            "db52d73c44600f2d",
+            "de6c7a6f5a8968f7",
+            "6ba31741d4e8b920",
+            "ee21f8b9965153a0"
+        ],
+        "x": 54,
+        "y": 879,
+        "w": 972,
+        "h": 342
     },
     {
         "id": "884608cf0fb6e773",
@@ -319,9 +402,7 @@
             "04619304953732d0"
         ],
         "x": 34,
-        "y": 439,
-        "w": 832,
-        "h": 202
+        "y": 439
     },
     {
         "id": "9577ec21e7b1473f",
@@ -339,9 +420,7 @@
             "0f529defee31c9cf"
         ],
         "x": 34,
-        "y": 659,
-        "w": 812,
-        "h": 202
+        "y": 659
     },
     {
         "id": "163c9f2450f671da",
@@ -365,6 +444,182 @@
         "statusHourCycle": "default",
         "statusTimeFormat": "h:m",
         "enableGlobalContextStore": false
+    },
+    {
+        "id": "6516de3d1736fcef",
+        "type": "api-current-state",
+        "z": "af8f36db90accee4",
+        "name": "Zone Entity as Payload",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "zone.home",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 490,
+        "y": 60,
+        "wires": [
+            [
+                "660cc0bcbf829101"
+            ]
+        ]
+    },
+    {
+        "id": "660cc0bcbf829101",
+        "type": "change",
+        "z": "af8f36db90accee4",
+        "name": "Set lat and lng as payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"lat\": payload.attributes.latitude,\t    \"lng\": payload.attributes.longitude\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "b574730fd324c70a"
+            ]
+        ]
+    },
+    {
+        "id": "b574730fd324c70a",
+        "type": "sun events",
+        "z": "af8f36db90accee4",
+        "testmode": true,
+        "verbose": "N",
+        "topic": "",
+        "name": "",
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [],
+            [
+                "92d46ccc3c2cfaf3"
+            ]
+        ]
+    },
+    {
+        "id": "92d46ccc3c2cfaf3",
+        "type": "function",
+        "z": "af8f36db90accee4",
+        "name": "Check if lookingEvent exists in the last 9 sun events",
+        "func": "msg.payload = msg.payload.sunevents\n    .map(x => x.event_name)\n    .slice(0, 9)\n    .includes(msg.lookingEvent)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 220,
+        "wires": [
+            [
+                "daea339ab68c1fd7"
+            ]
+        ]
+    },
+    {
+        "id": "daea339ab68c1fd7",
+        "type": "switch",
+        "z": "af8f36db90accee4",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 220,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3b2c343db93d427e",
+        "type": "function",
+        "z": "af8f36db90accee4",
+        "name": "LookingEvent from Payload",
+        "func": "msg.lookingEvent = msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 60,
+        "wires": [
+            [
+                "6516de3d1736fcef"
+            ]
+        ]
+    },
+    {
+        "id": "fba19fc151a2a4bf",
+        "type": "subflow:af8f36db90accee4",
+        "z": "eb68edfcacde6b9c",
+        "name": "",
+        "x": 470,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "cec651b26840e41e",
+        "type": "function",
+        "z": "eb68edfcacde6b9c",
+        "name": "Set payload as sunrise",
+        "func": "msg.payload = 'sunrise'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "fba19fc151a2a4bf"
+            ]
+        ]
     },
     {
         "id": "ab69e26fbb15c02a",
@@ -1987,12 +2242,11 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 140,
+        "x": 160,
         "y": 660,
         "wires": [
             [
-                "43535bc5d9c3cb19",
-                "9f57e4b37020d8c7"
+                "11e768a1c90e889b"
             ],
             []
         ]
@@ -2019,7 +2273,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 380,
+        "x": 660,
         "y": 660,
         "wires": [
             [
@@ -2049,7 +2303,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 390,
+        "x": 670,
         "y": 720,
         "wires": [
             []
@@ -2073,7 +2327,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 630,
+        "x": 850,
         "y": 660,
         "wires": [
             [
@@ -2104,7 +2358,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 840,
+        "x": 1080,
         "y": 660,
         "wires": [
             []
@@ -2132,7 +2386,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 850,
+        "x": 1090,
         "y": 720,
         "wires": [
             []
@@ -2194,15 +2448,13 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 130,
+        "x": 150,
         "y": 720,
         "wires": [
             [
-                "43535bc5d9c3cb19"
+                "11e768a1c90e889b"
             ],
-            [
-                "9f57e4b37020d8c7"
-            ]
+            []
         ]
     },
     {
@@ -2488,7 +2740,8 @@
         "y": 960,
         "wires": [
             [
-                "08ca02db885003f8"
+                "08ca02db885003f8",
+                "a076f93dd247261a"
             ]
         ]
     },
@@ -2596,6 +2849,67 @@
         "wires": [
             [
                 "53be38205d256364"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a076f93dd247261a",
+        "type": "api-current-state",
+        "z": "c64ddd5143775f97",
+        "name": "Jest w state dom",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "device_tracker.rmx2202",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 570,
+        "y": 1080,
+        "wires": [
+            [
+                "53be38205d256364"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "11e768a1c90e889b",
+        "type": "subflow:eb68edfcacde6b9c",
+        "z": "c64ddd5143775f97",
+        "g": "c14793f7d268df8d",
+        "name": "",
+        "x": 410,
+        "y": 700,
+        "wires": [
+            [
+                "43535bc5d9c3cb19",
+                "9f57e4b37020d8c7"
             ],
             []
         ]

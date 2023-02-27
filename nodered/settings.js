@@ -294,12 +294,43 @@ module.exports = {
              * trace - record very detailed logging + debug + info + warn + error + fatal errors
              * off - turn off all logging (doesn't affect metrics or audit)
              */
-            level: "info",
+            level: "debug",
             /** Whether or not to include metric events in the log output */
             metrics: false,
             /** Whether or not to include audit events in the log output */
             audit: false
-        }
+        },
+        // logstash: {
+        //     level:'debug',
+        //     metrics:false,
+        //     handler: function(conf) {
+        //         console.log('asdasd')
+        //         var net = require('net');
+        //         var logHost = '127.0.0.1',logPort = 9563;
+        //         var conn = new net.Socket();
+        //         conn.connect(logPort,logHost)
+        //             .on('connect',function() {
+        //                 console.log("Logger connected")
+        //             })
+        //             .on('error', function(err) {
+        //                 // Should attempt to reconnect in a real env
+        //                 // This example just exits...
+        //                 console.log(err)
+        //                 process.exit(1);
+        //             });
+        //         // Return the function that will do the actual logging
+        //         return function(msg) {
+        //             var message = {
+        //                 '@tags': ['node-red', 'test'],
+        //                 '@fields': msg,
+        //                 '@timestamp': (new Date(msg.timestamp)).toISOString()
+        //             }
+        //             try {
+        //                 conn.write(JSON.stringify(message)+"\n");
+        //             }catch(err) { console.log(err);}
+        //         }
+        //     }
+        // }
     },
 
     /** Context Storage
