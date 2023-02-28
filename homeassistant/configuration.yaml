@@ -199,68 +199,51 @@ sensor: !include_dir_merge_list custom/sensors/
 
 recorder:
   db_url: mysql://root:wsadqe@10.0.0.115:3306/home_assistant?charset=utf8
-  include:
-    entities:
-      - media_player.sony_bravia_tv
-      - media_player.denon
-      - light.salon_led
-      - light.grzybek
-      - light.halogen_1
-      - light.halogen_2
-      - light.halogen_3
-      - light.halogen_4
-      - light.lampka_zewnetrzna
-      - cover.roleta_salon
-      - binary_sensor.schody_wejscie_na_gore
-      - binary_sensor.schody_zejscie_na_do
-      - switch.sonoff_100051420f
-      - switch.sonoff_1000513cd0
-      - switch.sonoff_1000511f63
-      - media_player.spotify_arkadiusz_neuman
-      - vacuum.roborock_s5
-      - media_player.playstation_4
-      - !secret steam_sensor_name
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      - sensor.speedtest_ping
+  auto_purge: true
+  auto_repack: true
+  purge_keep_days: 30
 
 influxdb:
+  api_version: 2
   host: localhost
-  username: admin
-  password: password123
-  include:
-    entities:
-      - media_player.sony_bravia_tv
-      - media_player.denon
-      - light.salon_led
-      - light.grzybek
-      - light.halogen_1
-      - light.halogen_2
-      - light.halogen_3
-      - light.halogen_4
-      - light.lampka_zewnetrzna
-      - cover.roleta_salon
-      - binary_sensor.schody_wejscie_na_gore
-      - binary_sensor.schody_zejscie_na_do
-      - input_number.stairs_min_brightness
-      - input_number.stairs_max_brightness
-      - switch.sonoff_100051420f
-      - switch.sonoff_1000513cd0
-      - switch.sonoff_1000511f63
-      - sensor.temperatura_przedpokoj
-      - sensor.wilgotnosc_przedpokoj
-      - media_player.spotify_arkadiusz_neuman
-      - weather.openweathermap
-      - vacuum.roborock_s5
-      - media_player.playstation_4
-      - !secret steam_sensor_name
-      - fan.filtr_powietrza
-      - fan.air_humidifier
-      - fan.mi_air_purifier_2s
-      - sensor.sunlight_pct
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      - sensor.speedtest_ping
+  port: 8086
+  token: admintoken123
+  organization: primary
+  ssl: false
+  verify_ssl: false
+  # include:
+  #   entities:
+  #     - media_player.sony_bravia_tv
+  #     - media_player.denon
+  #     - light.salon_led
+  #     - light.grzybek
+  #     - light.halogen_1
+  #     - light.halogen_2
+  #     - light.halogen_3
+  #     - light.halogen_4
+  #     - light.lampka_zewnetrzna
+  #     - cover.roleta_salon
+  #     - binary_sensor.schody_wejscie_na_gore
+  #     - binary_sensor.schody_zejscie_na_do
+  #     - input_number.stairs_min_brightness
+  #     - input_number.stairs_max_brightness
+  #     - switch.sonoff_100051420f
+  #     - switch.sonoff_1000513cd0
+  #     - switch.sonoff_1000511f63
+  #     - sensor.temperatura_przedpokoj
+  #     - sensor.wilgotnosc_przedpokoj
+  #     - media_player.spotify_arkadiusz_neuman
+  #     - weather.openweathermap
+  #     - vacuum.roborock_s5
+  #     - media_player.playstation_4
+  #     - sensor.steam_arek
+  #     - fan.filtr_powietrza
+  #     - fan.air_humidifier
+  #     - fan.mi_air_purifier_2s
+  #     - sensor.sunlight_pct
+  #     - sensor.speedtest_download
+  #     - sensor.speedtest_upload
+  #     - sensor.speedtest_ping
 
 binary_sensor:
   - platform: workday
@@ -306,3 +289,10 @@ light:
 spotcast:
   sp_dc: !secret spotcast_dc
   sp_key: !secret spotcast_key
+  accounts:
+    arek:
+      sp_dc: !secret spotcast_dc
+      sp_key: !secret spotcast_key
+    pati:
+      sp_dc: !secret spotcast_pati_dc
+      sp_key: !secret spotcast_pati_dc
