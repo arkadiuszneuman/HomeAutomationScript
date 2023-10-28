@@ -38,3 +38,8 @@
   entities: {}
   icon: mdi:sleep
   metadata: {}
+- id: '1677934671466'
+  name: Dzieci odpoczynek
+  entities: {}
+  icon: mdi:bed-clock
+  metadata: {}

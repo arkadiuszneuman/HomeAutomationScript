@@ -1,7 +1,7 @@
 version: "2"
 services:
   ha:
-    image: homeassistant/home-assistant:2023.2
+    image: homeassistant/home-assistant:2023.5
     # ports:
     # - 8123:8123
     volumes:
@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
 
   nginx:
-    image: nginx:1.23
+    image: nginx:1.24
     # ports:
     # - 8123:8123
     volumes:
@@ -30,7 +30,7 @@ services:
     restart: unless-stopped
 
   grafana:
-    image: grafana/grafana:9.3.8
+    image: grafana/grafana:9.5.2
     # ports:
     # - 3000:3000
     volumes:
@@ -43,7 +43,7 @@ services:
     restart: unless-stopped
 
   mysql:
-    image: mysql:8.0.32
+    image: mysql:8.0.33
     command: --default-authentication-plugin=mysql_native_password
     # ports:
     # - 3306:3306
@@ -73,7 +73,7 @@ services:
     restart: unless-stopped
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt
+    image: koenkk/zigbee2mqtt:1.32.2
     depends_on:
       - ha
     volumes:

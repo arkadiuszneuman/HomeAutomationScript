@@ -19,6 +19,7 @@ logger:
     homeassistant.core: critical
     homeassistant.components.fan: error
     homeassistant.config_entries: error
+    homeassistant.components.binary_sensor.ping: error
 
 # Enables the frontend
 frontend:
@@ -279,12 +280,16 @@ light:
         groups:
           - number: 1
             type: rgbww
-            name: Salon LED
-            fade: off
+            name: Sufit LED
+            fade: true
           - number: 2
+            type: rgbww
+            name: Salon LED
+            fade: true
+          - number: 3
             type: bridge-led
             name: Grzybek
-            fade: off
+            fade: true
 
 spotcast:
   sp_dc: !secret spotcast_dc
@@ -296,3 +301,8 @@ spotcast:
     pati:
       sp_dc: !secret spotcast_pati_dc
       sp_key: !secret spotcast_pati_dc
+
+supla:
+  servers:
+    - server: svr86.supla.org
+      access_token: !secret supla_access_token

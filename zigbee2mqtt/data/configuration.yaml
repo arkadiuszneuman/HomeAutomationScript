@@ -14,12 +14,6 @@ devices:
     friendly_name: Lampa gabinet
   '0x001788010c4a5327':
     friendly_name: Lampka gabinet 1
-  '0x00158d00058812b2':
-    friendly_name: Cube
-    homeassistant:
-      name: ' '
-    optimistic: true
-    retain: false
   '0x84b4dbfffe1f094a':
     friendly_name: Halogen 5
   '0x1c34f1fffe7b1d41':
@@ -36,6 +30,9 @@ devices:
     friendly_name: Przekaźnik dzieci
   '0x0c4314fffe49e195':
     friendly_name: Pilot
+  '0x00158d00058812b2':
+    friendly_name: '0x00158d00058812b2'
+    legacy: false
 advanced:
   log_level: warn
   log_syslog:
