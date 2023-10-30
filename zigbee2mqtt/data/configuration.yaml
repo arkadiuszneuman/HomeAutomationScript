@@ -1,5 +1,4 @@
 homeassistant:
-  legacy_entity_attributes: true
   legacy_triggers: false
 permit_join: true
 mqtt:
