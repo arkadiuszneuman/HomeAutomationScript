@@ -247,8 +247,6 @@ influxdb:
   #     - sensor.speedtest_ping
 
 binary_sensor:
-  - platform: workday
-    country: PL
   - platform: ping #need to add ip of HA to firewall rule
     host: 10.0.0.201
     name: "Laptop Ethernet"
