@@ -144,9 +144,7 @@
             "193186b8f2a809c6"
         ],
         "x": 14,
-        "y": 619,
-        "w": 1172,
-        "h": 142
+        "y": 619
     },
     {
         "id": "5ecf1bec7b70063f",
@@ -203,9 +201,7 @@
             "e6c342613b5643d5"
         ],
         "x": 8,
-        "y": 13,
-        "w": 1164,
-        "h": 594
+        "y": 13
     },
     {
         "id": "9bc283314f1e0f9f",
@@ -325,9 +321,7 @@
             "c2352e963efa0979"
         ],
         "x": 14,
-        "y": 779,
-        "w": 1212,
-        "h": 202
+        "y": 779
     },
     {
         "id": "8f8e46804cdadcc7",
@@ -406,9 +400,7 @@
             "1068a9af2313d51a"
         ],
         "x": 34,
-        "y": 39,
-        "w": 1112,
-        "h": 362
+        "y": 39
     },
     {
         "id": "e6c342613b5643d5",
@@ -425,9 +417,7 @@
             "aae4b5a0da16c2e7"
         ],
         "x": 34,
-        "y": 439,
-        "w": 472,
-        "h": 142
+        "y": 439
     },
     {
         "id": "6c27fe9f99943679",
@@ -4745,7 +4735,7 @@
         "type": "api-current-state",
         "z": "ae7eb5a05d582c32",
         "g": "9bc283314f1e0f9f",
-        "name": "Komputer Ethernet",
+        "name": "Komputer Session State",
         "server": "163c9f2450f671da",
         "version": 3,
         "outputs": 1,
@@ -4777,7 +4767,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 990,
+        "x": 1050,
         "y": 120,
         "wires": [
             [
@@ -4790,14 +4780,14 @@
         "type": "api-current-state",
         "z": "ae7eb5a05d582c32",
         "g": "9bc283314f1e0f9f",
-        "name": "Laptop Służbowy WiFi",
+        "name": "Laptop Służbowy Session State",
         "server": "163c9f2450f671da",
         "version": 3,
         "outputs": 1,
         "halt_if": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "binary_sensor.laptop_sluzbowy_wifi",
+        "entity_id": "sensor.laptop_cricut_sessionstate",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -4822,7 +4812,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 760,
+        "x": 790,
         "y": 120,
         "wires": [
             [
@@ -4836,13 +4826,14 @@
         "z": "ae7eb5a05d582c32",
         "g": "9bc283314f1e0f9f",
         "name": "Urządzenie włączone",
-        "func": "msg.deviceOn = msg.laptop === 'on' || msg.computer === 'Unlocked'\nreturn msg;",
+        "func": "msg.deviceOn = msg.laptop === 'Unlocked' || msg.computer === 'Unlocked'\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1200,
+        "x": 1280,
         "y": 120,
         "wires": [
             [
@@ -5008,7 +4999,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1440,
-        "y": 160,
+        "y": 180,
         "wires": [
             []
         ]
@@ -5081,7 +5072,7 @@
         "type": "server-state-changed",
         "z": "ae7eb5a05d582c32",
         "g": "9bc283314f1e0f9f",
-        "name": "Komputer Ethernet",
+        "name": "Komputer Session State",
         "server": "163c9f2450f671da",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -5132,7 +5123,7 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 130,
+        "x": 150,
         "y": 120,
         "wires": [
             [
@@ -5145,7 +5136,7 @@
         "type": "server-state-changed",
         "z": "ae7eb5a05d582c32",
         "g": "9bc283314f1e0f9f",
-        "name": "Laptop Służbowy WiFi",
+        "name": "Laptop Służbowy Session State",
         "server": "163c9f2450f671da",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -5159,7 +5150,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "binary_sensor.laptop_sluzbowy_wifi",
+        "entityidfilter": "sensor.laptop_cricut_sessionstate",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -5175,7 +5166,7 @@
         "ignorePrevStateUnknown": false,
         "ignorePrevStateUnavailable": false,
         "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
+        "ignoreCurrentStateUnavailable": false,
         "outputProperties": [
             {
                 "property": "payload",
@@ -5196,7 +5187,7 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 140,
+        "x": 170,
         "y": 180,
         "wires": [
             [
