@@ -23,7 +23,6 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - /opt/mosquitto:/mosquitto
     # ports:
     # - 5672:5672
     # - 15672:15672
@@ -32,7 +31,7 @@ services:
     restart: unless-stopped
 
   mosquitto:
-    image: eclipse-mosquitto:2.0
+    image: eclipse-mosquitto:2.0.18
     # ports:
     # - 1883:1883
     # - 9001:9001
@@ -45,7 +44,7 @@ services:
     restart: unless-stopped
 
   start_dependencies:
-    image: dadarek/wait-for-dependencies
+    image: dadarek/wait-for-dependencies:0.2
     depends_on:
       - rabbitmq
       - influxdb

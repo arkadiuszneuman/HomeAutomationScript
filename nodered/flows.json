@@ -40,6 +40,14 @@
         "env": []
     },
     {
+        "id": "15517937b48e3cad",
+        "type": "tab",
+        "label": "Łazienka",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "af8f36db90accee4",
         "type": "subflow",
         "name": "Jest po zdarzeniu słońca",
@@ -126,6 +134,91 @@
         "color": "#DDAA99"
     },
     {
+        "id": "55dfca8f06bd84a0",
+        "type": "subflow",
+        "name": "Tryb świąteczny włączony",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": []
+            }
+        ],
+        "out": [
+            {
+                "x": 340,
+                "y": 40,
+                "wires": []
+            },
+            {
+                "x": 340,
+                "y": 120,
+                "wires": []
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "881b4976cfe980ca",
+        "type": "subflow",
+        "name": "Kostka",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 300,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "9606289645aac74b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "0d0bd9aaa9acc12b",
+        "type": "subflow",
+        "name": "Wyzwalacz praca",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 1480,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "5acb3d3fe695620a",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1480,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "5acb3d3fe695620a",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#3FADB5"
+    },
+    {
         "id": "c14793f7d268df8d",
         "type": "group",
         "z": "c64ddd5143775f97",
@@ -161,7 +254,7 @@
         ],
         "x": 8,
         "y": 313,
-        "w": 1024,
+        "w": 1204,
         "h": 914
     },
     {
@@ -212,9 +305,6 @@
             "label": true
         },
         "nodes": [
-            "d6b27d940dda55b0",
-            "bed007e6166018c5",
-            "3aedae7f44fe185d",
             "8959c55f5e6f2f96",
             "cbc707cf91024573",
             "65d43cfa1bdbbdcd",
@@ -222,23 +312,18 @@
             "e2a510cd8c057664",
             "0de3a5fff1c4e3c9",
             "c5d1e04def32c886",
-            "b666e81e8039b28f",
-            "708997197b0ea8ac",
-            "5c34fe8dd10021b8",
-            "7aa9b6aab96e2a63",
-            "9b1910f401ef61fe",
-            "e46fa9aef12dcb94",
             "cf0fbd04973576db",
             "34bf6fd15fb1ab7f",
             "9002aa303f93357c",
             "f97876d72b4e95ec",
             "ad61a77b5fd45652",
-            "16b23923c4e02d3e"
+            "37775277633bb9a2",
+            "ab546148524a73f3"
         ],
         "x": 14,
-        "y": 19,
-        "w": 1612,
-        "h": 422
+        "y": -21,
+        "w": 1392,
+        "h": 282
     },
     {
         "id": "cc6d91f602947828",
@@ -252,10 +337,10 @@
             "884608cf0fb6e773",
             "9577ec21e7b1473f"
         ],
-        "x": 28,
+        "x": 8,
         "y": 473,
-        "w": 884,
-        "h": 474
+        "w": 1244,
+        "h": 454
     },
     {
         "id": "b03356b5832bde5f",
@@ -335,12 +420,15 @@
             "b75ac05238e584f4",
             "86dc3897c031bfaa",
             "a0615b0d7677f68c",
-            "c81c3bbd71be4bfb"
+            "c81c3bbd71be4bfb",
+            "961bfc6531e58f6c",
+            "6aef6fd25acd8bce",
+            "858b8225a03aac21"
         ],
         "x": 14,
         "y": 1519,
-        "w": 612,
-        "h": 142
+        "w": 1072,
+        "h": 202
     },
     {
         "id": "bb9194cdd978f3b0",
@@ -355,9 +443,30 @@
             "2cd24b73a16ad718"
         ],
         "x": 14,
-        "y": 1719,
+        "y": 1799,
         "w": 612,
         "h": 82
+    },
+    {
+        "id": "392218788ba54353",
+        "type": "group",
+        "z": "f9ac8b9539c832a3",
+        "name": "Głośność TV",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "1285982ba5439583",
+            "d94b28985702613f",
+            "875ce9a3051b5ac6",
+            "600af8d65dfa28d8",
+            "aac29030fd692ed0",
+            "b3211c741108d238"
+        ],
+        "x": 14,
+        "y": 1919,
+        "w": 1092,
+        "h": 142
     },
     {
         "id": "b1e916dd1d7de0b8",
@@ -397,7 +506,9 @@
             "6cb112ecdff54584",
             "d346729c0c228393",
             "5fa367aaafad48a6",
-            "1068a9af2313d51a"
+            "1068a9af2313d51a",
+            "8557bcc12e1aeb35",
+            "b5fb4a50b62bf918"
         ],
         "x": 34,
         "y": 39
@@ -433,11 +544,13 @@
             "2613dc838cbd5e47",
             "d3041cfa24e0aab5",
             "9aa642cfa8beb53a",
-            "e0811da42f75fb5d"
+            "e0811da42f75fb5d",
+            "a62d74ac6b65eb23",
+            "c3c4a3ac89314920"
         ],
         "x": 54,
         "y": 339,
-        "w": 652,
+        "w": 992,
         "h": 202
     },
     {
@@ -455,11 +568,13 @@
             "47e15f61dc69ae10",
             "4bd6ada147963d2f",
             "5ead5c978b3ae8b3",
-            "691e105a52748b8a"
+            "691e105a52748b8a",
+            "1703f74486d929d4",
+            "36d9b8689fa2e8c7"
         ],
         "x": 54,
         "y": 579,
-        "w": 652,
+        "w": 1032,
         "h": 262
     },
     {
@@ -481,11 +596,13 @@
             "db52d73c44600f2d",
             "de6c7a6f5a8968f7",
             "6ba31741d4e8b920",
-            "ee21f8b9965153a0"
+            "ee21f8b9965153a0",
+            "66b45a4965df5ba8",
+            "160e075dba6ec123"
         ],
         "x": 34,
         "y": 859,
-        "w": 972,
+        "w": 1152,
         "h": 342
     },
     {
@@ -501,12 +618,18 @@
             "78d30d26a52fab3b",
             "bcd2981a6282f92d",
             "abdb678895507741",
-            "04619304953732d0"
+            "04619304953732d0",
+            "20e577754bfb1939",
+            "5cf4501d775d18d5",
+            "9a2809a0035898e8",
+            "25ce8aa3596e62fb",
+            "ac0d6be1675f5028",
+            "a98e23f9fb02d91a"
         ],
-        "x": 54,
+        "x": 34,
         "y": 499,
-        "w": 832,
-        "h": 202
+        "w": 1192,
+        "h": 242
     },
     {
         "id": "9577ec21e7b1473f",
@@ -520,13 +643,12 @@
         "nodes": [
             "c4210de99aa36378",
             "6cf1832a97e41bd3",
-            "4f4b3fc8976ae592",
             "0f529defee31c9cf"
         ],
-        "x": 54,
-        "y": 719,
+        "x": 34,
+        "y": 759,
         "w": 812,
-        "h": 202
+        "h": 142
     },
     {
         "id": "acefa0d0f7d11702",
@@ -544,6 +666,24 @@
         ],
         "x": 54,
         "y": 159
+    },
+    {
+        "id": "93d44a9a9bd7b6eb",
+        "type": "group",
+        "z": "ae7eb5a05d582c32",
+        "name": "Ogrzewanie",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b9aa131c82ce5e54",
+            "6e46172d4adbbc9f",
+            "ed5501c2151c6312"
+        ],
+        "x": 14,
+        "y": 299,
+        "w": 472,
+        "h": 142
     },
     {
         "id": "163c9f2450f671da",
@@ -567,6 +707,38 @@
         "statusHourCycle": "default",
         "statusTimeFormat": "h:m",
         "enableGlobalContextStore": false
+    },
+    {
+        "id": "76b4d8bab355bb2b",
+        "type": "mqtt-broker",
+        "z": "881b4976cfe980ca",
+        "name": "Moquitto",
+        "broker": "10.0.0.115",
+        "port": "1883",
+        "clientid": "nodered",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
     },
     {
         "id": "6516de3d1736fcef",
@@ -745,6 +917,839 @@
         ]
     },
     {
+        "id": "9606289645aac74b",
+        "type": "mqtt in",
+        "z": "881b4976cfe980ca",
+        "name": "",
+        "topic": "zigbee2mqtt/Kostka",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "76b4d8bab355bb2b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "54b44d25be1ce842",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Cat Ładowanie",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.laptop_cat_battery_powerline_status",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 440,
+        "wires": [
+            [
+                "d5395440d55d32da"
+            ]
+        ]
+    },
+    {
+        "id": "ac6b4cc6ccb818de",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Komputer Session State",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.komputer_stacjonarny_sessionstate",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "d5395440d55d32da"
+            ]
+        ]
+    },
+    {
+        "id": "c2c0c9f5d962ead4",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Session State",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.laptop_cricut_sessionstate",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 140,
+        "wires": [
+            [
+                "d5395440d55d32da"
+            ]
+        ]
+    },
+    {
+        "id": "2e351cc9c5c7cee8",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Minimalne światło",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_number.maksymalne_swiatlo_do_wylaczenia_oswietlenia",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "d5395440d55d32da"
+            ]
+        ]
+    },
+    {
+        "id": "6f98053dd877e65a",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Gabinet Lux",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.gabinet_illuminance_lux",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "d5395440d55d32da"
+            ]
+        ]
+    },
+    {
+        "id": "c821636380939674",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Automatyczne oświetlenie gabinetu",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 180,
+        "y": 20,
+        "wires": [
+            [
+                "d5395440d55d32da"
+            ]
+        ]
+    },
+    {
+        "id": "ec1e2322265a4463",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Ładowanie",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.laptop_cricut_battery_powerline_status",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 160,
+        "y": 320,
+        "wires": [
+            [
+                "d5395440d55d32da"
+            ]
+        ]
+    },
+    {
+        "id": "6e4fd0c47af30be3",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Session State",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.laptop_cat_sessionstate",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 380,
+        "wires": [
+            [
+                "d5395440d55d32da"
+            ]
+        ]
+    },
+    {
+        "id": "3b37686532de421c",
+        "type": "api-current-state",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Session State",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.laptop_cricut_sessionstate",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "laptop",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 630,
+        "y": 100,
+        "wires": [
+            [
+                "61fb39cb28d0a5d5"
+            ]
+        ]
+    },
+    {
+        "id": "61fb39cb28d0a5d5",
+        "type": "api-current-state",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Ładowanie",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.laptop_cricut_battery_powerline_status",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "laptop_battery_powerline",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 620,
+        "y": 160,
+        "wires": [
+            [
+                "a197ad7a6c9975a0"
+            ]
+        ]
+    },
+    {
+        "id": "a197ad7a6c9975a0",
+        "type": "api-current-state",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Cat Session State",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.laptop_cat_sessionstate",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "laptop_cat",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 640,
+        "y": 220,
+        "wires": [
+            [
+                "9c72b443943e0581"
+            ]
+        ]
+    },
+    {
+        "id": "9c72b443943e0581",
+        "type": "api-current-state",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Cat Ładowanie",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.laptop_cat_battery_powerline_status",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "laptop_cat_battery_powerline",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "99432fbac09bc98e"
+            ]
+        ]
+    },
+    {
+        "id": "99432fbac09bc98e",
+        "type": "api-current-state",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Komputer Session State",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.komputer_stacjonarny_sessionstate",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "computer",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 950,
+        "y": 140,
+        "wires": [
+            [
+                "b867f6af997f5a42"
+            ]
+        ]
+    },
+    {
+        "id": "b867f6af997f5a42",
+        "type": "function",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Urządzenie włączone",
+        "func": "msg.deviceOn = (msg.laptop === 'Unlocked' && msg.laptop_battery_powerline === 'Online')\n || (msg.laptop_cat === 'Unlocked' && msg.laptop_cat_battery_powerline === 'Online')\n || msg.computer === 'Unlocked'\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 140,
+        "wires": [
+            [
+                "5acb3d3fe695620a"
+            ]
+        ]
+    },
+    {
+        "id": "5acb3d3fe695620a",
+        "type": "switch",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "",
+        "property": "deviceOn",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1370,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d5395440d55d32da",
+        "type": "api-current-state",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Automatyczne sterowanie oświetleniem",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 660,
+        "y": 40,
+        "wires": [
+            [
+                "3b37686532de421c"
+            ],
+            []
+        ]
+    },
+    {
         "id": "ab69e26fbb15c02a",
         "type": "server-state-changed",
         "z": "f9ac8b9539c832a3",
@@ -917,7 +1922,9 @@
         "x": 420,
         "y": 500,
         "wires": [
-            []
+            [
+                "a62d74ac6b65eb23"
+            ]
         ]
     },
     {
@@ -1069,7 +2076,7 @@
         "type": "api-call-service",
         "z": "f9ac8b9539c832a3",
         "g": "141453e63c302779",
-        "name": "Halogeny włączone",
+        "name": "Halogeny RGB",
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
@@ -1087,10 +2094,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 450,
+        "x": 440,
         "y": 740,
         "wires": [
-            []
+            [
+                "1703f74486d929d4"
+            ]
         ]
     },
     {
@@ -1314,7 +2323,8 @@
         "wires": [
             [
                 "ee21f8b9965153a0",
-                "ef73919d8b4fc840"
+                "ef73919d8b4fc840",
+                "66b45a4965df5ba8"
             ]
         ]
     },
@@ -2115,7 +3125,7 @@
         "lat": "50.3071757",
         "lon": "18.9161156",
         "startTime": "06:00",
-        "endTime": "23:59",
+        "endTime": "01:00",
         "startOffset": 0,
         "endOffset": 0,
         "x": 410,
@@ -2303,7 +3313,7 @@
             }
         ],
         "x": 120,
-        "y": 1580,
+        "y": 1640,
         "wires": [
             [
                 "a0615b0d7677f68c"
@@ -2332,7 +3342,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 510,
+        "x": 750,
         "y": 1560,
         "wires": [
             []
@@ -2353,8 +3363,8 @@
                 "vt": "str"
             },
             {
-                "t": "eq",
-                "v": "off",
+                "t": "neq",
+                "v": "on",
                 "vt": "str"
             }
         ],
@@ -2362,10 +3372,10 @@
         "repair": false,
         "outputs": 2,
         "x": 310,
-        "y": 1580,
+        "y": 1640,
         "wires": [
             [
-                "86dc3897c031bfaa"
+                "961bfc6531e58f6c"
             ],
             [
                 "c81c3bbd71be4bfb"
@@ -2395,9 +3405,11 @@
         "outputProperties": [],
         "queue": "none",
         "x": 510,
-        "y": 1620,
+        "y": 1680,
         "wires": [
-            []
+            [
+                "6aef6fd25acd8bce"
+            ]
         ]
     },
     {
@@ -2405,7 +3417,7 @@
         "type": "inject",
         "z": "f9ac8b9539c832a3",
         "g": "bb9194cdd978f3b0",
-        "name": "",
+        "name": "Co minutę",
         "props": [
             {
                 "p": "payload"
@@ -2423,7 +3435,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 1760,
+        "y": 1840,
         "wires": [
             [
                 "2cd24b73a16ad718"
@@ -2454,9 +3466,541 @@
         "outputProperties": [],
         "queue": "none",
         "x": 430,
-        "y": 1760,
+        "y": 1840,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "961bfc6531e58f6c",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "8f8e46804cdadcc7",
+        "name": "Wyłączenie Grzybka",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.grzybek"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 1560,
+        "wires": [
+            [
+                "86dc3897c031bfaa"
+            ]
+        ]
+    },
+    {
+        "id": "6aef6fd25acd8bce",
+        "type": "api-current-state",
+        "z": "f9ac8b9539c832a3",
+        "g": "8f8e46804cdadcc7",
+        "name": "Salon LED jest włączony",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.salon_led",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "laptop",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 730,
+        "y": 1680,
+        "wires": [
+            [
+                "858b8225a03aac21"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "858b8225a03aac21",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "8f8e46804cdadcc7",
+        "name": "Włączenie Grzybka",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.grzybek"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 970,
+        "y": 1680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1285982ba5439583",
+        "type": "server-state-changed",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Zmiana stanu TV",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.kd_55xe9005_android",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 1980,
+        "wires": [
+            [
+                "d94b28985702613f"
+            ]
+        ]
+    },
+    {
+        "id": "d94b28985702613f",
+        "type": "switch",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Aplikacja się zmieniła",
+        "property": "data.new_state.attributes.app_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "data.old_state.attributes.app_id",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 1980,
+        "wires": [
+            [
+                "875ce9a3051b5ac6"
+            ]
+        ]
+    },
+    {
+        "id": "875ce9a3051b5ac6",
+        "type": "switch",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Aplikacja to Netflix",
+        "property": "data.new_state.attributes.app_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "com.netflix.ninja",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "com.netflix.ninja",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 1980,
+        "wires": [
+            [
+                "b3211c741108d238"
+            ],
+            [
+                "aac29030fd692ed0"
+            ]
+        ]
+    },
+    {
+        "id": "600af8d65dfa28d8",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Ustawienie głośności na 60",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "volume_set",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.denon_avr_x1400h"
+        ],
+        "data": "{\"volume_level\":0.6}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 960,
+        "y": 1960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aac29030fd692ed0",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Ustawienie głośności na 47",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "volume_set",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.denon_avr_x1400h"
+        ],
+        "data": "{\"volume_level\":0.47}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 800,
+        "y": 2020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "66b45a4965df5ba8",
+        "type": "api-current-state",
+        "z": "f9ac8b9539c832a3",
+        "g": "1e79f0715558075a",
+        "name": "Czy tryb świąteczny",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.tryb_swiateczny",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 780,
+        "y": 1080,
+        "wires": [
+            [
+                "160e075dba6ec123"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "160e075dba6ec123",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "1e79f0715558075a",
+        "name": "Wyłącz światła świąteczne",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_100051420f"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1040,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a62d74ac6b65eb23",
+        "type": "api-current-state",
+        "z": "f9ac8b9539c832a3",
+        "g": "6c27fe9f99943679",
+        "name": "Czy tryb świąteczny",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.tryb_swiateczny",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 680,
+        "y": 500,
+        "wires": [
+            [
+                "c3c4a3ac89314920"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c3c4a3ac89314920",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "6c27fe9f99943679",
+        "name": "Włącz światła świąteczne",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_100051420f"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 910,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1703f74486d929d4",
+        "type": "api-current-state",
+        "z": "f9ac8b9539c832a3",
+        "g": "141453e63c302779",
+        "name": "Czy tryb świąteczny",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.tryb_swiateczny",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 700,
+        "y": 740,
+        "wires": [
+            [
+                "36d9b8689fa2e8c7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "36d9b8689fa2e8c7",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "141453e63c302779",
+        "name": "Włącz światła świąteczne",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_100051420f"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 950,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b3211c741108d238",
+        "type": "delay",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 1960,
+        "wires": [
+            [
+                "600af8d65dfa28d8"
+            ]
         ]
     },
     {
@@ -2521,7 +4065,8 @@
             [
                 "df7df673be1d9c98",
                 "eed6e467f5db8361",
-                "0688d9d91fc90393"
+                "0688d9d91fc90393",
+                "8557bcc12e1aeb35"
             ]
         ]
     },
@@ -4112,6 +5657,80 @@
         ]
     },
     {
+        "id": "8557bcc12e1aeb35",
+        "type": "api-current-state",
+        "z": "c64ddd5143775f97",
+        "g": "7b4bf04699360b3b",
+        "name": "Czy tryb świąteczny",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.tryb_swiateczny",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 160,
+        "y": 360,
+        "wires": [
+            [
+                "b5fb4a50b62bf918"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b5fb4a50b62bf918",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "g": "7b4bf04699360b3b",
+        "name": "Wyłącz światła świąteczne",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_100051420f"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 400,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "256099695343d75f",
         "type": "server-state-changed",
         "z": "b2dfaac53f4ee54b",
@@ -4731,117 +6350,6 @@
         ]
     },
     {
-        "id": "d6b27d940dda55b0",
-        "type": "api-current-state",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Komputer Session State",
-        "server": "163c9f2450f671da",
-        "version": 3,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sensor.komputer_stacjonarny_sessionstate",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "computer",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1050,
-        "y": 120,
-        "wires": [
-            [
-                "3aedae7f44fe185d"
-            ]
-        ]
-    },
-    {
-        "id": "bed007e6166018c5",
-        "type": "api-current-state",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Laptop Służbowy Session State",
-        "server": "163c9f2450f671da",
-        "version": 3,
-        "outputs": 1,
-        "halt_if": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sensor.laptop_cricut_sessionstate",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "laptop",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 790,
-        "y": 120,
-        "wires": [
-            [
-                "d6b27d940dda55b0"
-            ]
-        ]
-    },
-    {
-        "id": "3aedae7f44fe185d",
-        "type": "function",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Urządzenie włączone",
-        "func": "msg.deviceOn = msg.laptop === 'Unlocked' || msg.computer === 'Unlocked'\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1280,
-        "y": 120,
-        "wires": [
-            [
-                "e46fa9aef12dcb94"
-            ]
-        ]
-    },
-    {
         "id": "8959c55f5e6f2f96",
         "type": "api-current-state",
         "z": "ae7eb5a05d582c32",
@@ -4878,8 +6386,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 730,
-        "y": 220,
+        "x": 510,
+        "y": 60,
         "wires": [
             [
                 "cbc707cf91024573",
@@ -4912,8 +6420,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 980,
-        "y": 200,
+        "x": 760,
+        "y": 40,
         "wires": [
             [
                 "c5d1e04def32c886"
@@ -4942,8 +6450,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 990,
-        "y": 260,
+        "x": 770,
+        "y": 100,
         "wires": [
             []
         ]
@@ -4970,8 +6478,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 740,
-        "y": 340,
+        "x": 800,
+        "y": 160,
         "wires": [
             []
         ]
@@ -4998,8 +6506,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1440,
-        "y": 180,
+        "x": 1220,
+        "y": 20,
         "wires": [
             []
         ]
@@ -5026,8 +6534,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1460,
-        "y": 300,
+        "x": 1240,
+        "y": 140,
         "wires": [
             []
         ]
@@ -5041,7 +6549,7 @@
         "server": "163c9f2450f671da",
         "version": 3,
         "outputs": 2,
-        "halt_if": "1100",
+        "halt_if": "100",
         "halt_if_type": "num",
         "halt_if_compare": "lt",
         "entity_id": "sensor.buda_illuminance_lux",
@@ -5056,346 +6564,14 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 1210,
-        "y": 200,
+        "x": 990,
+        "y": 40,
         "wires": [
             [
                 "e2a510cd8c057664"
             ],
             [
                 "ad61a77b5fd45652"
-            ]
-        ]
-    },
-    {
-        "id": "b666e81e8039b28f",
-        "type": "server-state-changed",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Komputer Session State",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "sensor.komputer_stacjonarny_sessionstate",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 150,
-        "y": 120,
-        "wires": [
-            [
-                "9b1910f401ef61fe"
-            ]
-        ]
-    },
-    {
-        "id": "708997197b0ea8ac",
-        "type": "server-state-changed",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Laptop Służbowy Session State",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "sensor.laptop_cricut_sessionstate",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 170,
-        "y": 180,
-        "wires": [
-            [
-                "9b1910f401ef61fe"
-            ]
-        ]
-    },
-    {
-        "id": "5c34fe8dd10021b8",
-        "type": "server-state-changed",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Minimalne światło",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "input_number.maksymalne_swiatlo_do_wylaczenia_oswietlenia",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "num",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 120,
-        "y": 240,
-        "wires": [
-            [
-                "9b1910f401ef61fe"
-            ]
-        ]
-    },
-    {
-        "id": "7aa9b6aab96e2a63",
-        "type": "server-state-changed",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Gabinet Lux",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "sensor.gabinet_illuminance_lux",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "num",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 110,
-        "y": 300,
-        "wires": [
-            [
-                "9b1910f401ef61fe"
-            ]
-        ]
-    },
-    {
-        "id": "9b1910f401ef61fe",
-        "type": "api-current-state",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Automatyczne sterowanie oświetleniem",
-        "server": "163c9f2450f671da",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 460,
-        "y": 120,
-        "wires": [
-            [
-                "bed007e6166018c5"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "e46fa9aef12dcb94",
-        "type": "switch",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "",
-        "property": "deviceOn",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 410,
-        "y": 220,
-        "wires": [
-            [
-                "cf0fbd04973576db"
-            ],
-            [
-                "34bf6fd15fb1ab7f"
             ]
         ]
     },
@@ -5436,8 +6612,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 570,
-        "y": 220,
+        "x": 350,
+        "y": 60,
         "wires": [
             [
                 "8959c55f5e6f2f96"
@@ -5466,8 +6642,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 430,
-        "y": 340,
+        "x": 530,
+        "y": 160,
         "wires": [
             [
                 "2312338b8fa55a26",
@@ -5481,6 +6657,430 @@
         "z": "ae7eb5a05d582c32",
         "g": "884608cf0fb6e773",
         "name": "Bieganie",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.scena_gabinet",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Bieganie",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 540,
+        "wires": [
+            [
+                "bcd2981a6282f92d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bcd2981a6282f92d",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "884608cf0fb6e773",
+        "name": "Wyłącz automatyczne sterowanie oświetleniem w gabinecie",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "input_boolean",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 500,
+        "y": 540,
+        "wires": [
+            [
+                "abdb678895507741"
+            ]
+        ]
+    },
+    {
+        "id": "abdb678895507741",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "884608cf0fb6e773",
+        "name": "Włącz światła RGB",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.lampa_gabinet",
+            "light.lampka_gabinet_1"
+        ],
+        "data": "{\"effect\":\"colorloop\"}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 850,
+        "y": 540,
+        "wires": [
+            [
+                "04619304953732d0"
+            ]
+        ]
+    },
+    {
+        "id": "04619304953732d0",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "884608cf0fb6e773",
+        "name": "Włącz bieżnię i lampę",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_1000513cd0",
+            "switch.sonoff_1000511f63"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1100,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c4210de99aa36378",
+        "type": "server-state-changed",
+        "z": "ae7eb5a05d582c32",
+        "g": "9577ec21e7b1473f",
+        "name": "Praca",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.scena_gabinet",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Praca",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 110,
+        "y": 800,
+        "wires": [
+            [
+                "6cf1832a97e41bd3",
+                "0f529defee31c9cf"
+            ],
+            []
+        ],
+        "icon": "font-awesome/fa-bed"
+    },
+    {
+        "id": "6cf1832a97e41bd3",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "9577ec21e7b1473f",
+        "name": "Włącz automatyczne sterowanie oświetleniem w gabinecie",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 610,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0f529defee31c9cf",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "9577ec21e7b1473f",
+        "name": "Wyłącz bieżnię",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.sonoff_1000513cd0"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 480,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9002aa303f93357c",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "9bc283314f1e0f9f",
+        "name": "Wyłącz lampę gabinet",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.lampa_gabinet"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 840,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f97876d72b4e95ec",
+        "type": "api-current-state",
+        "z": "ae7eb5a05d582c32",
+        "g": "9bc283314f1e0f9f",
+        "name": "Przekaźnik gabinet wyłączony",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "switch.przekaznik_gabinet",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "laptop",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 570,
+        "y": 220,
+        "wires": [
+            [
+                "9002aa303f93357c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ad61a77b5fd45652",
+        "type": "api-current-state",
+        "z": "ae7eb5a05d582c32",
+        "g": "9bc283314f1e0f9f",
+        "name": "Przekaźnik gabinet wyłączony",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "switch.przekaznik_gabinet",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "laptop",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1250,
+        "y": 80,
+        "wires": [
+            [
+                "0de3a5fff1c4e3c9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "37775277633bb9a2",
+        "type": "delay",
+        "z": "ae7eb5a05d582c32",
+        "g": "9bc283314f1e0f9f",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 300,
+        "y": 160,
+        "wires": [
+            [
+                "34bf6fd15fb1ab7f"
+            ]
+        ]
+    },
+    {
+        "id": "20e577754bfb1939",
+        "type": "server-state-changed",
+        "z": "ae7eb5a05d582c32",
+        "g": "884608cf0fb6e773",
+        "name": "Przycisk bieganie",
         "server": "163c9f2450f671da",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -5532,490 +7132,373 @@
             }
         ],
         "x": 140,
-        "y": 540,
+        "y": 640,
         "wires": [
             [
-                "bcd2981a6282f92d",
-                "abdb678895507741",
-                "04619304953732d0"
+                "5cf4501d775d18d5"
             ]
         ]
     },
     {
-        "id": "bcd2981a6282f92d",
+        "id": "5cf4501d775d18d5",
+        "type": "api-current-state",
+        "z": "ae7eb5a05d582c32",
+        "g": "884608cf0fb6e773",
+        "name": "Czy scena bieganie włączona",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "Bieganie",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_select.scena_gabinet",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 390,
+        "y": 640,
+        "wires": [
+            [
+                "9a2809a0035898e8"
+            ],
+            [
+                "25ce8aa3596e62fb"
+            ]
+        ]
+    },
+    {
+        "id": "9a2809a0035898e8",
         "type": "api-call-service",
         "z": "ae7eb5a05d582c32",
         "g": "884608cf0fb6e773",
-        "name": "Wyłącz automatyczne sterowanie oświetleniem w gabinecie",
+        "name": "Ustaw pracę",
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
-        "domain": "input_boolean",
-        "service": "turn_off",
+        "domain": "input_select",
+        "service": "select_option",
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie"
+            "input_select.scena_gabinet"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{\"option\":\"Praca\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 630,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25ce8aa3596e62fb",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "884608cf0fb6e773",
+        "name": "Ustaw bieganie",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "input_select",
+        "service": "select_option",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_select.scena_gabinet"
+        ],
+        "data": "{\"option\":\"Bieganie\"}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 640,
-        "y": 540,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "abdb678895507741",
-        "type": "api-call-service",
-        "z": "ae7eb5a05d582c32",
-        "g": "884608cf0fb6e773",
-        "name": "Włącz światła RGB",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.lampa_gabinet",
-            "light.lampka_gabinet_1"
-        ],
-        "data": "{\"effect\":\"colorloop\"}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 510,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "04619304953732d0",
-        "type": "api-call-service",
-        "z": "ae7eb5a05d582c32",
-        "g": "884608cf0fb6e773",
-        "name": "Włącz bieżnię i lampę",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "switch",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.sonoff_1000513cd0",
-            "switch.sonoff_1000511f63"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 520,
         "y": 660,
         "wires": [
             []
         ]
     },
     {
-        "id": "c4210de99aa36378",
-        "type": "server-state-changed",
+        "id": "ac0d6be1675f5028",
+        "type": "subflow:881b4976cfe980ca",
         "z": "ae7eb5a05d582c32",
-        "g": "9577ec21e7b1473f",
-        "name": "Zakończ Bieganie",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "scene.zakoncz_bieganie",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 170,
-        "y": 760,
-        "wires": [
-            [
-                "6cf1832a97e41bd3",
-                "4f4b3fc8976ae592",
-                "0f529defee31c9cf"
-            ]
-        ],
-        "icon": "font-awesome/fa-bed"
-    },
-    {
-        "id": "6cf1832a97e41bd3",
-        "type": "api-call-service",
-        "z": "ae7eb5a05d582c32",
-        "g": "9577ec21e7b1473f",
-        "name": "Włącz automatyczne sterowanie oświetleniem w gabinecie",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "input_boolean",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 630,
-        "y": 760,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4f4b3fc8976ae592",
-        "type": "api-call-service",
-        "z": "ae7eb5a05d582c32",
-        "g": "9577ec21e7b1473f",
-        "name": "Wyłącz światła RGB",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_off",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.lampa_gabinet",
-            "light.lampka_gabinet_1"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 520,
-        "y": 820,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0f529defee31c9cf",
-        "type": "api-call-service",
-        "z": "ae7eb5a05d582c32",
-        "g": "9577ec21e7b1473f",
-        "name": "Wyłącz bieżnię i lampę",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "switch",
-        "service": "turn_off",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "switch.sonoff_1000513cd0",
-            "switch.sonoff_1000511f63"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 520,
-        "y": 880,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "9002aa303f93357c",
-        "type": "api-call-service",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Wyłącz lampę gabinet",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_off",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.lampa_gabinet"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 720,
-        "y": 400,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f97876d72b4e95ec",
-        "type": "api-current-state",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Przekaźnik gabinet wyłączony",
-        "server": "163c9f2450f671da",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "switch.przekaznik_gabinet",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "laptop",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 450,
-        "y": 400,
-        "wires": [
-            [
-                "9002aa303f93357c"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "ad61a77b5fd45652",
-        "type": "api-current-state",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Przekaźnik gabinet wyłączony",
-        "server": "163c9f2450f671da",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "switch.przekaznik_gabinet",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "laptop",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 1470,
-        "y": 240,
-        "wires": [
-            [
-                "0de3a5fff1c4e3c9"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "46d6a85da2324e3c",
-        "type": "server-state-changed",
-        "z": "ae7eb5a05d582c32",
-        "name": "aa",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "sensor.cube_",
-        "entityidfiltertype": "substring",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
+        "g": "884608cf0fb6e773",
+        "name": "",
         "x": 110,
-        "y": 1020,
+        "y": 700,
         "wires": [
             [
-                "9d99f5174774a3e3"
+                "a98e23f9fb02d91a"
             ]
         ]
     },
     {
-        "id": "9d99f5174774a3e3",
-        "type": "debug",
+        "id": "a98e23f9fb02d91a",
+        "type": "switch",
         "z": "ae7eb5a05d582c32",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 280,
-        "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "16b23923c4e02d3e",
-        "type": "server-state-changed",
-        "z": "ae7eb5a05d582c32",
-        "g": "9bc283314f1e0f9f",
-        "name": "Automatyczne oświetlenie gabinetu",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
+        "g": "884608cf0fb6e773",
+        "name": "Potrząśnięcie",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
             {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
+                "t": "eq",
+                "v": "shake",
+                "vt": "str"
             }
         ],
-        "entityidfilter": "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "num",
-        "haltifstate": "",
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 700,
+        "wires": [
+            [
+                "5cf4501d775d18d5"
+            ]
+        ]
+    },
+    {
+        "id": "ab546148524a73f3",
+        "type": "subflow:0d0bd9aaa9acc12b",
+        "z": "ae7eb5a05d582c32",
+        "g": "9bc283314f1e0f9f",
+        "name": "",
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "cf0fbd04973576db"
+            ],
+            [
+                "37775277633bb9a2"
+            ]
+        ]
+    },
+    {
+        "id": "b9aa131c82ce5e54",
+        "type": "subflow:0d0bd9aaa9acc12b",
+        "z": "ae7eb5a05d582c32",
+        "g": "93d44a9a9bd7b6eb",
+        "name": "",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "6e46172d4adbbc9f"
+            ],
+            [
+                "ed5501c2151c6312"
+            ]
+        ]
+    },
+    {
+        "id": "6e46172d4adbbc9f",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "93d44a9a9bd7b6eb",
+        "name": "Włącz grzejnik na 20°C",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "climate",
+        "service": "set_temperature",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "climate.kaloryfer_gabinet"
+        ],
+        "data": "{\"temperature\":20,\"hvac_mode\":\"auto\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 350,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed5501c2151c6312",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "93d44a9a9bd7b6eb",
+        "name": "Wyłącz grzejnik",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "climate",
+        "service": "set_temperature",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "climate.kaloryfer_gabinet"
+        ],
+        "data": "{\"temperature\":18,\"hvac_mode\":\"off\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 320,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c66ee9c57cddb6b1",
+        "type": "inject",
+        "z": "15517937b48e3cad",
+        "name": "Codziennie o 19:30",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 19 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "f8b9b74f67d75251"
+            ]
+        ]
+    },
+    {
+        "id": "93f71ea5a191389e",
+        "type": "api-call-service",
+        "z": "15517937b48e3cad",
+        "name": "Włącz grzejnik na 25°C",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "climate",
+        "service": "set_temperature",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "climate.kaloryfer_lazienka"
+        ],
+        "data": "{\"temperature\":25,\"hvac_mode\":\"auto\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e833950035d39ac",
+        "type": "inject",
+        "z": "15517937b48e3cad",
+        "name": "Codziennie o 22:00",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 22 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "dfe532d10df1e68e"
+            ]
+        ]
+    },
+    {
+        "id": "2909c1197fc0dff6",
+        "type": "api-call-service",
+        "z": "15517937b48e3cad",
+        "name": "Wyłącz grzejnik",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "climate",
+        "service": "set_temperature",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "climate.kaloryfer_lazienka"
+        ],
+        "data": "{\"temperature\":18,\"hvac_mode\":\"off\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f8b9b74f67d75251",
+        "type": "api-current-state",
+        "z": "15517937b48e3cad",
+        "name": "Czy tryb wakacyjny",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": true,
+        "entity_id": "input_boolean.tryb_wakacyjny",
+        "state_type": "str",
+        "blockInputOverrides": false,
         "outputProperties": [
             {
                 "property": "payload",
@@ -6027,20 +7510,68 @@
                 "property": "data",
                 "propertyType": "msg",
                 "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
+                "valueType": "entity"
             }
         ],
-        "x": 180,
-        "y": 60,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 430,
+        "y": 120,
         "wires": [
+            [],
             [
-                "9b1910f401ef61fe"
+                "93f71ea5a191389e"
+            ]
+        ]
+    },
+    {
+        "id": "dfe532d10df1e68e",
+        "type": "api-current-state",
+        "z": "15517937b48e3cad",
+        "name": "Czy tryb wakacyjny",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.tryb_wakacyjny",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [],
+            [
+                "2909c1197fc0dff6"
             ]
         ]
     }
