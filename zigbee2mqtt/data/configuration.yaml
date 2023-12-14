@@ -30,10 +30,14 @@ devices:
   '0x0c4314fffe49e195':
     friendly_name: Pilot
   '0x00158d00058812b2':
-    friendly_name: '0x00158d00058812b2'
+    friendly_name: Kostka
     legacy: false
+  '0xa4c138eac62acc1e':
+    friendly_name: Kaloryfer Gabinet
+  '0xa4c13808141dd640':
+    friendly_name: Kaloryfer Łazienka
 advanced:
-  log_level: warn
+  log_level: debug
   log_syslog:
     app_name: Zigbee2MQTT
     eol: /n
