@@ -27,8 +27,6 @@ devices:
     friendly_name: Przekaźnik gabinet
   '0xa4c138c4445c06ec':
     friendly_name: Przekaźnik dzieci
-  '0x0c4314fffe49e195':
-    friendly_name: Pilot
   '0x00158d00058812b2':
     friendly_name: Kostka
     legacy: false
@@ -36,6 +34,12 @@ devices:
     friendly_name: Kaloryfer Gabinet
   '0xa4c13808141dd640':
     friendly_name: Kaloryfer Łazienka
+  '0xa4c13828e9fa8eda':
+    friendly_name: Kaloryfer dzieci
+  '0x0c4314fffe49e195':
+    friendly_name: Pilot
+  '0xa4c1380e540bd8fa':
+    friendly_name: Przycisk wiatrołap
 advanced:
   log_level: debug
   log_syslog:
