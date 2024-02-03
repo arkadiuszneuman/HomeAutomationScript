@@ -43,3 +43,8 @@
   entities: {}
   icon: mdi:bed-clock
   metadata: {}
+- id: '1706993174135'
+  name: Granie na Decku
+  entities: {}
+  icon: mdi:nintendo-game-boy
+  metadata: {}
