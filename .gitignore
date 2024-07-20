@@ -26,3 +26,4 @@ nodered/node_modules
 nodered/flows_cred.json
 homeassistant/backups/
 homeassistant/tts/
+certbot/
