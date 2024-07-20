@@ -18,22 +18,17 @@ sudo sysctl -w vm.max_map_count=262144
 
 ## TLS/SSL
 
-Execute given code in console generate certificate:
+Execute given code in console generate certificate (after you run docker compose):
 
 ```console
-cd certbot/
-wget https://dl.eff.org/certbot-auto
-chmod a+x certbot-auto
-
-sudo docker stop ha
-
-./certbot-auto certonly --standalone --preferred-challenges http-01 --email your@email.address -d examplehome.duckdns.org
-
-sudo chmod 755 /etc/letsencrypt/live/
-sudo chmod 755 /etc/letsencrypt/archive/
+sudo docker compose -f docker-compose.windows.yaml run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d arekha.duckdns.org
 ```
 
-If you need fully certification help go to <https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/>
+To refresh certificate:
+
+```console
+docker compose -f docker-compose.windows.yaml  run --rm certbot renew
+```
 
 ## Run
 
