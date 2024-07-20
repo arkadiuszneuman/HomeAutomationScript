@@ -327,12 +327,16 @@
             "6c27fe9f99943679",
             "141453e63c302779",
             "1e79f0715558075a",
-            "a20b980182575408"
+            "a20b980182575408",
+            "b03356b5832bde5f",
+            "8f8e46804cdadcc7",
+            "bb9194cdd978f3b0",
+            "392218788ba54353"
         ],
-        "x": 8,
+        "x": -12,
         "y": 313,
-        "w": 1204,
-        "h": 1074
+        "w": 1264,
+        "h": 1894
     },
     {
         "id": "689b1d55f7932c58",
@@ -399,9 +403,7 @@
             "125fb9bb98fd2159"
         ],
         "x": 14,
-        "y": -21,
-        "w": 1392,
-        "h": 282
+        "y": -21
     },
     {
         "id": "cc6d91f602947828",
@@ -416,37 +418,7 @@
             "9577ec21e7b1473f"
         ],
         "x": 8,
-        "y": 473,
-        "w": 1244,
-        "h": 454
-    },
-    {
-        "id": "b03356b5832bde5f",
-        "type": "group",
-        "z": "f9ac8b9539c832a3",
-        "name": "Filtr powietrza",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "3dcb3879988401bf",
-            "863ab740154ba98a",
-            "38ce593f65cbae5a",
-            "52631085f51611de",
-            "e8a27072e696eda1",
-            "8d10bc24f61d6b73",
-            "b87203e855e657db",
-            "5b48f90f5cc023b1",
-            "453c3c868b8a4cec",
-            "9b051630fb70d2ad",
-            "062b046c7b60f7a7",
-            "fffe453b68ff3440",
-            "f3023adf7ec5e6a0"
-        ],
-        "x": 14,
-        "y": 1379,
-        "w": 1212,
-        "h": 242
+        "y": 473
     },
     {
         "id": "9870422d94171519",
@@ -487,66 +459,6 @@
         "y": 779
     },
     {
-        "id": "8f8e46804cdadcc7",
-        "type": "group",
-        "z": "f9ac8b9539c832a3",
-        "name": "Govee",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "b75ac05238e584f4",
-            "86dc3897c031bfaa",
-            "a0615b0d7677f68c",
-            "c81c3bbd71be4bfb",
-            "961bfc6531e58f6c",
-            "6aef6fd25acd8bce",
-            "858b8225a03aac21"
-        ],
-        "x": 14,
-        "y": 1639,
-        "w": 1072,
-        "h": 202
-    },
-    {
-        "id": "bb9194cdd978f3b0",
-        "type": "group",
-        "z": "f9ac8b9539c832a3",
-        "name": "Child lock",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "bfc530f0cabb3ffc",
-            "2cd24b73a16ad718"
-        ],
-        "x": 14,
-        "y": 1859,
-        "w": 612,
-        "h": 82
-    },
-    {
-        "id": "392218788ba54353",
-        "type": "group",
-        "z": "f9ac8b9539c832a3",
-        "name": "Głośność TV",
-        "style": {
-            "label": true
-        },
-        "nodes": [
-            "1285982ba5439583",
-            "d94b28985702613f",
-            "875ce9a3051b5ac6",
-            "600af8d65dfa28d8",
-            "aac29030fd692ed0",
-            "b3211c741108d238"
-        ],
-        "x": 14,
-        "y": 1959,
-        "w": 1092,
-        "h": 142
-    },
-    {
         "id": "93d44a9a9bd7b6eb",
         "type": "group",
         "z": "ae7eb5a05d582c32",
@@ -561,9 +473,7 @@
             "ed5501c2151c6312"
         ],
         "x": 14,
-        "y": 299,
-        "w": 472,
-        "h": 142
+        "y": 299
     },
     {
         "id": "8c9f567e59660521",
@@ -607,6 +517,92 @@
         ],
         "x": 14,
         "y": 19
+    },
+    {
+        "id": "83b1177d1a56a864",
+        "type": "group",
+        "z": "6768cfb18f6fc541",
+        "name": "Włączenie muzyki przy wyłączeniu TV",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "a8fb561c4c505762",
+            "4ec2213a44a00904",
+            "2d0ed3453818ae70"
+        ],
+        "x": 14,
+        "y": 559
+    },
+    {
+        "id": "b03356b5832bde5f",
+        "type": "group",
+        "z": "f9ac8b9539c832a3",
+        "g": "5ecf1bec7b70063f",
+        "name": "Filtr powietrza",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "3dcb3879988401bf",
+            "863ab740154ba98a",
+            "38ce593f65cbae5a",
+            "52631085f51611de",
+            "e8a27072e696eda1",
+            "8d10bc24f61d6b73",
+            "b87203e855e657db",
+            "5b48f90f5cc023b1",
+            "453c3c868b8a4cec",
+            "9b051630fb70d2ad",
+            "062b046c7b60f7a7",
+            "fffe453b68ff3440",
+            "f3023adf7ec5e6a0"
+        ],
+        "x": 14,
+        "y": 1459,
+        "w": 1212,
+        "h": 242
+    },
+    {
+        "id": "8f8e46804cdadcc7",
+        "type": "group",
+        "z": "f9ac8b9539c832a3",
+        "g": "5ecf1bec7b70063f",
+        "name": "Govee",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b75ac05238e584f4",
+            "86dc3897c031bfaa",
+            "a0615b0d7677f68c",
+            "c81c3bbd71be4bfb",
+            "961bfc6531e58f6c",
+            "6aef6fd25acd8bce",
+            "858b8225a03aac21"
+        ],
+        "x": 14,
+        "y": 1719,
+        "w": 1072,
+        "h": 202
+    },
+    {
+        "id": "bb9194cdd978f3b0",
+        "type": "group",
+        "z": "f9ac8b9539c832a3",
+        "g": "5ecf1bec7b70063f",
+        "name": "Child lock",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "bfc530f0cabb3ffc",
+            "2cd24b73a16ad718"
+        ],
+        "x": 14,
+        "y": 1939,
+        "w": 612,
+        "h": 82
     },
     {
         "id": "b1e916dd1d7de0b8",
@@ -712,12 +708,13 @@
             "1703f74486d929d4",
             "36d9b8689fa2e8c7",
             "721ba6bc174ee8e4",
-            "c576961915ee7898"
+            "c576961915ee7898",
+            "819639745fda4289"
         ],
         "x": 54,
         "y": 579,
-        "w": 1112,
-        "h": 262
+        "w": 1032,
+        "h": 322
     },
     {
         "id": "1e79f0715558075a",
@@ -743,7 +740,7 @@
             "160e075dba6ec123"
         ],
         "x": 34,
-        "y": 859,
+        "y": 919,
         "w": 1152,
         "h": 342
     },
@@ -769,9 +766,7 @@
             "a98e23f9fb02d91a"
         ],
         "x": 34,
-        "y": 499,
-        "w": 1192,
-        "h": 242
+        "y": 499
     },
     {
         "id": "9577ec21e7b1473f",
@@ -788,9 +783,7 @@
             "0f529defee31c9cf"
         ],
         "x": 34,
-        "y": 759,
-        "w": 812,
-        "h": 142
+        "y": 759
     },
     {
         "id": "acefa0d0f7d11702",
@@ -826,8 +819,30 @@
             "7f09eca474e16f14"
         ],
         "x": 34,
-        "y": 1219,
+        "y": 1299,
         "w": 672,
+        "h": 142
+    },
+    {
+        "id": "392218788ba54353",
+        "type": "group",
+        "z": "f9ac8b9539c832a3",
+        "g": "5ecf1bec7b70063f",
+        "name": "Głośność TV",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "1285982ba5439583",
+            "d94b28985702613f",
+            "875ce9a3051b5ac6",
+            "600af8d65dfa28d8",
+            "aac29030fd692ed0",
+            "b3211c741108d238"
+        ],
+        "x": 14,
+        "y": 2039,
+        "w": 1092,
         "h": 142
     },
     {
@@ -916,6 +931,18 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
+    },
+    {
+        "id": "de7540b257d34f68",
+        "type": "position-config",
+        "name": "Arek",
+        "isValide": "true",
+        "angleType": "deg",
+        "timeZoneOffset": "99",
+        "timeZoneDST": "0",
+        "stateTimeFormat": "3",
+        "stateDateFormat": "12",
+        "contextStore": "memory"
     },
     {
         "id": "6516de3d1736fcef",
@@ -2263,7 +2290,8 @@
                 "47e15f61dc69ae10",
                 "4bd6ada147963d2f",
                 "5ead5c978b3ae8b3",
-                "691e105a52748b8a"
+                "691e105a52748b8a",
+                "819639745fda4289"
             ]
         ]
     },
@@ -2342,7 +2370,7 @@
         "y": 680,
         "wires": [
             [
-                "721ba6bc174ee8e4"
+                "c576961915ee7898"
             ]
         ]
     },
@@ -2370,7 +2398,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 440,
-        "y": 740,
+        "y": 800,
         "wires": [
             [
                 "1703f74486d929d4"
@@ -2403,7 +2431,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 460,
-        "y": 800,
+        "y": 860,
         "wires": [
             []
         ]
@@ -2465,7 +2493,7 @@
             }
         ],
         "x": 120,
-        "y": 920,
+        "y": 980,
         "wires": [
             [
                 "df9faafd8fbeefbe",
@@ -2502,7 +2530,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 360,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "6ba31741d4e8b920"
@@ -2541,7 +2569,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 360,
-        "y": 1040,
+        "y": 1100,
         "wires": [
             []
         ]
@@ -2570,7 +2598,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 370,
-        "y": 1100,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -2594,7 +2622,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 810,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "ee21f8b9965153a0",
@@ -2630,7 +2658,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 830,
-        "y": 1020,
+        "y": 1080,
         "wires": [
             []
         ]
@@ -2658,7 +2686,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 360,
-        "y": 980,
+        "y": 1040,
         "wires": [
             []
         ]
@@ -2689,7 +2717,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 380,
-        "y": 1160,
+        "y": 1220,
         "wires": [
             []
         ]
@@ -2717,7 +2745,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 590,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "0deb1030d7e6e0be"
@@ -2748,7 +2776,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 760,
-        "y": 960,
+        "y": 1020,
         "wires": [
             []
         ]
@@ -3120,7 +3148,7 @@
             }
         ],
         "x": 160,
-        "y": 1500,
+        "y": 1580,
         "wires": [
             [
                 "9b051630fb70d2ad"
@@ -3152,7 +3180,7 @@
         "repair": false,
         "outputs": 2,
         "x": 750,
-        "y": 1500,
+        "y": 1580,
         "wires": [
             [
                 "38ce593f65cbae5a"
@@ -3186,7 +3214,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 930,
-        "y": 1460,
+        "y": 1540,
         "wires": [
             []
         ]
@@ -3204,7 +3232,7 @@
         "finalize": "",
         "libs": [],
         "x": 900,
-        "y": 1520,
+        "y": 1600,
         "wires": [
             [
                 "e8a27072e696eda1"
@@ -3235,7 +3263,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 880,
-        "y": 1580,
+        "y": 1660,
         "wires": [
             [
                 "8d10bc24f61d6b73"
@@ -3266,7 +3294,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1100,
-        "y": 1580,
+        "y": 1660,
         "wires": [
             []
         ]
@@ -3328,7 +3356,7 @@
             }
         ],
         "x": 160,
-        "y": 1580,
+        "y": 1660,
         "wires": [
             [
                 "453c3c868b8a4cec"
@@ -3360,7 +3388,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 600,
-        "y": 1500,
+        "y": 1580,
         "wires": [
             [
                 "863ab740154ba98a"
@@ -3391,7 +3419,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 510,
-        "y": 1580,
+        "y": 1660,
         "wires": [
             []
         ]
@@ -3409,7 +3437,7 @@
         "startOffset": 0,
         "endOffset": 0,
         "x": 410,
-        "y": 1500,
+        "y": 1580,
         "wires": [
             [
                 "5b48f90f5cc023b1"
@@ -3438,7 +3466,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 1420,
+        "y": 1500,
         "wires": [
             [
                 "fffe453b68ff3440"
@@ -3483,7 +3511,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 300,
-        "y": 1420,
+        "y": 1500,
         "wires": [
             [
                 "f3023adf7ec5e6a0"
@@ -3529,7 +3557,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 540,
-        "y": 1420,
+        "y": 1500,
         "wires": [
             [
                 "9b051630fb70d2ad"
@@ -3593,7 +3621,7 @@
             }
         ],
         "x": 120,
-        "y": 1760,
+        "y": 1840,
         "wires": [
             [
                 "a0615b0d7677f68c"
@@ -3623,7 +3651,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 750,
-        "y": 1680,
+        "y": 1760,
         "wires": [
             []
         ]
@@ -3652,7 +3680,7 @@
         "repair": false,
         "outputs": 2,
         "x": 310,
-        "y": 1760,
+        "y": 1840,
         "wires": [
             [
                 "961bfc6531e58f6c"
@@ -3685,7 +3713,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 510,
-        "y": 1800,
+        "y": 1880,
         "wires": [
             [
                 "6aef6fd25acd8bce"
@@ -3715,7 +3743,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 1900,
+        "y": 1980,
         "wires": [
             [
                 "2cd24b73a16ad718"
@@ -3746,7 +3774,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 430,
-        "y": 1900,
+        "y": 1980,
         "wires": [
             []
         ]
@@ -3774,7 +3802,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 520,
-        "y": 1680,
+        "y": 1760,
         "wires": [
             [
                 "86dc3897c031bfaa"
@@ -3819,7 +3847,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 730,
-        "y": 1800,
+        "y": 1880,
         "wires": [
             [
                 "858b8225a03aac21"
@@ -3850,187 +3878,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 970,
-        "y": 1800,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1285982ba5439583",
-        "type": "server-state-changed",
-        "z": "f9ac8b9539c832a3",
-        "g": "392218788ba54353",
-        "name": "Zmiana stanu TV",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "media_player.kd_55xe9005_android",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": false,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": false,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 120,
-        "y": 2020,
-        "wires": [
-            [
-                "d94b28985702613f"
-            ]
-        ]
-    },
-    {
-        "id": "d94b28985702613f",
-        "type": "switch",
-        "z": "f9ac8b9539c832a3",
-        "g": "392218788ba54353",
-        "name": "Aplikacja się zmieniła",
-        "property": "data.new_state.attributes.app_id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "data.old_state.attributes.app_id",
-                "vt": "msg"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 360,
-        "y": 2020,
-        "wires": [
-            [
-                "875ce9a3051b5ac6"
-            ]
-        ]
-    },
-    {
-        "id": "875ce9a3051b5ac6",
-        "type": "switch",
-        "z": "f9ac8b9539c832a3",
-        "g": "392218788ba54353",
-        "name": "Aplikacja to Netflix",
-        "property": "data.new_state.attributes.app_id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "com.netflix.ninja",
-                "vt": "str"
-            },
-            {
-                "t": "neq",
-                "v": "com.netflix.ninja",
-                "vt": "str"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 570,
-        "y": 2020,
-        "wires": [
-            [
-                "b3211c741108d238"
-            ],
-            [
-                "aac29030fd692ed0"
-            ]
-        ]
-    },
-    {
-        "id": "600af8d65dfa28d8",
-        "type": "api-call-service",
-        "z": "f9ac8b9539c832a3",
-        "g": "392218788ba54353",
-        "name": "Ustawienie głośności na 60",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "media_player",
-        "service": "volume_set",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "media_player.denon_avr_x1400h"
-        ],
-        "data": "{\"volume_level\":0.6}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 960,
-        "y": 2000,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "aac29030fd692ed0",
-        "type": "api-call-service",
-        "z": "f9ac8b9539c832a3",
-        "g": "392218788ba54353",
-        "name": "Ustawienie głośności na 47",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "media_player",
-        "service": "volume_set",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "media_player.denon_avr_x1400h"
-        ],
-        "data": "{\"volume_level\":0.47}",
-        "dataType": "json",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 800,
-        "y": 2060,
+        "y": 1880,
         "wires": [
             []
         ]
@@ -4073,7 +3921,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 780,
-        "y": 1080,
+        "y": 1140,
         "wires": [
             [
                 "160e075dba6ec123"
@@ -4104,7 +3952,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1040,
-        "y": 1080,
+        "y": 1140,
         "wires": [
             []
         ]
@@ -4221,7 +4069,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 700,
-        "y": 740,
+        "y": 800,
         "wires": [
             [
                 "36d9b8689fa2e8c7"
@@ -4252,35 +4100,9 @@
         "outputProperties": [],
         "queue": "none",
         "x": 950,
-        "y": 740,
+        "y": 800,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "b3211c741108d238",
-        "type": "delay",
-        "z": "f9ac8b9539c832a3",
-        "g": "392218788ba54353",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "10",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 740,
-        "y": 2000,
-        "wires": [
-            [
-                "600af8d65dfa28d8"
-            ]
         ]
     },
     {
@@ -4306,7 +4128,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 330,
-        "y": 1260,
+        "y": 1340,
         "wires": [
             [
                 "f198983f30a7c66d"
@@ -4336,7 +4158,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 550,
-        "y": 1260,
+        "y": 1340,
         "wires": [
             []
         ]
@@ -4364,7 +4186,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 300,
-        "y": 1320,
+        "y": 1400,
         "wires": [
             [
                 "9363c9c74022e9d3"
@@ -4390,7 +4212,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 460,
-        "y": 1320,
+        "y": 1400,
         "wires": [
             []
         ]
@@ -4452,7 +4274,7 @@
             }
         ],
         "x": 140,
-        "y": 1260,
+        "y": 1340,
         "wires": [
             [
                 "3add1cccf61680c0",
@@ -4483,11 +4305,9 @@
         "outputProperties": [],
         "queue": "none",
         "x": 720,
-        "y": 680,
+        "y": 740,
         "wires": [
-            [
-                "c576961915ee7898"
-            ]
+            []
         ]
     },
     {
@@ -4512,10 +4332,262 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1010,
+        "x": 730,
         "y": 680,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "819639745fda4289",
+        "type": "api-current-state",
+        "z": "f9ac8b9539c832a3",
+        "g": "141453e63c302779",
+        "name": "Czy Denon włączony",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "media_player.denon_avr_x1400h",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 460,
+        "y": 740,
+        "wires": [
+            [
+                "721ba6bc174ee8e4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1285982ba5439583",
+        "type": "server-state-changed",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Zmiana stanu TV",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.kd_55xe9005_android",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 2100,
+        "wires": [
+            [
+                "d94b28985702613f"
+            ]
+        ]
+    },
+    {
+        "id": "d94b28985702613f",
+        "type": "switch",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Aplikacja się zmieniła",
+        "property": "data.new_state.attributes.app_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "data.old_state.attributes.app_id",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 360,
+        "y": 2100,
+        "wires": [
+            [
+                "875ce9a3051b5ac6"
+            ]
+        ]
+    },
+    {
+        "id": "875ce9a3051b5ac6",
+        "type": "switch",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Aplikacja to Netflix",
+        "property": "data.new_state.attributes.app_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "com.netflix.ninja",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "com.netflix.ninja",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 2100,
+        "wires": [
+            [
+                "b3211c741108d238"
+            ],
+            [
+                "aac29030fd692ed0"
+            ]
+        ]
+    },
+    {
+        "id": "600af8d65dfa28d8",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Ustawienie głośności na 60",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "volume_set",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.denon_avr_x1400h"
+        ],
+        "data": "{\"volume_level\":0.6}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 960,
+        "y": 2080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aac29030fd692ed0",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "Ustawienie głośności na 47",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "volume_set",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.denon_avr_x1400h"
+        ],
+        "data": "{\"volume_level\":0.47}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 800,
+        "y": 2140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b3211c741108d238",
+        "type": "delay",
+        "z": "f9ac8b9539c832a3",
+        "g": "392218788ba54353",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 2080,
+        "wires": [
+            [
+                "600af8d65dfa28d8"
+            ]
         ]
     },
     {
@@ -6892,7 +6964,7 @@
         "type": "server-state-changed",
         "z": "6768cfb18f6fc541",
         "g": "acefa0d0f7d11702",
-        "name": "Dzieci dobranoc",
+        "name": "Dzieci odpoczynek",
         "server": "163c9f2450f671da",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -6943,7 +7015,7 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 160,
+        "x": 170,
         "y": 200,
         "wires": [
             [
@@ -7218,6 +7290,161 @@
         ]
     },
     {
+        "id": "a8fb561c4c505762",
+        "type": "server-state-changed",
+        "z": "6768cfb18f6fc541",
+        "g": "83b1177d1a56a864",
+        "name": "Zmiana stanu TV",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.aquos_tve19g",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 600,
+        "wires": [
+            [
+                "2d0ed3453818ae70"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4ec2213a44a00904",
+        "type": "api-call-service",
+        "z": "6768cfb18f6fc541",
+        "g": "83b1177d1a56a864",
+        "name": "Ustaw dobranoc dzieci",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "scene",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.dzieci_dobranoc"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 560,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2d0ed3453818ae70",
+        "type": "within-time-switch",
+        "z": "6768cfb18f6fc541",
+        "g": "83b1177d1a56a864",
+        "name": "",
+        "nameInt": "",
+        "positionConfig": "de7540b257d34f68",
+        "startTime": "19:00",
+        "startTimeType": "entered",
+        "startOffset": 0,
+        "startOffsetType": "none",
+        "startOffsetMultiplier": 60000,
+        "endTime": "00:30",
+        "endTimeType": "entered",
+        "endOffset": 0,
+        "endOffsetType": "none",
+        "endOffsetMultiplier": 60000,
+        "timeRestrictions": 0,
+        "timeRestrictionsType": "none",
+        "timeDays": "*",
+        "timeOnlyOddDays": false,
+        "timeOnlyEvenDays": false,
+        "timeOnlyOddWeeks": false,
+        "timeOnlyEvenWeeks": false,
+        "timeMonths": "*",
+        "timedatestart": "",
+        "timedateend": "",
+        "propertyStart": "",
+        "propertyStartType": "none",
+        "propertyStartCompare": "true",
+        "propertyStartThreshold": "",
+        "propertyStartThresholdType": "num",
+        "startTimeAlt": "",
+        "startTimeAltType": "entered",
+        "startOffsetAlt": 0,
+        "startOffsetAltType": "none",
+        "startOffsetAltMultiplier": 60000,
+        "propertyEnd": "",
+        "propertyEndType": "none",
+        "propertyEndCompare": "true",
+        "propertyEndThreshold": "",
+        "propertyEndThresholdType": "num",
+        "endTimeAlt": "",
+        "endTimeAltType": "entered",
+        "endOffsetAlt": 0,
+        "endOffsetAltType": "none",
+        "endOffsetAltMultiplier": 60000,
+        "withinTimeValue": "true",
+        "withinTimeValueType": "msgInput",
+        "outOfTimeValue": "false",
+        "outOfTimeValueType": "msgInput",
+        "tsCompare": "0",
+        "x": 330,
+        "y": 600,
+        "wires": [
+            [
+                "4ec2213a44a00904"
+            ],
+            []
+        ]
+    },
+    {
         "id": "8959c55f5e6f2f96",
         "type": "api-current-state",
         "z": "ae7eb5a05d582c32",
@@ -7417,7 +7644,7 @@
         "server": "163c9f2450f671da",
         "version": 3,
         "outputs": 2,
-        "halt_if": "300",
+        "halt_if": "500",
         "halt_if_type": "num",
         "halt_if_compare": "lt",
         "entity_id": "sensor.buda_illuminance_lux",
