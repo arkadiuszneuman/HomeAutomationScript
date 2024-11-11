@@ -246,8 +246,8 @@
         ],
         "out": [
             {
-                "x": 1140,
-                "y": 140,
+                "x": 860,
+                "y": 340,
                 "wires": [
                     {
                         "id": "82bbcbb06b3f76fd",
@@ -256,8 +256,8 @@
                 ]
             },
             {
-                "x": 1140,
-                "y": 220,
+                "x": 860,
+                "y": 420,
                 "wires": [
                     {
                         "id": "82bbcbb06b3f76fd",
@@ -313,7 +313,9 @@
             "193186b8f2a809c6"
         ],
         "x": 14,
-        "y": 619
+        "y": 619,
+        "w": 1172,
+        "h": 142
     },
     {
         "id": "5ecf1bec7b70063f",
@@ -334,9 +336,7 @@
             "392218788ba54353"
         ],
         "x": -12,
-        "y": 313,
-        "w": 1264,
-        "h": 1894
+        "y": 313
     },
     {
         "id": "689b1d55f7932c58",
@@ -358,9 +358,7 @@
             "7c08316b5b85778b"
         ],
         "x": 14,
-        "y": -1,
-        "w": 832,
-        "h": 302
+        "y": -1
     },
     {
         "id": "e6dd97d81ea3c6fc",
@@ -375,7 +373,9 @@
             "e6c342613b5643d5"
         ],
         "x": 8,
-        "y": 13
+        "y": 13,
+        "w": 1164,
+        "h": 594
     },
     {
         "id": "9bc283314f1e0f9f",
@@ -415,7 +415,8 @@
         },
         "nodes": [
             "884608cf0fb6e773",
-            "9577ec21e7b1473f"
+            "9577ec21e7b1473f",
+            "061e73eddfa7ef57"
         ],
         "x": 8,
         "y": 473
@@ -456,7 +457,9 @@
             "c2352e963efa0979"
         ],
         "x": 14,
-        "y": 779
+        "y": 779,
+        "w": 1212,
+        "h": 202
     },
     {
         "id": "93d44a9a9bd7b6eb",
@@ -559,9 +562,7 @@
             "f3023adf7ec5e6a0"
         ],
         "x": 14,
-        "y": 1459,
-        "w": 1212,
-        "h": 242
+        "y": 1659
     },
     {
         "id": "8f8e46804cdadcc7",
@@ -576,15 +577,10 @@
             "b75ac05238e584f4",
             "86dc3897c031bfaa",
             "a0615b0d7677f68c",
-            "c81c3bbd71be4bfb",
-            "961bfc6531e58f6c",
-            "6aef6fd25acd8bce",
-            "858b8225a03aac21"
+            "c81c3bbd71be4bfb"
         ],
         "x": 14,
-        "y": 1719,
-        "w": 1072,
-        "h": 202
+        "y": 1919
     },
     {
         "id": "bb9194cdd978f3b0",
@@ -600,9 +596,7 @@
             "2cd24b73a16ad718"
         ],
         "x": 14,
-        "y": 1939,
-        "w": 612,
-        "h": 82
+        "y": 2099
     },
     {
         "id": "b1e916dd1d7de0b8",
@@ -647,7 +641,9 @@
             "b5fb4a50b62bf918"
         ],
         "x": 34,
-        "y": 39
+        "y": 39,
+        "w": 1112,
+        "h": 362
     },
     {
         "id": "e6c342613b5643d5",
@@ -664,7 +660,9 @@
             "aae4b5a0da16c2e7"
         ],
         "x": 34,
-        "y": 439
+        "y": 439,
+        "w": 472,
+        "h": 142
     },
     {
         "id": "6c27fe9f99943679",
@@ -685,9 +683,7 @@
             "c3c4a3ac89314920"
         ],
         "x": 54,
-        "y": 339,
-        "w": 992,
-        "h": 202
+        "y": 339
     },
     {
         "id": "141453e63c302779",
@@ -712,9 +708,7 @@
             "819639745fda4289"
         ],
         "x": 54,
-        "y": 579,
-        "w": 1032,
-        "h": 322
+        "y": 579
     },
     {
         "id": "1e79f0715558075a",
@@ -740,9 +734,7 @@
             "160e075dba6ec123"
         ],
         "x": 34,
-        "y": 919,
-        "w": 1152,
-        "h": 342
+        "y": 919
     },
     {
         "id": "884608cf0fb6e773",
@@ -812,16 +804,18 @@
             "label": true
         },
         "nodes": [
-            "3add1cccf61680c0",
             "f198983f30a7c66d",
-            "fdf45f3c5d3f3ef3",
-            "9363c9c74022e9d3",
-            "7f09eca474e16f14"
+            "7f09eca474e16f14",
+            "582a499f24313367",
+            "3e0b0a477a7e3dd7",
+            "e4ef74248d57aba0",
+            "29f69bb303a4ca96",
+            "a95f7ddf477ed93c",
+            "e9dd03f28fd7a329",
+            "02485fc655ad9630"
         ],
-        "x": 34,
-        "y": 1299,
-        "w": 672,
-        "h": 142
+        "x": 14,
+        "y": 1299
     },
     {
         "id": "392218788ba54353",
@@ -841,9 +835,30 @@
             "b3211c741108d238"
         ],
         "x": 14,
-        "y": 2039,
-        "w": 1092,
-        "h": 142
+        "y": 2199
+    },
+    {
+        "id": "061e73eddfa7ef57",
+        "type": "group",
+        "z": "ae7eb5a05d582c32",
+        "g": "cc6d91f602947828",
+        "name": "Przełączanie źródłą Spotify",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "12b02335a9ece838",
+            "350ae965e61592f5",
+            "2fa3d07aad26de3a",
+            "138f8aa3527a864b",
+            "d229d00cb1e700f6",
+            "56c5a434d5f9dd40",
+            "0887b10342fca117",
+            "0fe0ed1c302e1319",
+            "671cae8c079790d9"
+        ],
+        "x": 34,
+        "y": 919
     },
     {
         "id": "163c9f2450f671da",
@@ -1140,69 +1155,6 @@
         ]
     },
     {
-        "id": "54b44d25be1ce842",
-        "type": "server-state-changed",
-        "z": "0d0bd9aaa9acc12b",
-        "name": "Laptop Służbowy Cat Ładowanie",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "sensor.laptop_cat_battery_powerline_status",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 170,
-        "y": 440,
-        "wires": [
-            [
-                "e763a55517d78cfd"
-            ]
-        ]
-    },
-    {
         "id": "ac6b4cc6ccb818de",
         "type": "server-state-changed",
         "z": "0d0bd9aaa9acc12b",
@@ -1258,7 +1210,7 @@
             }
         ],
         "x": 150,
-        "y": 80,
+        "y": 60,
         "wires": [
             [
                 "e763a55517d78cfd"
@@ -1321,7 +1273,7 @@
             }
         ],
         "x": 170,
-        "y": 140,
+        "y": 160,
         "wires": [
             [
                 "e763a55517d78cfd"
@@ -1384,7 +1336,7 @@
             }
         ],
         "x": 120,
-        "y": 200,
+        "y": 220,
         "wires": [
             [
                 "e763a55517d78cfd"
@@ -1447,7 +1399,7 @@
             }
         ],
         "x": 110,
-        "y": 260,
+        "y": 280,
         "wires": [
             [
                 "e763a55517d78cfd"
@@ -1521,6 +1473,144 @@
         "id": "ec1e2322265a4463",
         "type": "server-state-changed",
         "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Cat Ładowanie",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.laptop_cricut_battery_powerline_status",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 340,
+        "wires": [
+            [
+                "e763a55517d78cfd"
+            ]
+        ]
+    },
+    {
+        "id": "6e4fd0c47af30be3",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Laptop Służbowy Cat Session State",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.laptop_cat_sessionstate",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 180,
+        "y": 380,
+        "wires": [
+            [
+                "e763a55517d78cfd"
+            ]
+        ]
+    },
+    {
+        "id": "e763a55517d78cfd",
+        "type": "subflow:b7f09f2be015bb01",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "",
+        "x": 540,
+        "y": 200,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3cf34722a4b8e017",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
         "name": "Laptop Służbowy Ładowanie",
         "server": "163c9f2450f671da",
         "version": 4,
@@ -1573,86 +1663,11 @@
             }
         ],
         "x": 160,
-        "y": 320,
+        "y": 120,
         "wires": [
             [
                 "e763a55517d78cfd"
             ]
-        ]
-    },
-    {
-        "id": "6e4fd0c47af30be3",
-        "type": "server-state-changed",
-        "z": "0d0bd9aaa9acc12b",
-        "name": "Laptop Służbowy Session State",
-        "server": "163c9f2450f671da",
-        "version": 4,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "sensor.laptop_cat_sessionstate",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "ignorePrevStateNull": false,
-        "ignorePrevStateUnknown": false,
-        "ignorePrevStateUnavailable": false,
-        "ignoreCurrentStateUnknown": true,
-        "ignoreCurrentStateUnavailable": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 170,
-        "y": 380,
-        "wires": [
-            [
-                "e763a55517d78cfd"
-            ]
-        ]
-    },
-    {
-        "id": "e763a55517d78cfd",
-        "type": "subflow:b7f09f2be015bb01",
-        "z": "0d0bd9aaa9acc12b",
-        "name": "",
-        "x": 540,
-        "y": 200,
-        "wires": [
-            [],
-            []
         ]
     },
     {
@@ -1867,8 +1882,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 610,
-        "y": 180,
+        "x": 230,
+        "y": 380,
         "wires": [
             [
                 "8e7bdfc1d6081255"
@@ -1887,8 +1902,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 860,
-        "y": 180,
+        "x": 580,
+        "y": 380,
         "wires": [
             [
                 "82bbcbb06b3f76fd"
@@ -1913,8 +1928,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1030,
-        "y": 180,
+        "x": 750,
+        "y": 380,
         "wires": [
             [],
             []
@@ -3148,7 +3163,7 @@
             }
         ],
         "x": 160,
-        "y": 1580,
+        "y": 1780,
         "wires": [
             [
                 "9b051630fb70d2ad"
@@ -3180,7 +3195,7 @@
         "repair": false,
         "outputs": 2,
         "x": 750,
-        "y": 1580,
+        "y": 1780,
         "wires": [
             [
                 "38ce593f65cbae5a"
@@ -3214,7 +3229,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 930,
-        "y": 1540,
+        "y": 1740,
         "wires": [
             []
         ]
@@ -3232,7 +3247,7 @@
         "finalize": "",
         "libs": [],
         "x": 900,
-        "y": 1600,
+        "y": 1800,
         "wires": [
             [
                 "e8a27072e696eda1"
@@ -3263,7 +3278,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 880,
-        "y": 1660,
+        "y": 1860,
         "wires": [
             [
                 "8d10bc24f61d6b73"
@@ -3294,7 +3309,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 1100,
-        "y": 1660,
+        "y": 1860,
         "wires": [
             []
         ]
@@ -3356,7 +3371,7 @@
             }
         ],
         "x": 160,
-        "y": 1660,
+        "y": 1860,
         "wires": [
             [
                 "453c3c868b8a4cec"
@@ -3388,7 +3403,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 600,
-        "y": 1580,
+        "y": 1780,
         "wires": [
             [
                 "863ab740154ba98a"
@@ -3419,7 +3434,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 510,
-        "y": 1660,
+        "y": 1860,
         "wires": [
             []
         ]
@@ -3437,7 +3452,7 @@
         "startOffset": 0,
         "endOffset": 0,
         "x": 410,
-        "y": 1580,
+        "y": 1780,
         "wires": [
             [
                 "5b48f90f5cc023b1"
@@ -3466,7 +3481,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 1500,
+        "y": 1700,
         "wires": [
             [
                 "fffe453b68ff3440"
@@ -3511,7 +3526,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 300,
-        "y": 1500,
+        "y": 1700,
         "wires": [
             [
                 "f3023adf7ec5e6a0"
@@ -3557,7 +3572,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 540,
-        "y": 1500,
+        "y": 1700,
         "wires": [
             [
                 "9b051630fb70d2ad"
@@ -3621,7 +3636,7 @@
             }
         ],
         "x": 120,
-        "y": 1840,
+        "y": 2000,
         "wires": [
             [
                 "a0615b0d7677f68c"
@@ -3650,8 +3665,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 750,
-        "y": 1760,
+        "x": 510,
+        "y": 1960,
         "wires": [
             []
         ]
@@ -3680,10 +3695,10 @@
         "repair": false,
         "outputs": 2,
         "x": 310,
-        "y": 1840,
+        "y": 2000,
         "wires": [
             [
-                "961bfc6531e58f6c"
+                "86dc3897c031bfaa"
             ],
             [
                 "c81c3bbd71be4bfb"
@@ -3713,11 +3728,9 @@
         "outputProperties": [],
         "queue": "none",
         "x": 510,
-        "y": 1880,
+        "y": 2040,
         "wires": [
-            [
-                "6aef6fd25acd8bce"
-            ]
+            []
         ]
     },
     {
@@ -3743,7 +3756,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 1980,
+        "y": 2140,
         "wires": [
             [
                 "2cd24b73a16ad718"
@@ -3774,111 +3787,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 430,
-        "y": 1980,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "961bfc6531e58f6c",
-        "type": "api-call-service",
-        "z": "f9ac8b9539c832a3",
-        "g": "8f8e46804cdadcc7",
-        "name": "Wyłączenie Grzybka",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_off",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.grzybek"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 520,
-        "y": 1760,
-        "wires": [
-            [
-                "86dc3897c031bfaa"
-            ]
-        ]
-    },
-    {
-        "id": "6aef6fd25acd8bce",
-        "type": "api-current-state",
-        "z": "f9ac8b9539c832a3",
-        "g": "8f8e46804cdadcc7",
-        "name": "Salon LED jest włączony",
-        "server": "163c9f2450f671da",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "light.salon_led",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "laptop",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 730,
-        "y": 1880,
-        "wires": [
-            [
-                "858b8225a03aac21"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "858b8225a03aac21",
-        "type": "api-call-service",
-        "z": "f9ac8b9539c832a3",
-        "g": "8f8e46804cdadcc7",
-        "name": "Włączenie Grzybka",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "light",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "light.grzybek"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 970,
-        "y": 1880,
+        "y": 2140,
         "wires": [
             []
         ]
@@ -4106,36 +4015,6 @@
         ]
     },
     {
-        "id": "3add1cccf61680c0",
-        "type": "api-call-service",
-        "z": "f9ac8b9539c832a3",
-        "g": "a20b980182575408",
-        "name": "Włącz Denon",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "media_player",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "media_player.denon_avr_x1400h"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 330,
-        "y": 1340,
-        "wires": [
-            [
-                "f198983f30a7c66d"
-            ]
-        ]
-    },
-    {
         "id": "f198983f30a7c66d",
         "type": "api-call-service",
         "z": "f9ac8b9539c832a3",
@@ -4157,64 +4036,12 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 550,
+        "x": 450,
         "y": 1340,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "fdf45f3c5d3f3ef3",
-        "type": "api-call-service",
-        "z": "f9ac8b9539c832a3",
-        "g": "a20b980182575408",
-        "name": "Włącz TV",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "media_player",
-        "service": "turn_on",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "media_player.sony_bravia_tv"
-        ],
-        "data": "",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 300,
-        "y": 1400,
-        "wires": [
             [
-                "9363c9c74022e9d3"
+                "e9dd03f28fd7a329"
             ]
-        ]
-    },
-    {
-        "id": "9363c9c74022e9d3",
-        "type": "delay",
-        "z": "f9ac8b9539c832a3",
-        "g": "a20b980182575408",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 460,
-        "y": 1400,
-        "wires": [
-            []
         ]
     },
     {
@@ -4222,7 +4049,7 @@
         "type": "server-state-changed",
         "z": "f9ac8b9539c832a3",
         "g": "a20b980182575408",
-        "name": "Granie na Decku",
+        "name": "Granie na handheldzie",
         "server": "163c9f2450f671da",
         "version": 4,
         "exposeToHomeAssistant": false,
@@ -4273,12 +4100,12 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 140,
+        "x": 160,
         "y": 1340,
         "wires": [
             [
-                "3add1cccf61680c0",
-                "fdf45f3c5d3f3ef3"
+                "582a499f24313367",
+                "f198983f30a7c66d"
             ]
         ]
     },
@@ -4441,7 +4268,7 @@
             }
         ],
         "x": 120,
-        "y": 2100,
+        "y": 2260,
         "wires": [
             [
                 "d94b28985702613f"
@@ -4467,7 +4294,7 @@
         "repair": false,
         "outputs": 1,
         "x": 360,
-        "y": 2100,
+        "y": 2260,
         "wires": [
             [
                 "875ce9a3051b5ac6"
@@ -4498,7 +4325,7 @@
         "repair": false,
         "outputs": 2,
         "x": 570,
-        "y": 2100,
+        "y": 2260,
         "wires": [
             [
                 "b3211c741108d238"
@@ -4513,7 +4340,7 @@
         "type": "api-call-service",
         "z": "f9ac8b9539c832a3",
         "g": "392218788ba54353",
-        "name": "Ustawienie głośności na 60",
+        "name": "Ustawienie głośności na 50",
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
@@ -4524,14 +4351,14 @@
         "entityId": [
             "media_player.denon_avr_x1400h"
         ],
-        "data": "{\"volume_level\":0.6}",
+        "data": "{\"volume_level\":0.5}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 960,
-        "y": 2080,
+        "y": 2240,
         "wires": [
             []
         ]
@@ -4559,7 +4386,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 800,
-        "y": 2140,
+        "y": 2300,
         "wires": [
             []
         ]
@@ -4583,11 +4410,249 @@
         "allowrate": false,
         "outputs": 1,
         "x": 740,
-        "y": 2080,
+        "y": 2240,
         "wires": [
             [
                 "600af8d65dfa28d8"
             ]
+        ]
+    },
+    {
+        "id": "582a499f24313367",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "a20b980182575408",
+        "name": "Przełącz TV na HDMI 3/ARC",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "select_source",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.sony_bravia_tv"
+        ],
+        "data": "{\"source\":\"HDMI 3/ARC\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 440,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e0b0a477a7e3dd7",
+        "type": "server-state-changed",
+        "z": "f9ac8b9539c832a3",
+        "g": "a20b980182575408",
+        "name": "Handheld podłączony do prądu",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.handheld_battery_powerline_status",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Online",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 1480,
+        "wires": [
+            [
+                "e4ef74248d57aba0"
+            ],
+            [
+                "29f69bb303a4ca96",
+                "a95f7ddf477ed93c"
+            ]
+        ]
+    },
+    {
+        "id": "e4ef74248d57aba0",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "a20b980182575408",
+        "name": "Granie na handheldzie",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "scene",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.granie_na_decku"
+        ],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 460,
+        "y": 1480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29f69bb303a4ca96",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "a20b980182575408",
+        "name": "Przejdź na ekran Home na TV",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "remote",
+        "service": "send_command",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "remote.sony_bravia_tv"
+        ],
+        "data": "{\"device\":\"32756745\",\"command\":\"Play\"}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 470,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a95f7ddf477ed93c",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "a20b980182575408",
+        "name": "Ustaw Denon na TV Audio",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "select_source",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.denon_avr_x1400h"
+        ],
+        "data": "{\t    \"source\": \"TV Audio\"\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 460,
+        "y": 1600,
+        "wires": [
+            [
+                "02485fc655ad9630"
+            ]
+        ]
+    },
+    {
+        "id": "e9dd03f28fd7a329",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "a20b980182575408",
+        "name": "Ustawienie głośności na 50",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "volume_set",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.denon_avr_x1400h"
+        ],
+        "data": "{\"volume_level\":0.5}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 720,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "02485fc655ad9630",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "a20b980182575408",
+        "name": "Ustawienie głośności na 45",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "volume_set",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.denon_avr_x1400h"
+        ],
+        "data": "{\"volume_level\":0.45}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 720,
+        "y": 1600,
+        "wires": [
+            []
         ]
     },
     {
@@ -5349,7 +5414,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "device_tracker.redmi_note_8_pro",
+        "entityidfilter": "person.pati",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -7028,7 +7093,7 @@
         "type": "inject",
         "z": "6768cfb18f6fc541",
         "g": "8c9f567e59660521",
-        "name": "Codziennie o 19:00",
+        "name": "Codziennie o 18:30",
         "props": [
             {
                 "p": "payload"
@@ -7039,7 +7104,7 @@
             }
         ],
         "repeat": "",
-        "crontab": "00 19 * * *",
+        "crontab": "30 18 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
@@ -7348,9 +7413,7 @@
         "x": 120,
         "y": 600,
         "wires": [
-            [
-                "2d0ed3453818ae70"
-            ],
+            [],
             []
         ]
     },
@@ -8488,8 +8551,8 @@
         "type": "subflow:0d0bd9aaa9acc12b",
         "z": "ae7eb5a05d582c32",
         "name": "",
-        "x": 120,
-        "y": 1040,
+        "x": 100,
+        "y": 1140,
         "wires": [
             [],
             []
@@ -8508,8 +8571,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 520,
-        "y": 1100,
+        "x": 500,
+        "y": 1200,
         "wires": []
     },
     {
@@ -8548,8 +8611,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 330,
-        "y": 1100,
+        "x": 310,
+        "y": 1200,
         "wires": [
             [
                 "0edf753d27747172"
@@ -8577,8 +8640,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
-        "y": 1100,
+        "x": 100,
+        "y": 1200,
         "wires": [
             [
                 "c0371dd523c070d5"
@@ -8586,10 +8649,386 @@
         ]
     },
     {
+        "id": "12b02335a9ece838",
+        "type": "server-state-changed",
+        "z": "ae7eb5a05d582c32",
+        "g": "061e73eddfa7ef57",
+        "name": "Laptop Cricut Odłączono Ładowanie",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.laptop_cricut_battery_powerline_status",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Online",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            },
+            {
+                "property": "type",
+                "propertyType": "msg",
+                "value": "cricut",
+                "valueType": "str"
+            }
+        ],
+        "x": 200,
+        "y": 960,
+        "wires": [
+            [
+                "350ae965e61592f5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "350ae965e61592f5",
+        "type": "api-current-state",
+        "z": "ae7eb5a05d582c32",
+        "g": "061e73eddfa7ef57",
+        "name": "Czy spotify gra",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "playing",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "media_player.spotify_arkadiusz_neuman",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 460,
+        "y": 980,
+        "wires": [
+            [
+                "d229d00cb1e700f6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2fa3d07aad26de3a",
+        "type": "ha-wait-until",
+        "z": "ae7eb5a05d582c32",
+        "g": "061e73eddfa7ef57",
+        "name": "",
+        "server": "163c9f2450f671da",
+        "version": 2,
+        "outputs": 2,
+        "entityId": "sensor.laptop_cat_battery_powerline_status",
+        "entityIdFilterType": "exact",
+        "property": "state",
+        "comparator": "is",
+        "value": "Online",
+        "valueType": "str",
+        "timeout": "30",
+        "timeoutType": "num",
+        "timeoutUnits": "seconds",
+        "checkCurrentState": true,
+        "blockInputOverrides": true,
+        "outputProperties": [],
+        "entityLocation": "data",
+        "entityLocationType": "none",
+        "x": 780,
+        "y": 960,
+        "wires": [
+            [
+                "56c5a434d5f9dd40"
+            ],
+            [
+                "0887b10342fca117"
+            ]
+        ]
+    },
+    {
+        "id": "138f8aa3527a864b",
+        "type": "server-state-changed",
+        "z": "ae7eb5a05d582c32",
+        "g": "061e73eddfa7ef57",
+        "name": "Laptop Cat Odłączono Ładowanie",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.laptop_cat_battery_powerline_status",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Online",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            },
+            {
+                "property": "type",
+                "propertyType": "msg",
+                "value": "cat",
+                "valueType": "str"
+            }
+        ],
+        "x": 200,
+        "y": 1020,
+        "wires": [
+            [
+                "350ae965e61592f5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d229d00cb1e700f6",
+        "type": "switch",
+        "z": "ae7eb5a05d582c32",
+        "g": "061e73eddfa7ef57",
+        "name": "",
+        "property": "type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "cricut",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "cat",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 630,
+        "y": 980,
+        "wires": [
+            [
+                "2fa3d07aad26de3a"
+            ],
+            [
+                "0fe0ed1c302e1319"
+            ]
+        ]
+    },
+    {
+        "id": "56c5a434d5f9dd40",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "061e73eddfa7ef57",
+        "name": "Przełącz źródło Spotify na Cat",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "select_source",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.spotify_arkadiusz_neuman"
+        ],
+        "data": "{\"source\":\"COP2035361\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1010,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0887b10342fca117",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "061e73eddfa7ef57",
+        "name": "Wyłącz Spotify",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "media_pause",
+        "areaId": [],
+        "deviceId": [
+            "1b8b1ab220ae3ef65ba0e8900ad4135f"
+        ],
+        "entityId": [
+            "media_player.spotify_arkadiusz_neuman"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 960,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0fe0ed1c302e1319",
+        "type": "ha-wait-until",
+        "z": "ae7eb5a05d582c32",
+        "g": "061e73eddfa7ef57",
+        "name": "",
+        "server": "163c9f2450f671da",
+        "version": 2,
+        "outputs": 2,
+        "entityId": "sensor.laptop_cricut_battery_powerline_status",
+        "entityIdFilterType": "exact",
+        "property": "state",
+        "comparator": "is",
+        "value": "Online",
+        "valueType": "str",
+        "timeout": "30",
+        "timeoutType": "num",
+        "timeoutUnits": "seconds",
+        "checkCurrentState": true,
+        "blockInputOverrides": true,
+        "outputProperties": [],
+        "entityLocation": "data",
+        "entityLocationType": "none",
+        "x": 780,
+        "y": 1020,
+        "wires": [
+            [
+                "671cae8c079790d9"
+            ],
+            [
+                "0887b10342fca117"
+            ]
+        ]
+    },
+    {
+        "id": "671cae8c079790d9",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "061e73eddfa7ef57",
+        "name": "Przełącz źródło Spotify na Cricut",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "media_player",
+        "service": "select_source",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.spotify_arkadiusz_neuman"
+        ],
+        "data": "{\"source\":\"NB-H67NLX3\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1010,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "c66ee9c57cddb6b1",
         "type": "inject",
         "z": "15517937b48e3cad",
-        "name": "Codziennie o 19:30",
+        "name": "Codziennie o 18:30",
         "props": [
             {
                 "p": "payload"
@@ -8600,7 +9039,7 @@
             }
         ],
         "repeat": "",
-        "crontab": "30 19 * * *",
+        "crontab": "30 18 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
