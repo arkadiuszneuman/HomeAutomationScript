@@ -42,7 +42,9 @@ http:
   use_x_forwarded_for: true
   # You must set the trusted proxy IP address so that Home Assistant will properly accept connections
   # Set this to your NGINX machine IP, or localhost if hosted on the same machine.
-  trusted_proxies: 127.0.0.1
+  trusted_proxies:
+    - 127.0.0.1
+    - 10.0.0.31
 
 # http:
 #   base_url: !secret base_url
@@ -266,10 +268,6 @@ binary_sensor:
     name: "Komputer stacjonarny"
     count: 2
     scan_interval: 2
-
-sonoff:
-  username: !secret sonoff_login
-  password: !secret sonoff_pass
 
 light:
   - platform: limitlessled
