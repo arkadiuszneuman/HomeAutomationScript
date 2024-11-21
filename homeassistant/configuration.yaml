@@ -248,27 +248,6 @@ influxdb:
   #     - sensor.speedtest_upload
   #     - sensor.speedtest_ping
 
-binary_sensor:
-  - platform: ping #need to add ip of HA to firewall rule
-    host: 10.0.0.201
-    name: "Laptop Ethernet"
-    count: 2
-    scan_interval: 2
-  - platform: ping
-    host: 10.0.0.202
-    name: "Laptop WiFi"
-    count: 2
-  - platform: ping #need to add ip of HA to firewall rule
-    host: 10.0.0.203
-    name: "Laptop Służbowy WiFi"
-    count: 2
-    scan_interval: 2
-  - platform: ping #need to add ip of HA to firewall rule
-    host: 10.0.0.204
-    name: "Komputer stacjonarny"
-    count: 2
-    scan_interval: 2
-
 light:
   - platform: limitlessled
     bridges:
