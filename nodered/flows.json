@@ -4808,8 +4808,8 @@
             "light.halogen_2",
             "light.halogen_3"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4829,16 +4829,16 @@
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
-        "domain": "switch",
+        "domain": "light",
         "service": "turn_on",
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.sonoff_1000541365",
-            "switch.sonoff_100054125f"
+            "light.lampka_zewnetrzna",
+            "light.oswietlenie_zewnetrzne"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -5047,11 +5047,10 @@
         "deviceId": [],
         "entityId": [
             "light.halogen_2",
-            "light.halogen_3",
-            "light.lampka_zewnetrzna"
+            "light.halogen_3"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -5071,16 +5070,16 @@
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
-        "domain": "switch",
+        "domain": "light",
         "service": "turn_off",
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.sonoff_1000541365",
-            "switch.sonoff_100054125f"
+            "light.lampka_zewnetrzna",
+            "switch.sonoff_1000541365"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -5172,8 +5171,8 @@
         "entityId": [
             "light.lampka_zewnetrzna"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -5193,15 +5192,15 @@
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
-        "domain": "switch",
+        "domain": "light",
         "service": "turn_on",
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.sonoff_1000541365"
+            "light.oswietlenie_zewnetrzne"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -5493,20 +5492,20 @@
         "rad": 0,
         "points": [
             {
-                "latitude": 50.307270011305924,
-                "longitude": 18.915969684458105
+                "latitude": 50.30726624258162,
+                "longitude": 18.91597330570221
             },
             {
                 "latitude": 50.307427611362534,
                 "longitude": 18.91634519372019
             },
             {
-                "latitude": 50.30718778498211,
-                "longitude": 18.916452482080786
+                "latitude": 50.30716345964646,
+                "longitude": 18.916531205177307
             },
             {
-                "latitude": 50.30713296735388,
-                "longitude": 18.916130616999
+                "latitude": 50.3070572503801,
+                "longitude": 18.91612082719803
             }
         ],
         "centre": {},
@@ -5517,7 +5516,9 @@
         "x": 760,
         "y": 1220,
         "wires": [
-            []
+            [
+                "6f2b4602c9eadb3a"
+            ]
         ]
     },
     {
@@ -5600,6 +5601,7 @@
         "name": "function 1",
         "func": "msg.location = {\n    lat: msg.data.attributes.latitude,\n    lon: msg.data.attributes.longitude\n}\n\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -5917,7 +5919,7 @@
         "lat": "50.3071757",
         "lon": "18.9161156",
         "starttime": "5004",
-        "endtime": "1380",
+        "endtime": "5004",
         "starttime2": 0,
         "endtime2": 0,
         "startoff": 0,
@@ -6053,7 +6055,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [],
-        "data": "{\"message\":\"arek\"}",
+        "data": "{\"message\":\"zamkanie covera\"}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -6240,9 +6242,7 @@
         "x": 130,
         "y": 1080,
         "wires": [
-            [
-                "dbaff45fb2c2d01a"
-            ]
+            []
         ]
     },
     {
@@ -6363,7 +6363,7 @@
         "entityId": [
             "switch.sonoff_100051420f"
         ],
-        "data": "",
+        "data": "{}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -6403,6 +6403,23 @@
                 "441104398e761cfe"
             ]
         ]
+    },
+    {
+        "id": "6f2b4602c9eadb3a",
+        "type": "debug",
+        "z": "c64ddd5143775f97",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "location.inarea",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 1220,
+        "wires": []
     },
     {
         "id": "256099695343d75f",
