@@ -407,9 +407,7 @@
             "125fb9bb98fd2159"
         ],
         "x": 14,
-        "y": -21,
-        "w": 1392,
-        "h": 282
+        "y": -21
     },
     {
         "id": "cc6d91f602947828",
@@ -425,9 +423,7 @@
             "061e73eddfa7ef57"
         ],
         "x": 8,
-        "y": 473,
-        "w": 1244,
-        "h": 634
+        "y": 473
     },
     {
         "id": "9870422d94171519",
@@ -442,9 +438,7 @@
             "acefa0d0f7d11702"
         ],
         "x": 28,
-        "y": 33,
-        "w": 764,
-        "h": 234
+        "y": 33
     },
     {
         "id": "3cf9eb445b448d5a",
@@ -486,9 +480,7 @@
             "ed5501c2151c6312"
         ],
         "x": 14,
-        "y": 299,
-        "w": 472,
-        "h": 142
+        "y": 299
     },
     {
         "id": "8c9f567e59660521",
@@ -510,9 +502,7 @@
             "80c353ea4bf29391"
         ],
         "x": 14,
-        "y": 319,
-        "w": 732,
-        "h": 202
+        "y": 319
     },
     {
         "id": "917c8f5ad7209031",
@@ -551,9 +541,7 @@
             "2d0ed3453818ae70"
         ],
         "x": 14,
-        "y": 559,
-        "w": 672,
-        "h": 82
+        "y": 559
     },
     {
         "id": "b03356b5832bde5f",
@@ -637,9 +625,7 @@
             "f3e87b194eed2498"
         ],
         "x": 54,
-        "y": 59,
-        "w": 712,
-        "h": 82
+        "y": 59
     },
     {
         "id": "7b4bf04699360b3b",
@@ -790,9 +776,7 @@
             "a98e23f9fb02d91a"
         ],
         "x": 34,
-        "y": 499,
-        "w": 1192,
-        "h": 242
+        "y": 499
     },
     {
         "id": "9577ec21e7b1473f",
@@ -809,9 +793,7 @@
             "0f529defee31c9cf"
         ],
         "x": 34,
-        "y": 759,
-        "w": 812,
-        "h": 142
+        "y": 759
     },
     {
         "id": "acefa0d0f7d11702",
@@ -828,9 +810,7 @@
             "d38212504a5b3030"
         ],
         "x": 54,
-        "y": 159,
-        "w": 672,
-        "h": 82
+        "y": 159
     },
     {
         "id": "a20b980182575408",
@@ -900,9 +880,7 @@
             "671cae8c079790d9"
         ],
         "x": 34,
-        "y": 919,
-        "w": 1132,
-        "h": 162
+        "y": 919
     },
     {
         "id": "163c9f2450f671da",
@@ -2191,7 +2169,7 @@
             "light.grzybek"
         ],
         "data": "{\t   \"rgb_color\": randomColor,\t   \"brightness_pct\": 100\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2240,7 +2218,7 @@
             "light.sufit_led"
         ],
         "data": "{\t   \"rgb_color\": [255, 163, 72],\t   \"brightness_pct\": 100\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2371,7 +2349,7 @@
             "light.grzybek"
         ],
         "data": "{\t   \"rgb_color\": randomColor,\t   \"brightness_pct\": 100\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2420,7 +2398,7 @@
             "light.sufit_led"
         ],
         "data": "{\t   \"rgb_color\": [255, 163, 72],\t   \"brightness_pct\": 100\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2582,8 +2560,8 @@
             "light.halogen_5",
             "light.halogen_6"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2615,14 +2593,14 @@
             "light.halogen_4",
             "light.lampa_dzieci",
             "light.lampa_gabinet",
+            "light.lampka_gabinet",
             "light.lampka_zewnetrzna",
             "light.oswietlenie_zewnetrzne",
             "light.salon_led",
-            "light.sufit_led",
-            "light.lampka_gabinet"
+            "light.sufit_led"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2650,8 +2628,8 @@
             "switch.sonoff_1000513cd0",
             "switch.sonoff_100051420f"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2710,8 +2688,8 @@
             "light.halogen_6",
             "light.lampka_gabinet_1"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2738,8 +2716,8 @@
         "entityId": [
             "cover.roleta_salon"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2769,8 +2747,8 @@
             "media_player.playstation_4",
             "media_player.sony_bravia_tv"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2798,7 +2776,7 @@
             "light.lampka_gabinet_1"
         ],
         "data": "{\t    \"rgbw_color\": [255, 33, 159, 100],\t    \"brightness_pct\": 30\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2825,11 +2803,11 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "media_player.salon",
-            "media_player.pokoj_dzieciecy"
+            "media_player.pokoj_dzieciecy",
+            "media_player.salon"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2999,7 +2977,7 @@
         "entityId": [
             "scene.standardowe_oswietlenie"
         ],
-        "data": "{}",
+        "data": "",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -3027,7 +3005,7 @@
         "entityId": [
             "scene.ogladanie_tv"
         ],
-        "data": "{}",
+        "data": "",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -3055,8 +3033,8 @@
         "entityId": [
             "scene.wyjscie_z_domu"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3083,8 +3061,8 @@
         "entityId": [
             "scene.dobranoc"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3138,8 +3116,8 @@
             "light.halogen_5",
             "light.halogen_6"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3267,7 +3245,7 @@
             "fan.mi_air_purifier_2s"
         ],
         "data": "{\t    \"preset_mode\": \"Auto\"\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3316,7 +3294,7 @@
             "number.fanmi_air_purifier_2s_favorite_level"
         ],
         "data": "{\t    \"value\": level\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3347,7 +3325,7 @@
             "fan.mi_air_purifier_2s"
         ],
         "data": "{\t    \"preset_mode\": \"Favorite\"\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3440,8 +3418,8 @@
             "fan.filtr_powietrza",
             "fan.mi_air_purifier_2s"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3471,8 +3449,8 @@
             "fan.filtr_powietrza",
             "fan.mi_air_purifier_2s"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3703,8 +3681,8 @@
         "entityId": [
             "light.rgbic_tv_backlight"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3765,8 +3743,8 @@
         "entityId": [
             "light.rgbic_tv_backlight"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3821,11 +3799,11 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.mi_air_purifier_2s_child_lock",
-            "switch.fanfiltr_powietrza_child_lock"
+            "switch.fanfiltr_powietrza_child_lock",
+            "switch.mi_air_purifier_2s_child_lock"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3898,8 +3876,8 @@
         "entityId": [
             "switch.sonoff_100051420f"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4075,7 +4053,7 @@
             "media_player.denon_avr_x1400h"
         ],
         "data": "{\t    \"source\": \"Media Player\"\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4573,7 +4551,7 @@
         "entityId": [
             "scene.granie_na_decku"
         ],
-        "data": "{}",
+        "data": "",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -4602,7 +4580,7 @@
             "remote.sony_bravia_tv"
         ],
         "data": "{\"device\":\"32756745\",\"command\":\"Play\"}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4630,7 +4608,7 @@
             "media_player.denon_avr_x1400h"
         ],
         "data": "{\t    \"source\": \"TV Audio\"\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6524,7 +6502,7 @@
             "light.lampa_gabinet"
         ],
         "data": "{    \t    \"rgbw_color\": [255, 255, 182, 50], \t    \"brightness_pct\": 100,\t    \"transition\": 1\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6586,7 +6564,7 @@
             "light.lampa_gabinet"
         ],
         "data": "{\t    \"transition\": 1\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6678,7 +6656,7 @@
             "light.lampa_dzieci"
         ],
         "data": "{    \t    \"brightness_pct\": 100,\t    \"transition\": 1\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6740,7 +6718,7 @@
             "light.lampa_dzieci"
         ],
         "data": "{\t    \"transition\": 1\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6925,7 +6903,7 @@
         "deviceId": [],
         "entityId": [],
         "data": "{\t   \"random_song\": true,\t   \"device_name\": \"Pokój dziecięcy\",\t   \"uri\": \"spotify:album:1PtHlcG5feBee4IFGgbut0\",\t   \"repeat\": \"context\",\t   \"shuffle\": true,\t   \"account\": \"pati\"\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7045,7 +7023,7 @@
         "deviceId": [],
         "entityId": [],
         "data": "{\t   \"random_song\": true,\t   \"device_name\": \"Pokój dziecięcy\",\t   \"uri\": \"spotify:album:46KPvzk5ucqRLpmo2ABfFZ\",\t   \"repeat\": \"context\",\t   \"shuffle\": true,\t   \"account\": \"pati\"\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7635,7 +7613,7 @@
             "light.lampka_gabinet_1"
         ],
         "data": "{\t    \"brightness_pct\": 100\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7664,8 +7642,8 @@
         "entityId": [
             "switch.sonoff_1000511f63"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7692,8 +7670,8 @@
         "entityId": [
             "switch.sonoff_1000511f63"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7721,7 +7699,7 @@
             "light.lampa_gabinet"
         ],
         "data": "{\t    \"rgbw_color\": [255, 33, 159, 100],\t    \"brightness_pct\": 100\t}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7748,8 +7726,8 @@
         "entityId": [
             "light.lampa_gabinet"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7856,8 +7834,8 @@
         "entityId": [
             "light.lampka_gabinet_1"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7984,7 +7962,7 @@
             "light.lampka_gabinet_1"
         ],
         "data": "{\"effect\":\"colorloop\"}",
-        "dataType": "json",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -8014,8 +7992,8 @@
             "switch.sonoff_1000513cd0",
             "switch.sonoff_1000511f63"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -8109,8 +8087,8 @@
         "entityId": [
             "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -8137,8 +8115,8 @@
         "entityId": [
             "switch.sonoff_1000513cd0"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -8165,8 +8143,8 @@
         "entityId": [
             "light.lampa_gabinet"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -9271,7 +9249,7 @@
         "entityId": [
             "scene.wyjscie_z_domu"
         ],
-        "data": "{}",
+        "data": "",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -9326,8 +9304,8 @@
             "light.halogen_2",
             "light.halogen_3"
         ],
-        "data": "{}",
-        "dataType": "json",
+        "data": "",
+        "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -9400,7 +9378,7 @@
         "entityId": [
             "scene.standardowe_oswietlenie"
         ],
-        "data": "{}",
+        "data": "",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
