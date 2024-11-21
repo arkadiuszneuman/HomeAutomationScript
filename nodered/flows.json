@@ -336,7 +336,9 @@
             "392218788ba54353"
         ],
         "x": -12,
-        "y": 313
+        "y": 313,
+        "w": 1264,
+        "h": 2054
     },
     {
         "id": "689b1d55f7932c58",
@@ -358,7 +360,9 @@
             "7c08316b5b85778b"
         ],
         "x": 14,
-        "y": -1
+        "y": -1,
+        "w": 832,
+        "h": 302
     },
     {
         "id": "e6dd97d81ea3c6fc",
@@ -519,7 +523,9 @@
             "8726a485ef956e46"
         ],
         "x": 14,
-        "y": 19
+        "y": 19,
+        "w": 632,
+        "h": 282
     },
     {
         "id": "83b1177d1a56a864",
@@ -562,7 +568,9 @@
             "f3023adf7ec5e6a0"
         ],
         "x": 14,
-        "y": 1659
+        "y": 1659,
+        "w": 1212,
+        "h": 242
     },
     {
         "id": "8f8e46804cdadcc7",
@@ -580,7 +588,9 @@
             "c81c3bbd71be4bfb"
         ],
         "x": 14,
-        "y": 1919
+        "y": 1919,
+        "w": 612,
+        "h": 162
     },
     {
         "id": "bb9194cdd978f3b0",
@@ -596,7 +606,9 @@
             "2cd24b73a16ad718"
         ],
         "x": 14,
-        "y": 2099
+        "y": 2099,
+        "w": 612,
+        "h": 82
     },
     {
         "id": "b1e916dd1d7de0b8",
@@ -683,7 +695,9 @@
             "c3c4a3ac89314920"
         ],
         "x": 54,
-        "y": 339
+        "y": 339,
+        "w": 992,
+        "h": 202
     },
     {
         "id": "141453e63c302779",
@@ -708,7 +722,9 @@
             "819639745fda4289"
         ],
         "x": 54,
-        "y": 579
+        "y": 579,
+        "w": 1032,
+        "h": 322
     },
     {
         "id": "1e79f0715558075a",
@@ -734,7 +750,9 @@
             "160e075dba6ec123"
         ],
         "x": 34,
-        "y": 919
+        "y": 919,
+        "w": 1152,
+        "h": 342
     },
     {
         "id": "884608cf0fb6e773",
@@ -815,7 +833,9 @@
             "02485fc655ad9630"
         ],
         "x": 14,
-        "y": 1299
+        "y": 1299,
+        "w": 852,
+        "h": 342
     },
     {
         "id": "392218788ba54353",
@@ -835,7 +855,9 @@
             "b3211c741108d238"
         ],
         "x": 14,
-        "y": 2199
+        "y": 2199,
+        "w": 1092,
+        "h": 142
     },
     {
         "id": "061e73eddfa7ef57",
@@ -953,8 +975,8 @@
         "name": "Arek",
         "isValide": "true",
         "angleType": "deg",
-        "timeZoneOffset": "99",
-        "timeZoneDST": "0",
+        "timeZoneOffset": 99,
+        "timeZoneDST": 0,
         "stateTimeFormat": "3",
         "stateDateFormat": "12",
         "contextStore": "memory"
@@ -4784,8 +4806,7 @@
         "deviceId": [],
         "entityId": [
             "light.halogen_2",
-            "light.halogen_3",
-            "light.lampka_zewnetrzna"
+            "light.halogen_3"
         ],
         "data": "",
         "dataType": "jsonata",
@@ -4813,7 +4834,8 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.sonoff_1000541365"
+            "switch.sonoff_1000541365",
+            "switch.sonoff_100054125f"
         ],
         "data": "",
         "dataType": "jsonata",
@@ -5054,7 +5076,8 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.sonoff_1000541365"
+            "switch.sonoff_1000541365",
+            "switch.sonoff_100054125f"
         ],
         "data": "",
         "dataType": "jsonata",
@@ -5270,8 +5293,8 @@
         "entityId": [
             "light.lampka_zewnetrzna"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -5293,15 +5316,15 @@
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
-        "domain": "switch",
+        "domain": "light",
         "service": "turn_on",
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.sonoff_1000541365"
+            "light.oswietlenie_zewnetrzne"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -5355,8 +5378,8 @@
         "entityId": [
             "light.lampka_zewnetrzna"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -5376,15 +5399,15 @@
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
-        "domain": "switch",
+        "domain": "light",
         "service": "turn_off",
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.sonoff_1000541365"
+            "light.oswietlenie_zewnetrzne"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6030,8 +6053,8 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [],
-        "data": "{\t   \"message\": payload,\t   \"title\": \"Czas\"\t}",
-        "dataType": "jsonata",
+        "data": "{\"message\":\"arek\"}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6108,8 +6131,8 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [],
-        "data": "{\t   \"message\": \"command_activity\",\t    \"data\": {\t        \"intent_package_name\": \"com.android.server.telecom\",\t        \"intent_action\": \"android.intent.action.CALL\",\t        \"intent_uri\": \"tel:452374244\",\t        \"ttl\": 0,\t        \"priority\": \"high\"\t  }\t}",
-        "dataType": "jsonata",
+        "data": "{\"message\":\"command_activity\",\"data\":{\"intent_package_name\":\"com.android.server.telecom\",\"intent_action\":\"android.intent.action.CALL\",\"intent_uri\":\"tel:452374244\",\"ttl\":0,\"priority\":\"high\"}}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6279,35 +6302,6 @@
         ]
     },
     {
-        "id": "e40260e287834451",
-        "type": "inject",
-        "z": "c64ddd5143775f97",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 280,
-        "y": 1140,
-        "wires": [
-            [
-                "441104398e761cfe"
-            ]
-        ]
-    },
-    {
         "id": "8557bcc12e1aeb35",
         "type": "api-current-state",
         "z": "c64ddd5143775f97",
@@ -6379,6 +6373,35 @@
         "y": 360,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "63851728cbbe22f3",
+        "type": "inject",
+        "z": "c64ddd5143775f97",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 1140,
+        "wires": [
+            [
+                "441104398e761cfe"
+            ]
         ]
     },
     {
@@ -9229,7 +9252,7 @@
         "z": "d34dbcc05eb5fd11",
         "name": "",
         "pauseType": "delay",
-        "timeout": "5",
+        "timeout": "40",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
