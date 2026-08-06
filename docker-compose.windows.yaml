@@ -1,124 +1,124 @@
 services:
-  ha:
-    image: homeassistant/home-assistant:2023.12
-    # ports:
-    # - 8123:8123
-    volumes:
-      - ./homeassistant:/config
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-      - /run/dbus:/run/dbus:ro
-    depends_on:
-      - mysql
-    network_mode: host
-    container_name: ha
-    restart: unless-stopped
+    ha:
+        image: homeassistant/home-assistant:2023.12
+        # ports:
+        # - 8123:8123
+        volumes:
+            - ./homeassistant:/config
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+            - /run/dbus:/run/dbus:ro
+        depends_on:
+            - mysql
+        network_mode: host
+        container_name: ha
+        #restart: unless-stopped
 
-  nginx:
-    image: nginx:1.27
-    # ports:
-    #   - 80:80
-    #   - 443:443
-    restart: unless-stopped
-    volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www/:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
-    network_mode: host
-    container_name: nginx
+    nginx:
+        image: nginx:1.27
+        # ports:
+        #   - 80:80
+        #   - 443:443
+        restart: unless-stopped
+        volumes:
+            - ./nginx/conf/:/etc/nginx/conf.d/:ro
+            - ./certbot/www/:/var/www/certbot/:ro
+            - ./certbot/conf/:/etc/nginx/ssl/:ro
+        network_mode: host
+        container_name: nginx
 
-  certbot:
-    image: certbot/certbot:v2.11.0
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
-    container_name: certbot
+    certbot:
+        image: certbot/certbot:v2.11.0
+        volumes:
+            - ./certbot/www/:/var/www/certbot/:rw
+            - ./certbot/conf/:/etc/letsencrypt/:rw
+        container_name: certbot
 
-  grafana:
-    image: grafana/grafana:9.5.2
-    # ports:
-    # - 3000:3000
-    volumes:
-      - ./grafana:/var/lib/grafana
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-    container_name: grafana
-    network_mode: host
-    user: "1000"
-    restart: unless-stopped
+    grafana:
+        image: grafana/grafana:9.5.2
+        # ports:
+        # - 3000:3000
+        volumes:
+            - ./grafana:/var/lib/grafana
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+        container_name: grafana
+        network_mode: host
+        user: "1000"
+        restart: unless-stopped
 
-  mysql:
-    image: mysql:8.0.33
-    command: --default-authentication-plugin=mysql_native_password
-    # ports:
-    # - 3306:3306
-    volumes:
-      - ./mysql:/var/lib/mysql
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-    environment:
-      MYSQL_ROOT_PASSWORD: wsadqe
-    container_name: mysql
-    network_mode: host
-    restart: unless-stopped
+    mysql:
+        image: mysql:8.0.33
+        command: --default-authentication-plugin=mysql_native_password
+        # ports:
+        # - 3306:3306
+        volumes:
+            - ./mysql:/var/lib/mysql
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            MYSQL_ROOT_PASSWORD: wsadqe
+        container_name: mysql
+        network_mode: host
+        restart: unless-stopped
 
-  backup-creator:
-    build:
-      context: ./services/Services.BackupCreator
-      dockerfile: Dockerfile
-    environment:
-      - WRAPPER_ENVIRONMENT=Docker
-      - HOST=Win
-    volumes:
-      - ./:/maindir
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-    network_mode: host
-    container_name: bc
-    restart: unless-stopped
+    backup-creator:
+        build:
+            context: ./services/Services.BackupCreator
+            dockerfile: Dockerfile
+        environment:
+            - WRAPPER_ENVIRONMENT=Docker
+            - HOST=Win
+        volumes:
+            - ./:/maindir
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+        network_mode: host
+        container_name: bc
+        restart: unless-stopped
 
-  zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:1.34.0
-    depends_on:
-      - ha
-    volumes:
-      - ./zigbee2mqtt/data:/app/data
-      - /run/udev:/run/udev:ro
-    #    ports:
-    # Frontend port
-    #      - 8080:8080
-    environment:
-      - TZ=Europe/Warsaw
-    devices:
-      # Make sure this matched your adapter location
-      - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2660192-if00:/dev/ttyACM0
-    network_mode: host
-    container_name: z2m
-    restart: unless-stopped
+    zigbee2mqtt:
+        image: koenkk/zigbee2mqtt:1.34.0
+        depends_on:
+            - ha
+        volumes:
+            - ./zigbee2mqtt/data:/app/data
+            - /run/udev:/run/udev:ro
+        #    ports:
+        # Frontend port
+        #      - 8080:8080
+        environment:
+            - TZ=Europe/Warsaw
+        devices:
+            # Make sure this matched your adapter location
+            - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2660192-if00:/dev/ttyACM0
+        network_mode: host
+        container_name: z2m
+        #restart: unless-stopped
 
-  node-red:
-    image: nodered/node-red:4.0.5-22
-    environment:
-      - TZ=Europe/Warsaw
-    #    ports:
-    #      - "1880:1880"
-    volumes:
-      - ./nodered:/data
-    network_mode: host
-    container_name: node-red
-    restart: unless-stopped
+    node-red:
+        image: nodered/node-red:4.0.5-22
+        environment:
+            - TZ=Europe/Warsaw
+        #    ports:
+        #      - "1880:1880"
+        volumes:
+            - ./nodered:/data
+        network_mode: host
+        container_name: node-red
+        restart: unless-stopped
 
-  # backup-creator2:
-  #   build:
-  #     context: ./services/PythonServices/BackupCreator
-  #     dockerfile: Dockerfile
-  #   ports:
-  #    - 5001:5001
-  #   environment:
-  #     - WRAPPER_ENVIRONMENT=Docker
-  #   volumes:
-  #     - ./:/maindir
-  #     - /etc/timezone:/etc/timezone:ro
-  #     - /etc/localtime:/etc/localtime:ro
-  #   network_mode: host
-  #   container_name: bc2
+    # backup-creator2:
+    #   build:
+    #     context: ./services/PythonServices/BackupCreator
+    #     dockerfile: Dockerfile
+    #   ports:
+    #    - 5001:5001
+    #   environment:
+    #     - WRAPPER_ENVIRONMENT=Docker
+    #   volumes:
+    #     - ./:/maindir
+    #     - /etc/timezone:/etc/timezone:ro
+    #     - /etc/localtime:/etc/localtime:ro
+    #   network_mode: host
+    #   container_name: bc2
