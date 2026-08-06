@@ -100,6 +100,7 @@ services:
         image: nodered/node-red:4.0.5-22
         environment:
             - TZ=Europe/Warsaw
+            - ALPHAVANTAGE_API_KEY=${ALPHAVANTAGE_API_KEY}
         #    ports:
         #      - "1880:1880"
         volumes:

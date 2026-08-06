@@ -56,6 +56,14 @@
         "env": []
     },
     {
+        "id": "5c1786f9c837c70e",
+        "type": "tab",
+        "label": "Awtrix",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "af8f36db90accee4",
         "type": "subflow",
         "name": "Jest po zdarzeniu słońca",
@@ -246,7 +254,7 @@
         ],
         "out": [
             {
-                "x": 860,
+                "x": 840,
                 "y": 340,
                 "wires": [
                     {
@@ -256,12 +264,16 @@
                 ]
             },
             {
-                "x": 860,
+                "x": 840,
                 "y": 420,
                 "wires": [
                     {
                         "id": "82bbcbb06b3f76fd",
                         "port": 1
+                    },
+                    {
+                        "id": "8b501d57f0617312",
+                        "port": 0
                     }
                 ]
             }
@@ -336,9 +348,9 @@
             "392218788ba54353"
         ],
         "x": -12,
-        "y": 313,
+        "y": 293,
         "w": 1264,
-        "h": 2054
+        "h": 2074
     },
     {
         "id": "689b1d55f7932c58",
@@ -407,7 +419,9 @@
             "125fb9bb98fd2159"
         ],
         "x": 14,
-        "y": -21
+        "y": -1,
+        "w": 1392,
+        "h": 282
     },
     {
         "id": "cc6d91f602947828",
@@ -423,7 +437,9 @@
             "061e73eddfa7ef57"
         ],
         "x": 8,
-        "y": 473
+        "y": 473,
+        "w": 1444,
+        "h": 634
     },
     {
         "id": "9870422d94171519",
@@ -438,7 +454,9 @@
             "acefa0d0f7d11702"
         ],
         "x": 28,
-        "y": 33
+        "y": 33,
+        "w": 764,
+        "h": 234
     },
     {
         "id": "3cf9eb445b448d5a",
@@ -480,7 +498,9 @@
             "ed5501c2151c6312"
         ],
         "x": 14,
-        "y": 299
+        "y": 299,
+        "w": 472,
+        "h": 142
     },
     {
         "id": "8c9f567e59660521",
@@ -502,7 +522,9 @@
             "80c353ea4bf29391"
         ],
         "x": 14,
-        "y": 319
+        "y": 319,
+        "w": 732,
+        "h": 202
     },
     {
         "id": "917c8f5ad7209031",
@@ -541,7 +563,57 @@
             "2d0ed3453818ae70"
         ],
         "x": 14,
-        "y": 559
+        "y": 559,
+        "w": 672,
+        "h": 82
+    },
+    {
+        "id": "6d7b7cb5db20034b",
+        "type": "group",
+        "z": "c64ddd5143775f97",
+        "name": "Automatyczna roleta salon",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "ee50055f99595ff8",
+            "cd68b4bab07f5921",
+            "a1b8e201631dd85f",
+            "97dfec68aa8f76ee",
+            "3221389d7fdcee4b",
+            "499a79ef19eda6df",
+            "cd7be779f01cc3f8",
+            "20f8eea16bb891e9"
+        ],
+        "x": -6,
+        "y": 1019,
+        "w": 872,
+        "h": 262
+    },
+    {
+        "id": "2a59d30d07abe14f",
+        "type": "group",
+        "z": "5c1786f9c837c70e",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f234aae371d72680",
+            "555bb8624b88c9c3",
+            "inject1",
+            "http1",
+            "func1"
+        ],
+        "x": 34,
+        "y": 39,
+        "w": 1152,
+        "h": 82
     },
     {
         "id": "b03356b5832bde5f",
@@ -625,7 +697,9 @@
             "f3e87b194eed2498"
         ],
         "x": 54,
-        "y": 59
+        "y": 59,
+        "w": 712,
+        "h": 82
     },
     {
         "id": "7b4bf04699360b3b",
@@ -638,7 +712,6 @@
         },
         "nodes": [
             "ccc9d90b522a0043",
-            "df7df673be1d9c98",
             "0b66e0c8549d8e06",
             "547d67abf9f23416",
             "f69501279babcc0b",
@@ -650,7 +723,8 @@
             "5fa367aaafad48a6",
             "1068a9af2313d51a",
             "8557bcc12e1aeb35",
-            "b5fb4a50b62bf918"
+            "b5fb4a50b62bf918",
+            "1fdd9371c0452185"
         ],
         "x": 34,
         "y": 39,
@@ -692,12 +766,13 @@
             "9aa642cfa8beb53a",
             "e0811da42f75fb5d",
             "a62d74ac6b65eb23",
-            "c3c4a3ac89314920"
+            "c3c4a3ac89314920",
+            "0117f7de4dea0cd6"
         ],
         "x": 54,
-        "y": 339,
+        "y": 319,
         "w": 992,
-        "h": 202
+        "h": 262
     },
     {
         "id": "141453e63c302779",
@@ -716,15 +791,12 @@
             "5ead5c978b3ae8b3",
             "691e105a52748b8a",
             "1703f74486d929d4",
-            "36d9b8689fa2e8c7",
-            "721ba6bc174ee8e4",
-            "c576961915ee7898",
-            "819639745fda4289"
+            "36d9b8689fa2e8c7"
         ],
         "x": 54,
-        "y": 579,
-        "w": 1032,
-        "h": 322
+        "y": 599,
+        "w": 992,
+        "h": 262
     },
     {
         "id": "1e79f0715558075a",
@@ -773,10 +845,13 @@
             "9a2809a0035898e8",
             "25ce8aa3596e62fb",
             "ac0d6be1675f5028",
-            "a98e23f9fb02d91a"
+            "a98e23f9fb02d91a",
+            "81a0414641db966f"
         ],
         "x": 34,
-        "y": 499
+        "y": 499,
+        "w": 1392,
+        "h": 242
     },
     {
         "id": "9577ec21e7b1473f",
@@ -793,7 +868,9 @@
             "0f529defee31c9cf"
         ],
         "x": 34,
-        "y": 759
+        "y": 759,
+        "w": 812,
+        "h": 142
     },
     {
         "id": "acefa0d0f7d11702",
@@ -810,7 +887,9 @@
             "d38212504a5b3030"
         ],
         "x": 54,
-        "y": 159
+        "y": 159,
+        "w": 672,
+        "h": 82
     },
     {
         "id": "a20b980182575408",
@@ -830,7 +909,8 @@
             "29f69bb303a4ca96",
             "a95f7ddf477ed93c",
             "e9dd03f28fd7a329",
-            "02485fc655ad9630"
+            "02485fc655ad9630",
+            "c07a336915ef64c4"
         ],
         "x": 14,
         "y": 1299,
@@ -880,7 +960,9 @@
             "671cae8c079790d9"
         ],
         "x": 34,
-        "y": 919
+        "y": 919,
+        "w": 1132,
+        "h": 162
     },
     {
         "id": "163c9f2450f671da",
@@ -972,7 +1054,7 @@
     {
         "id": "de7540b257d34f68",
         "type": "position-config",
-        "name": "Arek",
+        "name": "Sudecka",
         "isValide": "true",
         "angleType": "deg",
         "timeZoneOffset": 99,
@@ -980,6 +1062,33 @@
         "stateTimeFormat": "3",
         "stateDateFormat": "12",
         "contextStore": "memory"
+    },
+    {
+        "id": "346df2a95aac5785",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
     },
     {
         "id": "6516de3d1736fcef",
@@ -1547,7 +1656,7 @@
             }
         ],
         "x": 170,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "e763a55517d78cfd"
@@ -1610,7 +1719,7 @@
             }
         ],
         "x": 180,
-        "y": 380,
+        "y": 400,
         "wires": [
             [
                 "e763a55517d78cfd"
@@ -1686,6 +1795,132 @@
         ],
         "x": 160,
         "y": 120,
+        "wires": [
+            [
+                "e763a55517d78cfd"
+            ]
+        ]
+    },
+    {
+        "id": "f9d3bc09c16b8d81",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Buda Lux",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.buda_illuminance_lux",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 100,
+        "y": 320,
+        "wires": [
+            [
+                "e763a55517d78cfd"
+            ]
+        ]
+    },
+    {
+        "id": "f98558c76ea1e56d",
+        "type": "server-state-changed",
+        "z": "0d0bd9aaa9acc12b",
+        "name": "Dummy Mouse State",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.komputer_stacjonarny_usbdummymouseconnected",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": true,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 140,
+        "y": 440,
         "wires": [
             [
                 "e763a55517d78cfd"
@@ -1924,7 +2159,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
+        "x": 560,
         "y": 380,
         "wires": [
             [
@@ -1950,7 +2185,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 750,
+        "x": 730,
         "y": 380,
         "wires": [
             [],
@@ -1997,9 +2232,54 @@
         "y": 80,
         "wires": [
             [
-                "7c475d2eaf40220f"
+                "8b501d57f0617312"
             ],
             []
+        ]
+    },
+    {
+        "id": "8b501d57f0617312",
+        "type": "api-current-state",
+        "z": "b7f09f2be015bb01",
+        "name": "Dummy Mouse Podłączone",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.komputer_stacjonarny_usbdummymouseconnected",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 620,
+        "y": 80,
+        "wires": [
+            [],
+            [
+                "7c475d2eaf40220f"
+            ]
         ]
     },
     {
@@ -2143,12 +2423,13 @@
             }
         ],
         "x": 190,
-        "y": 380,
+        "y": 360,
         "wires": [
             [
                 "d3041cfa24e0aab5",
                 "9aa642cfa8beb53a",
-                "e0811da42f75fb5d"
+                "e0811da42f75fb5d",
+                "0117f7de4dea0cd6"
             ]
         ]
     },
@@ -2175,7 +2456,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 620,
-        "y": 380,
+        "y": 360,
         "wires": [
             []
         ]
@@ -2193,7 +2474,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 380,
+        "y": 360,
         "wires": [
             [
                 "2613dc838cbd5e47"
@@ -2218,13 +2499,13 @@
             "light.sufit_led"
         ],
         "data": "{\t   \"rgb_color\": [255, 163, 72],\t   \"brightness_pct\": 100\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 430,
-        "y": 440,
+        "y": 420,
         "wires": [
             []
         ]
@@ -2246,18 +2527,16 @@
             "light.halogen_1",
             "light.halogen_2",
             "light.halogen_3",
-            "light.halogen_4",
-            "light.halogen_5",
-            "light.halogen_6"
+            "light.halogen_4"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 420,
-        "y": 500,
+        "y": 480,
         "wires": [
             [
                 "a62d74ac6b65eb23"
@@ -2321,14 +2600,13 @@
             }
         ],
         "x": 150,
-        "y": 620,
+        "y": 640,
         "wires": [
             [
                 "47e15f61dc69ae10",
                 "4bd6ada147963d2f",
                 "5ead5c978b3ae8b3",
-                "691e105a52748b8a",
-                "819639745fda4289"
+                "691e105a52748b8a"
             ]
         ]
     },
@@ -2348,14 +2626,14 @@
         "entityId": [
             "light.grzybek"
         ],
-        "data": "{\t   \"rgb_color\": randomColor,\t   \"brightness_pct\": 100\t}",
+        "data": "{\t   \"rgb_color\": \"{{randomColor}}\",\t   \"brightness_pct\": 100\t}",
         "dataType": "jsonata",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 620,
-        "y": 620,
+        "y": 640,
         "wires": [
             []
         ]
@@ -2373,7 +2651,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 620,
+        "y": 640,
         "wires": [
             [
                 "e704175af4919eb9"
@@ -2398,17 +2676,15 @@
             "light.sufit_led"
         ],
         "data": "{\t   \"rgb_color\": [255, 163, 72],\t   \"brightness_pct\": 100\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 450,
-        "y": 680,
+        "y": 700,
         "wires": [
-            [
-                "c576961915ee7898"
-            ]
+            []
         ]
     },
     {
@@ -2428,14 +2704,14 @@
             "light.halogen_5",
             "light.halogen_6"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{\"brightness_pct\":100}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 440,
-        "y": 800,
+        "y": 760,
         "wires": [
             [
                 "1703f74486d929d4"
@@ -2461,14 +2737,14 @@
             "light.halogen_3",
             "light.halogen_4"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 460,
-        "y": 860,
+        "y": 820,
         "wires": [
             []
         ]
@@ -2560,8 +2836,8 @@
             "light.halogen_5",
             "light.halogen_6"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2593,14 +2869,15 @@
             "light.halogen_4",
             "light.lampa_dzieci",
             "light.lampa_gabinet",
-            "light.lampka_gabinet",
             "light.lampka_zewnetrzna",
             "light.oswietlenie_zewnetrzne",
             "light.salon_led",
-            "light.sufit_led"
+            "light.sufit_led",
+            "light.lampka_gabinet",
+            "light.swiatlo_zewnetrzne"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2628,8 +2905,8 @@
             "switch.sonoff_1000513cd0",
             "switch.sonoff_100051420f"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2688,8 +2965,8 @@
             "light.halogen_6",
             "light.lampka_gabinet_1"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2716,8 +2993,8 @@
         "entityId": [
             "cover.roleta_salon"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2747,8 +3024,8 @@
             "media_player.playstation_4",
             "media_player.sony_bravia_tv"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2776,7 +3053,7 @@
             "light.lampka_gabinet_1"
         ],
         "data": "{\t    \"rgbw_color\": [255, 33, 159, 100],\t    \"brightness_pct\": 30\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2803,11 +3080,11 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "media_player.pokoj_dzieciecy",
-            "media_player.salon"
+            "media_player.salon",
+            "media_player.pokoj_dzieciecy"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -2977,7 +3254,7 @@
         "entityId": [
             "scene.standardowe_oswietlenie"
         ],
-        "data": "",
+        "data": "{}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -3005,7 +3282,7 @@
         "entityId": [
             "scene.ogladanie_tv"
         ],
-        "data": "",
+        "data": "{}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -3033,8 +3310,8 @@
         "entityId": [
             "scene.wyjscie_z_domu"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3061,8 +3338,8 @@
         "entityId": [
             "scene.dobranoc"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3116,8 +3393,8 @@
             "light.halogen_5",
             "light.halogen_6"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3245,7 +3522,7 @@
             "fan.mi_air_purifier_2s"
         ],
         "data": "{\t    \"preset_mode\": \"Auto\"\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3264,6 +3541,7 @@
         "name": "Set level",
         "func": "msg.level = Math.trunc(Math.min(msg.payload / 10 + 1, 16))\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -3293,8 +3571,8 @@
             "number.fanfiltr_powietrza_favorite_level",
             "number.fanmi_air_purifier_2s_favorite_level"
         ],
-        "data": "{\t    \"value\": level\t}",
-        "dataType": "jsonata",
+        "data": "{\"value\":\"{{level}}\"}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3325,7 +3603,7 @@
             "fan.mi_air_purifier_2s"
         ],
         "data": "{\t    \"preset_mode\": \"Favorite\"\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3418,8 +3696,8 @@
             "fan.filtr_powietrza",
             "fan.mi_air_purifier_2s"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3449,8 +3727,8 @@
             "fan.filtr_powietrza",
             "fan.mi_air_purifier_2s"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3681,8 +3959,8 @@
         "entityId": [
             "light.rgbic_tv_backlight"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3743,8 +4021,8 @@
         "entityId": [
             "light.rgbic_tv_backlight"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3799,11 +4077,11 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "switch.fanfiltr_powietrza_child_lock",
-            "switch.mi_air_purifier_2s_child_lock"
+            "switch.mi_air_purifier_2s_child_lock",
+            "switch.fanfiltr_powietrza_child_lock"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3876,8 +4154,8 @@
         "entityId": [
             "switch.sonoff_100051420f"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -3926,7 +4204,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 680,
-        "y": 500,
+        "y": 480,
         "wires": [
             [
                 "c3c4a3ac89314920"
@@ -3950,14 +4228,14 @@
         "entityId": [
             "switch.sonoff_100051420f"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 910,
-        "y": 500,
+        "y": 480,
         "wires": [
             []
         ]
@@ -3999,8 +4277,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 700,
-        "y": 800,
+        "x": 660,
+        "y": 760,
         "wires": [
             [
                 "36d9b8689fa2e8c7"
@@ -4024,14 +4302,14 @@
         "entityId": [
             "switch.sonoff_100051420f"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 950,
-        "y": 800,
+        "x": 910,
+        "y": 760,
         "wires": [
             []
         ]
@@ -4053,7 +4331,7 @@
             "media_player.denon_avr_x1400h"
         ],
         "data": "{\t    \"source\": \"Media Player\"\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4129,108 +4407,6 @@
                 "582a499f24313367",
                 "f198983f30a7c66d"
             ]
-        ]
-    },
-    {
-        "id": "721ba6bc174ee8e4",
-        "type": "api-call-service",
-        "z": "f9ac8b9539c832a3",
-        "g": "141453e63c302779",
-        "name": "Ustaw Denon na TV Audio",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "media_player",
-        "service": "select_source",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "media_player.denon_avr_x1400h"
-        ],
-        "data": "{\t    \"source\": \"TV Audio\"\t}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 720,
-        "y": 740,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c576961915ee7898",
-        "type": "api-call-service",
-        "z": "f9ac8b9539c832a3",
-        "g": "141453e63c302779",
-        "name": "Ustaw źródło TV na Smart TV",
-        "server": "163c9f2450f671da",
-        "version": 5,
-        "debugenabled": false,
-        "domain": "media_player",
-        "service": "select_source",
-        "areaId": [],
-        "deviceId": [],
-        "entityId": [
-            "media_player.sony_bravia_tv"
-        ],
-        "data": "{\t    \"source\": \"Smart TV\"\t}",
-        "dataType": "jsonata",
-        "mergeContext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 730,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "819639745fda4289",
-        "type": "api-current-state",
-        "z": "f9ac8b9539c832a3",
-        "g": "141453e63c302779",
-        "name": "Czy Denon włączony",
-        "server": "163c9f2450f671da",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "on",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "media_player.denon_avr_x1400h",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 460,
-        "y": 740,
-        "wires": [
-            [
-                "721ba6bc174ee8e4"
-            ],
-            []
         ]
     },
     {
@@ -4530,8 +4706,7 @@
                 "e4ef74248d57aba0"
             ],
             [
-                "29f69bb303a4ca96",
-                "a95f7ddf477ed93c"
+                "c07a336915ef64c4"
             ]
         ]
     },
@@ -4551,7 +4726,7 @@
         "entityId": [
             "scene.granie_na_decku"
         ],
-        "data": "",
+        "data": "{}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -4580,7 +4755,7 @@
             "remote.sony_bravia_tv"
         ],
         "data": "{\"device\":\"32756745\",\"command\":\"Play\"}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4608,7 +4783,7 @@
             "media_player.denon_avr_x1400h"
         ],
         "data": "{\t    \"source\": \"TV Audio\"\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4678,6 +4853,82 @@
         ]
     },
     {
+        "id": "c07a336915ef64c4",
+        "type": "api-current-state",
+        "z": "f9ac8b9539c832a3",
+        "g": "a20b980182575408",
+        "name": "TV włączony",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "media_player.sony_bravia_tv",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 250,
+        "y": 1560,
+        "wires": [
+            [
+                "29f69bb303a4ca96",
+                "a95f7ddf477ed93c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0117f7de4dea0cd6",
+        "type": "api-call-service",
+        "z": "f9ac8b9539c832a3",
+        "g": "6c27fe9f99943679",
+        "name": "Halogeny RGB",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.halogen_5",
+            "light.halogen_6"
+        ],
+        "data": "{\"brightness_pct\":100}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 440,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "ccc9d90b522a0043",
         "type": "server-state-changed",
         "z": "c64ddd5143775f97",
@@ -4737,58 +4988,11 @@
         "y": 80,
         "wires": [
             [
-                "df7df673be1d9c98",
                 "eed6e467f5db8361",
                 "0688d9d91fc90393",
-                "8557bcc12e1aeb35"
+                "8557bcc12e1aeb35",
+                "1fdd9371c0452185"
             ]
-        ]
-    },
-    {
-        "id": "df7df673be1d9c98",
-        "type": "api-current-state",
-        "z": "c64ddd5143775f97",
-        "g": "7b4bf04699360b3b",
-        "name": "Światło słoneczne poniżej 4",
-        "server": "163c9f2450f671da",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "4",
-        "halt_if_type": "num",
-        "halt_if_compare": "lt",
-        "entity_id": "sensor.sunlight_pct",
-        "state_type": "num",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "override_topic": false,
-        "state_location": "payload",
-        "override_payload": "msg",
-        "entity_location": "data",
-        "override_data": "msg",
-        "x": 420,
-        "y": 80,
-        "wires": [
-            [
-                "0b66e0c8549d8e06",
-                "547d67abf9f23416"
-            ],
-            []
         ]
     },
     {
@@ -4834,8 +5038,8 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.lampka_zewnetrzna",
-            "light.oswietlenie_zewnetrzne"
+            "light.oswietlenie_zewnetrzne",
+            "light.swiatlo_zewnetrzne"
         ],
         "data": "{}",
         "dataType": "json",
@@ -4865,8 +5069,8 @@
         "entityId": [
             "cover.roleta_salon"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4891,19 +5095,19 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.lampa_gabinet",
-            "light.lampka_gabinet_1",
-            "light.grzybek",
             "light.halogen_1",
             "light.halogen_4",
             "light.halogen_5",
             "light.halogen_6",
-            "light.lampa_dzieci",
             "light.salon_led",
-            "light.sufit_led"
+            "light.sufit_led",
+            "light.lampa_gabinet",
+            "light.lampka_gabinet_1",
+            "light.grzybek",
+            "light.lampa_dzieci"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4935,8 +5139,8 @@
             "switch.przekaznik_gabinet",
             "switch.sonoff_100051420f"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -4991,8 +5195,8 @@
             "media_player.playstation_4",
             "media_player.sony_bravia_tv"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -5066,7 +5270,7 @@
         "type": "api-call-service",
         "z": "c64ddd5143775f97",
         "g": "7b4bf04699360b3b",
-        "name": "Włącz oświetlenie zewnętrzne, które zostało włączone",
+        "name": "Wyłącz oświetlenie zewnętrzne, które zostało włączone",
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
@@ -5075,8 +5279,8 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.lampka_zewnetrzna",
-            "switch.sonoff_1000541365"
+            "light.oswietlenie_zewnetrzne",
+            "light.swiatlo_zewnetrzne"
         ],
         "data": "{}",
         "dataType": "json",
@@ -5169,7 +5373,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.lampka_zewnetrzna"
+            "light.swiatlo_zewnetrzne"
         ],
         "data": "{}",
         "dataType": "json",
@@ -5290,7 +5494,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.lampka_zewnetrzna"
+            "light.swiatlo_zewnetrzne"
         ],
         "data": "{}",
         "dataType": "json",
@@ -5375,7 +5579,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.lampka_zewnetrzna"
+            "light.swiatlo_zewnetrzne"
         ],
         "data": "{}",
         "dataType": "json",
@@ -5436,7 +5640,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "person.pati",
+        "entityidfilter": "device_tracker.pati",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -5514,7 +5718,7 @@
         "worldmap": false,
         "outputs": 1,
         "x": 760,
-        "y": 1220,
+        "y": 1400,
         "wires": [
             [
                 "6f2b4602c9eadb3a"
@@ -5558,7 +5762,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 380,
-        "y": 1220,
+        "y": 1400,
         "wires": [
             [
                 "a2f61b46bcdc92fd"
@@ -5587,7 +5791,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 1220,
+        "y": 1400,
         "wires": [
             [
                 "cf1a8a114f5acb99"
@@ -5607,7 +5811,7 @@
         "finalize": "",
         "libs": [],
         "x": 620,
-        "y": 1220,
+        "y": 1400,
         "wires": [
             [
                 "98236bd3ea3d22e7"
@@ -5908,141 +6112,6 @@
         ]
     },
     {
-        "id": "dbaff45fb2c2d01a",
-        "type": "bigtimer",
-        "z": "c64ddd5143775f97",
-        "outtopic": "",
-        "outpayload1": "",
-        "outpayload2": "",
-        "name": "Big Timer",
-        "comment": "",
-        "lat": "50.3071757",
-        "lon": "18.9161156",
-        "starttime": "5004",
-        "endtime": "5004",
-        "starttime2": 0,
-        "endtime2": 0,
-        "startoff": 0,
-        "endoff": 0,
-        "startoff2": 0,
-        "endoff2": 0,
-        "offs": 0,
-        "outtext1": "",
-        "outtext2": "",
-        "timeout": "1",
-        "sun": true,
-        "mon": true,
-        "tue": true,
-        "wed": true,
-        "thu": true,
-        "fri": true,
-        "sat": true,
-        "jan": true,
-        "feb": true,
-        "mar": true,
-        "apr": true,
-        "may": true,
-        "jun": true,
-        "jul": true,
-        "aug": true,
-        "sep": true,
-        "oct": true,
-        "nov": true,
-        "dec": true,
-        "day1": 0,
-        "month1": 0,
-        "day2": 0,
-        "month2": 0,
-        "day3": 0,
-        "month3": 0,
-        "day4": 0,
-        "month4": 0,
-        "day5": 0,
-        "month5": 0,
-        "day6": 0,
-        "month6": 0,
-        "day7": 0,
-        "month7": 0,
-        "day8": 0,
-        "month8": 0,
-        "day9": 0,
-        "month9": 0,
-        "day10": 0,
-        "month10": 0,
-        "day11": 0,
-        "month11": 0,
-        "day12": 0,
-        "month12": 0,
-        "d1": 0,
-        "w1": 0,
-        "d2": 0,
-        "w2": 0,
-        "d3": 0,
-        "w3": 0,
-        "d4": 0,
-        "w4": 0,
-        "d5": 0,
-        "w5": 0,
-        "d6": 0,
-        "w6": 0,
-        "xday1": 0,
-        "xmonth1": 0,
-        "xday2": 0,
-        "xmonth2": 0,
-        "xday3": 0,
-        "xmonth3": 0,
-        "xday4": 0,
-        "xmonth4": 0,
-        "xday5": 0,
-        "xmonth5": 0,
-        "xday6": 0,
-        "xmonth6": 0,
-        "xday7": 0,
-        "xmonth7": 0,
-        "xday8": 0,
-        "xmonth8": 0,
-        "xday9": 0,
-        "xmonth9": 0,
-        "xday10": 0,
-        "xmonth10": 0,
-        "xday11": 0,
-        "xmonth11": 0,
-        "xday12": 0,
-        "xmonth12": 0,
-        "xd1": 0,
-        "xw1": 0,
-        "xd2": 0,
-        "xw2": 0,
-        "xd3": 0,
-        "xw3": 0,
-        "xd4": 0,
-        "xw4": 0,
-        "xd5": 0,
-        "xw5": 0,
-        "xd6": 0,
-        "xw6": 0,
-        "suspend": false,
-        "random": false,
-        "randon1": false,
-        "randoff1": false,
-        "randon2": false,
-        "randoff2": false,
-        "repeat": true,
-        "atstart": true,
-        "odd": false,
-        "even": false,
-        "x": 280,
-        "y": 1060,
-        "wires": [
-            [
-                "9d30da01b9f0d3d7",
-                "441104398e761cfe"
-            ],
-            [],
-            []
-        ]
-    },
-    {
         "id": "441104398e761cfe",
         "type": "api-call-service",
         "z": "c64ddd5143775f97",
@@ -6055,47 +6124,23 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [],
-        "data": "{\"message\":\"zamkanie covera\"}",
+        "data": "{\"message\":\"zamkanie\"}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 550,
-        "y": 1100,
+        "x": 390,
+        "y": 1300,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "9d30da01b9f0d3d7",
-        "type": "switch",
-        "z": "c64ddd5143775f97",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 490,
-        "y": 1020,
-        "wires": [
-            [
-                "ee50055f99595ff8"
-            ]
         ]
     },
     {
         "id": "ee50055f99595ff8",
         "type": "api-call-service",
         "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
         "name": "",
         "server": "163c9f2450f671da",
         "version": 5,
@@ -6107,14 +6152,14 @@
         "entityId": [
             "cover.roleta_salon"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 670,
-        "y": 1020,
+        "x": 750,
+        "y": 1080,
         "wires": [
             []
         ]
@@ -6216,33 +6261,6 @@
             [
                 "d800ed5470e850ca"
             ]
-        ]
-    },
-    {
-        "id": "c96109d68b57a2d3",
-        "type": "inject",
-        "z": "c64ddd5143775f97",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "60",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 1080,
-        "wires": [
-            []
         ]
     },
     {
@@ -6364,7 +6382,7 @@
             "switch.sonoff_100051420f"
         ],
         "data": "{}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6396,8 +6414,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 300,
-        "y": 1140,
+        "x": 120,
+        "y": 1300,
         "wires": [
             [
                 "441104398e761cfe"
@@ -6418,8 +6436,438 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 920,
-        "y": 1220,
+        "y": 1400,
         "wires": []
+    },
+    {
+        "id": "cd68b4bab07f5921",
+        "type": "time-inject",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "",
+        "nameInt": "⏲ golden hour dusk end⤽10min[few months] =...",
+        "positionConfig": "de7540b257d34f68",
+        "props": [
+            {
+                "p": "",
+                "pt": "msgPayload",
+                "v": "",
+                "vt": "date",
+                "o": "",
+                "oT": "none",
+                "oM": "60000",
+                "f": 0,
+                "fS": 0,
+                "fT": "UNIX timestamp (ms)",
+                "fI": "0",
+                "next": true,
+                "days": "*",
+                "months": "*",
+                "onlyOddDays": false,
+                "onlyEvenDays": false,
+                "onlyOddWeeks": false,
+                "onlyEvenWeeks": false
+            },
+            {
+                "p": "",
+                "pt": "msgTopic",
+                "v": "",
+                "vt": "str",
+                "o": "",
+                "oT": "none",
+                "oM": "60000",
+                "f": 0,
+                "fS": 0,
+                "fT": "UNIX timestamp (ms)",
+                "fI": "0",
+                "next": false,
+                "days": "*",
+                "months": "*",
+                "onlyOddDays": false,
+                "onlyEvenDays": false,
+                "onlyOddWeeks": false,
+                "onlyEvenWeeks": false
+            }
+        ],
+        "injectTypeSelect": "time",
+        "intervalCount": 1,
+        "intervalCountType": "num",
+        "intervalCountMultiplier": 60000,
+        "cron": "",
+        "cronType": "cronexpr",
+        "time": "goldenHourDuskEnd",
+        "timeType": "pdsTime",
+        "offset": "10",
+        "offsetType": "num",
+        "offsetMultiplier": 60000,
+        "timeEnd": "",
+        "timeEndType": "entered",
+        "timeEndOffset": 0,
+        "timeEndOffsetType": "none",
+        "timeEndOffsetMultiplier": 60000,
+        "timeDays": "*",
+        "timeOnlyOddDays": false,
+        "timeOnlyEvenDays": false,
+        "timeOnlyOddWeeks": false,
+        "timeOnlyEvenWeeks": false,
+        "timeMonths": "0,1,2,3,9,10,11",
+        "timedatestart": "",
+        "timedateend": "",
+        "property": "",
+        "propertyType": "none",
+        "propertyCompare": "true",
+        "propertyThreshold": "",
+        "propertyThresholdType": "num",
+        "timeAlt": "",
+        "timeAltType": "entered",
+        "timeAltDays": "*",
+        "timeAltOnlyOddDays": false,
+        "timeAltOnlyEvenDays": false,
+        "timeAltOnlyOddWeeks": false,
+        "timeAltOnlyEvenWeeks": false,
+        "timeAltMonths": "*",
+        "timeAltOffset": 0,
+        "timeAltOffsetType": "none",
+        "timeAltOffsetMultiplier": 60000,
+        "once": false,
+        "onceDelay": 0.1,
+        "recalcTime": 2,
+        "x": 220,
+        "y": 1060,
+        "wires": [
+            [
+                "3221389d7fdcee4b"
+            ]
+        ]
+    },
+    {
+        "id": "1fdd9371c0452185",
+        "type": "api-current-state",
+        "z": "c64ddd5143775f97",
+        "g": "7b4bf04699360b3b",
+        "name": "Mało światła buda",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "300",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "entity_id": "sensor.buda_illuminance_lux",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 410,
+        "y": 100,
+        "wires": [
+            [
+                "0b66e0c8549d8e06",
+                "547d67abf9f23416",
+                "f69501279babcc0b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a1b8e201631dd85f",
+        "type": "api-call-service",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "cover",
+        "service": "open_cover",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "cover.roleta_salon"
+        ],
+        "data": "{}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 510,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "97dfec68aa8f76ee",
+        "type": "inject",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "O 7:30 w tygodniu",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 07 * * 1,2,3,4,5",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 1180,
+        "wires": [
+            [
+                "a1b8e201631dd85f"
+            ]
+        ]
+    },
+    {
+        "id": "3221389d7fdcee4b",
+        "type": "api-current-state",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "Czy tryb wakacyjny",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.tryb_wakacyjny",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 510,
+        "y": 1060,
+        "wires": [
+            [],
+            [
+                "ee50055f99595ff8"
+            ]
+        ]
+    },
+    {
+        "id": "499a79ef19eda6df",
+        "type": "time-inject",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "",
+        "nameInt": "⏲ golden hour dusk end⤽10min = timestamp",
+        "positionConfig": "de7540b257d34f68",
+        "props": [
+            {
+                "p": "",
+                "pt": "msgPayload",
+                "v": "",
+                "vt": "date",
+                "o": "",
+                "oT": "none",
+                "oM": "60000",
+                "f": 0,
+                "fS": 0,
+                "fT": "UNIX timestamp (ms)",
+                "fI": "0",
+                "next": true,
+                "days": "*",
+                "months": "*",
+                "onlyOddDays": false,
+                "onlyEvenDays": false,
+                "onlyOddWeeks": false,
+                "onlyEvenWeeks": false
+            },
+            {
+                "p": "",
+                "pt": "msgTopic",
+                "v": "",
+                "vt": "str",
+                "o": "",
+                "oT": "none",
+                "oM": "60000",
+                "f": 0,
+                "fS": 0,
+                "fT": "UNIX timestamp (ms)",
+                "fI": "0",
+                "next": false,
+                "days": "*",
+                "months": "*",
+                "onlyOddDays": false,
+                "onlyEvenDays": false,
+                "onlyOddWeeks": false,
+                "onlyEvenWeeks": false
+            }
+        ],
+        "injectTypeSelect": "time",
+        "intervalCount": 1,
+        "intervalCountType": "num",
+        "intervalCountMultiplier": 60000,
+        "cron": "",
+        "cronType": "cronexpr",
+        "time": "goldenHourDuskEnd",
+        "timeType": "pdsTime",
+        "offset": "10",
+        "offsetType": "num",
+        "offsetMultiplier": 60000,
+        "timeEnd": "",
+        "timeEndType": "entered",
+        "timeEndOffset": 0,
+        "timeEndOffsetType": "none",
+        "timeEndOffsetMultiplier": 60000,
+        "timeDays": "*",
+        "timeOnlyOddDays": false,
+        "timeOnlyEvenDays": false,
+        "timeOnlyOddWeeks": false,
+        "timeOnlyEvenWeeks": false,
+        "timeMonths": "*",
+        "timedatestart": "",
+        "timedateend": "",
+        "property": "",
+        "propertyType": "none",
+        "propertyCompare": "true",
+        "propertyThreshold": "",
+        "propertyThresholdType": "num",
+        "timeAlt": "",
+        "timeAltType": "entered",
+        "timeAltDays": "*",
+        "timeAltOnlyOddDays": false,
+        "timeAltOnlyEvenDays": false,
+        "timeAltOnlyOddWeeks": false,
+        "timeAltOnlyEvenWeeks": false,
+        "timeAltMonths": "*",
+        "timeAltOffset": 0,
+        "timeAltOffsetType": "none",
+        "timeAltOffsetMultiplier": 60000,
+        "once": false,
+        "onceDelay": 0.1,
+        "recalcTime": 2,
+        "x": 230,
+        "y": 1120,
+        "wires": [
+            [
+                "cd7be779f01cc3f8"
+            ]
+        ]
+    },
+    {
+        "id": "cd7be779f01cc3f8",
+        "type": "api-current-state",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "Czy tryb wakacyjny",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.tryb_wakacyjny",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 510,
+        "y": 1120,
+        "wires": [
+            [
+                "ee50055f99595ff8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "20f8eea16bb891e9",
+        "type": "inject",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "O 8:00 w weekend",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 08 * * 6,0",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 1240,
+        "wires": [
+            [
+                "a1b8e201631dd85f"
+            ]
+        ]
     },
     {
         "id": "256099695343d75f",
@@ -6502,7 +6950,7 @@
             "light.lampa_gabinet"
         ],
         "data": "{    \t    \"rgbw_color\": [255, 255, 182, 50], \t    \"brightness_pct\": 100,\t    \"transition\": 1\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6564,7 +7012,7 @@
             "light.lampa_gabinet"
         ],
         "data": "{\t    \"transition\": 1\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6656,7 +7104,7 @@
             "light.lampa_dzieci"
         ],
         "data": "{    \t    \"brightness_pct\": 100,\t    \"transition\": 1\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6718,7 +7166,7 @@
             "light.lampa_dzieci"
         ],
         "data": "{\t    \"transition\": 1\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6903,7 +7351,7 @@
         "deviceId": [],
         "entityId": [],
         "data": "{\t   \"random_song\": true,\t   \"device_name\": \"Pokój dziecięcy\",\t   \"uri\": \"spotify:album:1PtHlcG5feBee4IFGgbut0\",\t   \"repeat\": \"context\",\t   \"shuffle\": true,\t   \"account\": \"pati\"\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -6931,7 +7379,7 @@
             "media_player.pokoj_dzieciecy"
         ],
         "data": "{\t  \"volume_level\": 0.3\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7023,7 +7471,7 @@
         "deviceId": [],
         "entityId": [],
         "data": "{\t   \"random_song\": true,\t   \"device_name\": \"Pokój dziecięcy\",\t   \"uri\": \"spotify:album:46KPvzk5ucqRLpmo2ABfFZ\",\t   \"repeat\": \"context\",\t   \"shuffle\": true,\t   \"account\": \"pati\"\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7051,7 +7499,7 @@
             "media_player.pokoj_dzieciecy"
         ],
         "data": "{\t  \"volume_level\": 0.3\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7153,9 +7601,7 @@
         "x": 160,
         "y": 360,
         "wires": [
-            [
-                "7a3ec019be27f7c8"
-            ]
+            []
         ]
     },
     {
@@ -7211,9 +7657,7 @@
         "x": 160,
         "y": 480,
         "wires": [
-            [
-                "4b39d4a55295d89b"
-            ]
+            []
         ]
     },
     {
@@ -7281,7 +7725,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 370,
+        "x": 390,
         "y": 360,
         "wires": [
             [],
@@ -7315,9 +7759,7 @@
         "x": 160,
         "y": 420,
         "wires": [
-            [
-                "80c353ea4bf29391"
-            ]
+            []
         ]
     },
     {
@@ -7385,7 +7827,7 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 370,
+        "x": 390,
         "y": 420,
         "wires": [
             [],
@@ -7473,7 +7915,7 @@
         "entityId": [
             "scene.dzieci_dobranoc"
         ],
-        "data": "",
+        "data": "{}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -7552,14 +7994,14 @@
         "type": "api-current-state",
         "z": "ae7eb5a05d582c32",
         "g": "9bc283314f1e0f9f",
-        "name": "Gabinet Lux",
+        "name": "Na zewnątrz lux",
         "server": "163c9f2450f671da",
         "version": 3,
         "outputs": 2,
         "halt_if": "payload",
         "halt_if_type": "msg",
         "halt_if_compare": "lt",
-        "entity_id": "sensor.gabinet_illuminance_lux",
+        "entity_id": "sensor.buda_illuminance_lux",
         "state_type": "num",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -7584,8 +8026,8 @@
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
-        "x": 510,
-        "y": 60,
+        "x": 520,
+        "y": 80,
         "wires": [
             [
                 "cbc707cf91024573",
@@ -7613,13 +8055,13 @@
             "light.lampka_gabinet_1"
         ],
         "data": "{\t    \"brightness_pct\": 100\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 760,
-        "y": 40,
+        "y": 60,
         "wires": [
             [
                 "c5d1e04def32c886"
@@ -7642,14 +8084,14 @@
         "entityId": [
             "switch.sonoff_1000511f63"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 770,
-        "y": 100,
+        "y": 120,
         "wires": [
             []
         ]
@@ -7670,14 +8112,14 @@
         "entityId": [
             "switch.sonoff_1000511f63"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 800,
-        "y": 160,
+        "y": 180,
         "wires": [
             []
         ]
@@ -7699,13 +8141,13 @@
             "light.lampa_gabinet"
         ],
         "data": "{\t    \"rgbw_color\": [255, 33, 159, 100],\t    \"brightness_pct\": 100\t}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 1220,
-        "y": 20,
+        "y": 40,
         "wires": [
             []
         ]
@@ -7726,14 +8168,14 @@
         "entityId": [
             "light.lampa_gabinet"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 1240,
-        "y": 140,
+        "y": 160,
         "wires": [
             []
         ]
@@ -7747,7 +8189,7 @@
         "server": "163c9f2450f671da",
         "version": 3,
         "outputs": 2,
-        "halt_if": "500",
+        "halt_if": "50",
         "halt_if_type": "num",
         "halt_if_compare": "lt",
         "entity_id": "sensor.buda_illuminance_lux",
@@ -7763,7 +8205,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 990,
-        "y": 40,
+        "y": 60,
         "wires": [
             [
                 "e2a510cd8c057664"
@@ -7811,7 +8253,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 350,
-        "y": 60,
+        "y": 80,
         "wires": [
             [
                 "8959c55f5e6f2f96"
@@ -7834,14 +8276,14 @@
         "entityId": [
             "light.lampka_gabinet_1"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 530,
-        "y": 160,
+        "y": 180,
         "wires": [
             [
                 "2312338b8fa55a26",
@@ -7962,7 +8404,7 @@
             "light.lampka_gabinet_1"
         ],
         "data": "{\"effect\":\"colorloop\"}",
-        "dataType": "jsonata",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -7992,8 +8434,8 @@
             "switch.sonoff_1000513cd0",
             "switch.sonoff_1000511f63"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -8001,7 +8443,9 @@
         "x": 1100,
         "y": 540,
         "wires": [
-            []
+            [
+                "81a0414641db966f"
+            ]
         ]
     },
     {
@@ -8087,8 +8531,8 @@
         "entityId": [
             "input_boolean.automatycznie_steruj_oswietleniem_w_gabinecie"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -8115,8 +8559,8 @@
         "entityId": [
             "switch.sonoff_1000513cd0"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -8143,14 +8587,14 @@
         "entityId": [
             "light.lampa_gabinet"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
         "x": 840,
-        "y": 220,
+        "y": 240,
         "wires": [
             []
         ]
@@ -8193,7 +8637,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 570,
-        "y": 220,
+        "y": 240,
         "wires": [
             [
                 "9002aa303f93357c"
@@ -8239,7 +8683,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "x": 1250,
-        "y": 80,
+        "y": 100,
         "wires": [
             [
                 "0de3a5fff1c4e3c9"
@@ -8266,7 +8710,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 120,
-        "y": 160,
+        "y": 180,
         "wires": [
             [
                 "125fb9bb98fd2159"
@@ -8488,7 +8932,7 @@
         "g": "9bc283314f1e0f9f",
         "name": "",
         "x": 120,
-        "y": 80,
+        "y": 100,
         "wires": [
             [
                 "cf0fbd04973576db"
@@ -8520,7 +8964,7 @@
         "type": "api-call-service",
         "z": "ae7eb5a05d582c32",
         "g": "93d44a9a9bd7b6eb",
-        "name": "Włącz grzejnik na 17°C",
+        "name": "Włącz grzejnik na 16°C",
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
@@ -8531,7 +8975,7 @@
         "entityId": [
             "climate.kaloryfer_gabinet"
         ],
-        "data": "{\"temperature\":17,\"hvac_mode\":\"heat\"}",
+        "data": "{\"temperature\":16,\"hvac_mode\":\"heat\"}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -8578,7 +9022,7 @@
         "g": "9bc283314f1e0f9f",
         "name": "",
         "x": 280,
-        "y": 160,
+        "y": 180,
         "wires": [
             [],
             [
@@ -8990,8 +9434,8 @@
         "entityId": [
             "media_player.spotify_arkadiusz_neuman"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -9065,6 +9509,34 @@
         ]
     },
     {
+        "id": "81a0414641db966f",
+        "type": "api-call-service",
+        "z": "ae7eb5a05d582c32",
+        "g": "884608cf0fb6e773",
+        "name": "Wyłącz grzejnik",
+        "server": "163c9f2450f671da",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "climate",
+        "service": "set_temperature",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "climate.kaloryfer_gabinet"
+        ],
+        "data": "{\"temperature\":5,\"hvac_mode\":\"off\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1320,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "c66ee9c57cddb6b1",
         "type": "inject",
         "z": "15517937b48e3cad",
@@ -9097,7 +9569,7 @@
         "id": "93f71ea5a191389e",
         "type": "api-call-service",
         "z": "15517937b48e3cad",
-        "name": "Włącz grzejnik na 25°C",
+        "name": "Włącz grzejnik na 23°C",
         "server": "163c9f2450f671da",
         "version": 5,
         "debugenabled": false,
@@ -9108,7 +9580,7 @@
         "entityId": [
             "climate.kaloryfer_lazienka"
         ],
-        "data": "{\"temperature\":25,\"hvac_mode\":\"heat\"}",
+        "data": "{\"temperature\":23,\"hvac_mode\":\"heat\"}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -9249,7 +9721,7 @@
         "entityId": [
             "scene.wyjscie_z_domu"
         ],
-        "data": "",
+        "data": "{}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -9304,8 +9776,8 @@
             "light.halogen_2",
             "light.halogen_3"
         ],
-        "data": "",
-        "dataType": "jsonata",
+        "data": "{}",
+        "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
@@ -9378,7 +9850,7 @@
         "entityId": [
             "scene.standardowe_oswietlenie"
         ],
-        "data": "",
+        "data": "{}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -9387,6 +9859,299 @@
         "x": 570,
         "y": 140,
         "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f234aae371d72680",
+        "type": "function",
+        "z": "5c1786f9c837c70e",
+        "g": "2a59d30d07abe14f",
+        "name": "parser",
+        "func": "msg.payload = { \"text\": msg.payload, \"icon\": 10811 };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 80,
+        "wires": [
+            [
+                "555bb8624b88c9c3"
+            ]
+        ]
+    },
+    {
+        "id": "555bb8624b88c9c3",
+        "type": "mqtt out",
+        "z": "5c1786f9c837c70e",
+        "g": "2a59d30d07abe14f",
+        "name": "",
+        "topic": "awtrix_528514/custom/usdpln",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "346df2a95aac5785",
+        "x": 1030,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "inject1",
+        "type": "inject",
+        "z": "5c1786f9c837c70e",
+        "g": "2a59d30d07abe14f",
+        "name": "Every 1 hour",
+        "props": [],
+        "repeat": "3600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 160,
+        "y": 80,
+        "wires": [
+            [
+                "c9d7aa441da889f7"
+            ]
+        ]
+    },
+    {
+        "id": "c9d7aa441da889f7",
+        "type": "function",
+        "z": "5c1786f9c837c70e",
+        "g": "2a59d30d07abe14f",
+        "name": "Build AlphaVantage URL",
+        "func": "msg.url = \"https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=PLN&apikey=\" + env.get(\"ALPHAVANTAGE_API_KEY\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 80,
+        "wires": [
+            [
+                "http1"
+            ]
+        ]
+    },
+    {
+        "id": "http1",
+        "type": "http request",
+        "z": "5c1786f9c837c70e",
+        "g": "2a59d30d07abe14f",
+        "name": "AlphaVantage USD→PLN",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 390,
+        "y": 80,
+        "wires": [
+            [
+                "func1"
+            ]
+        ]
+    },
+    {
+        "id": "func1",
+        "type": "function",
+        "z": "5c1786f9c837c70e",
+        "g": "2a59d30d07abe14f",
+        "name": "Extract PLN rate",
+        "func": "const data = msg.payload[\"Realtime Currency Exchange Rate\"];\nconst rate = data && data[\"5. Exchange Rate\"];\nif (!rate) {\n  node.error(\"No exchange rate in response\", msg);\n  throw Error(\"No exchange rate in response\")\n}\nmsg.payload = parseFloat(rate);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 80,
+        "wires": [
+            [
+                "f234aae371d72680"
+            ]
+        ]
+    },
+    {
+        "id": "9e59640248c04652",
+        "type": "server-state-changed",
+        "z": "5c1786f9c837c70e",
+        "name": "Gabinet ruch",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.gabinet_occupancy",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "094565f2cc2502f2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f60f49949008b1e7",
+        "type": "mqtt out",
+        "z": "5c1786f9c837c70e",
+        "name": "",
+        "topic": "awtrix_528514/power",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "346df2a95aac5785",
+        "x": 540,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "094565f2cc2502f2",
+        "type": "function",
+        "z": "5c1786f9c837c70e",
+        "name": "parser",
+        "func": "msg.payload = { \"power\": msg.payload === 'on' };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "f60f49949008b1e7"
+            ]
+        ]
+    },
+    {
+        "id": "d5b45960c0e2de42",
+        "type": "server-state-changed",
+        "z": "5c1786f9c837c70e",
+        "name": "Gabinet brak ruchu",
+        "server": "163c9f2450f671da",
+        "version": 4,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.gabinet_occupancy",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "2",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "094565f2cc2502f2"
+            ],
             []
         ]
     }
