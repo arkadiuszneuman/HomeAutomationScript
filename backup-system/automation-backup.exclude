@@ -1,0 +1,16 @@
+./backup
+./influxdb
+./elasticsearchdata
+./kibana
+./logstash
+./mysql
+./nodered/node_modules
+./zigbee2mqtt/data/log
+./homeassistant/home-assistant_v2.db
+./homeassistant/backups
+./homeassistant/tts
+./homeassistant/deps
+./homeassistant/home-assistant.log*
+./homeassistant/.storage/tmp*
+*/bin
+*/obj

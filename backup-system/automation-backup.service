@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup /home/arek/automation to Synology
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/automation-backup.sh
+User=root
