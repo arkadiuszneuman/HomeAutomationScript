@@ -53,7 +53,7 @@ http:
 
 # Checks for available updates
 # Note: This component will send some information about your system to
-# the develapi_password: !secret http_passwordopers to assist with development of Home Assistant.
+# the developers to assist with development of Home Assistant.
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 # updater:
@@ -169,6 +169,7 @@ mqtt:
   cover:
     - name: "Roleta salon"
       state_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0"
+      value_template: "{{ 'stopped' if value == 'stop' else value }}"
       command_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command"
       position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/pos"
       set_position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command/pos"
@@ -201,7 +202,7 @@ scene: !include scenes.yaml
 sensor: !include_dir_merge_list custom/sensors/
 
 recorder:
-  db_url: mysql://root:wsadqe@10.0.0.115:3306/home_assistant?charset=utf8
+  db_url: !secret recorder_db_url
   auto_purge: true
   auto_repack: true
   purge_keep_days: 30
@@ -210,8 +211,9 @@ influxdb:
   api_version: 2
   host: localhost
   port: 8086
-  token: admintoken123
+  token: !secret influxdb_token
   organization: primary
+  bucket: home_assistant
   ssl: false
   verify_ssl: false
   # include:
@@ -275,7 +277,7 @@ spotcast:
       sp_key: !secret spotcast_key
     pati:
       sp_dc: !secret spotcast_pati_dc
-      sp_key: !secret spotcast_pati_dc
+      sp_key: !secret spotcast_pati_key
 
 supla:
   servers:

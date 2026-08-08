@@ -12,7 +12,7 @@ services:
             - mysql
         network_mode: host
         container_name: ha
-        #restart: unless-stopped
+        restart: unless-stopped
 
     nginx:
         image: nginx:1.27
@@ -94,7 +94,7 @@ services:
             - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2660192-if00:/dev/ttyACM0
         network_mode: host
         container_name: z2m
-        #restart: unless-stopped
+        restart: unless-stopped
 
     node-red:
         image: nodered/node-red:4.0.5-22
