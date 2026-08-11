@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
 
   mysql:
-    image: mysql:8.4.11
+    image: mysql:9.7.2
     container_name: stg-mysql
     ports:
       - "3307:3306"
@@ -85,7 +85,7 @@ services:
     restart: unless-stopped
 
   node-red:
-    image: nodered/node-red:4.1.13-22
+    image: nodered/node-red:5.0.4
     container_name: stg-node-red
     ports:
       - "1881:1880"

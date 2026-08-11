@@ -15,7 +15,7 @@ services:
         restart: unless-stopped
 
     nginx:
-        image: nginx:1.30.4
+        image: nginx:1.31.3
         # ports:
         #   - 80:80
         #   - 443:443
@@ -48,7 +48,7 @@ services:
         restart: unless-stopped
 
     mysql:
-        image: mysql:8.4.11
+        image: mysql:9.7.2
         # ports:
         # - 3306:3306
         volumes:
@@ -96,7 +96,7 @@ services:
         restart: unless-stopped
 
     node-red:
-        image: nodered/node-red:4.1.13-22
+        image: nodered/node-red:5.0.4
         environment:
             - TZ=Europe/Warsaw
             - ALPHAVANTAGE_API_KEY=${ALPHAVANTAGE_API_KEY}

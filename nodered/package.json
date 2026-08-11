@@ -5,7 +5,7 @@
     "private": true,
     "dependencies": {
         "node-red-contrib-bigtimer": "~2.8.5",
-        "node-red-contrib-home-assistant-websocket": "~0.48.1",
+        "node-red-contrib-home-assistant-websocket": "^0.80.3",
         "node-red-contrib-sun-position": "~2.2.0-beta3",
         "node-red-contrib-sunevents": "~3.1.1",
         "node-red-contrib-time-switch": "~1.1.0",
