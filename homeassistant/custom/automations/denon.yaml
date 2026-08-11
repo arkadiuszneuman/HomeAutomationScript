@@ -4,8 +4,7 @@
     entity_id: input_number.denon_volume
   action:
     - service:  media_player.volume_set
-      # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
-      data_template:
+      data:
         entity_id: media_player.denon
         volume_level: "{{ trigger.to_state.state | multiply(0.01) }}"
 # alias: Denon test

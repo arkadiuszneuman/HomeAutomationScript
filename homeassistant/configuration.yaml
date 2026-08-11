@@ -199,7 +199,7 @@ script: !include_dir_merge_named custom/scripts/
 
 # scene: !include_dir_list custom/scenes/
 scene: !include scenes.yaml
-sensor: !include_dir_merge_list custom/sensors/
+template: !include_dir_merge_list custom/templates/
 
 recorder:
   db_url: !secret recorder_db_url
@@ -268,16 +268,8 @@ light:
             name: Grzybek
             fade: true
 
-spotcast:
-  sp_dc: !secret spotcast_dc
-  sp_key: !secret spotcast_key
-  accounts:
-    arek:
-      sp_dc: !secret spotcast_dc
-      sp_key: !secret spotcast_key
-    pati:
-      sp_dc: !secret spotcast_pati_dc
-      sp_key: !secret spotcast_pati_key
+# spotcast: removed for 4.x upgrade — now configured via config flow in the UI
+# (accounts "arek" and "pati" need to be re-added there after the upgrade)
 
 supla:
   servers:
