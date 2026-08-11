@@ -1492,7 +1492,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "sensor.gabinet_illuminance_lux",
+        "entityidfilter": "sensor.gabinet_illuminance",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "num",
@@ -1819,7 +1819,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "sensor.buda_illuminance_lux",
+        "entityidfilter": "sensor.buda_illuminance",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "num",
@@ -3156,6 +3156,59 @@
         "wires": [
             [
                 "17c9759e599d8ad6"
+            ]
+        ]
+    },
+    {
+        "id": "1a2b3c4d5e6f7890",
+        "type": "mqtt-broker",
+        "name": "Pilot Dedicated Broker",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "nodered-pilot-dedicated",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "5e2f8a91c3d7b046",
+        "type": "mqtt in",
+        "z": "f9ac8b9539c832a3",
+        "g": "689b1d55f7932c58",
+        "name": "Pilot Action (MQTT, z2m 2.x fix)",
+        "topic": "zigbee2mqtt/Pilot/action",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "1a2b3c4d5e6f7890",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 120,
+        "wires": [
+            [
+                "03fbfc2607454ccd"
             ]
         ]
     },

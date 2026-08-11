@@ -4,9 +4,9 @@
     entity_id: input_number.stairs_min_brightness
   action:
     - service: mqtt.publish
-      data_template:
+      data:
         topic: "home/stairs/minlevel/set"
-        payload_template: "{ level: \"{{ trigger.to_state.state | int }}\" }"
+        payload: "{ level: \"{{ trigger.to_state.state | int }}\" }"
 
 - alias: "Maksymalna jasność schodów"
   trigger:
@@ -14,9 +14,9 @@
     entity_id: input_number.stairs_max_brightness
   action:
     - service: mqtt.publish
-      data_template:
+      data:
         topic: "home/stairs/maxlevel/set"
-        payload_template: "{ level: \"{{ trigger.to_state.state | int }}\" }"
+        payload: "{ level: \"{{ trigger.to_state.state | int }}\" }"
 
 - alias: Ustawienie jasności schodów po zmierzchu
   trigger:
@@ -25,9 +25,9 @@
     offset: "-00:30:00"
   action:
     - service: mqtt.publish
-      data_template:
+      data:
         topic: "home/stairs/maxlevel/set"
-        payload_template: "{ level: \"100\" }"
+        payload: "{ level: \"100\" }"
 
 - alias: Ustawienie ciemnych schodów w nocy
   trigger:
@@ -35,9 +35,9 @@
     at: '22:00:00'
   action:
     - service: mqtt.publish
-      data_template:
+      data:
         topic: "home/stairs/maxlevel/set"
-        payload_template: "{ level: \"3\" }"
+        payload: "{ level: \"3\" }"
 
 - alias: Ustawienie jasności schodów po świcie
   trigger:
@@ -46,6 +46,6 @@
     offset: "00:30:00"
   action:
     - service: mqtt.publish
-      data_template:
+      data:
         topic: "home/stairs/maxlevel/set"
         payload: "{ level: \"0\" }"
