@@ -6255,7 +6255,7 @@
         "halt_if": "300",
         "halt_if_type": "num",
         "halt_if_compare": "lt",
-        "entity_id": "sensor.buda_illuminance_lux",
+        "entity_id": "sensor.buda_illuminance",
         "state_type": "num",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -6605,7 +6605,7 @@
         "halt_if": "300",
         "halt_if_type": "num",
         "halt_if_compare": "lt",
-        "entity_id": "sensor.buda_illuminance_lux",
+        "entity_id": "sensor.buda_illuminance",
         "state_type": "num",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -8054,7 +8054,7 @@
         "halt_if": "payload",
         "halt_if_type": "msg",
         "halt_if_compare": "lt",
-        "entity_id": "sensor.buda_illuminance_lux",
+        "entity_id": "sensor.buda_illuminance",
         "state_type": "num",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -8245,7 +8245,7 @@
         "halt_if": "50",
         "halt_if_type": "num",
         "halt_if_compare": "lt",
-        "entity_id": "sensor.buda_illuminance_lux",
+        "entity_id": "sensor.buda_illuminance",
         "state_type": "num",
         "blockInputOverrides": false,
         "outputProperties": [],
