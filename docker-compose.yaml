@@ -44,19 +44,6 @@ services:
     container_name: haw
     restart: unless-stopped
 
-  backup-creator:
-    build:
-      context: ./services/Services.BackupCreator
-      dockerfile: Dockerfile
-    environment:
-      - WRAPPER_ENVIRONMENT=Docker
-      - HOST=Rpi
-    volumes:
-      - ./:/maindir
-    network_mode: host
-    container_name: bc
-    restart: unless-stopped
-
   # automation-runner:
   #   build:
   #     context: ./services/AutomationRunner

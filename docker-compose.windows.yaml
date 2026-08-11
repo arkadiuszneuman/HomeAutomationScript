@@ -10,21 +10,26 @@ services:
             - /run/dbus:/run/dbus:ro
         depends_on:
             - mysql
+            - mosquitto
+            - influxdb
         network_mode: host
         container_name: ha
         restart: unless-stopped
 
     nginx:
         image: nginx:1.31.3
-        # ports:
-        #   - 80:80
-        #   - 443:443
+        ports:
+            - 80:80
+            - 443:443
         restart: unless-stopped
         volumes:
             - ./nginx/conf/:/etc/nginx/conf.d/:ro
             - ./certbot/www/:/var/www/certbot/:ro
             - ./certbot/conf/:/etc/nginx/ssl/:ro
-        network_mode: host
+        networks:
+            - automation
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
         container_name: nginx
 
     certbot:
@@ -32,66 +37,88 @@ services:
         volumes:
             - ./certbot/www/:/var/www/certbot/:rw
             - ./certbot/conf/:/etc/letsencrypt/:rw
+        networks:
+            - automation
         container_name: certbot
 
     grafana:
         image: grafana/grafana:13.1.3
-        # ports:
-        # - 3000:3000
+        ports:
+            - 3000:3000
         volumes:
             - ./grafana:/var/lib/grafana
             - /etc/timezone:/etc/timezone:ro
             - /etc/localtime:/etc/localtime:ro
-        container_name: grafana
-        network_mode: host
+        networks:
+            - automation
         user: "1000"
+        container_name: grafana
         restart: unless-stopped
 
     mysql:
         image: mysql:9.7.2
-        # ports:
-        # - 3306:3306
+        ports:
+            - 3306:3306
         volumes:
             - ./mysql:/var/lib/mysql
             - /etc/timezone:/etc/timezone:ro
             - /etc/localtime:/etc/localtime:ro
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        networks:
+            - automation
         container_name: mysql
-        network_mode: host
         restart: unless-stopped
 
-    backup-creator:
-        build:
-            context: ./services/Services.BackupCreator
-            dockerfile: Dockerfile
-        environment:
-            - WRAPPER_ENVIRONMENT=Docker
-            - HOST=Win
+    mosquitto:
+        image: eclipse-mosquitto:2.0.22
+        ports:
+            - 1883:1883
         volumes:
-            - ./:/maindir
+            - ./mosquitto:/mosquitto
             - /etc/timezone:/etc/timezone:ro
             - /etc/localtime:/etc/localtime:ro
-        network_mode: host
-        container_name: bc
+        networks:
+            - automation
+        container_name: mosquitto
+        restart: unless-stopped
+
+    influxdb:
+        image: influxdb:2.9.1
+        ports:
+            - 8086:8086
+        volumes:
+            - ./influxdb2:/var/lib/influxdb2
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            - DOCKER_INFLUXDB_INIT_MODE=setup
+            - DOCKER_INFLUXDB_INIT_USERNAME=admin
+            - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_INIT_PASSWORD}
+            - DOCKER_INFLUXDB_INIT_ORG=primary
+            - DOCKER_INFLUXDB_INIT_BUCKET=home_assistant
+            - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_INIT_TOKEN}
+        networks:
+            - automation
+        container_name: influxdb
         restart: unless-stopped
 
     zigbee2mqtt:
         image: koenkk/zigbee2mqtt:2.13.0
         depends_on:
-            - ha
+            - mosquitto
         volumes:
             - ./zigbee2mqtt/data:/app/data
             - /run/udev:/run/udev:ro
-        #    ports:
-        # Frontend port
-        #      - 8080:8080
+        ports:
+            - 8082:8082
         environment:
             - TZ=Europe/Warsaw
         devices:
             # Make sure this matched your adapter location
             - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2660192-if00:/dev/ttyACM0
-        network_mode: host
+        networks:
+            - automation
         container_name: z2m
         restart: unless-stopped
 
@@ -108,17 +135,6 @@ services:
         container_name: node-red
         restart: unless-stopped
 
-    # backup-creator2:
-    #   build:
-    #     context: ./services/PythonServices/BackupCreator
-    #     dockerfile: Dockerfile
-    #   ports:
-    #    - 5001:5001
-    #   environment:
-    #     - WRAPPER_ENVIRONMENT=Docker
-    #   volumes:
-    #     - ./:/maindir
-    #     - /etc/timezone:/etc/timezone:ro
-    #     - /etc/localtime:/etc/localtime:ro
-    #   network_mode: host
-    #   container_name: bc2
+networks:
+    automation:
+        driver: bridge

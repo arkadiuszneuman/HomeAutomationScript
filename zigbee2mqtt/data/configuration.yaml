@@ -2,7 +2,7 @@ homeassistant:
   enabled: true
 mqtt:
   base_topic: zigbee2mqtt
-  server: mqtt://localhost:1883
+  server: mqtt://mosquitto:1883
 serial:
   port: /dev/ttyACM0
 frontend:
