@@ -1,0 +1,6 @@
+{
+  "username": "rodzic@example.com",
+  "password": "haslo-do-eduvulcan",
+  "log_level": "info",
+  "test_mode": false
+}

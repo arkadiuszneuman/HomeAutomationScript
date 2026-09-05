@@ -135,6 +135,48 @@ services:
         container_name: node-red
         restart: unless-stopped
 
+    # ── Vultron (EduVulcan) ────────────────────────────────────────────────
+    # Dodatek pisany pod HA Supervised; uruchamiamy go na czystym Dockerze.
+    # Szczegóły obejścia braku Supervisora: vultron/README.md
+    vultron-supervisor:
+        image: nginx:1.31.3
+        volumes:
+            - ./vultron/supervisor-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+        networks:
+            vultron:
+                aliases:
+                    - supervisor
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        container_name: vultron-supervisor
+        restart: unless-stopped
+
+    vultron:
+        build:
+            # Budowane wprost z upstreamu — kod dodatku nie jest forkowany.
+            # Aktualizacja = podmiana refa poniżej + `build --no-cache vultron`.
+            context: "https://github.com/htomasz/vultron.git#main:vultron"
+        depends_on:
+            - vultron-supervisor
+        environment:
+            # Vultron czyta SUPERVISOR_TOKEN; podajemy long-lived access token HA.
+            - SUPERVISOR_TOKEN=${HA_TOKEN}
+            - TZ=Europe/Warsaw
+        volumes:
+            - ./vultron/data:/data
+            - ./homeassistant:/config
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+        # Chromium pod Selenium potrzebuje większego /dev/shm
+        shm_size: "1gb"
+        networks:
+            - vultron
+        container_name: vultron
+        restart: unless-stopped
+
 networks:
     automation:
+        driver: bridge
+
+    vultron:
         driver: bridge

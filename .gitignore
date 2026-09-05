@@ -34,3 +34,5 @@ homeassistant/tts/
 homeassistant/blueprints/
 certbot/
 .env
+
+vultron/data/
