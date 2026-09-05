@@ -153,9 +153,13 @@ services:
 
     vultron:
         build:
-            # Budowane wprost z upstreamu — kod dodatku nie jest forkowany.
-            # Aktualizacja = podmiana refa poniżej + `build --no-cache vultron`.
-            context: "https://github.com/htomasz/vultron.git#main:vultron"
+            # Lokalny Dockerfile (vultron/Dockerfile) buduje FROM obrazu
+            # upstreamu (kontekst "upstream" poniżej) i tylko dokłada
+            # run_wrapper.py — sam kod dodatku nie jest forkowany.
+            # Aktualizacja = podmiana refa w obu miejscach poniżej + rebuild.
+            context: ./vultron
+            additional_contexts:
+                upstream: "https://github.com/htomasz/vultron.git#main:vultron"
         depends_on:
             - vultron-supervisor
         environment:

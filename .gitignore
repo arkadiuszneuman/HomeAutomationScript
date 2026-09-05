@@ -36,3 +36,5 @@ certbot/
 .env
 
 vultron/data/
+vultron/options.json
+homeassistant/www/vultron/

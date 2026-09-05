@@ -33,3 +33,13 @@ jest w `.gitignore`.
 docker compose -f docker-compose.windows.yaml build --no-cache vultron
 docker compose -f docker-compose.windows.yaml up -d vultron
 ```
+
+## Pomijanie modułów dla konkretnego ucznia
+
+Vultron bezwarunkowo próbuje pobrać 8 kategorii danych dla każdego ucznia.
+Jeśli dla któregoś dziecka część endpointów EduVulcan systematycznie zwraca
+błąd (np. przedszkolak nie ma ocen/frekwencji/terminarza), `vultron/run_wrapper.py`
+podmienia te konkretne funkcje pobierające na no-opy dla wskazanego ucznia
+(po `slug`, widocznym w nazwach encji `sensor.vultron_*_<slug>`) — bez
+modyfikowania `vultron.py`. Lista wyjątków jest w `SKIP_MODULES` na górze
+pliku.
