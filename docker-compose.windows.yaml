@@ -20,29 +20,12 @@ services:
         image: nginx:1.31.3
         ports:
             - 80:80
-            - 443:443
         restart: unless-stopped
         volumes:
             - ./nginx/conf/:/etc/nginx/conf.d/:ro
-            - ./certbot/www/:/var/www/certbot/:ro
-            - ./certbot/conf/:/etc/nginx/ssl/:ro
         networks:
             - automation
-        extra_hosts:
-            - "host.docker.internal:host-gateway"
         container_name: nginx
-
-    certbot:
-        image: certbot/certbot:v5.7.0
-        # Nie startuje przy zwykłym `up`/Komodo — jednorazowy, uruchamiany
-        # ręcznie (`docker compose run --rm certbot ...`, patrz README).
-        profiles: ["tools"]
-        volumes:
-            - ./certbot/www/:/var/www/certbot/:rw
-            - ./certbot/conf/:/etc/letsencrypt/:rw
-        networks:
-            - automation
-        container_name: certbot
 
     grafana:
         image: grafana/grafana:13.1.3

@@ -16,20 +16,6 @@ On Linux you should execute:
 sudo sysctl -w vm.max_map_count=262144
 ```
 
-## TLS/SSL
-
-Execute given code in console generate certificate (after you run docker compose):
-
-```console
-sudo docker compose -f docker-compose.windows.yaml run --rm certbot certonly --webroot --webroot-path /var/www/certbot/ -d arekha.duckdns.org
-```
-
-To refresh certificate:
-
-```console
-docker compose -f docker-compose.windows.yaml  run --rm certbot renew
-```
-
 ## Run
 
 Production stack (`docker-compose.windows.yaml`, despite the name — it runs
@@ -50,6 +36,9 @@ it; build it explicitly first if its Dockerfile or the upstream ref changed:
 docker compose -p automation -f docker-compose.windows.yaml build vultron
 ```
 
-`certbot` is a one-shot tool, not part of the running stack (`profiles:
-["tools"]`) — it never starts on `up`, only when named explicitly, as in the
-TLS/SSL commands above.
+External access to Home Assistant goes through the Synology reverse proxy
+(`10.0.0.115:8123`, i.e. directly to HA on the host, since it runs with
+`network_mode: host`), not through this stack's `nginx` — the old
+`certbot`/TLS setup for `arekha.duckdns.org` (unrenewed since 2024, no
+external traffic in years) was removed. `nginx` currently has no real job
+in this stack; kept for now in case it's needed again.
