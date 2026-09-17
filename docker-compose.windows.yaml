@@ -34,6 +34,9 @@ services:
 
     certbot:
         image: certbot/certbot:v5.7.0
+        # Nie startuje przy zwykłym `up`/Komodo — jednorazowy, uruchamiany
+        # ręcznie (`docker compose run --rm certbot ...`, patrz README).
+        profiles: ["tools"]
         volumes:
             - ./certbot/www/:/var/www/certbot/:rw
             - ./certbot/conf/:/etc/letsencrypt/:rw
