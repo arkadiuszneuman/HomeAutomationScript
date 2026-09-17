@@ -113,11 +113,12 @@ services:
         environment:
             - TZ=Europe/Warsaw
             - ALPHAVANTAGE_API_KEY=${ALPHAVANTAGE_API_KEY}
-        #    ports:
-        #      - "1880:1880"
+        ports:
+            - 1880:1880
         volumes:
             - ./nodered:/data
-        network_mode: host
+        networks:
+            - automation
         container_name: node-red
         restart: unless-stopped
 
