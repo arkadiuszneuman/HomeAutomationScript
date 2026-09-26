@@ -43,6 +43,17 @@ services:
 
     mysql:
         image: mysql:9.7.2
+        # Tuned for the NUC's DRAM-less SATA SSD: MySQL 9 defaults assume NVMe and
+        # turned HA's ~40 rows/min into ~10 GB/day of writes.
+        command:
+            - --innodb-buffer-pool-size=1G
+            - --innodb-io-capacity=200
+            - --innodb-io-capacity-max=400
+            # At HA's load InnoDB counts as "idle" and would flush every dirty page at once.
+            - --innodb-idle-flush-pct=0
+            - --innodb-redo-log-capacity=512M
+            - --innodb-flush-log-at-trx-commit=2
+            - --skip-log-bin
         ports:
             - 3306:3306
         volumes:

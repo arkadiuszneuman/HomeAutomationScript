@@ -195,6 +195,15 @@ recorder:
   auto_purge: true
   auto_repack: true
   purge_keep_days: 30
+  # High-churn diagnostics; still sent to InfluxDB, just not worth SSD writes here.
+  exclude:
+    entities:
+      - light.rgbic_tv_backlight
+      - sensor.awtrix_528514_uptime
+      - sensor.awtrix_528514_wifi_strength
+      - sensor.awtrix_528514_free_ram
+    entity_globs:
+      - sensor.r6800_gateway_kib_s_*
 
 influxdb:
   api_version: 2
