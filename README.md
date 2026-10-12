@@ -19,11 +19,12 @@ sudo sysctl -w vm.max_map_count=262144
 ## Run
 
 Production stack (`docker-compose.windows.yaml`, despite the name — it runs
-on the NUC, see the repo's own notes) is managed by Komodo as the `automation`
-stack (`http://10.0.0.115:9120`). Normal deploys go through Komodo, not this
-script.
+on the NUC, see the repo's own notes) is managed by Dockerly as the `automation`
+stack (`http://10.0.0.115:9130`): deploy, per-service versions, `.env` editing
+and logs are there. It only checks for new images — automatic deploys are off for
+this stack, so updates are applied with Deploy (or Services → Change version).
 
-Manual fallback, if Komodo is unavailable:
+Manual fallback, if Dockerly is unavailable:
 
 ```console
 docker compose -p automation -f docker-compose.windows.yaml up -d
