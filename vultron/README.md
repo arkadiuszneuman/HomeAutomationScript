@@ -18,7 +18,7 @@ z upstreamowego repozytorium, a aktualizacja to podbicie SHA w
 
 1. Wygeneruj w HA long-lived access token: *Profil → Bezpieczeństwo → Tokeny
    dostępu długoterminowego → Utwórz token*.
-2. Wpisz go w `/home/arek/automation/.env` jako `HA_TOKEN=...`.
+2. Wpisz go w `/home/arek/apps/automation/.env` jako `HA_TOKEN=...`.
 3. Uzupełnij dane logowania do EduVulcan w `vultron/data/options.json`.
 4. `docker compose -f docker-compose.windows.yaml up -d --build vultron-supervisor vultron`
 

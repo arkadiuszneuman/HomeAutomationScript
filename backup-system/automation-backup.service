@@ -1,5 +1,5 @@
 [Unit]
-Description=Backup /home/arek/automation to Synology
+Description=Backup /home/arek/apps/automation to Synology
 Requires=network-online.target
 After=network-online.target
 

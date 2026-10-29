@@ -1,6 +1,6 @@
 # automation-backup
 
-Codzienny backup katalogu `/home/arek/automation` na Synology (NFS), z retencją 7 kopii dziennych + 4 tygodniowe. Uruchamiane przez systemd timer o 3:30 w nocy.
+Codzienny backup katalogu `/home/arek/apps/automation` na Synology (NFS), z retencją 7 kopii dziennych + 4 tygodniowe. Uruchamiane przez systemd timer o 3:30 w nocy.
 
 Backupowane są konfiguracje Home Assistant, Node-RED, Zigbee2MQTT, Grafany i sekrety serwisów (patrz komentarz w `automation-backup.exclude` co jest pomijane — m.in. MySQL, InfluxDB 1.x, ELK, `node_modules`, logi).
 

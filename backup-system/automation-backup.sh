@@ -1,7 +1,7 @@
 #!/bin/bash
 set -uo pipefail
 
-SRC_DIR="/home/arek/automation"
+SRC_DIR="/home/arek/apps/automation"
 MOUNT_POINT="/mnt/syno/nuc"
 BACKUP_ROOT="${MOUNT_POINT}/automation-backup"
 DAILY_DIR="${BACKUP_ROOT}/daily"
