@@ -17,7 +17,7 @@ services:
         restart: unless-stopped
 
     nginx:
-        image: nginx:1.31.3
+        image: nginx:1.31
         ports:
             - 80:80
         restart: unless-stopped
@@ -28,7 +28,7 @@ services:
         container_name: nginx
 
     grafana:
-        image: grafana/grafana:13.1.3
+        image: grafana/grafana:latest
         ports:
             - 3000:3000
         volumes:
@@ -42,7 +42,7 @@ services:
         restart: unless-stopped
 
     mysql:
-        image: mysql:9.7.2
+        image: mysql:26
         # Tuned for the NUC's DRAM-less SATA SSD: MySQL 9 defaults assume NVMe and
         # turned HA's ~40 rows/min into ~10 GB/day of writes.
         command:
@@ -101,7 +101,7 @@ services:
         restart: unless-stopped
 
     zigbee2mqtt:
-        image: koenkk/zigbee2mqtt:2.13.0
+        image: koenkk/zigbee2mqtt:2
         depends_on:
             - mosquitto
         volumes:
@@ -120,7 +120,7 @@ services:
         restart: unless-stopped
 
     node-red:
-        image: nodered/node-red:5.0.4
+        image: nodered/node-red:5.0
         environment:
             - TZ=Europe/Warsaw
             - ALPHAVANTAGE_API_KEY=${ALPHAVANTAGE_API_KEY}
