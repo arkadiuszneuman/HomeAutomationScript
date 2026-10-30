@@ -583,11 +583,14 @@
             "3221389d7fdcee4b",
             "499a79ef19eda6df",
             "cd7be779f01cc3f8",
-            "20f8eea16bb891e9"
+            "20f8eea16bb891e9",
+            "dbf22e1c1fc6f057",
+            "97d91138a106c997",
+            "e08d03533a395e84"
         ],
         "x": -6,
         "y": 1019,
-        "w": 872,
+        "w": 1150,
         "h": 262
     },
     {
@@ -6780,8 +6783,8 @@
         "blockInputOverrides": false,
         "domain": "cover",
         "service": "open_cover",
-        "x": 510,
-        "y": 1180,
+        "x": 1040,
+        "y": 1210,
         "wires": [
             []
         ]
@@ -6791,7 +6794,7 @@
         "type": "inject",
         "z": "c64ddd5143775f97",
         "g": "6d7b7cb5db20034b",
-        "name": "O 7:30 w tygodniu",
+        "name": "O 6:40 codziennie",
         "props": [
             {
                 "p": "payload"
@@ -6802,7 +6805,7 @@
             }
         ],
         "repeat": "",
-        "crontab": "30 07 * * 1,2,3,4,5",
+        "crontab": "40 06 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
@@ -6812,7 +6815,7 @@
         "y": 1180,
         "wires": [
             [
-                "a1b8e201631dd85f"
+                "dbf22e1c1fc6f057"
             ]
         ]
     },
@@ -7014,7 +7017,7 @@
         "type": "inject",
         "z": "c64ddd5143775f97",
         "g": "6d7b7cb5db20034b",
-        "name": "O 8:00 w weekend",
+        "name": "O 8:00 w dni wolne",
         "props": [
             {
                 "p": "payload"
@@ -7025,7 +7028,7 @@
             }
         ],
         "repeat": "",
-        "crontab": "00 08 * * 6,0",
+        "crontab": "00 08 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
@@ -7035,7 +7038,7 @@
         "y": 1240,
         "wires": [
             [
-                "a1b8e201631dd85f"
+                "97d91138a106c997"
             ]
         ]
     },
@@ -10424,6 +10427,137 @@
                 "094565f2cc2502f2"
             ],
             []
+        ]
+    },
+    {
+        "id": "dbf22e1c1fc6f057",
+        "type": "api-current-state",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "Czy dzień roboczy",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "binary_sensor.workday_sensor",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 510,
+        "y": 1180,
+        "wires": [
+            [
+                "e08d03533a395e84"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "97d91138a106c997",
+        "type": "api-current-state",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "Czy dzień roboczy",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "binary_sensor.workday_sensor",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 510,
+        "y": 1240,
+        "wires": [
+            [],
+            [
+                "a1b8e201631dd85f"
+            ]
+        ]
+    },
+    {
+        "id": "e08d03533a395e84",
+        "type": "ha-wait-until",
+        "z": "c64ddd5143775f97",
+        "g": "6d7b7cb5db20034b",
+        "name": "Czekaj aż jasno (słońce ≥ -3°)",
+        "server": "163c9f2450f671da",
+        "version": 3,
+        "outputs": 2,
+        "entities": {
+            "entity": [
+                "sun.sun"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "property": "attributes.elevation",
+        "comparator": "gte",
+        "value": "-3",
+        "valueType": "num",
+        "timeout": "120",
+        "timeoutType": "num",
+        "timeoutUnits": "minutes",
+        "checkCurrentState": true,
+        "blockInputOverrides": true,
+        "outputProperties": [],
+        "entityLocation": "data",
+        "entityLocationType": "none",
+        "x": 780,
+        "y": 1180,
+        "wires": [
+            [
+                "a1b8e201631dd85f"
+            ],
+            [
+                "a1b8e201631dd85f"
+            ]
         ]
     }
 ]
