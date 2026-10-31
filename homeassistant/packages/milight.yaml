@@ -1,0 +1,19 @@
+# Milight bridge. limitlessled has no unique_id, so these can't get an area or a
+# label; automations list them by entity_id.
+light:
+  - platform: limitlessled
+    bridges:
+      - host: 10.0.0.210
+        groups:
+          - number: 1
+            type: rgbww
+            name: Sufit LED
+            fade: true
+          - number: 2
+            type: rgbww
+            name: Salon LED
+            fade: true
+          - number: 3
+            type: bridge-led
+            name: Grzybek
+            fade: true

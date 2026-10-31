@@ -1,0 +1,84 @@
+# Outdoor air (Airly, the closer station) replaces the old smog alert that
+# pointed at sensor.airly_pm25_percent and notify.push, both long gone.
+# CAQI: >50 = "średnia", >75 = "zła" jakość.
+automation:
+  - id: smog_alert
+    alias: "Smog: nie wietrz"
+    triggers:
+      - trigger: numeric_state
+        entity_id: sensor.dom_caqi
+        above: 50
+        for: "00:30:00"
+    conditions:
+      - condition: state
+        entity_id: input_boolean.alert_smogowy
+        state: "off"
+    actions:
+      - action: input_boolean.turn_on
+        target: { entity_id: input_boolean.alert_smogowy }
+      - action: script.powiadom
+        data:
+          title: "Smog — nie wietrz"
+          message: >-
+            Jakość powietrza na zewnątrz: CAQI {{ states('sensor.dom_caqi') | round(0) }},
+            PM2.5 {{ states('sensor.dom_pm2_5') | round(0) }} µg/m³, PM10 {{ states('sensor.dom_pm10') | round(0) }} µg/m³.
+      - action: fan.turn_on
+        target:
+          entity_id: [fan.filtr_powietrza, fan.mi_air_purifier_2s]
+        continue_on_error: true
+
+  - id: smog_koniec
+    alias: "Smog: można wietrzyć"
+    triggers:
+      - trigger: numeric_state
+        entity_id: sensor.dom_caqi
+        below: 35
+        for: "01:00:00"
+    conditions:
+      - condition: state
+        entity_id: input_boolean.alert_smogowy
+        state: "on"
+    actions:
+      - action: input_boolean.turn_off
+        target: { entity_id: input_boolean.alert_smogowy }
+      - action: script.powiadom
+        data:
+          title: "Powietrze OK — można wietrzyć"
+          message: "CAQI {{ states('sensor.dom_caqi') | round(0) }}, PM2.5 {{ states('sensor.dom_pm2_5') | round(0) }} µg/m³."
+
+  - id: nawilzacz_obecnosc
+    alias: "Nawilżacz: tylko gdy ktoś jest w domu"
+    description: "Włącza na 45% (nocą tryb Silent) gdy ktoś jest w domu, wyłącza gdy nikogo nie ma."
+    mode: restart
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.ktos_w_domu
+      - trigger: time
+        at: "22:00:00"
+        id: noc
+      - trigger: time
+        at: "07:00:00"
+        id: dzien
+      - trigger: state
+        entity_id: humidifier.smartmi_evaporative_humidifier
+        from: unavailable
+    conditions:
+      - "{{ not is_state('humidifier.smartmi_evaporative_humidifier', 'unavailable') }}"
+    actions:
+      - if:
+          - condition: state
+            entity_id: binary_sensor.ktos_w_domu
+            state: "off"
+        then:
+          - action: humidifier.turn_off
+            target: { entity_id: humidifier.smartmi_evaporative_humidifier }
+        else:
+          - action: humidifier.turn_on
+            target: { entity_id: humidifier.smartmi_evaporative_humidifier }
+          - action: humidifier.set_humidity
+            target: { entity_id: humidifier.smartmi_evaporative_humidifier }
+            data: { humidity: 45 }
+          - action: humidifier.set_mode
+            target: { entity_id: humidifier.smartmi_evaporative_humidifier }
+            data:
+              mode: "{{ 'Silent' if now().hour >= 22 or now().hour < 7 else 'Auto' }}"

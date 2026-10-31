@@ -1,0 +1,30 @@
+# Extra AWTRIX apps next to the USD/PLN one from Node-RED: outdoor temperature
+# and air quality (colour by CAQI band).
+automation:
+  - id: awtrix_pogoda_powietrze
+    alias: "AWTRIX: temperatura i powietrze"
+    mode: single
+    max_exceeded: silent
+    triggers:
+      - trigger: state
+        entity_id: [sensor.openweathermap_temperature, sensor.dom_caqi]
+      - trigger: homeassistant
+        event: start
+    actions:
+      - action: mqtt.publish
+        data:
+          topic: awtrix_528514/custom/temperatura
+          payload: >-
+            {{ {'text': (states('sensor.openweathermap_temperature') | float(0) | round(0) | int) ~ '°C',
+                'duration': 8} | to_json }}
+      - variables:
+          caqi: "{{ states('sensor.dom_caqi') | float(0) }}"
+      - action: mqtt.publish
+        data:
+          topic: awtrix_528514/custom/powietrze
+          payload: >-
+            {{ {'text': 'CAQI ' ~ (caqi | round(0) | int),
+                'color': '#00E400' if caqi <= 25 else '#9CFF9C' if caqi <= 50 else '#FFFF00' if caqi <= 75 else '#FF7E00' if caqi <= 100 else '#FF0000',
+                'duration': 6} | to_json }}
+      # Updates are cheap but there's no point in more than one per 10 min.
+      - delay: "00:10:00"

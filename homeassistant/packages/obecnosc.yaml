@@ -1,0 +1,77 @@
+template:
+  - binary_sensor:
+      - name: "Ktoś w domu"
+        unique_id: ktos_w_domu
+        device_class: presence
+        state: "{{ states('zone.home') | int(0) > 0 }}"
+      - name: "Ktoś wraca do domu"
+        unique_id: ktos_wraca_do_domu
+        icon: mdi:home-import-outline
+        # Within 5 km and heading home (proximity integration, zone "Dom").
+        state: >-
+          {{ (states('sensor.dom_arek_distance') | float(99999) < 5000
+                and is_state('sensor.dom_arek_direction_of_travel', 'towards'))
+             or (states('sensor.dom_pati_distance') | float(99999) < 5000
+                and is_state('sensor.dom_pati_direction_of_travel', 'towards')) }}
+      - name: "Gabinet pusty"
+        unique_id: gabinet_pusty
+        icon: mdi:account-off-outline
+        # Node-RED's "Czy praca" treats the office as not in use after 15 min
+        # without motion (Aqara P1), even with a computer still unlocked.
+        delay_on: "00:15:00"
+        state: "{{ is_state('binary_sensor.gabinet_occupancy', 'off') }}"
+
+automation:
+  - id: nikogo_w_domu
+    alias: "Nikogo nie ma w domu"
+    description: >-
+      Po 10 min bez domowników: gasi wszystko z etykietą „Wyłącz przy wyjściu”
+      (plus Milight, bez rejestru), wyłącza media, ogrzewanie (bez pokoju dzieci),
+      po zmroku zamyka roletę i mówi, co było włączone.
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.ktos_w_domu
+        to: "off"
+        for: "00:10:00"
+    variables:
+      do_wylaczenia: >-
+        {{ (label_entities('wylacz_przy_wyjsciu')
+            + ['light.salon_led', 'light.sufit_led', 'light.grzybek'])
+           | select('is_state', 'on') | list }}
+      media: >-
+        {{ ['media_player.sony_bravia_tv', 'media_player.denon_avr_x1400h', 'media_player.playstation_4']
+           | reject('is_state', ['off', 'standby', 'unavailable', 'unknown']) | list }}
+    actions:
+      - action: homeassistant.turn_off
+        target:
+          entity_id: "{{ do_wylaczenia + ['light.salon_led', 'light.sufit_led', 'light.grzybek'] }}"
+          label_id: wylacz_przy_wyjsciu
+        continue_on_error: true
+      - if: "{{ media | count > 0 }}"
+        then:
+          - action: media_player.turn_off
+            target:
+              entity_id: "{{ media }}"
+            continue_on_error: true
+      - action: climate.set_hvac_mode
+        target:
+          entity_id: [climate.kaloryfer_gabinet, climate.kaloryfer_lazienka]
+        data:
+          hvac_mode: "off"
+        continue_on_error: true
+      - if:
+          - condition: state
+            entity_id: sun.sun
+            state: below_horizon
+        then:
+          - action: cover.close_cover
+            target:
+              entity_id: cover.roleta_salon
+            continue_on_error: true
+      - if: "{{ (do_wylaczenia + media) | count > 0 }}"
+        then:
+          - action: script.powiadom
+            data:
+              title: "Nikogo nie ma w domu"
+              message: >-
+                Wyłączono: {{ (do_wylaczenia + media) | map('state_attr', 'friendly_name') | join(', ') }}.

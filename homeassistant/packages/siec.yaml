@@ -1,0 +1,27 @@
+# Internet or the NAS down for more than 5 min: report once it's back (a push
+# can't get out while the internet is down anyway), with how long it lasted.
+automation:
+  - id: przerwa_internet_nas
+    alias: "Przerwa w internecie / NAS"
+    mode: parallel
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.r6800_gateway_wan_status
+        from: "off"
+        to: "on"
+        variables: { co: "Internet" }
+      - trigger: state
+        entity_id: binary_sensor.nas_synology
+        from: "off"
+        to: "on"
+        variables: { co: "NAS Synology" }
+    conditions:
+      - "{{ (trigger.to_state.last_changed - trigger.from_state.last_changed).total_seconds() > 300 }}"
+    actions:
+      - action: script.powiadom
+        data:
+          kogo: arek
+          title: "{{ co }} znów działa"
+          message: >-
+            Przerwa od {{ as_local(trigger.from_state.last_changed).strftime('%d.%m %H:%M') }},
+            trwała {{ ((trigger.to_state.last_changed - trigger.from_state.last_changed).total_seconds() / 60) | round(0) | int }} min.

@@ -1,0 +1,47 @@
+automation:
+  - id: odkurzanie_pod_nieobecnosc
+    alias: "Odkurzanie, gdy nikogo nie ma"
+    description: "Raz dziennie, 9–18, w dni robocze, 15 min po wyjściu wszystkich."
+    triggers:
+      - trigger: state
+        entity_id: binary_sensor.ktos_w_domu
+        to: "off"
+        for: "00:15:00"
+    conditions:
+      - condition: time
+        after: "09:00:00"
+        before: "18:00:00"
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.tryb_wakacyjny
+        state: "off"
+      - condition: state
+        entity_id: vacuum.roborock_s5
+        state: docked
+      - "{{ (states('sensor.roborock_s5_last_clean_start') | as_datetime | as_local).date() != now().date() if has_value('sensor.roborock_s5_last_clean_start') else true }}"
+    actions:
+      - action: vacuum.start
+        target: { entity_id: vacuum.roborock_s5 }
+
+  - id: odkurzacz_powiadomienia
+    alias: "Odkurzacz: koniec / błąd"
+    mode: queued
+    triggers:
+      - trigger: state
+        entity_id: vacuum.roborock_s5
+        from: returning
+        to: docked
+        id: koniec
+      - trigger: state
+        entity_id: vacuum.roborock_s5
+        to: error
+        id: blad
+    actions:
+      - action: script.powiadom
+        data:
+          title: "Roborock"
+          message: >-
+            {% if trigger.id == 'blad' %}Błąd: {{ state_attr('vacuum.roborock_s5', 'error') or 'nieznany' }}.
+            {% else %}Sprzątanie zakończone ({{ states('sensor.roborock_s5_last_clean_area') }} m², {{ states('sensor.roborock_s5_last_clean_duration') }}).{% endif %}

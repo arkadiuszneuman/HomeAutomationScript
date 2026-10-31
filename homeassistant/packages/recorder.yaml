@@ -1,0 +1,17 @@
+# InfluxDB is configured in the UI (config entry); everything still goes there.
+recorder:
+  db_url: !secret recorder_db_url
+  auto_purge: true
+  auto_repack: true
+  purge_keep_days: 30
+  # High-churn diagnostics; still sent to InfluxDB, just not worth SSD writes here.
+  exclude:
+    entities:
+      - light.rgbic_tv_backlight
+      - sensor.awtrix_528514_uptime
+      - sensor.awtrix_528514_wifi_strength
+      - sensor.awtrix_528514_free_ram
+      # Its attributes carry the whole game library (>16 KB per state).
+      - select.desktop_playnite_playnite_selected_game
+    entity_globs:
+      - sensor.r6800_gateway_kib_s_*

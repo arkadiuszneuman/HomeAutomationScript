@@ -1,0 +1,109 @@
+# Bathroom heating moved here from Node-RED: schedule + temperature are helpers
+# (editable in the UI). Heats only when someone is home or on the way, and not
+# in holiday mode. The kids' radiator is deliberately left out for now.
+automation:
+  - id: ogrzewanie_lazienka
+    alias: "Ogrzewanie łazienki"
+    mode: restart
+    triggers:
+      - trigger: state
+        entity_id:
+          - schedule.ogrzewanie_lazienka
+          - binary_sensor.ktos_w_domu
+          - binary_sensor.ktos_wraca_do_domu
+          - input_boolean.tryb_wakacyjny
+          - input_number.temperatura_lazienka
+      - trigger: homeassistant
+        event: start
+    variables:
+      grzej: >-
+        {{ is_state('schedule.ogrzewanie_lazienka', 'on')
+           and is_state('input_boolean.tryb_wakacyjny', 'off')
+           and (is_state('binary_sensor.ktos_w_domu', 'on') or is_state('binary_sensor.ktos_wraca_do_domu', 'on')) }}
+    actions:
+      - if: "{{ grzej }}"
+        then:
+          - action: climate.set_temperature
+            target:
+              entity_id: climate.kaloryfer_lazienka
+            data:
+              hvac_mode: heat
+              temperature: "{{ states('input_number.temperatura_lazienka') | float(23) }}"
+        else:
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: climate.kaloryfer_lazienka
+                state: "off"
+          - action: climate.set_temperature
+            target:
+              entity_id: climate.kaloryfer_lazienka
+            data:
+              hvac_mode: "off"
+              temperature: 18
+
+  - id: otwarte_okno_kaloryfer
+    alias: "Otwarte okno przy grzejącym kaloryferze"
+    mode: parallel
+    triggers:
+      - trigger: template
+        value_template: "{{ states('sensor.kaloryfer_gabinet_max_15_min') | float(0) - states('sensor.kaloryfer_gabinet_local_temperature') | float(0) >= 2 }}"
+        variables: { pokoj: gabinet, czujnik: kaloryfer_gabinet, kaloryfer: climate.kaloryfer_gabinet, steruj: true }
+      - trigger: template
+        value_template: "{{ states('sensor.kaloryfer_lazienka_max_15_min') | float(0) - states('sensor.kaloryfer_lazienka_local_temperature') | float(0) >= 2 }}"
+        variables: { pokoj: łazienka, czujnik: kaloryfer_lazienka, kaloryfer: climate.kaloryfer_lazienka, steruj: true }
+      - trigger: template
+        value_template: "{{ states('sensor.kaloryfer_dzieci_max_15_min') | float(0) - states('sensor.kaloryfer_dzieci_local_temperature') | float(0) >= 2 }}"
+        # Kids' radiator: notify only, its schedule is not automated for now.
+        variables: { pokoj: dzieci, czujnik: kaloryfer_dzieci, kaloryfer: climate.kaloryfer_dzieci, steruj: false }
+    conditions:
+      - "{{ is_state(kaloryfer, 'heat') }}"
+    actions:
+      - variables:
+          temp: "{{ state_attr(kaloryfer, 'temperature') }}"
+      - action: script.powiadom
+        data:
+          title: "Otwarte okno? ({{ pokoj }})"
+          message: >-
+            Temperatura spadła o {{ (states('sensor.' ~ czujnik ~ '_max_15_min') | float(0)
+            - states('sensor.' ~ czujnik ~ '_local_temperature') | float(0)) | round(1) }} °C w 15 min.
+            {{ 'Kaloryfer wyłączony na 20 min.' if steruj else 'Zamknij okno.' }}
+      - if: "{{ steruj }}"
+        then:
+          - action: climate.set_hvac_mode
+            target: { entity_id: "{{ kaloryfer }}" }
+            data: { hvac_mode: "off" }
+          - delay: "00:20:00"
+          # Something else (schedule, Node-RED) may have changed it meanwhile.
+          - condition: template
+            value_template: "{{ is_state(kaloryfer, 'off') }}"
+          - action: climate.set_temperature
+            target: { entity_id: "{{ kaloryfer }}" }
+            data:
+              hvac_mode: heat
+              temperature: "{{ temp }}"
+
+# The AVATTO valves have no open-window detection in z2m, so do it here: a 2 °C
+# drop within 15 minutes while heating means an open window.
+sensor:
+  - platform: statistics
+    name: "Kaloryfer gabinet max 15 min"
+    unique_id: kaloryfer_gabinet_max_15min
+    entity_id: sensor.kaloryfer_gabinet_local_temperature
+    state_characteristic: value_max
+    max_age: { minutes: 15 }
+    sampling_size: 100
+  - platform: statistics
+    name: "Kaloryfer łazienka max 15 min"
+    unique_id: kaloryfer_lazienka_max_15min
+    entity_id: sensor.kaloryfer_lazienka_local_temperature
+    state_characteristic: value_max
+    max_age: { minutes: 15 }
+    sampling_size: 100
+  - platform: statistics
+    name: "Kaloryfer dzieci max 15 min"
+    unique_id: kaloryfer_dzieci_max_15min
+    entity_id: sensor.kaloryfer_dzieci_local_temperature
+    state_characteristic: value_max
+    max_age: { minutes: 15 }
+    sampling_size: 100

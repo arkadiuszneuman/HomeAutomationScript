@@ -40,7 +40,7 @@ devices:
   '0x00158d00058812b2':
     friendly_name: Kostka
 advanced:
-  log_level: debug
+  log_level: info
   log_syslog:
     app_name: Zigbee2MQTT
     eol: /n

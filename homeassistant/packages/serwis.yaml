@@ -1,0 +1,103 @@
+# One daily digest (to Arek) of everything that needs attention, instead of a
+# notification per device. Updates only on Sundays.
+template:
+  - sensor:
+      - name: "Serwis do zrobienia"
+        unique_id: serwis_do_zrobienia
+        icon: mdi:wrench-clock
+        state: "{{ this.attributes.get('pozycje', []) | count }}"
+        attributes:
+          pozycje: >-
+            {% set out = namespace(l=[]) %}
+            {# Zigbee batteries #}
+            {% for s in states.sensor
+                 | selectattr('attributes.device_class', 'defined')
+                 | selectattr('attributes.device_class', 'eq', 'battery')
+                 | rejectattr('entity_id', 'search', '^sensor\\.(arek|pati|tablet|awtrix|poco)')
+                 | rejectattr('state', 'in', ['unavailable', 'unknown']) %}
+              {% if s.state | float(100) < 20 %}{% set out.l = out.l + ['Bateria ' ~ s.name ~ ': ' ~ s.state ~ '%'] %}{% endif %}
+            {% endfor %}
+            {% for s in states.binary_sensor | selectattr('entity_id', 'search', '_battery_low$') | selectattr('state', 'eq', 'on') %}
+              {% set out.l = out.l + ['Słaba bateria: ' ~ s.name] %}
+            {% endfor %}
+            {# Zigbee devices gone offline (z2m availability) #}
+            {% set zigbee = {
+                 'light.lampa_gabinet': 'Lampa gabinet', 'light.lampka_gabinet_1': 'Lampka gabinet 1',
+                 'light.halogen_5': 'Halogen 5', 'light.halogen_6': 'Halogen 6', 'light.lampa_dzieci': 'Lampa dzieci',
+                 'binary_sensor.gabinet_occupancy': 'Czujnik gabinet', 'binary_sensor.buda_occupancy': 'Czujnik buda',
+                 'switch.przekaznik_gabinet': 'Przekaźnik gabinet', 'switch.przekaznik_dzieci': 'Przekaźnik dzieci',
+                 'climate.kaloryfer_gabinet': 'Kaloryfer gabinet', 'climate.kaloryfer_lazienka': 'Kaloryfer łazienka',
+                 'climate.kaloryfer_dzieci': 'Kaloryfer dzieci', 'sensor.pilot_battery': 'Pilot',
+                 'sensor.przycisk_wiatrolap_battery': 'Przycisk wiatrołap', 'sensor.kostka_battery': 'Kostka' } %}
+            {% for e, n in zigbee.items() if is_state(e, 'unavailable') %}
+              {% set out.l = out.l + ['Zigbee offline: ' ~ n] %}
+            {% endfor %}
+            {# Consumables #}
+            {% for s in states.sensor | selectattr('entity_id', 'search', 'filter_life_remaining$') | rejectattr('state', 'in', ['unavailable', 'unknown']) %}
+              {% if s.state | float(100) < 10 %}{% set out.l = out.l + ['Filtr do wymiany: ' ~ s.name ~ ' (' ~ s.state ~ '%)'] %}{% endif %}
+            {% endfor %}
+            {% if states('sensor.smartmi_evaporative_humidifier_water_level') | float(100) < 10 %}
+              {% set out.l = out.l + ['Nawilżacz: mało wody (' ~ states('sensor.smartmi_evaporative_humidifier_water_level') ~ '%)'] %}
+            {% endif %}
+            {% for s in states.sensor | selectattr('entity_id', 'search', '^sensor\\.roborock_s5_.*_left$') | rejectattr('state', 'in', ['unavailable', 'unknown']) %}
+              {% if s.state | float(999) < 5 %}{% set out.l = out.l + ['Roborock: ' ~ s.name ~ ' (' ~ s.state ~ ' h)'] %}{% endif %}
+            {% endfor %}
+            {% if states('sensor.hl_1210w_black_toner_remaining') | float(100) < 15 %}
+              {% set out.l = out.l + ['Toner Brother: ' ~ states('sensor.hl_1210w_black_toner_remaining') ~ '%'] %}
+            {% endif %}
+            {% if states('sensor.hl_1210w_drum_remaining_life') | float(100) < 10 %}
+              {% set out.l = out.l + ['Bęben Brother: ' ~ states('sensor.hl_1210w_drum_remaining_life') ~ '%'] %}
+            {% endif %}
+            {# Synology #}
+            {% if is_state('binary_sensor.nas_synology', 'off') %}{% set out.l = out.l + ['NAS Synology nie odpowiada'] %}{% endif %}
+            {% for s in states.sensor | selectattr('entity_id', 'search', '^sensor\\.synology_volume_\\d+_zuzyta_objetosc$') | rejectattr('state', 'in', ['unavailable', 'unknown']) %}
+              {% if s.state | float(0) > 85 %}{% set out.l = out.l + [s.name ~ ': ' ~ s.state ~ '%'] %}{% endif %}
+            {% endfor %}
+            {% for s in states.sensor | selectattr('entity_id', 'search', '^sensor\\.synology_(drive|dysk)_.*_temperatura$') | rejectattr('state', 'in', ['unavailable', 'unknown']) %}
+              {% if s.state | float(0) > 50 %}{% set out.l = out.l + [s.name ~ ': ' ~ s.state ~ ' °C'] %}{% endif %}
+            {% endfor %}
+            {% for s in states.binary_sensor | selectattr('entity_id', 'search', '^binary_sensor\\.synology_') | selectattr('state', 'eq', 'on') %}
+              {% set out.l = out.l + ['Synology: ' ~ s.name] %}
+            {% endfor %}
+            {% if states.sensor | selectattr('entity_id', 'search', '^sensor\\.synology_') | selectattr('state', 'eq', 'unavailable') | list | count > 5 %}
+              {% set out.l = out.l + ['Integracja Synology nie działa (potrzebne ponowne logowanie?)'] %}
+            {% endif %}
+            {{ out.l }}
+
+automation:
+  - id: serwis_raport
+    alias: "Raport serwisowy"
+    triggers:
+      - trigger: time
+        at: "19:00:00"
+    variables:
+      aktualizacje: >-
+        {{ states.update | selectattr('state', 'eq', 'on') | map(attribute='name') | list
+           if now().weekday() == 6 else [] }}
+      pozycje: "{{ state_attr('sensor.serwis_do_zrobienia', 'pozycje') or [] }}"
+    conditions:
+      - "{{ (pozycje + aktualizacje) | count > 0 }}"
+    actions:
+      - action: script.powiadom
+        data:
+          kogo: arek
+          title: "Dom: do zrobienia ({{ (pozycje + aktualizacje) | count }})"
+          message: >-
+            {{ (pozycje + (['Aktualizacje: ' ~ aktualizacje | join(', ')] if aktualizacje else [])) | join('\n') }}
+
+  - id: nawilzacz_brak_wody
+    alias: "Nawilżacz: brak wody"
+    description: "Port z dawnego AutomationRunnera (.NET): nie w nocy, raz na opróżnienie."
+    triggers:
+      - trigger: numeric_state
+        entity_id: sensor.smartmi_evaporative_humidifier_water_level
+        below: 10
+    conditions:
+      - condition: time
+        after: "08:00:00"
+        before: "23:00:00"
+    actions:
+      - action: script.powiadom
+        data:
+          title: "Nawilżacz"
+          message: "Mało wody w nawilżaczu ({{ trigger.to_state.state }}%)."

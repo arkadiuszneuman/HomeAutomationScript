@@ -1,0 +1,39 @@
+# Kids' TV limit. Off by default (input_boolean "Limit TV dzieci aktywny"):
+# after the set time or after N minutes of watching, a spoken warning on the
+# kids' Google Home, then the TV goes off 10 minutes later.
+automation:
+  - id: limit_tv_dzieci
+    alias: "Limit TV u dzieci"
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id: media_player.aquos_tve19g_2
+        to: "on"
+        for:
+          minutes: "{{ states('input_number.limit_tv_dzieci') | int(90) }}"
+        id: czas
+      - trigger: time
+        at: input_datetime.tv_dzieci_do
+        id: godzina
+    conditions:
+      - condition: state
+        entity_id: input_boolean.limit_tv_dzieci_aktywny
+        state: "on"
+      - condition: state
+        entity_id: media_player.aquos_tve19g_2
+        state: "on"
+    actions:
+      - action: tts.speak
+        target: { entity_id: tts.google_translate_pl_pl }
+        data:
+          media_player_entity_id: media_player.pokoj_dzieciecy
+          message: >-
+            {{ 'Koniec bajek na dziś.' if trigger.id == 'godzina' else 'Czas na przerwę od telewizora.' }}
+            Telewizor wyłączy się za dziesięć minut.
+        continue_on_error: true
+      - delay: "00:10:00"
+      - condition: state
+        entity_id: media_player.aquos_tve19g_2
+        state: "on"
+      - action: remote.turn_off
+        target: { entity_id: remote.aquos_tve19g }

@@ -1,0 +1,98 @@
+automation:
+  - id: swiatlo_zewnetrzne_zmierzch
+    alias: "Światło zewnętrzne o zmierzchu"
+    description: "Od zmierzchu do 23:00, gdy ktoś jest w domu. Wyłącznik: „Automatyczne światło zewnętrzne”."
+    triggers:
+      - trigger: sun
+        event: sunset
+        offset: "00:15:00"
+        id: "on"
+      - trigger: time
+        at: "23:00:00"
+        id: "off"
+    conditions:
+      - condition: state
+        entity_id: input_boolean.automatyczne_swiatlo_zewnetrzne
+        state: "on"
+    actions:
+      - if: "{{ trigger.id == 'on' }}"
+        then:
+          - condition: state
+            entity_id: binary_sensor.ktos_w_domu
+            state: "on"
+          - condition: time
+            before: "23:00:00"
+          - action: light.turn_on
+            target: { entity_id: light.swiatlo_zewnetrzne }
+        else:
+          - action: light.turn_off
+            target: { entity_id: light.swiatlo_zewnetrzne }
+
+  - id: budzik_swietlny
+    alias: "Budzik świetlny (salon)"
+    description: "Dni robocze 6:25: halogeny RGB rozjaśniają się przez 15 min, jeśli jest jeszcze ciemno. Wyłącznik: „Budzik świetlny”."
+    triggers:
+      - trigger: time
+        at: "06:25:00"
+    conditions:
+      - condition: state
+        entity_id: input_boolean.budzik_swietlny
+        state: "on"
+      - condition: state
+        entity_id: binary_sensor.workday_sensor
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.tryb_wakacyjny
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.ktos_w_domu
+        state: "on"
+      - "{{ state_attr('sun.sun', 'elevation') | float(0) < -3 }}"
+    actions:
+      - action: light.turn_on
+        target: { entity_id: [light.halogen_5, light.halogen_6] }
+        data: { brightness_pct: 1, color_temp_kelvin: 2200 }
+      - action: light.turn_on
+        target: { entity_id: [light.halogen_5, light.halogen_6] }
+        data: { brightness_pct: 100, color_temp_kelvin: 3500, transition: 900 }
+
+  - id: tryb_swiateczny_kalendarz
+    alias: "Tryb świąteczny wg kalendarza"
+    description: "Włącza 1 grudnia, wyłącza 7 stycznia; w międzyczasie można przełączać ręcznie."
+    triggers:
+      - trigger: time
+        at: "00:01:00"
+    conditions:
+      - "{{ (now().month, now().day) in [(12, 1), (1, 7)] }}"
+    actions:
+      - action: "input_boolean.turn_{{ 'on' if now().month == 12 else 'off' }}"
+        target: { entity_id: input_boolean.tryb_swiateczny }
+
+  - id: dobranoc_kontrola
+    alias: "Dobranoc: co zostało włączone"
+    description: "11 min po scenie Dobranoc (Node-RED gasi po 10 min) — lista tego, co dalej działa; kaloryfery gabinet/łazienka off."
+    triggers:
+      - trigger: state
+        entity_id: scene.dobranoc
+        not_to: [unavailable, unknown]
+    actions:
+      - delay: "00:11:00"
+      - action: climate.set_hvac_mode
+        target: { entity_id: [climate.kaloryfer_gabinet, climate.kaloryfer_lazienka] }
+        data: { hvac_mode: "off" }
+        continue_on_error: true
+      - variables:
+          wlaczone: >-
+            {{ (label_entities('wylacz_przy_wyjsciu') + ['light.salon_led', 'light.sufit_led', 'light.grzybek'])
+               | select('is_state', 'on')
+               | list
+               + (['media_player.sony_bravia_tv', 'media_player.playstation_4', 'media_player.aquos_tve19g_2', 'media_player.denon_avr_x1400h']
+                  | reject('is_state', ['off', 'standby', 'unavailable', 'unknown']) | list)
+               + (['fan.filtr_powietrza', 'fan.mi_air_purifier_2s'] | select('is_state', 'on')
+                  | select('is_state_attr', 'preset_mode', 'Favorite') | list) }}
+      - condition: template
+        value_template: "{{ wlaczone | count > 0 }}"
+      - action: script.powiadom
+        data:
+          title: "Dobranoc — coś jeszcze działa"
+          message: "{{ wlaczone | map('state_attr', 'friendly_name') | join(', ') }}"

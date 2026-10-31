@@ -1,0 +1,39 @@
+google_assistant:
+  project_id: home-assistant-267be
+  service_account: !include ../google-assistant.json
+  report_state: true
+  exposed_domains:
+    - switch
+    - light
+    - cover
+    - media_player
+    - scene
+    - script
+  entity_config:
+    scene.dobranoc:
+      name: "Goodnight"
+      aliases:
+        - Goodnight
+        - "See you"
+        - "Bye"
+        - "Bye bye"
+    scene.ogladanie_tv:
+      name: "Watch TV"
+    scene.bieganie:
+      name: "Running"
+    scene.zakoncz_bieganie:
+      name: "Running Stop"
+      aliases:
+        - "Running stop"
+        - "Stop running"
+        - "Rest"
+    scene.standardowe_oswietlenie:
+      name: "Standard light"
+    scene.wyjscie_z_domu:
+      name: "Out home"
+      aliases:
+        - "Out home"
+    scene.swiatlo_zewnetrzne:
+      name: "External and garden light"
+      aliases:
+        - "External and garden light"

@@ -1,0 +1,19 @@
+script:
+  vacuum_clean_floor:
+    alias: "Potrójne sprzątanie"
+    sequence:
+      - repeat:
+          for_each: [Turbo, Gentle, Gentle]
+          sequence:
+            - action: vacuum.start
+              target:
+                entity_id: vacuum.roborock_s5
+            - delay: "00:00:01"
+            - action: vacuum.set_fan_speed
+              target:
+                entity_id: vacuum.roborock_s5
+              data:
+                fan_speed: "{{ repeat.item }}"
+            - wait_template: "{{ is_state('vacuum.roborock_s5', ['docked', 'idle']) }}"
+              timeout: "01:30:00"
+              continue_on_timeout: false

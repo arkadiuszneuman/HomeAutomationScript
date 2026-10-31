@@ -1,0 +1,32 @@
+script:
+  powiadom:
+    alias: "Powiadom domowników"
+    description: "Push na telefony. Bez 'kogo' idzie do obojga; 'arek' tylko do Arka (sprawy techniczne)."
+    mode: parallel
+    fields:
+      message:
+        required: true
+        selector:
+          text:
+      title:
+        selector:
+          text:
+      kogo:
+        default: wszyscy
+        selector:
+          select:
+            options: [wszyscy, arek, pati]
+    sequence:
+      - variables:
+          targets: >-
+            {% set k = kogo | default('wszyscy') %}
+            {{ (['notify.mobile_app_arek'] if k in ['wszyscy', 'arek'] else [])
+               + (['notify.mobile_app_pati'] if k in ['wszyscy', 'pati'] else []) }}
+      - repeat:
+          for_each: "{{ targets }}"
+          sequence:
+            - action: "{{ repeat.item }}"
+              continue_on_error: true
+              data:
+                title: "{{ title | default('Dom') }}"
+                message: "{{ message }}"

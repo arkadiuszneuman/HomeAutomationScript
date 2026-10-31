@@ -1,0 +1,88 @@
+# ESPEasy boards and the Shelly 2.5 blind, talking raw MQTT (no discovery).
+# unique_id puts them in the entity registry, so they can get an area, a label
+# or a new name in the UI. ESPEasy keeps a retained LWT, used as availability.
+mqtt:
+  light:
+    - name: "Halogen 1"
+      unique_id: esp_lampy_salon_boczne_relay1
+      state_topic: "/ESP_Lampy_Salon_Boczne/Relay1/Switch"
+      command_topic: "/ESP_Lampy_Salon_Boczne/gpio/16"
+      payload_on: "0"
+      payload_off: "1"
+      availability_topic: &salon_lwt "/ESP_Lampy_Salon_Boczne/status/LWT"
+      payload_available: "Connected"
+      payload_not_available: "Connection Lost"
+    - name: "Halogen 2"
+      unique_id: esp_lampy_salon_boczne_relay2
+      state_topic: "/ESP_Lampy_Salon_Boczne/Relay2/Switch"
+      command_topic: "/ESP_Lampy_Salon_Boczne/gpio/2"
+      payload_on: "0"
+      payload_off: "1"
+      availability_topic: *salon_lwt
+      payload_available: "Connected"
+      payload_not_available: "Connection Lost"
+    - name: "Halogen 3"
+      unique_id: esp_lampy_salon_boczne_relay3
+      state_topic: "/ESP_Lampy_Salon_Boczne/Relay3/Switch"
+      command_topic: "/ESP_Lampy_Salon_Boczne/gpio/13"
+      payload_on: "0"
+      payload_off: "1"
+      availability_topic: *salon_lwt
+      payload_available: "Connected"
+      payload_not_available: "Connection Lost"
+    - name: "Halogen 4"
+      unique_id: esp_lampy_salon_boczne_relay4
+      state_topic: "/ESP_Lampy_Salon_Boczne/Relay4/Switch"
+      command_topic: "/ESP_Lampy_Salon_Boczne/gpio/12"
+      payload_on: "0"
+      payload_off: "1"
+      availability_topic: *salon_lwt
+      payload_available: "Connected"
+      payload_not_available: "Connection Lost"
+    - name: "Lampka zewnętrzna"
+      unique_id: esp_przedpokoj_relay1
+      state_topic: "/ESP_Przedpokoj/Relay1/Switch"
+      command_topic: "/ESP_Przedpokoj/gpio/12"
+      payload_on: "0"
+      payload_off: "1"
+      availability_topic: &przedpokoj_lwt "/ESP_Przedpokoj/status/LWT"
+      payload_available: "Connected"
+      payload_not_available: "Connection Lost"
+  sensor:
+    - name: "Temperatura przedpokój"
+      unique_id: esp_przedpokoj_temperature
+      state_topic: "/ESP_Przedpokoj/Temp/Temperature"
+      device_class: temperature
+      state_class: measurement
+      unit_of_measurement: "°C"
+      availability_topic: *przedpokoj_lwt
+      payload_available: "Connected"
+      payload_not_available: "Connection Lost"
+    - name: "Wilgotność przedpokój"
+      unique_id: esp_przedpokoj_humidity
+      state_topic: "/ESP_Przedpokoj/Temp/Humidity"
+      device_class: humidity
+      state_class: measurement
+      unit_of_measurement: "%"
+      availability_topic: *przedpokoj_lwt
+      payload_available: "Connected"
+      payload_not_available: "Connection Lost"
+  cover:
+    - name: "Roleta salon"
+      unique_id: shellyswitch25_98cdac24cf74_roller0
+      device_class: shutter
+      state_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0"
+      # Shelly reports the last direction (open/close/stop); with a position topic
+      # the state comes from the position anyway, this just keeps "close" valid.
+      value_template: "{{ {'stop': 'stopped', 'close': 'closed'}.get(value, value) }}"
+      command_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command"
+      position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/pos"
+      set_position_topic: "shellies/shellyswitch25-98CDAC24CF74/roller/0/command/pos"
+      qos: 1
+      retain: false
+      payload_open: "open"
+      payload_close: "close"
+      payload_stop: "stop"
+      position_open: 100
+      position_closed: 0
+      optimistic: false
