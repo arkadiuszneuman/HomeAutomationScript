@@ -16,17 +16,6 @@ services:
         container_name: ha
         restart: unless-stopped
 
-    nginx:
-        image: nginx:1.31
-        ports:
-            - 80:80
-        restart: unless-stopped
-        volumes:
-            - ./nginx/conf/:/etc/nginx/conf.d/:ro
-        networks:
-            - automation
-        container_name: nginx
-
     grafana:
         image: grafana/grafana:latest
         ports:
