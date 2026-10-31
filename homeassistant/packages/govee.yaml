@@ -1,0 +1,38 @@
+# Keeps the local color_mode fix in the HACS govee integration across HACS
+# updates (see patches/govee_color_mode.py). New code loads only after a
+# restart: at startup that restart happens automatically (once — the next run
+# finds the fix and prints "ok"); after a HACS update HACS asks for one anyway.
+shell_command:
+  govee_patch: python3 /config/patches/govee_color_mode.py
+
+automation:
+  - id: govee_patch_color_mode
+    alias: "Govee: poprawka color_mode po aktualizacji"
+    mode: queued
+    triggers:
+      - trigger: homeassistant
+        event: start
+        id: start
+      - trigger: state
+        entity_id: update.govee_update
+        attribute: installed_version
+        id: update
+    actions:
+      - action: shell_command.govee_patch
+        response_variable: wynik
+      - condition: template
+        value_template: "{{ wynik.stdout == 'patched' }}"
+      - if: "{{ trigger.id == 'start' }}"
+        then:
+          - action: script.powiadom
+            data:
+              kogo: arek
+              title: "Govee: poprawka przywrócona"
+              message: "Aktualizacja HACS nadpisała poprawkę color_mode. Dopisałem ją ponownie i restartuję HA."
+          - action: homeassistant.restart
+        else:
+          - action: script.powiadom
+            data:
+              kogo: arek
+              title: "Govee: poprawka przywrócona"
+              message: "Po aktualizacji integracji dopisałem poprawkę color_mode. Zadziała po restarcie HA."
