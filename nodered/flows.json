@@ -9946,7 +9946,7 @@
         "y": 80,
         "wires": [
             [
-                "bfb26a427ab6c2ec"
+                "249e2fcfa9adeb74"
             ]
         ]
     },
@@ -9967,7 +9967,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 360,
+        "x": 440,
         "y": 80,
         "wires": [
             [
@@ -10003,5 +10003,36 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "249e2fcfa9adeb74",
+        "type": "switch",
+        "z": "d2401487fd790a68",
+        "name": "Pomiń znane, nieszkodliwe",
+        "property": "error.message",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "media_stop Failed|NoConnectionError",
+                "vt": "str",
+                "case": false
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 140,
+        "wires": [
+            [],
+            [
+                "bfb26a427ab6c2ec"
+            ]
+        ],
+        "info": "media_stop na Google Home bez odtwarzania i chwilowy brak połączenia z HA przy restarcie."
     }
 ]
