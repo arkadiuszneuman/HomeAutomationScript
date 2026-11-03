@@ -181,7 +181,12 @@
             {
                 "x": 300,
                 "y": 60,
-                "wires": []
+                "wires": [
+                    {
+                        "id": "9606289645aac74b",
+                        "port": 0
+                    }
+                ]
             }
         ],
         "env": [],
@@ -10034,5 +10039,24 @@
             ]
         ],
         "info": "media_stop na Google Home bez odtwarzania i chwilowy brak połączenia z HA przy restarcie."
+    },
+    {
+        "id": "9606289645aac74b",
+        "type": "mqtt in",
+        "z": "881b4976cfe980ca",
+        "name": "",
+        "topic": "zigbee2mqtt/Kostka",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "76b4d8bab355bb2b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 60,
+        "wires": [
+            []
+        ]
     }
 ]
