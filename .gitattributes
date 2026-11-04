@@ -1,2 +1,4 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text eol=crlf
+# Installed on the Linux host: bash and systemd need LF.
+host/** text eol=lf
