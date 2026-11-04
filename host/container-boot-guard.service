@@ -1,0 +1,8 @@
+[Unit]
+Description=Start containers Docker left exited (255) after an unclean shutdown
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/container-boot-guard.sh
