@@ -6,7 +6,7 @@ networks:
 
 services:
   ha:
-    image: homeassistant/home-assistant:2026.8
+    image: homeassistant/home-assistant:2026.11
     container_name: stg-ha
     ports:
       - "8124:8123"

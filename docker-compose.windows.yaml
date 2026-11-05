@@ -1,6 +1,6 @@
 services:
     ha:
-        image: homeassistant/home-assistant:2026.8
+        image: homeassistant/home-assistant:2026.11
         # ports:
         # - 8123:8123
         volumes:
